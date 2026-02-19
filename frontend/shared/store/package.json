@@ -1,0 +1,9 @@
+{
+  "name": "@repo/store",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "zustand": "^4.5.0"
+  }
+}

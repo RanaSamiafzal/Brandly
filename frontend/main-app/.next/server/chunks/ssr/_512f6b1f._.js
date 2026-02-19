@@ -1,0 +1,3 @@
+module.exports=[4847,a=>{a.n(a.i(32078))},43619,a=>{a.n(a.i(79962))},13718,a=>{a.n(a.i(85523))},18198,a=>{a.n(a.i(45518))},62212,a=>{a.n(a.i(66114))},22675,a=>{"use strict";var b=a.i(7997);a.i(84707);var c=a.i(47588);function d(){return(0,b.jsx)("main",{className:"flex min-h-screen flex-col items-center justify-between p-24",children:(0,b.jsxs)("div",{className:"z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex",children:[(0,b.jsx)("h1",{className:"text-4xl font-bold",children:"Influencer Dashboard"}),(0,b.jsx)(c.Button,{children:"Find Campaigns"})]})})}a.s(["default",()=>d])}];
+
+//# sourceMappingURL=_512f6b1f._.js.map

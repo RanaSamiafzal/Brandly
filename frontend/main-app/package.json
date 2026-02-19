@@ -1,0 +1,23 @@
+{
+  "name": "marketing-app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "@repo/ui": "*",
+    "@repo/config": "*",
+    "@repo/store": "*",
+    "@repo/core": "*"
+  },
+  "devDependencies": {
+    "@repo/config": "*"
+  }
+}

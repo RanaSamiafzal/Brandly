@@ -1,0 +1,24 @@
+{
+  "name": "ai-brand-influencer-saas",
+  "private": true,
+  "workspaces": [
+    "backend/core",
+    "frontend/main-app",
+    "frontend/shared/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "dev": "npm run dev --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "turbo": "latest"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  }
+}
