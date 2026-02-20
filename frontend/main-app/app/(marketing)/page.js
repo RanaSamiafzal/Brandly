@@ -1,20 +1,25 @@
-import { Button } from "@repo/ui";
-import Link from "next/link";
+import Navbar from "../../components/Navbar";
+import Hero from "../../components/Hero";
+import Stats from "../../components/Stats";
+import Features from "../../components/Features";
+import HowItWorks from "../../components/HowItWorks";
+import Testimonials from "../../components/Testimonials";
+import CTA from "../../components/CTA";
+import Footer from "../../components/Footer";
 
 export default function Page() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-                <h1 className="text-4xl font-bold">Welcome to the Platform</h1>
-                <div className="flex gap-4">
-                    <Link href="/signup?role=brand">
-                        <Button>For Brands</Button>
-                    </Link>
-                    <Link href="/signup?role=influencer">
-                        <Button variant="secondary">For Influencers</Button>
-                    </Link>
-                </div>
-            </div>
-        </main>
+        <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">
+                <Hero />
+                <Stats />
+                <Features />
+                <HowItWorks />
+                <Testimonials />
+                <CTA />
+            </main>
+            <Footer />
+        </div>
     );
 }

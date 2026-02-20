@@ -1,162 +1,36 @@
-[00:00:02.900] Server  ERROR   ⨯ The file "./proxy.js" must export a function, either as a default export or as a named "proxy" export.
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
+[00:00:01.578] Server  LOG     ✓ Ready in 1100ms
+[00:00:22.110] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
 
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
 
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:03.350] Server  LOG     ✓ Ready in 2.2s
-[00:00:07.093] Browser ERROR   uncaughtError: Error: ./frontend/main-app/proxy.js
-Proxy is missing expected function export name
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
+%s%s https://react.dev/link/hydration-mismatch 
 
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/frontend/...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body
+                            className="inter_396b12ce-module__rRjk0G__className"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
 
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-
-
-[00:00:07.429] Browser ERROR   ./frontend/main-app/proxy.js
-Proxy is missing expected function export name
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
-
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
-
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:07.429] Browser ERROR   ./frontend/main-app/proxy.js
-Proxy is missing expected function export name
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
-
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
-
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:06:54.276] Browser ERROR   ./frontend/main-app/proxy.js
-Proxy is missing expected function export name
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
-
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
-
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:08:11.035] Browser ERROR   uncaughtError: Error: ./frontend/main-app/proxy.js
-Proxy is missing expected function export name
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
-
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
-
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-
-
-[00:08:11.331] Browser ERROR   ./frontend/main-app/proxy.js
-Proxy is missing expected function export name
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
-
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
-
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:08:11.331] Browser ERROR   ./frontend/main-app/proxy.js
-Proxy is missing expected function export name
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
-
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
-
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:08:25.402] Browser ERROR   uncaughtError: Error: ./frontend/main-app/proxy.js
-Proxy is missing expected function export name
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
-
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
-
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-
-
-[00:08:25.568] Browser ERROR   ./frontend/main-app/proxy.js
-Proxy is missing expected function export name
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
-
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
-
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:08:25.569] Browser ERROR   ./frontend/main-app/proxy.js
-Proxy is missing expected function export name
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
-
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
-
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:09:26.492] Server  LOG     ✓ Compiled in 103ms
-[00:09:27.011] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
