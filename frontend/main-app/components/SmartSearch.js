@@ -51,7 +51,7 @@ export default function SmartSearch() {
 
                 <div className="grid md:grid-cols-2 gap-8">
                     {features.map((feature, index) => (
-                        <div key={index} className="p-8 rounded-2xl bg-white border border-gray-100 hover:shadow-xl transition-all group">
+                        <div key={index} className="p-8 rounded-2xl bg-white border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-300 group">
                             <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6 transition-colors">
                                 {feature.icon}
                             </div>

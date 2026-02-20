@@ -1,0 +1,11 @@
+{
+  "name": "@repo/ai-engine",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    "./ranker": "./ranker.js",
+    ".": "./index.js"
+  }
+}

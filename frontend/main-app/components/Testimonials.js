@@ -32,7 +32,7 @@ export default function Testimonials() {
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {testimonials.map((testimonial, index) => (
-                        <div key={index} className="p-8 rounded-2xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-xl transition-all">
+                        <div key={index} className="p-8 rounded-2xl border border-gray-100 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-300">
                             <div className="flex text-yellow-400 mb-6">
                                 {[1, 2, 3, 4, 5].map((i) => (
                                     <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">

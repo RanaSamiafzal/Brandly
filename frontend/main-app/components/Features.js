@@ -61,7 +61,7 @@ export default function Features() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {features.map((feature, index) => {
                         const cardContent = (
-                            <div className="p-8 h-full rounded-2xl border border-gray-100 hover:border-blue-100 hover:shadow-xl transition-all group cursor-pointer">
+                            <div className="p-8 h-full rounded-2xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-blue-100 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-300 group cursor-pointer">
                                 <div className={`w-12 h-12 rounded-xl ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                                     {feature.icon}
                                 </div>

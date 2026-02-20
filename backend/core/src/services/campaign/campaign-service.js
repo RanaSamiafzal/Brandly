@@ -1,9 +1,7 @@
-import { CampaignRepository } from '@repo/database/repositories/campaign-repository';
-import { InfluencerRepository } from '@repo/database/repositories/influencer-repository';
-import { MatchRepository } from '@repo/database/repositories/match-repository';
-
-// Using CommonJS require for ai-engine since it uses module.exports
-const { rankInfluencers } = require('@repo/ai-engine/ranker');
+import { CampaignRepository } from '@repo/database/repositories/campaign-repository.js';
+import { InfluencerRepository } from '@repo/database/repositories/influencer-repository.js';
+import { MatchRepository } from '@repo/database/repositories/match-repository.js';
+import { rankInfluencers } from '@repo/ai-engine/ranker';
 
 /**
  * Campaign Service

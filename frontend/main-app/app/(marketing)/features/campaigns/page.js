@@ -1,19 +1,19 @@
 import Navbar from "../../../../components/Navbar";
 import Footer from "../../../../components/Footer";
-import CampaignHero from "../../../../components/CampaignHero";
-import CampaignFeatures from "../../../../components/CampaignFeatures";
-import CampaignSteps from "../../../../components/CampaignSteps";
-import CampaignCTA from "../../../../components/CampaignCTA";
+import GenericHero from "../../../../components/GenericHero";
+import GenericFeatures from "../../../../components/GenericFeatures";
+import GenericSteps from "../../../../components/GenericSteps";
+import GenericCTA from "../../../../components/GenericCTA";
 
 export default function Page() {
     return (
         <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow">
-                <CampaignHero />
-                <CampaignFeatures />
-                <CampaignSteps />
-                <CampaignCTA />
+                <GenericHero featureKey="campaigns" />
+                <GenericFeatures featureKey="campaigns" />
+                <GenericSteps featureKey="campaigns" />
+                <GenericCTA featureKey="campaigns" />
             </main>
             <Footer />
         </div>

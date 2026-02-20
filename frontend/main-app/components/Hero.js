@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Hero() {
     return (
-        <section className="relative pt-32 pb-20 overflow-hidden">
+        <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-blue-500/15 via-indigo-600/10 via-30% to-transparent">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <div className="max-w-2xl">
@@ -26,12 +26,12 @@ export default function Hero() {
 
                         <div className="flex flex-wrap gap-4">
                             <Link href="/signup">
-                                <Button className="bg-blue-600 hover:bg-blue-700 text-white h-14 px-8 text-lg rounded-xl shadow-lg shadow-blue-200 transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95">
+                                <Button className="bg-blue-600 hover:bg-blue-700 text-white h-14 px-8 text-lg rounded-xl shadow-lg shadow-blue-200 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-95">
                                     Start Free Today →
                                 </Button>
                             </Link>
                             <Link href="/login">
-                                <Button variant="outline" className="h-14 px-8 text-lg rounded-xl border-2 border-gray-200 hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95">
+                                <Button variant="outline" className="h-14 px-8 text-lg rounded-xl border-2 border-blue-600 text-blue-600 hover:bg-indigo-50 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-95">
                                     Sign in
                                 </Button>
                             </Link>
@@ -60,7 +60,7 @@ export default function Hero() {
 
                     <div className="relative">
                         <div className="absolute -top-10 -right-10 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-30 animate-pulse"></div>
-                        <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100 transformation rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <div className="relative rounded-3xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] border border-white/80 transition-all duration-500 hover:scale-[1.01]">
                             <div className="bg-gray-900 aspect-[4/3] flex items-center justify-center text-white">
                                 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Team collaborating" className="object-cover w-full h-full opacity-80" />
                             </div>

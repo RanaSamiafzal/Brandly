@@ -1,19 +1,19 @@
 import Navbar from "../../../../components/Navbar";
 import Footer from "../../../../components/Footer";
-import FindMatchesHero from "../../../../components/FindMatchesHero";
+import GenericHero from "../../../../components/GenericHero";
+import GenericCTA from "../../../../components/GenericCTA";
 import SmartSearch from "../../../../components/SmartSearch";
 import FeatureSteps from "../../../../components/FeatureSteps";
-import FindMatchesCTA from "../../../../components/FindMatchesCTA";
 
 export default function Page() {
     return (
         <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow">
-                <FindMatchesHero />
+                <GenericHero featureKey="find-matches" />
                 <SmartSearch />
                 <FeatureSteps />
-                <FindMatchesCTA />
+                <GenericCTA featureKey="find-matches" />
             </main>
             <Footer />
         </div>

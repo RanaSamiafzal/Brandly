@@ -3,6 +3,8 @@
   "private": true,
   "workspaces": [
     "backend/core",
+    "backend/database",
+    "backend/ai-engine",
     "frontend/main-app",
     "frontend/shared/*",
     "shared/*"

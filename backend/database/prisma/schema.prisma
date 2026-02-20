@@ -1,0 +1,151 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id          String   @id @default(uuid())
+  name        String   @unique // BRAND, INFLUENCER, ADMIN
+  permissions String[] // JSON or simple array of permission strings
+  users       User[]
+  createdAt   DateTime @default(now())
+}
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  roleId    String
+  role      Role      @relation(fields: [roleId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // Soft delete
+
+  resetOtp        String?
+  resetOtpExpires DateTime?
+
+  brandProfile      BrandProfile?
+  influencerProfile InfluencerProfile?
+
+  sentInvites     CampaignInvite[] @relation("Sender")
+  receivedInvites CampaignInvite[] @relation("Receiver")
+
+  @@index([email])
+  @@index([roleId])
+}
+
+model BrandProfile {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id])
+  companyName String
+  website     String?
+  industry    String
+  budget      Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  campaigns Campaign[]
+
+  @@index([userId])
+}
+
+model InfluencerProfile {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id])
+  displayName    String
+  niche          String
+  socialPlatform String
+  followerCount  Int
+  engagementRate Float
+  pricing        Float?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  matchScores     MatchScore[]
+  campaignInvites CampaignInvite[]
+
+  @@index([userId])
+  @@index([niche])
+}
+
+model Campaign {
+  id          String    @id @default(uuid())
+  brandId     String
+  brand       BrandProfile @relation(fields: [brandId], references: [id])
+  title       String
+  description String
+  budget      Float
+  status      String    @default("DRAFT") // DRAFT, ACTIVE, COMPLETED, ARCHIVED
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime? // Soft delete
+
+  invites     CampaignInvite[]
+  matchScores MatchScore[]
+  analytics   Analytics[]
+
+  @@index([brandId])
+  @@index([status])
+}
+
+model CampaignInvite {
+  id           String   @id @default(uuid())
+  campaignId   String
+  campaign     Campaign @relation(fields: [campaignId], references: [id])
+  influencerId String
+  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id])
+  status       String   @default("PENDING") // PENDING, ACCEPTED, REJECTED
+  
+  senderId     String
+  sender       User     @relation("Sender", fields: [senderId], references: [id])
+  receiverId   String
+  receiver     User     @relation("Receiver", fields: [receiverId], references: [id])
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([campaignId])
+  @@index([influencerId])
+}
+
+model MatchScore {
+  id           String   @id @default(uuid())
+  campaignId   String
+  campaign     Campaign @relation(fields: [campaignId], references: [id])
+  influencerId String
+  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id])
+  score        Float
+  breakdown    Json     // { niche: x, demographic: y, ... }
+  createdAt    DateTime @default(now())
+
+  @@index([campaignId])
+  @@index([influencerId])
+  @@unique([campaignId, influencerId]) // Only one score per pair per campaign
+}
+
+model Analytics {
+  id         String   @id @default(uuid())
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id])
+  metric     String   // e.g., "views", "clicks"
+  value      Float
+  date       DateTime @default(now())
+
+  @@index([campaignId])
+}
+
+model Payment {
+  id        String   @id @default(uuid())
+  amount    Float
+  status    String   // PENDING, COMPLETED, FAILED
+  type      String   // ESCROW, PAYOUT
+  reference String?  // Stripe Transaction ID
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

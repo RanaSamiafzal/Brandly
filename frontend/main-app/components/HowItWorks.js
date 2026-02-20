@@ -29,7 +29,7 @@ export default function HowItWorks() {
 
                 <div className="grid md:grid-cols-3 gap-12">
                     {steps.map((step, index) => (
-                        <div key={index} className="relative p-8 rounded-2xl bg-white shadow-sm border border-gray-100 group hover:shadow-md transition-all">
+                        <div key={index} className="relative p-8 rounded-2xl bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 group hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-300">
                             <div className="text-6xl font-black text-gray-100 mb-6 group-hover:text-blue-50 transition-colors">
                                 {step.number}
                             </div>

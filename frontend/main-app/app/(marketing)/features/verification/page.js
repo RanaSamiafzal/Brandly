@@ -1,8 +1,8 @@
 import Navbar from "../../../../components/Navbar";
 import Footer from "../../../../components/Footer";
-import VerificationHero from "../../../../components/VerificationHero";
-import VerificationFeatures from "../../../../components/VerificationFeatures";
-import VerificationCTA from "../../../../components/VerificationCTA";
+import GenericHero from "../../../../components/GenericHero";
+import GenericFeatures from "../../../../components/GenericFeatures";
+import GenericCTA from "../../../../components/GenericCTA";
 
 export default function Page() {
     const steps = [
@@ -17,8 +17,8 @@ export default function Page() {
         <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow">
-                <VerificationHero />
-                <VerificationFeatures />
+                <GenericHero featureKey="verification" />
+                <GenericFeatures featureKey="verification" />
 
                 {/* Verification Steps Section with side box */}
                 <section className="py-24 bg-gray-50/50">
@@ -65,7 +65,7 @@ export default function Page() {
                     </div>
                 </section>
 
-                <VerificationCTA />
+                <GenericCTA featureKey="verification" />
             </main>
             <Footer />
         </div>

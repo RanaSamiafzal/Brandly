@@ -1,6 +1,6 @@
 {
-  "/(marketing)/features/analytics/page": "app/(marketing)/features/analytics/page.js",
-  "/(marketing)/features/campaigns/page": "app/(marketing)/features/campaigns/page.js",
-  "/(marketing)/features/verification/page": "app/(marketing)/features/verification/page.js",
-  "/(marketing)/page": "app/(marketing)/page.js"
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(auth)/signin/page": "app/(auth)/signin/page.js",
+  "/(marketing)/page": "app/(marketing)/page.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js"
 }
