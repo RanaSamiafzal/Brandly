@@ -1,0 +1,3 @@
+module.exports=[4047,a=>{a.v({className:"inter_396b12ce-module__rRjk0G__className"})},32078,a=>{"use strict";var b=a.i(7997),c=a.i(4047);let d={className:c.default.className,style:{fontFamily:"'Inter', 'Inter Fallback'",fontStyle:"normal"}};function e({children:a}){return(0,b.jsx)("html",{lang:"en",children:(0,b.jsx)("body",{className:d.className,children:(0,b.jsx)("div",{className:"min-h-screen bg-background font-sans antialiased",children:a})})})}null!=c.default.variable&&(d.variable=c.default.variable),a.s(["default",()=>e,"metadata",0,{title:"AI Brand-Influencer Platform",description:"AI-Powered Brand-Influencer Collaboration Platform"}],32078)}];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__3fbda717._.js.map

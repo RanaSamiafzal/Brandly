@@ -1,0 +1,4 @@
+:HL["/_next/static/chunks/8b313090fa35b903.css","style"]
+:HL["/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80","image"]
+0:{"buildId":"CkEFVqFMHp9LN51wWe5zI","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"(marketing)","paramType":null,"paramKey":"(marketing)","hasRuntimePrefetch":false,"slots":{"children":{"name":"features","paramType":null,"paramKey":"features","hasRuntimePrefetch":false,"slots":{"children":{"name":"find-matches","paramType":null,"paramKey":"find-matches","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

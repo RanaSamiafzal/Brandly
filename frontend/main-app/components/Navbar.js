@@ -51,7 +51,7 @@ export default function Navbar() {
                             Log in
                         </Link>
                         <Link href="/signup">
-                            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6">
+                            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95">
                                 Join now
                             </Button>
                         </Link>

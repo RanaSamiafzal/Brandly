@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Features() {
     const features = [
         {
@@ -9,6 +11,7 @@ export default function Features() {
                 </svg>
             ),
             color: "bg-blue-50",
+            href: "/features/find-matches",
         },
         {
             title: "Campaign Management",
@@ -19,6 +22,7 @@ export default function Features() {
                 </svg>
             ),
             color: "bg-green-50",
+            href: "/features/campaigns",
         },
         {
             title: "Real-time Analytics",
@@ -29,6 +33,7 @@ export default function Features() {
                 </svg>
             ),
             color: "bg-orange-50",
+            href: "/features/analytics",
         },
         {
             title: "Verified Profiles",
@@ -39,6 +44,7 @@ export default function Features() {
                 </svg>
             ),
             color: "bg-purple-50",
+            href: "/features/verification",
         },
     ];
 
@@ -53,20 +59,34 @@ export default function Features() {
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {features.map((feature, index) => (
-                        <div key={index} className="p-8 rounded-2xl border border-gray-100 hover:border-blue-100 hover:shadow-xl transition-all group">
-                            <div className={`w-12 h-12 rounded-xl ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                                {feature.icon}
+                    {features.map((feature, index) => {
+                        const cardContent = (
+                            <div className="p-8 h-full rounded-2xl border border-gray-100 hover:border-blue-100 hover:shadow-xl transition-all group cursor-pointer">
+                                <div className={`w-12 h-12 rounded-xl ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                                    {feature.icon}
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
+                                <p className="text-gray-600 leading-relaxed mb-4">
+                                    {feature.description}
+                                </p>
+                                <span className="text-blue-600 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                                    Learn More <span>→</span>
+                                </span>
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                            <p className="text-gray-600 leading-relaxed mb-4">
-                                {feature.description}
-                            </p>
-                            <button className="text-blue-600 font-semibold flex items-center gap-2 hover:gap-3 transition-all">
-                                Learn More <span>→</span>
-                            </button>
-                        </div>
-                    ))}
+                        );
+
+                        return (
+                            <div key={index}>
+                                {feature.href ? (
+                                    <Link href={feature.href}>
+                                        {cardContent}
+                                    </Link>
+                                ) : (
+                                    cardContent
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

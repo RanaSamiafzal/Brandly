@@ -27,12 +27,12 @@ export default function CTA() {
                         </p>
                         <div className="flex flex-wrap justify-center gap-4">
                             <Link href="/signup">
-                                <Button className="bg-white text-blue-600 hover:bg-gray-100 h-14 px-10 text-lg rounded-xl shadow-lg">
+                                <Button className="bg-white text-blue-600 hover:bg-gray-100 h-14 px-10 text-lg rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95">
                                     Get Started Free →
                                 </Button>
                             </Link>
                             <Link href="/login">
-                                <Button variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-lg rounded-xl">
+                                <Button variant="outline" className="border-2 border-white/30 text-gray-600 hover:bg-white/10 h-14 px-10 text-lg rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95">
                                     Sign In
                                 </Button>
                             </Link>

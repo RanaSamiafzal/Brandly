@@ -1,0 +1,14 @@
+{
+  "/(auth)/signin/page": "app/(auth)/signin/page.js",
+  "/(auth)/signup/page": "app/(auth)/signup/page.js",
+  "/(dashboard)/admin/page": "app/(dashboard)/admin/page.js",
+  "/(dashboard)/brand/page": "app/(dashboard)/brand/page.js",
+  "/(dashboard)/influencer/page": "app/(dashboard)/influencer/page.js",
+  "/(marketing)/features/analytics/page": "app/(marketing)/features/analytics/page.js",
+  "/(marketing)/features/campaigns/page": "app/(marketing)/features/campaigns/page.js",
+  "/(marketing)/features/find-matches/page": "app/(marketing)/features/find-matches/page.js",
+  "/(marketing)/features/verification/page": "app/(marketing)/features/verification/page.js",
+  "/(marketing)/page": "app/(marketing)/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js"
+}

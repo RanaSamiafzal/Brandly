@@ -26,12 +26,12 @@ export default function Hero() {
 
                         <div className="flex flex-wrap gap-4">
                             <Link href="/signup">
-                                <Button className="bg-blue-600 hover:bg-blue-700 text-white h-14 px-8 text-lg rounded-xl shadow-lg shadow-blue-200 transformation transition-all hover:-translate-y-1">
+                                <Button className="bg-blue-600 hover:bg-blue-700 text-white h-14 px-8 text-lg rounded-xl shadow-lg shadow-blue-200 transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95">
                                     Start Free Today →
                                 </Button>
                             </Link>
                             <Link href="/login">
-                                <Button variant="outline" className="h-14 px-8 text-lg rounded-xl border-2 border-gray-200 hover:bg-gray-50 transformation transition-all hover:-translate-y-1">
+                                <Button variant="outline" className="h-14 px-8 text-lg rounded-xl border-2 border-gray-200 hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95">
                                     Sign in
                                 </Button>
                             </Link>

@@ -1,36 +1,145 @@
-[00:00:01.578] Server  LOG     ✓ Ready in 1100ms
-[00:00:22.110] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:01.939] Server  LOG     ✓ Ready in 1389ms
+[00:01:05.172] Server  ERROR   ⨯ ./frontend/main-app/app/(marketing)/features/verification/page.js:4:1
+Module not found: Can't resolve '../../../../components/VerificationFeatures'
+  2 | import Footer from "../../../../components/Footer";
+  3 | import VerificationHero from "../../../../components/VerificationHero";
+> 4 | import VerificationFeatures from "../../../../components/VerificationFeatures";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import VerificationCTA from "../../../../components/VerificationCTA";
+  6 |
+  7 | export default function Page() {
 
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
 
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
 
-%s%s https://react.dev/link/hydration-mismatch 
+https://nextjs.org/docs/messages/module-not-found
 
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="/frontend/...">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <RootLayout>
-                        <html lang="en">
-                          <body
-                            className="inter_396b12ce-module__rRjk0G__className"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
 
+[00:01:05.293] Browser ERROR   ./frontend/main-app/app/(marketing)/features/verification/page.js:4:1
+Module not found: Can't resolve '../../../../components/VerificationFeatures'
+  2 | import Footer from "../../../../components/Footer";
+  3 | import VerificationHero from "../../../../components/VerificationHero";
+> 4 | import VerificationFeatures from "../../../../components/VerificationFeatures";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import VerificationCTA from "../../../../components/VerificationCTA";
+  6 |
+  7 | export default function Page() {
+
+https://nextjs.org/docs/messages/module-not-found
+[00:01:06.144] Browser ERROR   ./frontend/main-app/app/(marketing)/features/verification/page.js:4:1
+Module not found: Can't resolve '../../../../components/VerificationFeatures'
+  2 | import Footer from "../../../../components/Footer";
+  3 | import VerificationHero from "../../../../components/VerificationHero";
+> 4 | import VerificationFeatures from "../../../../components/VerificationFeatures";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import VerificationCTA from "../../../../components/VerificationCTA";
+  6 |
+  7 | export default function Page() {
+
+https://nextjs.org/docs/messages/module-not-found
+[00:01:06.144] Browser ERROR   ./frontend/main-app/app/(marketing)/features/verification/page.js:4:1
+Module not found: Can't resolve '../../../../components/VerificationFeatures'
+  2 | import Footer from "../../../../components/Footer";
+  3 | import VerificationHero from "../../../../components/VerificationHero";
+> 4 | import VerificationFeatures from "../../../../components/VerificationFeatures";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import VerificationCTA from "../../../../components/VerificationCTA";
+  6 |
+  7 | export default function Page() {
+
+https://nextjs.org/docs/messages/module-not-found
+[00:01:06.495] Browser ERROR   ./frontend/main-app/app/(marketing)/features/verification/page.js:4:1
+Module not found: Can't resolve '../../../../components/VerificationFeatures'
+  2 | import Footer from "../../../../components/Footer";
+  3 | import VerificationHero from "../../../../components/VerificationHero";
+> 4 | import VerificationFeatures from "../../../../components/VerificationFeatures";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import VerificationCTA from "../../../../components/VerificationCTA";
+  6 |
+  7 | export default function Page() {
+
+https://nextjs.org/docs/messages/module-not-found
+[00:01:06.512] Server  ERROR   ⨯ ./frontend/main-app/app/(marketing)/features/verification/page.js:4:1
+Module not found: Can't resolve '../../../../components/VerificationFeatures'
+  2 | import Footer from "../../../../components/Footer";
+  3 | import VerificationHero from "../../../../components/VerificationHero";
+> 4 | import VerificationFeatures from "../../../../components/VerificationFeatures";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import VerificationCTA from "../../../../components/VerificationCTA";
+  6 |
+  7 | export default function Page() {
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:01:07.618] Browser ERROR   uncaughtError: Error: ./frontend/main-app/app/(marketing)/features/verification/page.js:4:1
+Module not found: Can't resolve '../../../../components/VerificationFeatures'
+  2 | import Footer from "../../../../components/Footer";
+  3 | import VerificationHero from "../../../../components/VerificationHero";
+> 4 | import VerificationFeatures from "../../../../components/VerificationFeatures";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import VerificationCTA from "../../../../components/VerificationCTA";
+  6 |
+  7 | export default function Page() {
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:01:07.666] Server  ERROR   ⨯ ./frontend/main-app/app/(marketing)/features/verification/page.js:4:1
+Module not found: Can't resolve '../../../../components/VerificationFeatures'
+  2 | import Footer from "../../../../components/Footer";
+  3 | import VerificationHero from "../../../../components/VerificationHero";
+> 4 | import VerificationFeatures from "../../../../components/VerificationFeatures";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import VerificationCTA from "../../../../components/VerificationCTA";
+  6 |
+  7 | export default function Page() {
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:01:07.994] Browser ERROR   ./frontend/main-app/app/(marketing)/features/verification/page.js:4:1
+Module not found: Can't resolve '../../../../components/VerificationFeatures'
+  2 | import Footer from "../../../../components/Footer";
+  3 | import VerificationHero from "../../../../components/VerificationHero";
+> 4 | import VerificationFeatures from "../../../../components/VerificationFeatures";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import VerificationCTA from "../../../../components/VerificationCTA";
+  6 |
+  7 | export default function Page() {
+
+https://nextjs.org/docs/messages/module-not-found
+[00:01:07.994] Browser ERROR   ./frontend/main-app/app/(marketing)/features/verification/page.js:4:1
+Module not found: Can't resolve '../../../../components/VerificationFeatures'
+  2 | import Footer from "../../../../components/Footer";
+  3 | import VerificationHero from "../../../../components/VerificationHero";
+> 4 | import VerificationFeatures from "../../../../components/VerificationFeatures";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import VerificationCTA from "../../../../components/VerificationCTA";
+  6 |
+  7 | export default function Page() {
+
+https://nextjs.org/docs/messages/module-not-found
+[00:01:08.114] Browser ERROR   ./frontend/main-app/app/(marketing)/features/verification/page.js:4:1
+Module not found: Can't resolve '../../../../components/VerificationFeatures'
+  2 | import Footer from "../../../../components/Footer";
+  3 | import VerificationHero from "../../../../components/VerificationHero";
+> 4 | import VerificationFeatures from "../../../../components/VerificationFeatures";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import VerificationCTA from "../../../../components/VerificationCTA";
+  6 |
+  7 | export default function Page() {
+
+https://nextjs.org/docs/messages/module-not-found
+[00:07:32.321] Server  LOG     ✓ Compiled in 346ms
+[00:08:12.975] Server  LOG     ✓ Compiled in 106ms
+[00:08:14.989] Server  LOG     ✓ Compiled in 89ms
+[00:08:32.248] Server  LOG     ✓ Compiled in 143ms
+[00:08:35.167] Server  LOG     ✓ Compiled in 63ms
+[00:08:37.214] Server  LOG     ✓ Compiled in 99ms
+[00:08:53.033] Server  LOG     ✓ Compiled in 191ms

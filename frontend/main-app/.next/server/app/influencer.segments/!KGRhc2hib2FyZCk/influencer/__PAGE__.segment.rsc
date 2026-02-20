@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+0:{"buildId":"CkEFVqFMHp9LN51wWe5zI","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"flex min-h-screen flex-col items-center justify-between p-24","children":["$","div",null,{"className":"z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex","children":[["$","h1",null,{"className":"text-4xl font-bold","children":"Influencer Dashboard"}],["$","button",null,{"className":"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2","children":"Find Campaigns"}]]}]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"loading":null,"isPartial":false}
+4:null

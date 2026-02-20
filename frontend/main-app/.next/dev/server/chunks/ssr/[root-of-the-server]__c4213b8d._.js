@@ -317,7 +317,7 @@ function Navbar() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                 href: "/signup",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$ui$2f$components$2f$ui$2f$button$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
-                                    className: "bg-blue-600 hover:bg-blue-700 text-white px-6",
+                                    className: "bg-blue-600 hover:bg-blue-700 text-white px-6 transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95",
                                     children: "Join now"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/components/Navbar.js",
@@ -439,7 +439,7 @@ function Hero() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/signup",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$ui$2f$components$2f$ui$2f$button$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
-                                            className: "bg-blue-600 hover:bg-blue-700 text-white h-14 px-8 text-lg rounded-xl shadow-lg shadow-blue-200 transformation transition-all hover:-translate-y-1",
+                                            className: "bg-blue-600 hover:bg-blue-700 text-white h-14 px-8 text-lg rounded-xl shadow-lg shadow-blue-200 transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95",
                                             children: "Start Free Today →"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/components/Hero.js",
@@ -455,7 +455,7 @@ function Hero() {
                                         href: "/login",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$ui$2f$components$2f$ui$2f$button$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
                                             variant: "outline",
-                                            className: "h-14 px-8 text-lg rounded-xl border-2 border-gray-200 hover:bg-gray-50 transformation transition-all hover:-translate-y-1",
+                                            className: "h-14 px-8 text-lg rounded-xl border-2 border-gray-200 hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95",
                                             children: "Sign in"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/components/Hero.js",
@@ -704,6 +704,8 @@ __turbopack_context__.s([
     ()=>Features
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.react-server.js [app-rsc] (ecmascript)");
+;
 ;
 function Features() {
     const features = [
@@ -722,15 +724,16 @@ function Features() {
                     d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/components/Features.js",
-                    lineNumber: 8,
+                    lineNumber: 10,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/Features.js",
-                lineNumber: 7,
+                lineNumber: 9,
                 columnNumber: 17
             }, this),
-            color: "bg-blue-50"
+            color: "bg-blue-50",
+            href: "/features/find-matches"
         },
         {
             title: "Campaign Management",
@@ -747,15 +750,16 @@ function Features() {
                     d: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/components/Features.js",
-                    lineNumber: 18,
+                    lineNumber: 21,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/Features.js",
-                lineNumber: 17,
+                lineNumber: 20,
                 columnNumber: 17
             }, this),
-            color: "bg-green-50"
+            color: "bg-green-50",
+            href: "/features/campaigns"
         },
         {
             title: "Real-time Analytics",
@@ -772,15 +776,16 @@ function Features() {
                     d: "M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/components/Features.js",
-                    lineNumber: 28,
+                    lineNumber: 32,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/Features.js",
-                lineNumber: 27,
+                lineNumber: 31,
                 columnNumber: 17
             }, this),
-            color: "bg-orange-50"
+            color: "bg-orange-50",
+            href: "/features/analytics"
         },
         {
             title: "Verified Profiles",
@@ -797,15 +802,16 @@ function Features() {
                     d: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.952 11.952 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/components/Features.js",
-                    lineNumber: 38,
+                    lineNumber: 43,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/Features.js",
-                lineNumber: 37,
+                lineNumber: 42,
                 columnNumber: 17
             }, this),
-            color: "bg-purple-50"
+            color: "bg-purple-50",
+            href: "/features/verification"
         }
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -821,7 +827,7 @@ function Features() {
                             children: "Everything You Need to Succeed"
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/components/Features.js",
-                            lineNumber: 49,
+                            lineNumber: 55,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -829,81 +835,97 @@ function Features() {
                             children: "Powerful features designed to make influencer marketing simple, effective, and measurable."
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/components/Features.js",
-                            lineNumber: 50,
+                            lineNumber: 56,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/components/Features.js",
-                    lineNumber: 48,
+                    lineNumber: 54,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "grid md:grid-cols-2 lg:grid-cols-4 gap-8",
-                    children: features.map((feature, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-8 rounded-2xl border border-gray-100 hover:border-blue-100 hover:shadow-xl transition-all group",
+                    children: features.map((feature, index)=>{
+                        const cardContent = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "p-8 h-full rounded-2xl border border-gray-100 hover:border-blue-100 hover:shadow-xl transition-all group cursor-pointer",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: `w-12 h-12 rounded-xl ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`,
                                     children: feature.icon
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/components/Features.js",
-                                    lineNumber: 58,
-                                    columnNumber: 29
+                                    lineNumber: 65,
+                                    columnNumber: 33
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                     className: "text-xl font-bold text-gray-900 mb-3",
                                     children: feature.title
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/components/Features.js",
-                                    lineNumber: 61,
-                                    columnNumber: 29
+                                    lineNumber: 68,
+                                    columnNumber: 33
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-gray-600 leading-relaxed mb-4",
                                     children: feature.description
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/components/Features.js",
-                                    lineNumber: 62,
-                                    columnNumber: 29
+                                    lineNumber: 69,
+                                    columnNumber: 33
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    className: "text-blue-600 font-semibold flex items-center gap-2 hover:gap-3 transition-all",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-blue-600 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all",
                                     children: [
                                         "Learn More ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "→"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/components/Features.js",
-                                            lineNumber: 66,
-                                            columnNumber: 44
+                                            lineNumber: 73,
+                                            columnNumber: 48
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/components/Features.js",
-                                    lineNumber: 65,
-                                    columnNumber: 29
+                                    lineNumber: 72,
+                                    columnNumber: 33
                                 }, this)
                             ]
-                        }, index, true, {
+                        }, void 0, true, {
                             fileName: "[project]/frontend/main-app/components/Features.js",
-                            lineNumber: 57,
-                            columnNumber: 25
-                        }, this))
+                            lineNumber: 64,
+                            columnNumber: 29
+                        }, this);
+                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            children: feature.href ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
+                                href: feature.href,
+                                children: cardContent
+                            }, void 0, false, {
+                                fileName: "[project]/frontend/main-app/components/Features.js",
+                                lineNumber: 81,
+                                columnNumber: 37
+                            }, this) : cardContent
+                        }, index, false, {
+                            fileName: "[project]/frontend/main-app/components/Features.js",
+                            lineNumber: 79,
+                            columnNumber: 29
+                        }, this);
+                    })
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/components/Features.js",
-                    lineNumber: 55,
+                    lineNumber: 61,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend/main-app/components/Features.js",
-            lineNumber: 47,
+            lineNumber: 53,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/frontend/main-app/components/Features.js",
-        lineNumber: 46,
+        lineNumber: 52,
         columnNumber: 9
     }, this);
 }
@@ -1298,7 +1320,7 @@ function CTA() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/signup",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$ui$2f$components$2f$ui$2f$button$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
-                                            className: "bg-white text-blue-600 hover:bg-gray-100 h-14 px-10 text-lg rounded-xl shadow-lg",
+                                            className: "bg-white text-blue-600 hover:bg-gray-100 h-14 px-10 text-lg rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95",
                                             children: "Get Started Free →"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/components/CTA.js",
@@ -1314,7 +1336,7 @@ function CTA() {
                                         href: "/login",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$ui$2f$components$2f$ui$2f$button$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
                                             variant: "outline",
-                                            className: "border-2 border-white/30 text-white hover:bg-white/10 h-14 px-10 text-lg rounded-xl",
+                                            className: "border-2 border-white/30 text-gray-600 hover:bg-white/10 h-14 px-10 text-lg rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95",
                                             children: "Sign In"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/components/CTA.js",

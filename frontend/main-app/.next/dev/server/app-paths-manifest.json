@@ -1,4 +1,6 @@
 {
-  "/(marketing)/page": "app/(marketing)/page.js",
-  "/_not-found/page": "app/_not-found/page.js"
+  "/(marketing)/features/analytics/page": "app/(marketing)/features/analytics/page.js",
+  "/(marketing)/features/campaigns/page": "app/(marketing)/features/campaigns/page.js",
+  "/(marketing)/features/verification/page": "app/(marketing)/features/verification/page.js",
+  "/(marketing)/page": "app/(marketing)/page.js"
 }
