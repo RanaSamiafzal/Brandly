@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export function proxy(request) {
+export async function proxy(request) {
     const { pathname } = request.nextUrl;
 
     // Define protected routes and their required roles
@@ -14,19 +14,29 @@ export function proxy(request) {
     const protectedPath = Object.keys(protectedRoutes).find(path => pathname.startsWith(path));
 
     if (protectedPath) {
-        // In a real app, you would check for a cookie or token
-        // For now, we simulate authentication status
-        const isAuthenticated = request.cookies.get('auth_status')?.value === 'true';
-        const userRole = request.cookies.get('user_role')?.value; // e.g., 'BRAND', 'ADMIN', etc.
+        // We use the actual token now instead of fake cookies
+        const token = request.cookies.get('token')?.value;
 
-        if (!isAuthenticated) {
-            return NextResponse.redirect(new URL('/signin', request.url));
+        if (!token) {
+            return NextResponse.redirect(new URL('/login', request.url));
         }
 
-        const requiredRole = protectedRoutes[protectedPath];
-        if (requiredRole && userRole !== requiredRole) {
-            // If they are logged in but don't have the right role, send to home
-            return NextResponse.redirect(new URL('/', request.url));
+        try {
+            // We can't use 'jsonwebtoken' in Edge Runtime easily, so we parse the payload manually
+            // A JWT is header.payload.signature
+            const payloadPart = token.split('.')[1];
+            // atob is available in edge runtime
+            const decodedPayload = JSON.parse(atob(payloadPart));
+            const userRole = decodedPayload.role;
+
+            const requiredRole = protectedRoutes[protectedPath];
+            if (requiredRole && userRole !== requiredRole) {
+                // If they are logged in but don't have the right role, send to home
+                return NextResponse.redirect(new URL('/', request.url));
+            }
+        } catch (error) {
+            // Invalid token
+            return NextResponse.redirect(new URL('/login', request.url));
         }
     }
 

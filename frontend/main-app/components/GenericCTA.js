@@ -36,7 +36,7 @@ export default function GenericCTA({ featureKey }) {
                         </Button>
                     </Link>
                     <Link href="/login">
-                        <Button variant="outline" className="border-2 border-white/40 text-white hover:bg-white/10 h-16 px-12 text-xl rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl active:scale-95">
+                        <Button variant="outline" className="border-2 border-white/40 text-black hover:bg-white/10 h-16 px-12 text-xl rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl active:scale-95">
                             Sign In
                         </Button>
                     </Link>

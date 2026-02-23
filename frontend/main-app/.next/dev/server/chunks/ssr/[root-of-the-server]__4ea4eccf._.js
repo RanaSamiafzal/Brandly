@@ -481,7 +481,8 @@ function Navbar() {
                 fileName: "[project]/frontend/main-app/components/Navbar.js",
                 lineNumber: 120,
                 columnNumber: 19
-            }, this)
+            }, this),
+            href: "/resources/blog"
         },
         {
             label: "Help Center",
@@ -497,14 +498,15 @@ function Navbar() {
                     d: "M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/components/Navbar.js",
-                    lineNumber: 124,
+                    lineNumber: 125,
                     columnNumber: 98
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/Navbar.js",
-                lineNumber: 124,
+                lineNumber: 125,
                 columnNumber: 19
-            }, this)
+            }, this),
+            href: "/resources/help-center"
         },
         {
             label: "Case Studies",
@@ -520,14 +522,15 @@ function Navbar() {
                     d: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/components/Navbar.js",
-                    lineNumber: 128,
+                    lineNumber: 130,
                     columnNumber: 98
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/Navbar.js",
-                lineNumber: 128,
+                lineNumber: 130,
                 columnNumber: 19
-            }, this)
+            }, this),
+            href: "/resources/case-studies"
         }
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -550,12 +553,12 @@ function Navbar() {
                                         children: "B"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/components/Navbar.js",
-                                        lineNumber: 139,
+                                        lineNumber: 142,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/components/Navbar.js",
-                                    lineNumber: 138,
+                                    lineNumber: 141,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -563,18 +566,18 @@ function Navbar() {
                                     children: "Brandly"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/components/Navbar.js",
-                                    lineNumber: 141,
+                                    lineNumber: 144,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/components/Navbar.js",
-                            lineNumber: 137,
+                            lineNumber: 140,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/components/Navbar.js",
-                        lineNumber: 136,
+                        lineNumber: 139,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -585,7 +588,7 @@ function Navbar() {
                                 items: brandItems
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/components/Navbar.js",
-                                lineNumber: 146,
+                                lineNumber: 149,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(NavItem, {
@@ -593,7 +596,7 @@ function Navbar() {
                                 items: influencerItems
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/components/Navbar.js",
-                                lineNumber: 147,
+                                lineNumber: 150,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(NavItem, {
@@ -601,7 +604,7 @@ function Navbar() {
                                 items: featureItems
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/components/Navbar.js",
-                                lineNumber: 148,
+                                lineNumber: 151,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(NavItem, {
@@ -609,13 +612,13 @@ function Navbar() {
                                 items: resourceItems
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/components/Navbar.js",
-                                lineNumber: 149,
+                                lineNumber: 152,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/components/Navbar.js",
-                        lineNumber: 145,
+                        lineNumber: 148,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -627,7 +630,7 @@ function Navbar() {
                                 children: "Log in"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/components/Navbar.js",
-                                lineNumber: 153,
+                                lineNumber: 156,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -637,34 +640,34 @@ function Navbar() {
                                     children: "Join now"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/components/Navbar.js",
-                                    lineNumber: 157,
+                                    lineNumber: 160,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/components/Navbar.js",
-                                lineNumber: 156,
+                                lineNumber: 159,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/components/Navbar.js",
-                        lineNumber: 152,
+                        lineNumber: 155,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/components/Navbar.js",
-                lineNumber: 135,
+                lineNumber: 138,
                 columnNumber: 17
             }, this)
         }, void 0, false, {
             fileName: "[project]/frontend/main-app/components/Navbar.js",
-            lineNumber: 134,
+            lineNumber: 137,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/frontend/main-app/components/Navbar.js",
-        lineNumber: 133,
+        lineNumber: 136,
         columnNumber: 9
     }, this);
 }

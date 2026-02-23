@@ -1,29 +1,42 @@
-# 🚀 AI Brand-Influencer SaaS Platform - Release Notes v3.1.0
+# 🚀 AI Brand-Influencer SaaS Platform - Release Notes v4.0.0
 
 ## 🎯 Overview
 
-Production-ready SaaS platform with a fully unified role-based frontend and core backend architecture. Now featuring enhanced interactive components and polished UI consistency.
+Production-ready SaaS platform with a fully unified role-based frontend, complete authentication system, and core backend architecture. Now featuring resource pages, real email OTP verification, and polished UI consistency.
 
 ---
 
-## ✨ What's New in v3.1.0
+## ✨ What's New in v4.0.0
 
-### UI & UX Enhancements
+### 🔐 Full Authentication System
 
-- **Unified Button Interactions**: Implemented a consistent, premium hover effect across all application buttons, refined with a subtle scale transformation for a more professional feel.
-- **Visual Refinements**: Fixed missing images on Real-time Analytics and Verified Profiles feature pages.
-- **Responsive Layouts**: Optimized feature steps and CTAs for better mobile and desktop experience.
+- **Login & Signup**: Fully functional forms connected to backend API routes with JWT-based authentication and HTTP-only cookies.
+- **Role-Based Dashboards**: Users are redirected to `/brand` or `/influencer` dashboards based on their role after login.
+- **Persistent Auth State**: Zustand-powered auth store persists user sessions. Already logged-in users are automatically redirected away from auth pages.
+- **Personalized Dashboards**: Brand and Influencer dashboards display a "Welcome, [user email]!" message with a functional logout button.
+- **Password Reset Flow**: Complete forgot password → OTP verification → new password flow with dedicated UI pages.
+- **Show/Hide Password Toggles**: Plain-text "Show"/"Hide" toggles on all password fields.
+- **User-Friendly Error Messages**: Login and signup forms display clean, non-technical error messages.
 
-### New Interactive Components
+### 📧 Real Email OTP via Resend
 
-- **`FeatureSteps`**: A new modular component for displaying process workflows.
-- **`SmartSearch`**: Enhanced influencer search interface with modern aesthetics.
-- **Generic UI System**: Implemented a centralized Zustand-driven UI store and generic components (`GenericHero`, `GenericFeatures`, etc.) to eliminate redundant code across feature pages.
+- **Resend Integration**: OTP codes are sent via real email using the Resend API.
+- **Database-backed OTPs**: `resetOtp` and `resetOtpExpiry` fields added to the User model for secure verification.
+- **AuthService Enhancement**: Updated with real OTP generation, email dispatch, and verification logic.
 
-### Architectural Consolidation
+### 📚 Resource Pages
 
-- **Codebase Optimization**: Removed 13+ redundant feature-specific components in favor of a unified, store-driven component architecture.
-- **Zustand UI Store**: Centralized all marketing and feature content in `ui-store.js` for easier maintenance and dynamic content updates.
+- **Blog** (`/resources/blog`): Featured article hero, 3-column article grid with category filter pills, author metadata, and a full-width newsletter subscription CTA.
+- **Case Studies** (`/resources/case-studies`): Success stories with stats banner (500+ brands, $50M+ value), detailed brand case studies with challenge/solution/results format, and a bottom CTA.
+- **Help Center** (`/resources/help-center`): Search bar, 6-category grid with icons, popular articles list, video tutorials section, resource links (Docs, Forum, API), and a "Still Need Help?" support CTA.
+- **Navbar Integration**: All three pages linked in the Resources dropdown with correct navigation.
+
+### 🏗️ Backend Modularization
+
+- **`@repo/database`**: Prisma client and repositories extracted to a standalone workspace package.
+- **`@repo/ai-engine`**: AI matching engine extracted to its own workspace package with ESModule exports.
+- **`@repo/core`**: Updated to depend on the new `@repo/database` and `@repo/ai-engine` packages.
+- **Workspace Configuration**: Root `package.json` updated with `backend/database` and `backend/ai-engine` workspaces.
 
 ---
 
@@ -31,44 +44,62 @@ Production-ready SaaS platform with a fully unified role-based frontend and core
 
 ### Monorepo Structure
 
-| Directory               | Purpose                                        |
-| ----------------------- | ---------------------------------------------- |
-| `frontend/main-app`     | Unified Gateway & Dashboards (port 3000)       |
-| `frontend/shared/ui`    | Component library (@repo/ui)                   |
-| `frontend/shared/store` | Zustand global stores (@repo/store)            |
-| `backend/core`          | Unified Persistence & Logic Layer (@repo/core) |
-| `shared/config`         | ESLint, Tailwind, PostCSS configs              |
+| Directory               | Purpose                                    |
+| ----------------------- | ------------------------------------------ |
+| `frontend/main-app`     | Unified Gateway & Dashboards (port 3000)   |
+| `frontend/shared/ui`    | Component library (@repo/ui)               |
+| `frontend/shared/store` | Zustand global stores (@repo/store)        |
+| `backend/core`          | Business Logic Layer (@repo/core)          |
+| `backend/database`      | Prisma ORM & Repositories (@repo/database) |
+| `backend/ai-engine`     | AI Matching Engine (@repo/ai-engine)       |
+| `shared/config`         | ESLint, Tailwind, PostCSS configs          |
 
 ### Unified Role-Based App
 
 The `main-app` uses Next.js Route Groups to manage different access levels:
 
 - `/` — Marketing & Landing
-- `/signin` & `/signup` — Unified Authentication
-- `/admin` — Admin Dashboard
+- `/login` & `/signup` — Unified Authentication
+- `/forgot-password` → `/verify-otp` → `/new-password` — Password Reset Flow
+- `/resources/blog`, `/resources/case-studies`, `/resources/help-center` — Resource Pages
+- `/features/*` — Feature Marketing Pages
 - `/brand` — Brand Dashboard
 - `/influencer` — Influencer Dashboard
 
-### Proxy Entry Point
+### Auth Flow
 
-Role protection and global redirects are handled via `proxy.js`, ensuring secure access across all dashboards.
-
----
-
-## 🗄️ Backend Core (@repo/core)
-
-Consolidated all backend logic into a single high-performance package:
-
-- **Database**: Prisma ORM with Neon PostgreSQL integration.
-- **Services**: JWT-based Auth, Permission Management, and Campaign Logic.
-- **AI Engine**: Modular matching and scoring engine.
+- JWT tokens stored in HTTP-only cookies
+- Zustand auth store for client-side session management
+- Auth layout auto-redirects authenticated users away from login/signup
+- Password hashing with bcrypt via `AuthService`
 
 ---
 
-## 🧱 Optimized Configuration
+## 🗄️ Backend Core
 
-- **Tailwind CSS**: Performance-tuned content matching.
-- **Next.js**: Configured with `allowedDevOrigins` for seamless remote development.
+Consolidated all backend logic across three workspace packages:
+
+- **Database** (`@repo/database`): Prisma ORM with Neon PostgreSQL, repository pattern.
+- **Services** (`@repo/core`): JWT Auth, Permission Management, Campaign Logic.
+- **AI Engine** (`@repo/ai-engine`): Modular matching and scoring engine with ESModule exports.
+
+### Environment Variables
+
+| Variable         | Location           | Purpose                    |
+| ---------------- | ------------------ | -------------------------- |
+| `DATABASE_URL`   | `backend/database` | Neon PostgreSQL connection |
+| `AUTH_SECRET`    | `backend/core`     | JWT signing key            |
+| `RESEND_API_KEY` | `backend/core`     | Email OTP delivery         |
+| `FRONTEND_URL`   | `backend/core`     | CORS & redirect base URL   |
+
+---
+
+## 🧱 UI & Design System
+
+- **Zustand UI Store**: Centralized marketing content in `ui-store.js` for dynamic feature pages.
+- **Generic Components**: `GenericHero`, `GenericFeatures`, `GenericSteps`, `GenericCTA` for consistent marketing pages.
+- **Unified Button Interactions**: Consistent hover effects with subtle scale transformations.
+- **Premium Aesthetics**: Glassmorphism navbar, gradient CTAs, smooth card shadows, and micro-animations.
 
 ---
 
@@ -83,4 +114,4 @@ Single Access Point: `http://localhost:3000`
 
 ---
 
-_Built with Next.js 16 App Router, Tailwind CSS, Prisma, and Unified Monorepo Architecture._
+_Built with Next.js 16 App Router, Tailwind CSS, Prisma, Zustand, Resend, and Unified Monorepo Architecture._

@@ -52,7 +52,7 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/server.js [middleware] (ecmascript)");
 ;
-function proxy(request) {
+async function proxy(request) {
     const { pathname } = request.nextUrl;
     // Define protected routes and their required roles
     const protectedRoutes = {
@@ -63,17 +63,26 @@ function proxy(request) {
     // Check if the current path starts with any of the protected routes
     const protectedPath = Object.keys(protectedRoutes).find((path)=>pathname.startsWith(path));
     if (protectedPath) {
-        // In a real app, you would check for a cookie or token
-        // For now, we simulate authentication status
-        const isAuthenticated = request.cookies.get('auth_status')?.value === 'true';
-        const userRole = request.cookies.get('user_role')?.value; // e.g., 'BRAND', 'ADMIN', etc.
-        if (!isAuthenticated) {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/signin', request.url));
+        // We use the actual token now instead of fake cookies
+        const token = request.cookies.get('token')?.value;
+        if (!token) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/login', request.url));
         }
-        const requiredRole = protectedRoutes[protectedPath];
-        if (requiredRole && userRole !== requiredRole) {
-            // If they are logged in but don't have the right role, send to home
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/', request.url));
+        try {
+            // We can't use 'jsonwebtoken' in Edge Runtime easily, so we parse the payload manually
+            // A JWT is header.payload.signature
+            const payloadPart = token.split('.')[1];
+            // atob is available in edge runtime
+            const decodedPayload = JSON.parse(atob(payloadPart));
+            const userRole = decodedPayload.role;
+            const requiredRole = protectedRoutes[protectedPath];
+            if (requiredRole && userRole !== requiredRole) {
+                // If they are logged in but don't have the right role, send to home
+                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/', request.url));
+            }
+        } catch (error) {
+            // Invalid token
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL('/login', request.url));
         }
     }
     return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
