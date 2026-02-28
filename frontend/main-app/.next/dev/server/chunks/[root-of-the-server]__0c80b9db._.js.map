@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///Users/samiafzal/Desktop/Dev%20Journey/FYP/Brandly/frontend/main-app/app/api/auth/logout/route.js"],"sourcesContent":["import { NextResponse } from 'next/server';\n\nexport async function POST() {\n    const response = NextResponse.json({ message: 'Logged out successfully' });\n\n    // Clear the auth cookie\n    response.cookies.delete('token');\n\n    return response;\n}\n"],"names":[],"mappings":";;;;AAAA;;AAEO,eAAe;IAClB,MAAM,WAAW,gJAAY,CAAC,IAAI,CAAC;QAAE,SAAS;IAA0B;IAExE,wBAAwB;IACxB,SAAS,OAAO,CAAC,MAAM,CAAC;IAExB,OAAO;AACX"}}]
+}

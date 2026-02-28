@@ -16,14 +16,28 @@ export const AuthService = {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Create logic would need to handle Role creation/linking properly
-        // For simplicity, assuming Role exists or is handled by seed
+        // Create user
         const user = await UserRepository.create({
             email,
             fullname,
             password: hashedPassword,
             role: { connect: { name: role } }
         });
+
+        // Create profile associated with user
+        const upperRole = role.toUpperCase();
+        if (upperRole === 'BRAND') {
+            const { BrandRepository } = await import('@repo/database/repositories/brand-repository.js');
+            await BrandRepository.updateProfile(user.id, { brandName: fullname });
+        } else if (upperRole === 'INFLUENCER') {
+            const { InfluencerRepository } = await import('@repo/database/repositories/influencer-repository.js');
+            // Assuming default username from fullname/email for initial profile
+            const username = fullname.toLowerCase().replace(/\s+/g, '_') + '_' + Math.random().toString(36).substring(2, 7);
+            await InfluencerRepository.create({
+                userId: user.id,
+                username,
+            });
+        }
 
         const token = this.generateToken(user);
         return { user, token };

@@ -5,10 +5,19 @@ export const BrandService = {
      * Retrieve a brand's profile by their user ID.
      */
     async getBrandProfile(userId) {
-        const profile = await BrandRepository.findByUserId(userId);
+        let profile = await BrandRepository.findByUserId(userId);
+
         if (!profile) {
-            throw new Error('Brand profile not found');
+            // Resilient lookup: if profile is missing, try to create it
+            // This handles users created before the registration fix
+            try {
+                profile = await BrandRepository.updateProfile(userId, {});
+            } catch (error) {
+                console.error(`Failed to auto-create brand profile for user ${userId}:`, error);
+                throw new Error('Brand profile not found and could not be created');
+            }
         }
+
         return profile;
     },
 

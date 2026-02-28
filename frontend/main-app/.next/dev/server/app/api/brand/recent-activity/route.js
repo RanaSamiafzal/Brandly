@@ -1,5 +1,5 @@
 var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/brand/recent-activity/route.js")
-R.c("server/chunks/backend_core_src_services_activity_activity-service_4810c41d.js")
+R.c("server/chunks/backend_8045c8bf._.js")
 R.c("server/chunks/node_modules_next_8572ecff._.js")
 R.c("server/chunks/node_modules_postal-mime_src_a014ae66._.js")
 R.c("server/chunks/node_modules_svix_dist_56996d0e._.js")

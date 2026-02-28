@@ -133,7 +133,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index
 const CampaignRepository = {
     async create (data) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.create({
-            data
+            data,
+            include: {
+                brand: true
+            }
         });
     },
     async findById (id) {
@@ -634,8 +637,7 @@ const AuthService = {
             throw new Error('User already exists');
         }
         const hashedPassword = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$bcryptjs$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].hash(password, 10);
-        // Create logic would need to handle Role creation/linking properly
-        // For simplicity, assuming Role exists or is handled by seed
+        // Create user
         const user = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$user$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["UserRepository"].create({
             email,
             fullname,
@@ -646,6 +648,22 @@ const AuthService = {
                 }
             }
         });
+        // Create profile associated with user
+        const upperRole = role.toUpperCase();
+        if (upperRole === 'BRAND') {
+            const { BrandRepository } = await __turbopack_context__.A("[project]/backend/database/repositories/brand-repository.js [app-route] (ecmascript, async loader)");
+            await BrandRepository.updateProfile(user.id, {
+                brandName: fullname
+            });
+        } else if (upperRole === 'INFLUENCER') {
+            const { InfluencerRepository } = await __turbopack_context__.A("[project]/backend/database/repositories/influencer-repository.js [app-route] (ecmascript, async loader)");
+            // Assuming default username from fullname/email for initial profile
+            const username = fullname.toLowerCase().replace(/\s+/g, '_') + '_' + Math.random().toString(36).substring(2, 7);
+            await InfluencerRepository.create({
+                userId: user.id,
+                username
+            });
+        }
         const token = this.generateToken(user);
         return {
             user,
@@ -851,10 +869,21 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index
 ;
 const MatchRepository = {
     async saveMatches (matches) {
+        if (!matches || matches.length === 0) return;
+        const campaignId = matches[0].campaignId;
         // matches is an array of { campaignId, influencerId, score, breakdown }
-        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create({
-                data: match
-            })));
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction([
+            // 1. Clear existing matches for this campaign
+            __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.deleteMany({
+                where: {
+                    campaignId
+                }
+            }),
+            // 2. Insert new matches
+            ...matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create({
+                    data: match
+                }))
+        ]);
     },
     async findByCampaignId (campaignId) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.findMany({
@@ -1056,7 +1085,7 @@ const CampaignService = {
         });
         // Log Activity
         await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$core$2f$src$2f$services$2f$activity$2f$activity$2d$service$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ActivityService"].logActivity({
-            userId: data.brandId,
+            userId: campaign.brand.userId,
             role: "BRAND",
             type: "CAMPAIGN_CREATED",
             title: "Campaign Created",
@@ -1089,7 +1118,7 @@ const CampaignService = {
         await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$campaign$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["CampaignRepository"].updateStatus(campaignId, 'ACTIVE');
         // Log Activity
         await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$core$2f$src$2f$services$2f$activity$2f$activity$2d$service$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ActivityService"].logActivity({
-            userId: campaign.brandId,
+            userId: campaign.brand.userId,
             role: "BRAND",
             type: "CAMPAIGN_UPDATED",
             title: "Influencers Matched",
@@ -1149,9 +1178,16 @@ const BrandService = {
     /**
      * Retrieve a brand's profile by their user ID.
      */ async getBrandProfile (userId) {
-        const profile = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$brand$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["BrandRepository"].findByUserId(userId);
+        let profile = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$brand$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["BrandRepository"].findByUserId(userId);
         if (!profile) {
-            throw new Error('Brand profile not found');
+            // Resilient lookup: if profile is missing, try to create it
+            // This handles users created before the registration fix
+            try {
+                profile = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$brand$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["BrandRepository"].updateProfile(userId, {});
+            } catch (error) {
+                console.error(`Failed to auto-create brand profile for user ${userId}:`, error);
+                throw new Error('Brand profile not found and could not be created');
+            }
         }
         return profile;
     },
