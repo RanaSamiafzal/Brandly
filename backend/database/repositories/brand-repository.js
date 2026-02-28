@@ -28,14 +28,27 @@ export const BrandRepository = {
             }
         });
 
-        return prisma.brandProfile.upsert({
-            where: { userId },
-            update: cleanData,
-            create: {
-                userId,
-                brandName: cleanData.brandName || fallbackName,
-                ...cleanData
+        // Use transaction to update both BrandProfile and User (if logo changed)
+        return prisma.$transaction(async (tx) => {
+            const profile = await tx.brandProfile.upsert({
+                where: { userId },
+                update: cleanData,
+                create: {
+                    userId,
+                    brandName: cleanData.brandName || fallbackName,
+                    ...cleanData
+                }
+            });
+
+            // Sync with User table if logo is present
+            if (cleanData.logo) {
+                await tx.user.update({
+                    where: { id: userId },
+                    data: { profilePic: cleanData.logo }
+                });
             }
+
+            return profile;
         });
     },
 

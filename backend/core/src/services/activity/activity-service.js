@@ -1,9 +1,6 @@
 import { ActivityRepository } from '@repo/database/repositories/activity-repository.js';
 
 export const ActivityService = {
-    /**
-     * Log a new activity for a user.
-     */
     async logActivity(data) {
         return ActivityRepository.create({
             userId: data.userId,
@@ -16,24 +13,23 @@ export const ActivityService = {
         });
     },
 
-    /**
-     * Retrieve a user's latest notifications/activities.
-     */
-    async getUserActivities(userId, limit = 10) {
-        return ActivityRepository.getUserActivities(userId, limit);
+    async getUserActivities(userId, limit = 20, filter = null) {
+        return ActivityRepository.getUserActivities(userId, limit, filter);
     },
 
-    /**
-     * Mark a single activity as read.
-     */
     async markAsRead(id) {
         return ActivityRepository.markAsRead(id);
     },
 
-    /**
-     * Mark all activities for a user as read.
-     */
     async markAllAsRead(userId) {
         return ActivityRepository.markAllAsRead(userId);
+    },
+
+    async deleteActivity(id) {
+        return ActivityRepository.deleteById(id);
+    },
+
+    async searchActivities(userId, query) {
+        return ActivityRepository.search(userId, query);
     }
 };

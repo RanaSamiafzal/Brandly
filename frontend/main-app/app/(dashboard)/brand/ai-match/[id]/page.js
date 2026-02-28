@@ -46,16 +46,25 @@ export default function AIMatchPage({ params }) {
 
             if (data.matches) {
                 // Map the database matches to the frontend format
-                const formattedMatches = data.matches.map(m => ({
-                    id: m.influencerId,
-                    name: m.influencer.user.fullname,
-                    score: Math.round(m.score),
-                    niche: m.influencer.category,
-                    followers: "124k", // Placeholder until we have platform stats
-                    platform: "Instagram", // Placeholder
-                    image: m.influencer.user.profilePic || `https://i.pravatar.cc/150?u=${m.influencerId}`,
-                    matchReason: m.breakdown?.reason || "High affinity with your target audience demographics."
-                }));
+                const formattedMatches = data.matches.map(m => {
+                    const profile = m.influencer;
+                    const platforms = Array.isArray(profile.platforms)
+                        ? profile.platforms
+                        : (typeof profile.platforms === 'string' ? JSON.parse(profile.platforms) : []);
+
+                    const primaryPlatform = platforms[0] || { platform: "Instagram", followers: "0" };
+
+                    return {
+                        id: m.influencerId,
+                        name: profile.user.fullname,
+                        score: Math.round(m.score),
+                        niche: profile.category,
+                        followers: primaryPlatform.followers, // Use actual followers
+                        platform: primaryPlatform.platform,    // Use actual platform
+                        image: profile.user.profilePic || `https://i.pravatar.cc/150?u=${m.influencerId}`,
+                        matchReason: m.breakdown?.reason || "High affinity with your target audience demographics."
+                    };
+                });
                 setMatches(formattedMatches);
             }
         } catch (error) {

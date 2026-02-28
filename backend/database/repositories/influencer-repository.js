@@ -1,4 +1,4 @@
-import { prisma } from "../index";
+import { prisma } from "../index.js";
 
 export const InfluencerRepository = {
     async create(data) {
@@ -10,6 +10,14 @@ export const InfluencerRepository = {
     async findByUserId(userId) {
         return prisma.influencerProfile.findUnique({
             where: { userId },
+            include: { user: true }
+        });
+    },
+
+    async findById(id) {
+        return prisma.influencerProfile.findUnique({
+            where: { id },
+            include: { user: true }
         });
     },
 

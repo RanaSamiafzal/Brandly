@@ -2,6 +2,8 @@ import { CampaignRepository } from '@repo/database/repositories/campaign-reposit
 import { InfluencerRepository } from '@repo/database/repositories/influencer-repository.js';
 import { MatchRepository } from '@repo/database/repositories/match-repository.js';
 import { rankInfluencers } from '@repo/ai-engine/ranker';
+import { ActivityService } from '../activity/activity-service.js';
+import { UserRepository } from '@repo/database/repositories/user-repository.js';
 
 /**
  * Campaign Service
@@ -28,6 +30,17 @@ export const CampaignService = {
             additionalRequirements: data.additionalRequirements || "",
             status: data.status || 'DRAFT',
         });
+
+        // Log Activity
+        await ActivityService.logActivity({
+            userId: campaign.brand.userId,
+            role: "BRAND",
+            type: "CAMPAIGN_CREATED",
+            title: "Campaign Created",
+            description: `You created a new campaign: ${campaign.title}`,
+            relatedId: campaign.id
+        });
+
         return campaign;
     },
 
@@ -58,6 +71,16 @@ export const CampaignService = {
 
         // 5. Update campaign status to ACTIVE
         await CampaignRepository.updateStatus(campaignId, 'ACTIVE');
+
+        // Log Activity
+        await ActivityService.logActivity({
+            userId: campaign.brand.userId,
+            role: "BRAND",
+            type: "CAMPAIGN_UPDATED",
+            title: "Influencers Matched",
+            description: `AI matching completed for "${campaign.title}". Found ${rankedMatches.length} matches.`,
+            relatedId: campaignId
+        });
 
         return {
             campaignId,

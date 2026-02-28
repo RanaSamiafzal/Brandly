@@ -22,41 +22,78 @@ export default function InfluencerProfilePage({ params }) {
     const { user } = useAuthStore();
     const resolvedParams = use(params);
     const [mounted, setMounted] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [influencer, setInfluencer] = useState(null);
     const influencerId = resolvedParams.id;
 
     useEffect(() => {
         setMounted(true);
+        fetchInfluencer();
     }, []);
 
-    // Mock influencer data
-    const influencer = {
-        name: "Jessica Lifestyle",
-        username: "@jess_style",
-        verified: true,
-        category: "Fashion & Lifestyle",
-        location: "New York, USA",
-        followers: "124,500",
-        engagementRate: "4.8%",
-        avgLikes: "6.2k",
-        avgComments: "450",
-        rating: 4.9,
-        reviews: 28,
-        image: "https://i.pravatar.cc/150?u=jessica",
-        platforms: [
-            { name: "Instagram", icon: Instagram, handle: "@jess_style", followers: "124k" },
-            { name: "YouTube", icon: Youtube, handle: "JessLifestyle", followers: "45k" },
-            { name: "Twitter/X", icon: Twitter, handle: "@jess_tweets", followers: "12k" }
-        ],
-        about: "Hi! I'm Jessica, a fashion and lifestyle content creator based in NYC. I love sharing my daily outfits, travel adventures, and home decor tips with my amazing community. I've worked with top brands like Zara, H&M, and Sephora to create authentic and engaging content.",
-        recentPosts: [
-            "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=300&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1529139572177-393f9ad922bd?w=300&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1485230895905-ec17bd368582?w=300&h=300&fit=crop"
-        ]
+    const fetchInfluencer = async () => {
+        try {
+            const res = await fetch(`/api/brand/influencers/${influencerId}`);
+            const data = await res.json();
+
+            if (data.influencer) {
+                const profile = data.influencer;
+                const platforms = Array.isArray(profile.platforms)
+                    ? profile.platforms
+                    : (typeof profile.platforms === 'string' ? JSON.parse(profile.platforms) : []);
+
+                // Map backend profile to the UI structure
+                setInfluencer({
+                    id: profile.id,
+                    name: profile.user.fullname,
+                    username: `@${profile.username}`,
+                    verified: true,
+                    category: profile.category,
+                    location: profile.location || "Not specified",
+                    followers: platforms[0]?.followers || "0",
+                    engagementRate: "4.8%", // Placeholder for now
+                    avgLikes: "6.2k",       // Placeholder
+                    avgComments: "450",     // Placeholder
+                    rating: profile.averageRating || 4.5,
+                    reviews: 12,            // Placeholder
+                    image: profile.user.profilePic || `https://i.pravatar.cc/150?u=${profile.id}`,
+                    platforms: platforms.map(p => ({
+                        name: p.platform,
+                        icon: p.platform === "Instagram" ? Instagram : (p.platform === "YouTube" ? Youtube : Twitter),
+                        handle: p.handle,
+                        followers: p.followers
+                    })),
+                    about: profile.about || "No description provided.",
+                    recentPosts: [
+                        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=300&h=300&fit=crop",
+                        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=300&fit=crop",
+                        "https://images.unsplash.com/photo-1529139572177-393f9ad922bd?w=300&h=300&fit=crop",
+                        "https://images.unsplash.com/photo-1485230895905-ec17bd368582?w=300&h=300&fit=crop"
+                    ],
+                    tags: profile.category ? [profile.category] : []
+                });
+            }
+        } catch (error) {
+            console.error("Failed to fetch influencer", error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    if (!mounted) return null;
+    if (!mounted || isLoading) return (
+        <div className="flex items-center justify-center min-h-[50vh]">
+            <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+    );
+
+    if (!influencer) return (
+        <div className="text-center py-20">
+            <h2 className="text-2xl font-bold text-gray-900">Influencer not found</h2>
+            <Link href="/brand/search-influencers" className="text-blue-600 font-bold mt-4 inline-block hover:underline">
+                Back to Search
+            </Link>
+        </div>
+    );
 
     return (
         <div className="max-w-screen-2xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 px-4 md:px-12 pb-12">
@@ -146,7 +183,7 @@ export default function InfluencerProfilePage({ params }) {
                         <h3 className="text-lg font-bold text-gray-900">Platforms</h3>
                         <div className="space-y-4">
                             {influencer.platforms.map((p) => {
-                                const Icon = p.icon;
+                                const Icon = p.icon || Globe;
                                 return (
                                     <div key={p.name} className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100">
                                         <div className="flex items-center gap-3">
@@ -183,11 +220,15 @@ export default function InfluencerProfilePage({ params }) {
                             {influencer.about}
                         </p>
                         <div className="flex flex-wrap gap-2">
-                            {["Fashion", "NYC", "Luxury", "Travel", "Home Decor", "Lifestyle"].map(tag => (
+                            {influencer.tags?.length > 0 ? influencer.tags.map(tag => (
                                 <span key={tag} className="px-4 py-2 bg-gray-100 text-gray-600 rounded-xl text-sm font-bold border border-gray-200">
                                     #{tag}
                                 </span>
-                            ))}
+                            )) : (
+                                <span className="px-4 py-2 bg-gray-100 text-gray-600 rounded-xl text-sm font-bold border border-gray-200">
+                                    #General
+                                </span>
+                            )}
                         </div>
                     </div>
 

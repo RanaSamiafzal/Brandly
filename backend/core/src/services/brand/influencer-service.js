@@ -25,6 +25,8 @@ export const InfluencerService = {
      * @param {string} id
      */
     async getInfluencerById(id) {
+        const byProfileId = await InfluencerRepository.findById(id);
+        if (byProfileId) return byProfileId;
         return InfluencerRepository.findByUserId(id);
     }
 };

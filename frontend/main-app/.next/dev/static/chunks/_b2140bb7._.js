@@ -45,6 +45,8 @@ function SearchInfluencers() {
         category: "All Categories",
         platform: "All Platforms"
     });
+    const [invitingId, setInvitingId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [toast, setToast] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "SearchInfluencers.useEffect": ()=>{
             setMounted(true);
@@ -76,8 +78,8 @@ function SearchInfluencers() {
             if (data.influencers) {
                 setInfluencers(data.influencers.map((inf)=>{
                     // Try to pick the first platform from the JSON array
-                    const platforms = Array.isArray(inf.platforms) ? inf.platforms : [];
-                    const firstPlatform = platforms[0]?.name?.toLowerCase() || "instagram";
+                    const platforms = Array.isArray(inf.platforms) ? inf.platforms : typeof inf.platforms === 'string' ? JSON.parse(inf.platforms) : [];
+                    const firstPlatform = platforms[0]?.platform?.toLowerCase() || "instagram";
                     const PlatformIcon = PLATFORM_ICONS[firstPlatform] || __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$instagram$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Instagram$3e$__["Instagram"];
                     return {
                         id: inf.id,
@@ -200,6 +202,43 @@ function SearchInfluencers() {
         setSearchQuery("");
         fetchInfluencers({});
     };
+    const handleInvite = async (influencerId)=>{
+        if (!selectedCampaign) return;
+        setInvitingId(influencerId);
+        try {
+            const res = await fetch("/api/brand/requests", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    campaignId: selectedCampaign.id,
+                    influencerId,
+                    note: `Hi! We'd love to collaborate with you on our "${selectedCampaign.title}" campaign.`
+                })
+            });
+            const data = await res.json();
+            if (res.ok) {
+                setToast({
+                    type: "success",
+                    message: "Invitation sent successfully!"
+                });
+            } else {
+                setToast({
+                    type: "error",
+                    message: data.error || "Failed to send invitation"
+                });
+            }
+        } catch (error) {
+            setToast({
+                type: "error",
+                message: "An unexpected error occurred"
+            });
+        } finally{
+            setInvitingId(null);
+            setTimeout(()=>setToast(null), 3000);
+        }
+    };
     if (!mounted) return null;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "max-w-screen-2xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 px-4 md:px-12 pb-12",
@@ -214,7 +253,7 @@ function SearchInfluencers() {
                                 children: "Find Influencers"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 125,
+                                lineNumber: 158,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -222,13 +261,13 @@ function SearchInfluencers() {
                                 children: selectedCampaign ? `Searching for influencers matching "${selectedCampaign.title}"` : "Search and connect with top influencers to boost your campaigns."
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 126,
+                                lineNumber: 159,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 124,
+                        lineNumber: 157,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -245,7 +284,7 @@ function SearchInfluencers() {
                                                 className: `w-4 h-4 flex-shrink-0 ${selectedCampaign ? "text-blue-100" : "text-blue-500"}`
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                lineNumber: 143,
+                                                lineNumber: 176,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -256,7 +295,7 @@ function SearchInfluencers() {
                                                         children: "Campaign"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                        lineNumber: 145,
+                                                        lineNumber: 178,
                                                         columnNumber: 33
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -264,32 +303,32 @@ function SearchInfluencers() {
                                                         children: selectedCampaign?.title || "Select a campaign"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                        lineNumber: 148,
+                                                        lineNumber: 181,
                                                         columnNumber: 33
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                lineNumber: 144,
+                                                lineNumber: 177,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 142,
+                                        lineNumber: 175,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                         className: `w-4 h-4 flex-shrink-0 transition-transform ${isCampaignSelectorOpen ? "rotate-180" : ""} ${selectedCampaign ? "text-blue-100" : "text-gray-400"}`
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 153,
+                                        lineNumber: 186,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 135,
+                                lineNumber: 168,
                                 columnNumber: 21
                             }, this),
                             isCampaignSelectorOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -304,7 +343,7 @@ function SearchInfluencers() {
                                                 children: "Clear selection"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                lineNumber: 160,
+                                                lineNumber: 193,
                                                 columnNumber: 37
                                             }, this),
                                             campaigns.map((c)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -319,7 +358,7 @@ function SearchInfluencers() {
                                                                     children: c.title
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                                    lineNumber: 177,
+                                                                    lineNumber: 210,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 c.targetCategory?.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -327,26 +366,26 @@ function SearchInfluencers() {
                                                                     children: c.targetCategory.join(", ")
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                                    lineNumber: 179,
+                                                                    lineNumber: 212,
                                                                     columnNumber: 49
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                            lineNumber: 176,
+                                                            lineNumber: 209,
                                                             columnNumber: 41
                                                         }, this),
                                                         selectedCampaign?.id === c.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                             className: "w-4 h-4 flex-shrink-0"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                            lineNumber: 182,
+                                                            lineNumber: 215,
                                                             columnNumber: 75
                                                         }, this)
                                                     ]
                                                 }, c.id, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                    lineNumber: 168,
+                                                    lineNumber: 201,
                                                     columnNumber: 37
                                                 }, this)),
                                             campaigns.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -354,13 +393,13 @@ function SearchInfluencers() {
                                                 children: "No campaigns found"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                lineNumber: 186,
+                                                lineNumber: 219,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 158,
+                                        lineNumber: 191,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -371,30 +410,30 @@ function SearchInfluencers() {
                                             children: "+ Create New Campaign"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                            lineNumber: 190,
+                                            lineNumber: 223,
                                             columnNumber: 33
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 189,
+                                        lineNumber: 222,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 157,
+                                lineNumber: 190,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 134,
+                        lineNumber: 167,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                lineNumber: 123,
+                lineNumber: 156,
                 columnNumber: 13
             }, this),
             selectedCampaign && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -404,7 +443,7 @@ function SearchInfluencers() {
                         className: "w-5 h-5 text-blue-600"
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 205,
+                        lineNumber: 238,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -419,13 +458,13 @@ function SearchInfluencers() {
                                         children: selectedCampaign.title
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 207,
+                                        lineNumber: 240,
                                         columnNumber: 98
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 207,
+                                lineNumber: 240,
                                 columnNumber: 25
                             }, this),
                             selectedCampaign.targetCategory?.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -438,13 +477,13 @@ function SearchInfluencers() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 209,
+                                lineNumber: 242,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 206,
+                        lineNumber: 239,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -454,18 +493,63 @@ function SearchInfluencers() {
                             children: "View AI Matches →"
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                            lineNumber: 213,
+                            lineNumber: 246,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 212,
+                        lineNumber: 245,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                lineNumber: 204,
+                lineNumber: 237,
+                columnNumber: 17
+            }, this),
+            toast && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: `fixed bottom-8 right-8 z-[100] px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-right-4 duration-300 ${toast.type === "success" ? "bg-green-600 text-white" : "bg-red-600 text-white"}`,
+                children: [
+                    toast.type === "success" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
+                        className: "w-5 h-5"
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
+                        lineNumber: 257,
+                        columnNumber: 49
+                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AlertTriangle, {
+                        className: "w-5 h-5"
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
+                        lineNumber: 257,
+                        columnNumber: 88
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "font-bold text-sm",
+                        children: toast.message
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
+                        lineNumber: 258,
+                        columnNumber: 21
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        onClick: ()=>setToast(null),
+                        className: "ml-2 hover:opacity-70",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(X, {
+                            className: "w-4 h-4"
+                        }, void 0, false, {
+                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
+                            lineNumber: 260,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
+                        lineNumber: 259,
+                        columnNumber: 21
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
+                lineNumber: 255,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -479,7 +563,7 @@ function SearchInfluencers() {
                                 children: "Search"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 224,
+                                lineNumber: 269,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -489,7 +573,7 @@ function SearchInfluencers() {
                                         className: "w-4 h-4 text-gray-400 flex-shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 226,
+                                        lineNumber: 271,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -501,19 +585,19 @@ function SearchInfluencers() {
                                         className: "w-full bg-transparent border-none outline-none text-sm text-gray-900 placeholder:text-gray-400"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 227,
+                                        lineNumber: 272,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 225,
+                                lineNumber: 270,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 223,
+                        lineNumber: 268,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -524,7 +608,7 @@ function SearchInfluencers() {
                                 children: "Category"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 239,
+                                lineNumber: 284,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -540,82 +624,82 @@ function SearchInfluencers() {
                                         children: "All Categories"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 246,
+                                        lineNumber: 291,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "Fashion"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 247,
+                                        lineNumber: 292,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "Technology"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 248,
+                                        lineNumber: 293,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "Health"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 249,
+                                        lineNumber: 294,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "Fitness"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 250,
+                                        lineNumber: 295,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "Lifestyle"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 251,
+                                        lineNumber: 296,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "Food"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 252,
+                                        lineNumber: 297,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "Travel"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 253,
+                                        lineNumber: 298,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "Beauty"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 254,
+                                        lineNumber: 299,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "Gaming"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 255,
+                                        lineNumber: 300,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 240,
+                                lineNumber: 285,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 238,
+                        lineNumber: 283,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -626,7 +710,7 @@ function SearchInfluencers() {
                                 children: "Platform"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 260,
+                                lineNumber: 305,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -642,47 +726,47 @@ function SearchInfluencers() {
                                         children: "All Platforms"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 267,
+                                        lineNumber: 312,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "Instagram"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 268,
+                                        lineNumber: 313,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "YouTube"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 269,
+                                        lineNumber: 314,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "TikTok"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 270,
+                                        lineNumber: 315,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         children: "Twitter / X"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                        lineNumber: 271,
+                                        lineNumber: 316,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 261,
+                                lineNumber: 306,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 259,
+                        lineNumber: 304,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -693,20 +777,20 @@ function SearchInfluencers() {
                                 className: "w-4 h-4"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 279,
+                                lineNumber: 324,
                                 columnNumber: 21
                             }, this),
                             "Apply"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 275,
+                        lineNumber: 320,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                lineNumber: 221,
+                lineNumber: 266,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -717,7 +801,7 @@ function SearchInfluencers() {
                         children: isLoading ? "Searching..." : `${influencers.length} Influencer${influencers.length !== 1 ? "s" : ""} Found`
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 286,
+                        lineNumber: 331,
                         columnNumber: 17
                     }, this),
                     selectedCampaign && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -728,13 +812,13 @@ function SearchInfluencers() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 290,
+                        lineNumber: 335,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                lineNumber: 285,
+                lineNumber: 330,
                 columnNumber: 13
             }, this),
             isLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -753,39 +837,39 @@ function SearchInfluencers() {
                                 className: "w-20 h-20 rounded-full bg-gray-200 mx-auto mb-4"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 301,
+                                lineNumber: 346,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "h-4 bg-gray-200 rounded w-2/3 mx-auto mb-2"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 302,
+                                lineNumber: 347,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "h-3 bg-gray-100 rounded w-1/2 mx-auto mb-6"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 303,
+                                lineNumber: 348,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "h-9 bg-gray-100 rounded-xl w-full"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 304,
+                                lineNumber: 349,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, i, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 300,
+                        lineNumber: 345,
                         columnNumber: 25
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                lineNumber: 298,
+                lineNumber: 343,
                 columnNumber: 17
             }, this),
             !isLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -808,7 +892,7 @@ function SearchInfluencers() {
                                             className: "w-full h-full rounded-full object-cover border-2 border-white shadow-md group-hover:scale-105 transition-transform"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                            lineNumber: 323,
+                                            lineNumber: 368,
                                             columnNumber: 37
                                         }, this),
                                         inf.isAvailable && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -816,13 +900,13 @@ function SearchInfluencers() {
                                             title: "Available"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                            lineNumber: 329,
+                                            lineNumber: 374,
                                             columnNumber: 41
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                    lineNumber: 322,
+                                    lineNumber: 367,
                                     columnNumber: 33
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -833,7 +917,7 @@ function SearchInfluencers() {
                                             children: inf.name
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                            lineNumber: 335,
+                                            lineNumber: 380,
                                             columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -843,20 +927,20 @@ function SearchInfluencers() {
                                                     className: "w-3 h-3"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                    lineNumber: 337,
+                                                    lineNumber: 382,
                                                     columnNumber: 41
                                                 }, this),
                                                 "Verified"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                            lineNumber: 336,
+                                            lineNumber: 381,
                                             columnNumber: 37
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                    lineNumber: 334,
+                                    lineNumber: 379,
                                     columnNumber: 33
                                 }, this),
                                 inf.username && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -867,7 +951,7 @@ function SearchInfluencers() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                    lineNumber: 344,
+                                    lineNumber: 389,
                                     columnNumber: 37
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -880,7 +964,7 @@ function SearchInfluencers() {
                                                     className: "w-3.5 h-3.5 text-gray-400"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                    lineNumber: 350,
+                                                    lineNumber: 395,
                                                     columnNumber: 41
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -888,20 +972,20 @@ function SearchInfluencers() {
                                                     children: inf.platform
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                    lineNumber: 351,
+                                                    lineNumber: 396,
                                                     columnNumber: 41
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                            lineNumber: 349,
+                                            lineNumber: 394,
                                             columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "w-1 h-1 rounded-full bg-gray-300"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                            lineNumber: 353,
+                                            lineNumber: 398,
                                             columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -909,13 +993,13 @@ function SearchInfluencers() {
                                             children: inf.category || "General"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                            lineNumber: 354,
+                                            lineNumber: 399,
                                             columnNumber: 37
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                    lineNumber: 348,
+                                    lineNumber: 393,
                                     columnNumber: 33
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -929,17 +1013,26 @@ function SearchInfluencers() {
                                                 children: "View Profile"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                                lineNumber: 360,
+                                                lineNumber: 405,
                                                 columnNumber: 41
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                            lineNumber: 359,
+                                            lineNumber: 404,
                                             columnNumber: 37
                                         }, this),
                                         selectedCampaign && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            className: "w-full border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium py-2 rounded-xl text-sm transition-colors",
+                                            onClick: ()=>handleInvite(inf.id),
+                                            disabled: invitingId === inf.id,
+                                            className: "w-full border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed font-medium py-2 rounded-xl text-sm transition-colors flex items-center justify-center gap-2",
                                             children: [
+                                                invitingId === inf.id ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "w-4 h-4 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
+                                                    lineNumber: 416,
+                                                    columnNumber: 49
+                                                }, this) : null,
                                                 'Invite to "',
                                                 selectedCampaign.title.substring(0, 20),
                                                 selectedCampaign.title.length > 20 ? "…" : "",
@@ -947,19 +1040,19 @@ function SearchInfluencers() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                            lineNumber: 365,
+                                            lineNumber: 410,
                                             columnNumber: 41
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                    lineNumber: 358,
+                                    lineNumber: 403,
                                     columnNumber: 33
                                 }, this)
                             ]
                         }, inf.id, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                            lineNumber: 316,
+                            lineNumber: 361,
                             columnNumber: 29
                         }, this);
                     }),
@@ -970,7 +1063,7 @@ function SearchInfluencers() {
                                 className: "w-12 h-12 mx-auto mb-4 text-gray-200"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 376,
+                                lineNumber: 428,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -978,7 +1071,7 @@ function SearchInfluencers() {
                                 children: "No influencers found"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 377,
+                                lineNumber: 429,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -986,29 +1079,29 @@ function SearchInfluencers() {
                                 children: "Try adjusting your filters or selecting a different campaign."
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                                lineNumber: 378,
+                                lineNumber: 430,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                        lineNumber: 375,
+                        lineNumber: 427,
                         columnNumber: 25
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-                lineNumber: 312,
+                lineNumber: 357,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page.js",
-        lineNumber: 121,
+        lineNumber: 154,
         columnNumber: 9
     }, this);
 }
-_s(SearchInfluencers, "frKfrbkrId02ISkLBUFyuZCdVCk=");
+_s(SearchInfluencers, "rAXN8gEqY0yD6/aw2jIK+aNFG4s=");
 _c = SearchInfluencers;
 var _c;
 __turbopack_context__.k.register(_c, "SearchInfluencers");

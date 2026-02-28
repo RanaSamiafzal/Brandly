@@ -36,7 +36,7 @@ export async function GET(req) {
                 id: user.id,
                 email: user.email,
                 fullname: user.fullname,
-                role: user.role.name,
+                role: user.role?.name || 'USER', // Defensive check
                 profilePic: user.profilePic,
                 brandProfile: user.brandProfile,
                 influencerProfile: user.influencerProfile

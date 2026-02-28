@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { AuthService, BrandService, CampaignService } from '@repo/core';
+import { AuthService, BrandService, CampaignService, ActivityService } from '@repo/core';
 import { prisma } from '@repo/database';
 
 export async function GET(req) {
@@ -41,8 +41,18 @@ export async function POST(req) {
         const campaign = await CampaignService.createCampaign({
             ...data,
             brandId: profile.id,
-            status: 'ACTIVE' // Directly activate for matching
+            status: 'ACTIVE'
         });
+
+        // Log activity
+        ActivityService.logActivity({
+            userId: decoded.userId,
+            role: 'BRAND',
+            type: 'CAMPAIGN_CREATED',
+            title: 'Campaign Created',
+            description: `Your campaign "${campaign.title}" has been created and is now active.`,
+            relatedId: campaign.id
+        }).catch(() => { });
 
         return NextResponse.json({ campaign });
     } catch (error) {

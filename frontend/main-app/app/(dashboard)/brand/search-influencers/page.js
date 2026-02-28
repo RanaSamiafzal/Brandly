@@ -25,6 +25,9 @@ export default function SearchInfluencers() {
         platform: "All Platforms",
     });
 
+    const [invitingId, setInvitingId] = useState(null);
+    const [toast, setToast] = useState(null);
+
     useEffect(() => {
         setMounted(true);
         fetchCampaigns();
@@ -57,8 +60,11 @@ export default function SearchInfluencers() {
             if (data.influencers) {
                 setInfluencers(data.influencers.map((inf) => {
                     // Try to pick the first platform from the JSON array
-                    const platforms = Array.isArray(inf.platforms) ? inf.platforms : [];
-                    const firstPlatform = platforms[0]?.name?.toLowerCase() || "instagram";
+                    const platforms = Array.isArray(inf.platforms)
+                        ? inf.platforms
+                        : (typeof inf.platforms === 'string' ? JSON.parse(inf.platforms) : []);
+
+                    const firstPlatform = platforms[0]?.platform?.toLowerCase() || "instagram";
                     const PlatformIcon = PLATFORM_ICONS[firstPlatform] || Instagram;
                     return {
                         id: inf.id,
@@ -115,6 +121,33 @@ export default function SearchInfluencers() {
         fetchInfluencers({});
     };
 
+    const handleInvite = async (influencerId) => {
+        if (!selectedCampaign) return;
+        setInvitingId(influencerId);
+        try {
+            const res = await fetch("/api/brand/requests", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    campaignId: selectedCampaign.id,
+                    influencerId,
+                    note: `Hi! We'd love to collaborate with you on our "${selectedCampaign.title}" campaign.`
+                })
+            });
+            const data = await res.json();
+            if (res.ok) {
+                setToast({ type: "success", message: "Invitation sent successfully!" });
+            } else {
+                setToast({ type: "error", message: data.error || "Failed to send invitation" });
+            }
+        } catch (error) {
+            setToast({ type: "error", message: "An unexpected error occurred" });
+        } finally {
+            setInvitingId(null);
+            setTimeout(() => setToast(null), 3000);
+        }
+    };
+
     if (!mounted) return null;
 
     return (
@@ -135,8 +168,8 @@ export default function SearchInfluencers() {
                     <button
                         onClick={() => setIsCampaignSelectorOpen(!isCampaignSelectorOpen)}
                         className={`w-full lg:w-72 flex items-center justify-between gap-4 px-5 py-3.5 border rounded-2xl shadow-sm text-left transition-all ${selectedCampaign
-                                ? "bg-blue-600 border-blue-600 text-white"
-                                : "bg-white border-gray-200 hover:border-blue-300"
+                            ? "bg-blue-600 border-blue-600 text-white"
+                            : "bg-white border-gray-200 hover:border-blue-300"
                             }`}
                     >
                         <div className="flex items-center gap-3 min-w-0">
@@ -169,8 +202,8 @@ export default function SearchInfluencers() {
                                         key={c.id}
                                         onClick={() => handleCampaignChange(c)}
                                         className={`w-full flex items-center justify-between gap-3 p-3.5 rounded-xl transition-all text-left mb-1 last:mb-0 ${selectedCampaign?.id === c.id
-                                                ? "bg-blue-50 text-blue-700 font-bold"
-                                                : "text-gray-700 hover:bg-gray-50"
+                                            ? "bg-blue-50 text-blue-700 font-bold"
+                                            : "text-gray-700 hover:bg-gray-50"
                                             }`}
                                     >
                                         <div className="min-w-0">
@@ -214,6 +247,18 @@ export default function SearchInfluencers() {
                             View AI Matches →
                         </button>
                     </Link>
+                </div>
+            )}
+
+            {/* Toast Feedback */}
+            {toast && (
+                <div className={`fixed bottom-8 right-8 z-[100] px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-right-4 duration-300 ${toast.type === "success" ? "bg-green-600 text-white" : "bg-red-600 text-white"
+                    }`}>
+                    {toast.type === "success" ? <CheckCircle2 className="w-5 h-5" /> : <AlertTriangle className="w-5 h-5" />}
+                    <p className="font-bold text-sm">{toast.message}</p>
+                    <button onClick={() => setToast(null)} className="ml-2 hover:opacity-70">
+                        <X className="w-4 h-4" />
+                    </button>
                 </div>
             )}
 
@@ -362,7 +407,14 @@ export default function SearchInfluencers() {
                                         </button>
                                     </Link>
                                     {selectedCampaign && (
-                                        <button className="w-full border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium py-2 rounded-xl text-sm transition-colors">
+                                        <button
+                                            onClick={() => handleInvite(inf.id)}
+                                            disabled={invitingId === inf.id}
+                                            className="w-full border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed font-medium py-2 rounded-xl text-sm transition-colors flex items-center justify-center gap-2"
+                                        >
+                                            {invitingId === inf.id ? (
+                                                <div className="w-4 h-4 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin" />
+                                            ) : null}
                                             Invite to "{selectedCampaign.title.substring(0, 20)}{selectedCampaign.title.length > 20 ? "…" : ""}"
                                         </button>
                                     )}

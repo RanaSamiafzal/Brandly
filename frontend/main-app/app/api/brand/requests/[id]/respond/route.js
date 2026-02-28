@@ -3,7 +3,7 @@ import { AuthService, RequestService } from '@repo/core';
 
 export async function POST(req, { params }) {
     try {
-        const { id } = params;
+        const { id } = await params;
         const { status } = await req.json(); // ACCEPTED or REJECTED
 
         const token = req.cookies.get('token')?.value;

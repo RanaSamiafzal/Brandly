@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { AuthService, BrandService, CampaignService } from '@repo/core';
+import { AuthService, BrandService, CampaignService, ActivityService } from '@repo/core';
 import { CampaignRepository } from '@repo/database/repositories/campaign-repository.js';
 
 /**
@@ -32,6 +32,16 @@ export async function PATCH(req, { params }) {
         }
 
         const updated = await CampaignRepository.update(id, updateData);
+
+        ActivityService.logActivity({
+            userId: decoded.userId,
+            role: 'BRAND',
+            type: 'CAMPAIGN_UPDATED',
+            title: 'Campaign Updated',
+            description: `Your campaign "${updated.title}" has been updated.`,
+            relatedId: id
+        }).catch(() => { });
+
         return NextResponse.json({ campaign: updated });
     } catch (error) {
         console.error('Campaign update error:', error);
@@ -60,7 +70,18 @@ export async function DELETE(req, { params }) {
             return NextResponse.json({ error: 'Campaign not found or access denied' }, { status: 404 });
         }
 
+        const title = campaign.title;
         await CampaignRepository.softDelete(id);
+
+        ActivityService.logActivity({
+            userId: decoded.userId,
+            role: 'BRAND',
+            type: 'CAMPAIGN_DELETED',
+            title: 'Campaign Archived',
+            description: `Campaign "${title}" has been archived and removed from active listings.`,
+            relatedId: id
+        }).catch(() => { });
+
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error('Campaign delete error:', error);

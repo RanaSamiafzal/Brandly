@@ -348,3 +348,348 @@ Argument `where` of type CampaignWhereUniqueInput needs at least one of `id` arg
 [00:32:56.559] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [00:33:17.717] Server  LOG     ✓ Compiled in 190ms
 [00:35:26.583] Server  LOG     ✓ Compiled in 11ms
+[00:49:02.921] Server  LOG     ✓ Compiled in 520ms
+[00:49:03.830] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:49:04.810] Server  LOG     ✓ Compiled in 502ms
+[08:07:20.343] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[08:08:14.885] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[08:20:28.322] Server  WARN    Error: Route "/api/brand/campaigns/[id]/matches" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[08:20:28.464] Server  ERROR   AI Matching error: PrismaClientValidationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__f9f0644c._.js:140:162
+
+  137     });
+  138 },
+  139 async findById (id) {
+→ 140     return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique({
+            where: {
+              id: undefined,
+          ?   AND?: CampaignWhereInput | CampaignWhereInput[],
+          ?   OR?: CampaignWhereInput[],
+          ?   NOT?: CampaignWhereInput | CampaignWhereInput[],
+          ?   brandId?: StringFilter | String,
+          ?   title?: StringFilter | String,
+          ?   description?: StringFilter | String,
+          ?   budgetMin?: FloatFilter | Float,
+          ?   budgetMax?: FloatFilter | Float,
+          ?   targetCategory?: StringNullableListFilter,
+          ?   targetPlatform?: StringNullableListFilter,
+          ?   campaignTimeline?: StringNullableFilter | String | Null,
+          ?   deliverables?: StringFilter | String,
+          ?   targetAudience?: StringFilter | String,
+          ?   additionalRequirements?: StringNullableFilter | String | Null,
+          ?   status?: StringFilter | String,
+          ?   isDeleted?: BoolFilter | Boolean,
+          ?   deletedAt?: DateTimeNullableFilter | DateTime | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime,
+          ?   analytics?: AnalyticsListRelationFilter,
+          ?   brand?: BrandProfileRelationFilter | BrandProfileWhereInput,
+          ?   requests?: CollaborationRequestListRelationFilter,
+          ?   matchScores?: MatchScoreListRelationFilter
+            },
+            include: {
+              brand: true,
+              requests: {
+                include: {
+                  sender: true,
+                  receiver: true
+                }
+              },
+              matchScores: {
+                orderBy: {
+                  score: "desc"
+                },
+                take: 10,
+                include: {
+                  influencer: true
+                }
+              }
+            }
+          })
+
+Argument `where` of type CampaignWhereUniqueInput needs at least one of `id` arguments. Available options are marked with ?.
+[08:20:29.628] Server  WARN    Error: Route "/api/brand/campaigns/[id]/matches" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[08:20:29.751] Server  ERROR   AI Matching error: PrismaClientValidationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__f9f0644c._.js:140:162
+
+  137     });
+  138 },
+  139 async findById (id) {
+→ 140     return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique({
+            where: {
+              id: undefined,
+          ?   AND?: CampaignWhereInput | CampaignWhereInput[],
+          ?   OR?: CampaignWhereInput[],
+          ?   NOT?: CampaignWhereInput | CampaignWhereInput[],
+          ?   brandId?: StringFilter | String,
+          ?   title?: StringFilter | String,
+          ?   description?: StringFilter | String,
+          ?   budgetMin?: FloatFilter | Float,
+          ?   budgetMax?: FloatFilter | Float,
+          ?   targetCategory?: StringNullableListFilter,
+          ?   targetPlatform?: StringNullableListFilter,
+          ?   campaignTimeline?: StringNullableFilter | String | Null,
+          ?   deliverables?: StringFilter | String,
+          ?   targetAudience?: StringFilter | String,
+          ?   additionalRequirements?: StringNullableFilter | String | Null,
+          ?   status?: StringFilter | String,
+          ?   isDeleted?: BoolFilter | Boolean,
+          ?   deletedAt?: DateTimeNullableFilter | DateTime | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime,
+          ?   analytics?: AnalyticsListRelationFilter,
+          ?   brand?: BrandProfileRelationFilter | BrandProfileWhereInput,
+          ?   requests?: CollaborationRequestListRelationFilter,
+          ?   matchScores?: MatchScoreListRelationFilter
+            },
+            include: {
+              brand: true,
+              requests: {
+                include: {
+                  sender: true,
+                  receiver: true
+                }
+              },
+              matchScores: {
+                orderBy: {
+                  score: "desc"
+                },
+                take: 10,
+                include: {
+                  influencer: true
+                }
+              }
+            }
+          })
+
+Argument `where` of type CampaignWhereUniqueInput needs at least one of `id` arguments. Available options are marked with ?.
+[08:20:41.024] Server  WARN    Error: Route "/api/brand/campaigns/[id]/matches" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[08:20:41.162] Server  ERROR   AI Matching error: PrismaClientValidationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__f9f0644c._.js:140:162
+
+  137     });
+  138 },
+  139 async findById (id) {
+→ 140     return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique({
+            where: {
+              id: undefined,
+          ?   AND?: CampaignWhereInput | CampaignWhereInput[],
+          ?   OR?: CampaignWhereInput[],
+          ?   NOT?: CampaignWhereInput | CampaignWhereInput[],
+          ?   brandId?: StringFilter | String,
+          ?   title?: StringFilter | String,
+          ?   description?: StringFilter | String,
+          ?   budgetMin?: FloatFilter | Float,
+          ?   budgetMax?: FloatFilter | Float,
+          ?   targetCategory?: StringNullableListFilter,
+          ?   targetPlatform?: StringNullableListFilter,
+          ?   campaignTimeline?: StringNullableFilter | String | Null,
+          ?   deliverables?: StringFilter | String,
+          ?   targetAudience?: StringFilter | String,
+          ?   additionalRequirements?: StringNullableFilter | String | Null,
+          ?   status?: StringFilter | String,
+          ?   isDeleted?: BoolFilter | Boolean,
+          ?   deletedAt?: DateTimeNullableFilter | DateTime | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime,
+          ?   analytics?: AnalyticsListRelationFilter,
+          ?   brand?: BrandProfileRelationFilter | BrandProfileWhereInput,
+          ?   requests?: CollaborationRequestListRelationFilter,
+          ?   matchScores?: MatchScoreListRelationFilter
+            },
+            include: {
+              brand: true,
+              requests: {
+                include: {
+                  sender: true,
+                  receiver: true
+                }
+              },
+              matchScores: {
+                orderBy: {
+                  score: "desc"
+                },
+                take: 10,
+                include: {
+                  influencer: true
+                }
+              }
+            }
+          })
+
+Argument `where` of type CampaignWhereUniqueInput needs at least one of `id` arguments. Available options are marked with ?.
+[08:22:28.844] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[08:22:31.095] Server  WARN    Error: Route "/api/brand/campaigns/[id]/matches" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[08:22:31.207] Server  ERROR   AI Matching error: PrismaClientValidationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__f9f0644c._.js:140:162
+
+  137     });
+  138 },
+  139 async findById (id) {
+→ 140     return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique({
+            where: {
+              id: undefined,
+          ?   AND?: CampaignWhereInput | CampaignWhereInput[],
+          ?   OR?: CampaignWhereInput[],
+          ?   NOT?: CampaignWhereInput | CampaignWhereInput[],
+          ?   brandId?: StringFilter | String,
+          ?   title?: StringFilter | String,
+          ?   description?: StringFilter | String,
+          ?   budgetMin?: FloatFilter | Float,
+          ?   budgetMax?: FloatFilter | Float,
+          ?   targetCategory?: StringNullableListFilter,
+          ?   targetPlatform?: StringNullableListFilter,
+          ?   campaignTimeline?: StringNullableFilter | String | Null,
+          ?   deliverables?: StringFilter | String,
+          ?   targetAudience?: StringFilter | String,
+          ?   additionalRequirements?: StringNullableFilter | String | Null,
+          ?   status?: StringFilter | String,
+          ?   isDeleted?: BoolFilter | Boolean,
+          ?   deletedAt?: DateTimeNullableFilter | DateTime | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime,
+          ?   analytics?: AnalyticsListRelationFilter,
+          ?   brand?: BrandProfileRelationFilter | BrandProfileWhereInput,
+          ?   requests?: CollaborationRequestListRelationFilter,
+          ?   matchScores?: MatchScoreListRelationFilter
+            },
+            include: {
+              brand: true,
+              requests: {
+                include: {
+                  sender: true,
+                  receiver: true
+                }
+              },
+              matchScores: {
+                orderBy: {
+                  score: "desc"
+                },
+                take: 10,
+                include: {
+                  influencer: true
+                }
+              }
+            }
+          })
+
+Argument `where` of type CampaignWhereUniqueInput needs at least one of `id` arguments. Available options are marked with ?.
+[08:42:20.239] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[08:46:50.072] Browser ERROR   Failed to fetch matches {}
+[08:51:10.618] Server  LOG     ✓ Compiled in 248ms
+[08:51:26.137] Server  LOG     ✓ Compiled in 259ms
+[08:51:52.790] Server  LOG     ✓ Compiled in 167ms
+[08:52:02.202] Server  LOG     ✓ Compiled in 173ms
+[08:52:49.905] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[08:52:51.463] Browser ERROR   Failed to load Cloudinary Upload Widget: undefined
+[08:52:51.812] Server  ERROR   Session error: PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__796d2896._.js:70:158
+
+  67 ;
+  68 const UserRepository = {
+  69     async findById (id) {
+→ 70         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].user.findUnique(
+Can't reach database server at `ep-floral-truth-a155xdrb-pooler.ap-southeast-1.aws.neon.tech:5432`
+
+Please make sure your database server is running at `ep-floral-truth-a155xdrb-pooler.ap-southeast-1.aws.neon.tech:5432`.
+[08:53:01.091] Server  ERROR   Influencer search error: PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].influencerProfile.findMany()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__cefd5143._.js:549:171
+
+  546         }
+  547     ];
+  548 }
+→ 549 return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].influencerProfile.findMany(
+Timed out fetching a new connection from the connection pool. More info: http://pris.ly/d/connection-pool (Current connection pool timeout: 10, connection limit: 13)
+[08:53:01.338] Server  ERROR   Campaigns fetch error: PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].brandProfile.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__48462a70._.js:216:166
+
+  213 ;
+  214 const BrandRepository = {
+  215     async findByUserId (userId) {
+→ 216         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].brandProfile.findUnique(
+Timed out fetching a new connection from the connection pool. More info: http://pris.ly/d/connection-pool (Current connection pool timeout: 10, connection limit: 13)
+[09:11:37.729] Server  LOG     ✓ Compiled in 211ms
+[09:11:52.813] Server  LOG     ✓ Compiled in 312ms
+[09:14:19.261] Server  ERROR   AI Matching error: PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__867fb4f8._.js:855:335
+
+  852 const MatchRepository = {
+  853     async saveMatches (matches) {
+  854         // matches is an array of { campaignId, influencerId, score, breakdown }
+→ 855         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create(
+Unique constraint failed on the fields: (`campaignId`,`influencerId`)
+[09:14:23.350] Server  ERROR   AI Matching error: PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__867fb4f8._.js:855:335
+
+  852 const MatchRepository = {
+  853     async saveMatches (matches) {
+  854         // matches is an array of { campaignId, influencerId, score, breakdown }
+→ 855         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create(
+Unique constraint failed on the fields: (`campaignId`,`influencerId`)
+[09:15:06.230] Server  ERROR   Requests retrieval error: ReferenceError: BrandService is not defined
+[09:15:06.615] Server  ERROR   Requests retrieval error: ReferenceError: BrandService is not defined
+[09:16:16.171] Server  ERROR   AI Matching error: PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__867fb4f8._.js:855:335
+
+  852 const MatchRepository = {
+  853     async saveMatches (matches) {
+  854         // matches is an array of { campaignId, influencerId, score, breakdown }
+→ 855         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create(
+Unique constraint failed on the fields: (`campaignId`,`influencerId`)
+[09:16:19.661] Server  ERROR   AI Matching error: PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__867fb4f8._.js:855:335
+
+  852 const MatchRepository = {
+  853     async saveMatches (matches) {
+  854         // matches is an array of { campaignId, influencerId, score, breakdown }
+→ 855         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create(
+Unique constraint failed on the fields: (`campaignId`,`influencerId`)
+[09:37:31.626] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[09:38:07.618] Server  ERROR   AI Matching error: PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__867fb4f8._.js:855:335
+
+  852 const MatchRepository = {
+  853     async saveMatches (matches) {
+  854         // matches is an array of { campaignId, influencerId, score, breakdown }
+→ 855         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create(
+Unique constraint failed on the fields: (`campaignId`,`influencerId`)
+[09:38:18.223] Server  ERROR   AI Matching error: PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__867fb4f8._.js:855:335
+
+  852 const MatchRepository = {
+  853     async saveMatches (matches) {
+  854         // matches is an array of { campaignId, influencerId, score, breakdown }
+→ 855         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create(
+Unique constraint failed on the fields: (`campaignId`,`influencerId`)
+[09:38:24.179] Server  ERROR   AI Matching error: PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__867fb4f8._.js:855:335
+
+  852 const MatchRepository = {
+  853     async saveMatches (matches) {
+  854         // matches is an array of { campaignId, influencerId, score, breakdown }
+→ 855         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create(
+Unique constraint failed on the fields: (`campaignId`,`influencerId`)
+[09:38:30.503] Server  ERROR   AI Matching error: PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__867fb4f8._.js:855:335
+
+  852 const MatchRepository = {
+  853     async saveMatches (matches) {
+  854         // matches is an array of { campaignId, influencerId, score, breakdown }
+→ 855         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(matches.map((match)=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].matchScore.create(
+Unique constraint failed on the fields: (`campaignId`,`influencerId`)
+[09:42:58.723] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

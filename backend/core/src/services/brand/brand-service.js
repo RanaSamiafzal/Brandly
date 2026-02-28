@@ -16,7 +16,20 @@ export const BrandService = {
      * Update or create a brand's specific profile details.
      */
     async updateBrandProfile(userId, profileData) {
-        return BrandRepository.updateProfile(userId, profileData);
+        const profile = await BrandRepository.updateProfile(userId, profileData);
+
+        // Log Activity
+        const { ActivityService } = await import('../activity/activity-service.js');
+        await ActivityService.logActivity({
+            userId,
+            role: "BRAND",
+            type: "PROFILE_UPDATED",
+            title: "Profile Updated",
+            description: "Your brand profile information has been successfully updated.",
+            relatedId: profile.id
+        });
+
+        return profile;
     },
 
     /**

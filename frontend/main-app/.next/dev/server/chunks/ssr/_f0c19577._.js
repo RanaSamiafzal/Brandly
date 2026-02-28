@@ -62,16 +62,24 @@ function AIMatchPage({ params }) {
             const data = await res.json();
             if (data.matches) {
                 // Map the database matches to the frontend format
-                const formattedMatches = data.matches.map((m)=>({
-                        id: m.influencerId,
-                        name: m.influencer.user.fullname,
-                        score: Math.round(m.score),
-                        niche: m.influencer.category,
-                        followers: "124k",
+                const formattedMatches = data.matches.map((m)=>{
+                    const profile = m.influencer;
+                    const platforms = Array.isArray(profile.platforms) ? profile.platforms : typeof profile.platforms === 'string' ? JSON.parse(profile.platforms) : [];
+                    const primaryPlatform = platforms[0] || {
                         platform: "Instagram",
-                        image: m.influencer.user.profilePic || `https://i.pravatar.cc/150?u=${m.influencerId}`,
+                        followers: "0"
+                    };
+                    return {
+                        id: m.influencerId,
+                        name: profile.user.fullname,
+                        score: Math.round(m.score),
+                        niche: profile.category,
+                        followers: primaryPlatform.followers,
+                        platform: primaryPlatform.platform,
+                        image: profile.user.profilePic || `https://i.pravatar.cc/150?u=${m.influencerId}`,
                         matchReason: m.breakdown?.reason || "High affinity with your target audience demographics."
-                    }));
+                    };
+                });
                 setMatches(formattedMatches);
             }
         } catch (error) {
@@ -102,12 +110,12 @@ function AIMatchPage({ params }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 81,
+                                lineNumber: 90,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                            lineNumber: 80,
+                            lineNumber: 89,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -116,18 +124,18 @@ function AIMatchPage({ params }) {
                                 className: "w-8 h-8 text-blue-400 animate-bounce"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 84,
+                                lineNumber: 93,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                            lineNumber: 83,
+                            lineNumber: 92,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                    lineNumber: 79,
+                    lineNumber: 88,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -142,7 +150,7 @@ function AIMatchPage({ params }) {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                            lineNumber: 89,
+                            lineNumber: 98,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -150,13 +158,13 @@ function AIMatchPage({ params }) {
                             children: "Our engine is calculating match scores based on audience demographics, engagement rates, and content affinity."
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                            lineNumber: 90,
+                            lineNumber: 99,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                    lineNumber: 88,
+                    lineNumber: 97,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -168,12 +176,12 @@ function AIMatchPage({ params }) {
                         }
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                        lineNumber: 94,
+                        lineNumber: 103,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                    lineNumber: 93,
+                    lineNumber: 102,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -186,14 +194,14 @@ function AIMatchPage({ params }) {
                                     className: "w-3 h-3 text-green-500"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                    lineNumber: 99,
+                                    lineNumber: 108,
                                     columnNumber: 25
                                 }, this),
                                 " Scanning Influencer Database"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                            lineNumber: 98,
+                            lineNumber: 107,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -206,14 +214,14 @@ function AIMatchPage({ params }) {
                                     className: "w-3 h-3 text-green-500"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                    lineNumber: 102,
+                                    lineNumber: 111,
                                     columnNumber: 25
                                 }, this),
                                 " Analyzing Sentiment Affinity"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                            lineNumber: 101,
+                            lineNumber: 110,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -226,26 +234,26 @@ function AIMatchPage({ params }) {
                                     className: "w-3 h-3 rounded-full border border-gray-300 animate-spin border-t-blue-500"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                    lineNumber: 105,
+                                    lineNumber: 114,
                                     columnNumber: 25
                                 }, this),
                                 " Calculating weighted scores"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                            lineNumber: 104,
+                            lineNumber: 113,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                    lineNumber: 97,
+                    lineNumber: 106,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-            lineNumber: 78,
+            lineNumber: 87,
             columnNumber: 13
         }, this);
     }
@@ -265,14 +273,14 @@ function AIMatchPage({ params }) {
                                         className: "w-4 h-4 fill-blue-600"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 118,
+                                        lineNumber: 127,
                                         columnNumber: 25
                                     }, this),
                                     " AI Recommendations"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 117,
+                                lineNumber: 126,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -280,13 +288,13 @@ function AIMatchPage({ params }) {
                                 children: "Matching Specialists"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 120,
+                                lineNumber: 129,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                        lineNumber: 116,
+                        lineNumber: 125,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -303,7 +311,7 @@ function AIMatchPage({ params }) {
                                                 children: "Active Campaign"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                lineNumber: 130,
+                                                lineNumber: 139,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -311,26 +319,26 @@ function AIMatchPage({ params }) {
                                                 children: selectedCampaign?.title || "Select a campaign"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                lineNumber: 131,
+                                                lineNumber: 140,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 129,
+                                        lineNumber: 138,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                         className: `w-5 h-5 text-gray-400 transition-transform ${isCampaignSelectorOpen ? 'rotate-180' : ''}`
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 133,
+                                        lineNumber: 142,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 125,
+                                lineNumber: 134,
                                 columnNumber: 21
                             }, this),
                             isCampaignSelectorOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -348,20 +356,20 @@ function AIMatchPage({ params }) {
                                                             children: c.title
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                            lineNumber: 148,
+                                                            lineNumber: 157,
                                                             columnNumber: 41
                                                         }, this),
                                                         selectedCampaign?.id === c.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                            lineNumber: 149,
+                                                            lineNumber: 158,
                                                             columnNumber: 75
                                                         }, this)
                                                     ]
                                                 }, c.id, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                    lineNumber: 140,
+                                                    lineNumber: 149,
                                                     columnNumber: 37
                                                 }, this)),
                                             campaigns.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -369,13 +377,13 @@ function AIMatchPage({ params }) {
                                                 children: "No campaigns found"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                lineNumber: 153,
+                                                lineNumber: 162,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 138,
+                                        lineNumber: 147,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -386,30 +394,30 @@ function AIMatchPage({ params }) {
                                             children: "+ Create New Campaign"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                            lineNumber: 157,
+                                            lineNumber: 166,
                                             columnNumber: 33
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 156,
+                                        lineNumber: 165,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 137,
+                                lineNumber: 146,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                        lineNumber: 124,
+                        lineNumber: 133,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                lineNumber: 115,
+                lineNumber: 124,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -426,7 +434,7 @@ function AIMatchPage({ params }) {
                                         children: "High Affinity Score"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 170,
+                                        lineNumber: 179,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -434,7 +442,7 @@ function AIMatchPage({ params }) {
                                         children: "98.4%"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 171,
+                                        lineNumber: 180,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -442,26 +450,26 @@ function AIMatchPage({ params }) {
                                         children: "Top matched influencers"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 172,
+                                        lineNumber: 181,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 169,
+                                lineNumber: 178,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
                                 className: "w-16 h-16 text-white/10 absolute -right-2 -bottom-2 group-hover:scale-110 transition-transform"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 174,
+                                lineNumber: 183,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                        lineNumber: 168,
+                        lineNumber: 177,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -474,7 +482,7 @@ function AIMatchPage({ params }) {
                                         children: "Estimated Reach"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 178,
+                                        lineNumber: 187,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -482,7 +490,7 @@ function AIMatchPage({ params }) {
                                         children: "1.2M+"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 179,
+                                        lineNumber: 188,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -490,26 +498,26 @@ function AIMatchPage({ params }) {
                                         children: "Combined potential"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 180,
+                                        lineNumber: 189,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 177,
+                                lineNumber: 186,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
                                 className: "w-10 h-10 text-blue-50"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 182,
+                                lineNumber: 191,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                        lineNumber: 176,
+                        lineNumber: 185,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -522,7 +530,7 @@ function AIMatchPage({ params }) {
                                         children: "Compliance Rate"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 186,
+                                        lineNumber: 195,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -530,7 +538,7 @@ function AIMatchPage({ params }) {
                                         children: "Highly Rated"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 187,
+                                        lineNumber: 196,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -538,32 +546,32 @@ function AIMatchPage({ params }) {
                                         children: "Verified creators only"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                        lineNumber: 188,
+                                        lineNumber: 197,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 185,
+                                lineNumber: 194,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
                                 className: "w-10 h-10 text-green-50"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                lineNumber: 190,
+                                lineNumber: 199,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                        lineNumber: 184,
+                        lineNumber: 193,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                lineNumber: 167,
+                lineNumber: 176,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -595,7 +603,7 @@ function AIMatchPage({ params }) {
                                                             className: "text-gray-100"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                            lineNumber: 203,
+                                                            lineNumber: 212,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -610,13 +618,13 @@ function AIMatchPage({ params }) {
                                                             className: "text-blue-600 transition-all duration-1000 ease-out"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                            lineNumber: 204,
+                                                            lineNumber: 213,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                    lineNumber: 202,
+                                                    lineNumber: 211,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -630,7 +638,7 @@ function AIMatchPage({ params }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                            lineNumber: 207,
+                                                            lineNumber: 216,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -638,19 +646,19 @@ function AIMatchPage({ params }) {
                                                             children: "Match"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                            lineNumber: 208,
+                                                            lineNumber: 217,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                    lineNumber: 206,
+                                                    lineNumber: 215,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                            lineNumber: 201,
+                                            lineNumber: 210,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -659,13 +667,13 @@ function AIMatchPage({ params }) {
                                             className: "w-20 h-20 sm:w-24 sm:h-24 rounded-[2rem] object-cover border-4 border-white shadow-xl group-hover:scale-105 transition-transform"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                            lineNumber: 211,
+                                            lineNumber: 220,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                    lineNumber: 200,
+                                    lineNumber: 209,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -684,20 +692,20 @@ function AIMatchPage({ params }) {
                                                                     children: match.name
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                                    lineNumber: 219,
+                                                                    lineNumber: 228,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
                                                                     className: "w-5 h-5 text-green-500 flex-shrink-0 fill-green-50"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                                    lineNumber: 220,
+                                                                    lineNumber: 229,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                            lineNumber: 218,
+                                                            lineNumber: 227,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -710,21 +718,21 @@ function AIMatchPage({ params }) {
                                                                             className: "w-4 h-4 text-amber-400 fill-amber-400"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                                            lineNumber: 223,
+                                                                            lineNumber: 232,
                                                                             columnNumber: 89
                                                                         }, this),
                                                                         " 4.9"
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                                    lineNumber: 223,
+                                                                    lineNumber: 232,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                     className: "w-1 h-1 rounded-full bg-gray-300"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                                    lineNumber: 224,
+                                                                    lineNumber: 233,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -734,19 +742,19 @@ function AIMatchPage({ params }) {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                                    lineNumber: 225,
+                                                                    lineNumber: 234,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                            lineNumber: 222,
+                                                            lineNumber: 231,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                    lineNumber: 217,
+                                                    lineNumber: 226,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -754,13 +762,13 @@ function AIMatchPage({ params }) {
                                                     children: match.platform
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                    lineNumber: 228,
+                                                    lineNumber: 237,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                            lineNumber: 216,
+                                            lineNumber: 225,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -772,7 +780,7 @@ function AIMatchPage({ params }) {
                                                         className: "w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                        lineNumber: 235,
+                                                        lineNumber: 244,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -784,18 +792,18 @@ function AIMatchPage({ params }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                        lineNumber: 236,
+                                                        lineNumber: 245,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                lineNumber: 234,
+                                                lineNumber: 243,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                            lineNumber: 233,
+                                            lineNumber: 242,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -809,12 +817,12 @@ function AIMatchPage({ params }) {
                                                         children: "View Profile"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                        lineNumber: 242,
+                                                        lineNumber: 251,
                                                         columnNumber: 41
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                    lineNumber: 241,
+                                                    lineNumber: 250,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -822,41 +830,41 @@ function AIMatchPage({ params }) {
                                                     children: "Send Invite"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                                    lineNumber: 246,
+                                                    lineNumber: 255,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                            lineNumber: 240,
+                                            lineNumber: 249,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                                    lineNumber: 215,
+                                    lineNumber: 224,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                            lineNumber: 198,
+                            lineNumber: 207,
                             columnNumber: 25
                         }, this)
                     }, match.id, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                        lineNumber: 197,
+                        lineNumber: 206,
                         columnNumber: 21
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-                lineNumber: 195,
+                lineNumber: 204,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page.js",
-        lineNumber: 113,
+        lineNumber: 122,
         columnNumber: 9
     }, this);
 }

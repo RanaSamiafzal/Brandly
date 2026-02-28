@@ -644,9 +644,12 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bell$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/bell.js [app-client] (ecmascript) <export default as Bell>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2d$big$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-check-big.js [app-client] (ecmascript) <export default as CheckCircle>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-check.js [app-client] (ecmascript) <export default as CheckCircle2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/info.js [app-client] (ecmascript) <export default as Info>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/triangle-alert.js [app-client] (ecmascript) <export default as AlertTriangle>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-client] (ecmascript) <export default as ArrowRight>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2d$off$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BellOff$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/bell-off.js [app-client] (ecmascript) <export default as BellOff>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash-2.js [app-client] (ecmascript) <export default as Trash2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
@@ -654,242 +657,434 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+const TYPE_MAP = {
+    CAMPAIGN_CREATED: {
+        color: "text-green-600",
+        bg: "bg-green-50",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"]
+    },
+    CAMPAIGN_UPDATED: {
+        color: "text-blue-600",
+        bg: "bg-blue-50",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"]
+    },
+    CAMPAIGN_DELETED: {
+        color: "text-gray-500",
+        bg: "bg-gray-50",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"]
+    },
+    REQUEST_RECEIVED: {
+        color: "text-purple-600",
+        bg: "bg-purple-50",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"]
+    },
+    REQUEST_RESPONDED: {
+        color: "text-indigo-600",
+        bg: "bg-indigo-50",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"]
+    },
+    PROFILE_UPDATED: {
+        color: "text-amber-600",
+        bg: "bg-amber-50",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"]
+    },
+    DELIVERABLE_DUE: {
+        color: "text-red-500",
+        bg: "bg-red-50",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__["AlertTriangle"]
+    },
+    SYSTEM_INFO: {
+        color: "text-gray-500",
+        bg: "bg-gray-100",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"]
+    }
+};
+function timeAgo(date) {
+    const now = new Date();
+    const diff = Math.floor((now - new Date(date)) / 1000);
+    if (diff < 60) return "Just now";
+    if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+    return `${Math.floor(diff / 86400)}d ago`;
+}
 function NotificationsDropdown() {
     _s();
     const [isOpen, setIsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [notifications, setNotifications] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [unreadCount, setUnreadCount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    const [muted, setMuted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const dropdownRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    // Fake data for now since we don't have the context hook yet
-    const [notifications, setNotifications] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([
-        {
-            id: 1,
-            type: "REQUEST_RECEIVED",
-            title: "New Collaboration Request",
-            description: "You have received a collaboration request from FashionHub",
-            isRead: false,
-            timeAgo: "5 minutes ago",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2d$big$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle$3e$__["CheckCircle"],
-            color: "text-green-500"
-        },
-        {
-            id: 2,
-            type: "CAMPAIGN_UPDATED",
-            title: "Campaign Update",
-            description: "Summer Collection Launch campaign has been updated",
-            isRead: false,
-            timeAgo: "2 hours ago",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"],
-            color: "text-blue-500"
-        },
-        {
-            id: 3,
-            type: "DELIVERABLE_DUE",
-            title: "Deliverable Due Soon",
-            description: "You have 2 deliverables due in 3 days",
-            isRead: true,
-            timeAgo: "1 day ago",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__["AlertTriangle"],
-            color: "text-amber-500"
-        },
-        {
-            id: 4,
-            type: "PAYMENT_PROCESSED",
-            title: "Payment Received",
-            description: "Payment of $800 has been processed",
-            isRead: true,
-            timeAgo: "2 days ago",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2d$big$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle$3e$__["CheckCircle"],
-            color: "text-green-500"
-        }
-    ]);
-    const unreadCount = notifications.filter((n)=>!n.isRead).length;
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "NotificationsDropdown.useEffect": ()=>{
-            function handleClickOutside(event) {
-                if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                    setIsOpen(false);
+            const stored = localStorage.getItem('brandly-notif-muted');
+            if (stored === 'true') setMuted(true);
+        }
+    }["NotificationsDropdown.useEffect"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "NotificationsDropdown.useEffect": ()=>{
+            const handleClick = {
+                "NotificationsDropdown.useEffect.handleClick": (e)=>{
+                    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setIsOpen(false);
                 }
-            }
-            document.addEventListener("mousedown", handleClickOutside);
+            }["NotificationsDropdown.useEffect.handleClick"];
+            document.addEventListener("mousedown", handleClick);
             return ({
-                "NotificationsDropdown.useEffect": ()=>document.removeEventListener("mousedown", handleClickOutside)
+                "NotificationsDropdown.useEffect": ()=>document.removeEventListener("mousedown", handleClick)
             })["NotificationsDropdown.useEffect"];
         }
     }["NotificationsDropdown.useEffect"], []);
-    const markAllRead = ()=>{
+    const fetchNotifications = async ()=>{
+        setIsLoading(true);
+        try {
+            const res = await fetch("/api/notifications?limit=8");
+            const data = await res.json();
+            if (data.notifications) {
+                setNotifications(data.notifications);
+                setUnreadCount(data.unreadCount ?? data.notifications.filter((n)=>!n.isRead).length);
+            }
+        } catch  {} finally{
+            setIsLoading(false);
+        }
+    };
+    const handleOpen = ()=>{
+        setIsOpen((prev)=>{
+            if (!prev) fetchNotifications();
+            return !prev;
+        });
+    };
+    const markAllRead = async ()=>{
+        await fetch("/api/notifications/read-all", {
+            method: "PATCH"
+        });
         setNotifications((prev)=>prev.map((n)=>({
                     ...n,
                     isRead: true
                 })));
+        setUnreadCount(0);
+    };
+    const markRead = async (id)=>{
+        setNotifications((prev)=>prev.map((n)=>n.id === id ? {
+                    ...n,
+                    isRead: true
+                } : n));
+        setUnreadCount((prev)=>Math.max(0, prev - 1));
+        await fetch(`/api/notifications/${id}`, {
+            method: "PATCH"
+        });
+    };
+    const deleteNotif = async (e, id)=>{
+        e.stopPropagation();
+        setNotifications((prev)=>prev.filter((n)=>n.id !== id));
+        setUnreadCount((prev)=>{
+            const isUnread = notifications.find((n)=>n.id === id)?.isRead === false;
+            return isUnread ? Math.max(0, prev - 1) : prev;
+        });
+        await fetch(`/api/notifications/${id}`, {
+            method: "DELETE"
+        });
+    };
+    const toggleMute = ()=>{
+        const next = !muted;
+        setMuted(next);
+        localStorage.setItem('brandly-notif-muted', String(next));
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "relative",
         ref: dropdownRef,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                onClick: ()=>setIsOpen(!isOpen),
-                className: "relative p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors",
+                onClick: handleOpen,
+                className: `relative p-2 rounded-full transition-colors ${muted ? "text-gray-300" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"}`,
+                title: muted ? "Notifications muted" : "Notifications",
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bell$3e$__["Bell"], {
+                    muted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2d$off$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BellOff$3e$__["BellOff"], {
                         className: "w-5 h-5"
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                        lineNumber: 76,
-                        columnNumber: 17
-                    }, this),
-                    unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "absolute top-1.5 right-1.5 w-4 h-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white",
-                        children: unreadCount
+                        lineNumber: 102,
+                        columnNumber: 26
+                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bell$3e$__["Bell"], {
+                        className: "w-5 h-5"
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                        lineNumber: 78,
+                        lineNumber: 102,
+                        columnNumber: 60
+                    }, this),
+                    !muted && unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "absolute top-1 right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white animate-pulse",
+                        children: unreadCount > 9 ? "9+" : unreadCount
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                        lineNumber: 104,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                lineNumber: 72,
+                lineNumber: 97,
                 columnNumber: 13
             }, this),
             isOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute right-0 mt-3 w-80 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50",
+                className: "absolute right-0 mt-3 w-96 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-200",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center justify-between px-4 py-3 border-b border-gray-100",
+                        className: "flex items-center justify-between px-5 py-4 border-b border-gray-100",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex items-center gap-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "font-semibold text-gray-900",
+                                        className: "font-bold text-gray-900 text-base",
                                         children: "Notifications"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                        lineNumber: 88,
+                                        lineNumber: 115,
                                         columnNumber: 29
                                     }, this),
-                                    unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full font-medium",
+                                    !muted && unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-bold",
                                         children: unreadCount
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                        lineNumber: 90,
+                                        lineNumber: 117,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                lineNumber: 87,
+                                lineNumber: 114,
                                 columnNumber: 25
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: markAllRead,
-                                className: "text-xs text-blue-600 hover:text-blue-700 font-medium",
-                                children: "Mark all read"
-                            }, void 0, false, {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center gap-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: toggleMute,
+                                        className: `p-1.5 rounded-lg transition-colors text-xs font-medium flex items-center gap-1 ${muted ? "text-red-500 bg-red-50 hover:bg-red-100" : "text-gray-400 hover:bg-gray-100"}`,
+                                        title: muted ? "Unmute" : "Mute notifications",
+                                        children: muted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2d$off$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BellOff$3e$__["BellOff"], {
+                                                    className: "w-3.5 h-3.5"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                                    lineNumber: 126,
+                                                    columnNumber: 44
+                                                }, this),
+                                                " Muted"
+                                            ]
+                                        }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2d$off$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BellOff$3e$__["BellOff"], {
+                                            className: "w-3.5 h-3.5"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                            lineNumber: 126,
+                                            columnNumber: 91
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                        lineNumber: 121,
+                                        columnNumber: 29
+                                    }, this),
+                                    unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: markAllRead,
+                                        className: "text-xs font-bold text-blue-600 hover:text-blue-700",
+                                        children: "Mark all read"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                        lineNumber: 129,
+                                        columnNumber: 33
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                lineNumber: 95,
+                                lineNumber: 120,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                        lineNumber: 86,
+                        lineNumber: 113,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "max-h-96 overflow-y-auto",
-                        children: notifications.length > 0 ? notifications.map((notif)=>{
-                            const Icon = notif.icon;
-                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: `flex items-start gap-3 p-4 border-b border-gray-50 hover:bg-gray-50 transition-colors cursor-pointer ${!notif.isRead ? 'bg-blue-50/40' : ''}`,
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: `mt-0.5 ${notif.color}`,
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
-                                            className: "w-5 h-5"
+                        className: "max-h-80 overflow-y-auto",
+                        children: isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "space-y-1 p-2",
+                            children: [
+                                1,
+                                2,
+                                3
+                            ].map((i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex gap-3 p-3 animate-pulse",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "w-9 h-9 rounded-lg bg-gray-100 flex-shrink-0"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                            lineNumber: 113,
+                                            lineNumber: 142,
+                                            columnNumber: 41
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex-1 space-y-1.5 py-0.5",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "h-3 bg-gray-200 rounded w-2/3"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                                    lineNumber: 144,
+                                                    columnNumber: 45
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "h-2.5 bg-gray-100 rounded w-full"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                                    lineNumber: 145,
+                                                    columnNumber: 45
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                            lineNumber: 143,
+                                            columnNumber: 41
+                                        }, this)
+                                    ]
+                                }, i, true, {
+                                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                    lineNumber: 141,
+                                    columnNumber: 37
+                                }, this))
+                        }, void 0, false, {
+                            fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                            lineNumber: 139,
+                            columnNumber: 29
+                        }, this) : notifications.length > 0 ? notifications.map((notif)=>{
+                            const meta = TYPE_MAP[notif.type] || TYPE_MAP.SYSTEM_INFO;
+                            const Icon = meta.icon;
+                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                onClick: ()=>!notif.isRead && markRead(notif.id),
+                                className: `flex items-start gap-3 px-5 py-4 border-b border-gray-50 hover:bg-gray-50 cursor-pointer group transition-colors ${!notif.isRead ? "bg-blue-50/30" : ""}`,
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: `w-9 h-9 rounded-lg ${meta.bg} ${meta.color} flex items-center justify-center flex-shrink-0`,
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
+                                            className: "w-4 h-4"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                            lineNumber: 161,
                                             columnNumber: 45
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                        lineNumber: 112,
+                                        lineNumber: 160,
                                         columnNumber: 41
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex-1",
+                                        className: "flex-1 min-w-0",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-start justify-between gap-2",
+                                                className: "flex items-start justify-between gap-1",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-sm font-medium text-gray-900",
+                                                        className: "text-sm font-semibold text-gray-900 leading-tight",
                                                         children: notif.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                        lineNumber: 117,
+                                                        lineNumber: 165,
                                                         columnNumber: 49
                                                     }, this),
-                                                    !notif.isRead && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "w-2 h-2 rounded-full bg-blue-500 mt-1.5 flex-shrink-0"
-                                                    }, void 0, false, {
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex items-center gap-1.5 flex-shrink-0",
+                                                        children: [
+                                                            !notif.isRead && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                                                lineNumber: 167,
+                                                                columnNumber: 71
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                onClick: (e)=>deleteNotif(e, notif.id),
+                                                                className: "opacity-0 group-hover:opacity-100 text-gray-300 hover:text-red-400 transition-all",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
+                                                                    className: "w-3.5 h-3.5"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                                                    lineNumber: 172,
+                                                                    columnNumber: 57
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                                                lineNumber: 168,
+                                                                columnNumber: 53
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                        lineNumber: 118,
-                                                        columnNumber: 67
+                                                        lineNumber: 166,
+                                                        columnNumber: 49
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                lineNumber: 116,
+                                                lineNumber: 164,
                                                 columnNumber: 45
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-sm text-gray-500 mt-0.5 leading-snug",
+                                                className: "text-xs text-gray-500 mt-0.5 line-clamp-2 leading-snug",
                                                 children: notif.description
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                lineNumber: 120,
+                                                lineNumber: 176,
                                                 columnNumber: 45
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-xs text-gray-400 mt-1.5",
-                                                children: notif.timeAgo
+                                                className: "text-[10px] text-gray-400 mt-1.5 font-medium",
+                                                children: timeAgo(notif.createdAt)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                lineNumber: 121,
+                                                lineNumber: 177,
                                                 columnNumber: 45
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                        lineNumber: 115,
+                                        lineNumber: 163,
                                         columnNumber: 41
                                     }, this)
                                 ]
                             }, notif.id, true, {
                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                lineNumber: 108,
+                                lineNumber: 155,
                                 columnNumber: 37
                             }, this);
                         }) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-8 text-center text-gray-500",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-sm",
-                                children: "No new notifications"
-                            }, void 0, false, {
-                                fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                lineNumber: 128,
-                                columnNumber: 33
-                            }, this)
-                        }, void 0, false, {
+                            className: "py-14 text-center",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bell$3e$__["Bell"], {
+                                    className: "w-8 h-8 text-gray-200 mx-auto mb-2"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                    lineNumber: 184,
+                                    columnNumber: 33
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-sm font-medium text-gray-500",
+                                    children: "You're all caught up!"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                    lineNumber: 185,
+                                    columnNumber: 33
+                                }, this)
+                            ]
+                        }, void 0, true, {
                             fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                            lineNumber: 127,
+                            lineNumber: 183,
                             columnNumber: 29
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                        lineNumber: 103,
+                        lineNumber: 137,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -897,32 +1092,41 @@ function NotificationsDropdown() {
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: "/brand/notifications",
                             onClick: ()=>setIsOpen(false),
-                            className: "block w-full text-center text-sm font-medium text-gray-900 bg-white border border-gray-200 py-2 rounded-lg hover:bg-gray-50 transition-colors",
-                            children: "View All Notifications"
-                        }, void 0, false, {
+                            className: "flex items-center justify-center gap-2 w-full text-center text-sm font-bold text-blue-600 hover:text-blue-700 bg-white border border-gray-200 py-2.5 rounded-xl hover:bg-blue-50 transition-colors",
+                            children: [
+                                "View All Notifications ",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
+                                    className: "w-4 h-4"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                    lineNumber: 197,
+                                    columnNumber: 52
+                                }, this)
+                            ]
+                        }, void 0, true, {
                             fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                            lineNumber: 134,
+                            lineNumber: 192,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                        lineNumber: 133,
+                        lineNumber: 191,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                lineNumber: 85,
+                lineNumber: 111,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-        lineNumber: 71,
+        lineNumber: 96,
         columnNumber: 9
     }, this);
 }
-_s(NotificationsDropdown, "nXfWPdSjzaVSZ/HeQ0HOij11JD8=");
+_s(NotificationsDropdown, "zT1JY+pnQPcmGWT30bO4z30RU+w=");
 _c = NotificationsDropdown;
 var _c;
 __turbopack_context__.k.register(_c, "NotificationsDropdown");

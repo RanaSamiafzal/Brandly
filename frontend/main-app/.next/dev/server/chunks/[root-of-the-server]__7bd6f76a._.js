@@ -182,6 +182,14 @@ const CampaignRepository = {
             }
         });
     },
+    async update (id, data) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.update({
+            where: {
+                id
+            },
+            data
+        });
+    },
     async softDelete (id) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.update({
             where: {
@@ -305,15 +313,49 @@ const ActivityRepository = {
             data
         });
     },
-    async getUserActivities (userId, limit = 10) {
-        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].activity.findMany({
+    async findById (id) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].activity.findUnique({
             where: {
-                userId
-            },
+                id
+            }
+        });
+    },
+    async getUserActivities (userId, limit = 20, filter = null) {
+        const where = {
+            userId
+        };
+        if (filter === 'unread') where.isRead = false;
+        if (filter === 'read') where.isRead = true;
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].activity.findMany({
+            where,
             orderBy: {
                 createdAt: 'desc'
             },
             take: limit
+        });
+    },
+    async search (userId, query) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].activity.findMany({
+            where: {
+                userId,
+                OR: [
+                    {
+                        title: {
+                            contains: query,
+                            mode: 'insensitive'
+                        }
+                    },
+                    {
+                        description: {
+                            contains: query,
+                            mode: 'insensitive'
+                        }
+                    }
+                ]
+            },
+            orderBy: {
+                createdAt: 'desc'
+            }
         });
     },
     async markAsRead (id) {
@@ -334,6 +376,13 @@ const ActivityRepository = {
             },
             data: {
                 isRead: true
+            }
+        });
+    },
+    async deleteById (id) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].activity.delete({
+            where: {
+                id
             }
         });
     }
@@ -447,6 +496,19 @@ const InfluencerRepository = {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].influencerProfile.findUnique({
             where: {
                 userId
+            },
+            include: {
+                user: true
+            }
+        });
+    },
+    async findById (id) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].influencerProfile.findUnique({
+            where: {
+                id
+            },
+            include: {
+                user: true
             }
         });
     },
@@ -785,7 +847,11 @@ const MatchRepository = {
                 campaignId
             },
             include: {
-                influencer: true
+                influencer: {
+                    include: {
+                        user: true
+                    }
+                }
             },
             orderBy: {
                 score: 'desc'
@@ -1036,9 +1102,7 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$activity$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/backend/database/repositories/activity-repository.js [app-route] (ecmascript)");
 ;
 const ActivityService = {
-    /**
-     * Log a new activity for a user.
-     */ async logActivity (data) {
+    async logActivity (data) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$activity$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ActivityRepository"].create({
             userId: data.userId,
             role: data.role,
@@ -1049,20 +1113,20 @@ const ActivityService = {
             isRead: false
         });
     },
-    /**
-     * Retrieve a user's latest notifications/activities.
-     */ async getUserActivities (userId, limit = 10) {
-        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$activity$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ActivityRepository"].getUserActivities(userId, limit);
+    async getUserActivities (userId, limit = 20, filter = null) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$activity$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ActivityRepository"].getUserActivities(userId, limit, filter);
     },
-    /**
-     * Mark a single activity as read.
-     */ async markAsRead (id) {
+    async markAsRead (id) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$activity$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ActivityRepository"].markAsRead(id);
     },
-    /**
-     * Mark all activities for a user as read.
-     */ async markAllAsRead (userId) {
+    async markAllAsRead (userId) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$activity$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ActivityRepository"].markAllAsRead(userId);
+    },
+    async deleteActivity (id) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$activity$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ActivityRepository"].deleteById(id);
+    },
+    async searchActivities (userId, query) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$activity$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ActivityRepository"].search(userId, query);
     }
 };
 }),
@@ -1157,6 +1221,8 @@ const InfluencerService = {
      * Get a single influencer by ID with full details.
      * @param {string} id
      */ async getInfluencerById (id) {
+        const byProfileId = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$influencer$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["InfluencerRepository"].findById(id);
+        if (byProfileId) return byProfileId;
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$influencer$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["InfluencerRepository"].findByUserId(id);
     }
 };

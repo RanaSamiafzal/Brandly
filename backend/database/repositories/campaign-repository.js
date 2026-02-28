@@ -4,6 +4,7 @@ export const CampaignRepository = {
     async create(data) {
         return prisma.campaign.create({
             data,
+            include: { brand: true }
         });
     },
 
