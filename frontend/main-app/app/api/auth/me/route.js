@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { AuthService } from '@repo/core';
+import { AuthService, UserRepository } from '@repo/core';
 
 export async function GET(req) {
     try {
@@ -20,13 +20,26 @@ export async function GET(req) {
             );
         }
 
-        // Ideally, we'd fetch the latest user info from DB here
-        // For efficiency, we can return the decoded data if it's enough
+        // Fetch the latest user info from DB including profiles
+        const user = await UserRepository.findById(decoded.userId);
+
+        if (!user) {
+            return NextResponse.json(
+                { error: 'User not found' },
+                { status: 404 }
+            );
+        }
+
+        // Return full user data for frontend store
         return NextResponse.json({
             user: {
-                id: decoded.userId,
-                email: decoded.email,
-                role: decoded.role,
+                id: user.id,
+                email: user.email,
+                fullname: user.fullname,
+                role: user.role.name,
+                profilePic: user.profilePic,
+                brandProfile: user.brandProfile,
+                influencerProfile: user.influencerProfile
             }
         });
     } catch (error) {

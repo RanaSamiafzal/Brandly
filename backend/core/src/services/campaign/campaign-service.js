@@ -10,16 +10,23 @@ import { rankInfluencers } from '@repo/ai-engine/ranker';
 export const CampaignService = {
     /**
      * Create a new campaign for a brand.
-     * @param {{ brandId: string, title: string, description: string, budget: number, niche?: string }} data
+     * @param {Object} data - Campaign details including targets and requirements
      * @returns {Promise<Object>} The created campaign.
      */
     async createCampaign(data) {
         const campaign = await CampaignRepository.create({
             brandId: data.brandId,
             title: data.title,
-            description: data.description,
-            budget: data.budget,
-            status: 'DRAFT',
+            description: data.description || "",
+            budgetMin: data.budgetMin || 0,
+            budgetMax: data.budgetMax || 0,
+            targetCategory: data.targetCategory || [],
+            targetPlatform: data.targetPlatform || [],
+            campaignTimeline: data.campaignTimeline || "",
+            deliverables: data.deliverables || "",
+            targetAudience: data.targetAudience || "",
+            additionalRequirements: data.additionalRequirements || "",
+            status: data.status || 'DRAFT',
         });
         return campaign;
     },

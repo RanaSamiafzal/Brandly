@@ -20,9 +20,13 @@ export const UserRepository = {
     },
 
     async create(data) {
-        // data should include { email, password, roleId }
         return prisma.user.create({
-            data,
+            data: {
+                email: data.email,
+                password: data.password,
+                fullname: data.fullname || '',
+                role: data.role
+            },
             include: { role: true },
         });
     },

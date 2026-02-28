@@ -25,7 +25,7 @@ export default function BrandSignupPage() {
             const res = await fetch("/api/auth/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password, role: "BRAND", companyName }),
+                body: JSON.stringify({ email, password, role: "BRAND", fullname: companyName }),
             });
 
             const data = await res.json();
@@ -34,10 +34,11 @@ export default function BrandSignupPage() {
                 throw new Error(data.error || "Registration failed");
             }
 
-            login(data.user);
-            router.push("/brand/dashboard");
+            login({ ...data.user, fullname: data.user.fullname });
+            router.push("/brand");
         } catch (err) {
-            setError(err.message);
+            // Only show the first line of the error to keep it concise
+            setError(err.message.split('\n')[0]);
         } finally {
             setIsLoading(false);
         }

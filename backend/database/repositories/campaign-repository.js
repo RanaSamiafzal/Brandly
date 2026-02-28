@@ -1,4 +1,4 @@
-import { prisma } from "../index";
+import { prisma } from "../index.js";
 
 export const CampaignRepository = {
     async create(data) {
@@ -12,10 +12,13 @@ export const CampaignRepository = {
             where: { id },
             include: {
                 brand: true,
-                invites: true,
+                requests: {
+                    include: { sender: true, receiver: true }
+                },
                 matchScores: {
                     orderBy: { score: 'desc' },
                     take: 10, // Top 10 by default
+                    include: { influencer: true }
                 },
             },
         });
@@ -35,6 +38,13 @@ export const CampaignRepository = {
         return prisma.campaign.update({
             where: { id },
             data: { status },
+        });
+    },
+
+    async update(id, data) {
+        return prisma.campaign.update({
+            where: { id },
+            data,
         });
     },
 

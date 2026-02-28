@@ -25,7 +25,7 @@ export default function InfluencerSignupPage() {
             const res = await fetch("/api/auth/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password, role: "INFLUENCER", displayName }),
+                body: JSON.stringify({ email, password, role: "INFLUENCER", fullname: displayName }),
             });
 
             const data = await res.json();
@@ -34,10 +34,11 @@ export default function InfluencerSignupPage() {
                 throw new Error(data.error || "Registration failed");
             }
 
-            login(data.user);
-            router.push("/influencer/dashboard");
+            login({ ...data.user, fullname: data.user.fullname });
+            router.push("/influencer");
         } catch (err) {
-            setError(err.message);
+            // Only show the first line of the error to keep it concise
+            setError(err.message.split('\n')[0]);
         } finally {
             setIsLoading(false);
         }

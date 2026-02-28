@@ -4,15 +4,27 @@ export default function Footer() {
     const sections = [
         {
             title: "Product",
-            links: ["Features", "Case Studies", "Blog"],
+            links: [
+                { label: "Features", href: "/features" },
+                { label: "Case Studies", href: "#" },
+                { label: "Blog", href: "#" },
+            ],
         },
         {
             title: "Company",
-            links: ["About Us", "Careers", "Contact"],
+            links: [
+                { label: "About Us", href: "#" },
+                { label: "Careers", href: "#" },
+                { label: "Contact", href: "/contact" },
+            ],
         },
         {
             title: "Support",
-            links: ["Help Center", "Privacy Policy", "Terms of Service"],
+            links: [
+                { label: "Help Center", href: "/resources/help-center" },
+                { label: "Privacy Policy", href: "#" },
+                { label: "Terms of Service", href: "#" },
+            ],
         },
     ];
 
@@ -41,8 +53,8 @@ export default function Footer() {
                             <ul className="space-y-4">
                                 {section.links.map((link, linkIndex) => (
                                     <li key={linkIndex}>
-                                        <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                                            {link}
+                                        <Link href={link.href} className="text-gray-400 hover:text-white transition-colors">
+                                            {link.label}
                                         </Link>
                                     </li>
                                 ))}

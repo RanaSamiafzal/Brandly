@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import { Button } from "@repo/ui";
 import { useAuthStore } from "@repo/store";
 import { useRouter } from "next/navigation";
@@ -6,11 +7,18 @@ import { useRouter } from "next/navigation";
 export default function Page() {
     const { user, logout } = useAuthStore();
     const router = useRouter();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const handleLogout = () => {
         logout();
         router.push("/login");
     };
+
+    const userEmail = mounted ? (user?.email || "Influencer") : "Influencer";
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -18,7 +26,7 @@ export default function Page() {
                 <div>
                     <h1 className="text-4xl font-bold mb-2">Influencer Dashboard</h1>
                     <p className="text-lg text-gray-600">
-                        Welcome, {user?.email || "Influencer"}!
+                        Welcome, {userEmail}!
                     </p>
                 </div>
                 <div className="flex gap-4">

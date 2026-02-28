@@ -1,6 +1,16 @@
 {
-  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(dashboard)/brand/ai-match/[id]/page": "app/(dashboard)/brand/ai-match/[id]/page.js",
+  "/(dashboard)/brand/collaborations/page": "app/(dashboard)/brand/collaborations/page.js",
+  "/(dashboard)/brand/create-campaign/page": "app/(dashboard)/brand/create-campaign/page.js",
+  "/(dashboard)/brand/notifications/page": "app/(dashboard)/brand/notifications/page.js",
   "/(dashboard)/brand/page": "app/(dashboard)/brand/page.js",
-  "/(marketing)/page": "app/(marketing)/page.js",
-  "/api/auth/login/route": "app/api/auth/login/route.js"
+  "/(dashboard)/brand/search-influencers/page": "app/(dashboard)/brand/search-influencers/page.js",
+  "/api/auth/me/route": "app/api/auth/me/route.js",
+  "/api/brand/ai-recommendations/route": "app/api/brand/ai-recommendations/route.js",
+  "/api/brand/campaigns/[id]/matches/route": "app/api/brand/campaigns/[id]/matches/route.js",
+  "/api/brand/campaigns/route": "app/api/brand/campaigns/route.js",
+  "/api/brand/dashboard-stats/route": "app/api/brand/dashboard-stats/route.js",
+  "/api/brand/influencers/route": "app/api/brand/influencers/route.js",
+  "/api/brand/profile/route": "app/api/brand/profile/route.js",
+  "/api/brand/recent-activity/route": "app/api/brand/recent-activity/route.js"
 }

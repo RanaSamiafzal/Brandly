@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/samiafzal/Desktop/Dev%20Journey/FYP/Brandly/frontend/main-app/app/%28dashboard%29/brand/layout.js"],"sourcesContent":["export default function BrandLayout({ children }) {\n    return (\n        <>\n            {/* Brand-specific nav would go here */}\n            {children}\n        </>\n    );\n}\n"],"names":[],"mappings":";;;;;;AAAe,SAAS,YAAY,EAAE,QAAQ,EAAE;IAC5C,qBACI;kBAEK;;AAGb"}}]
-}

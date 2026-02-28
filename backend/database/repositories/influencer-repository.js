@@ -14,7 +14,32 @@ export const InfluencerRepository = {
     },
 
     async findAll() {
-        return prisma.influencerProfile.findMany();
+        return prisma.influencerProfile.findMany({
+            include: { user: true }
+        });
+    },
+
+    async search(filters) {
+        const where = {};
+        if (filters.category && filters.category !== "All Categories") {
+            where.category = {
+                contains: filters.category,
+                mode: 'insensitive'
+            };
+        }
+
+        // Basic search by name or username if provided
+        if (filters.query) {
+            where.OR = [
+                { user: { fullname: { contains: filters.query, mode: 'insensitive' } } },
+                { username: { contains: filters.query, mode: 'insensitive' } }
+            ];
+        }
+
+        return prisma.influencerProfile.findMany({
+            where,
+            include: { user: true }
+        });
     },
 
     async update(id, data) {

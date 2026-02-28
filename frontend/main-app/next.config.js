@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    transpilePackages: ["@repo/ui"],
+    transpilePackages: ["@repo/ui", "@repo/core", "@repo/database"],
     // Configuring allowed origins as suggested by the warning
     devIndicators: {
         allowedDevOrigins: ["192.168.100.110"],

@@ -1,37 +1,350 @@
-[00:00:01.488] Server  LOG     ✓ Ready in 1135ms
-[00:00:24.654] Server  LOG     ○ Compiling / ...
-[00:00:29.277] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:01.968] Server  LOG     ✓ Ready in 1373ms
+[00:00:01.983] Browser ERROR   Failed to fetch dashboard data {}
+[00:00:03.428] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:25.030] Server  LOG     ✓ Compiled in 1411ms
+[00:20:33.436] Server  ERROR   Campaign creation error: ReferenceError: CampaignService is not defined
+[00:20:37.400] Browser ERROR   Campaign creation failed: {}
+[00:21:49.827] Server  WARN    Error: Route "/api/brand/campaigns/[id]/matches" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:21:50.797] Server  ERROR   AI Matching error: PrismaClientValidationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__48462a70._.js:140:162
 
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
+  137     });
+  138 },
+  139 async findById (id) {
+→ 140     return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique({
+            where: {
+              id: undefined,
+          ?   AND?: CampaignWhereInput | CampaignWhereInput[],
+          ?   OR?: CampaignWhereInput[],
+          ?   NOT?: CampaignWhereInput | CampaignWhereInput[],
+          ?   brandId?: StringFilter | String,
+          ?   title?: StringFilter | String,
+          ?   description?: StringFilter | String,
+          ?   budgetMin?: FloatFilter | Float,
+          ?   budgetMax?: FloatFilter | Float,
+          ?   targetCategory?: StringNullableListFilter,
+          ?   targetPlatform?: StringNullableListFilter,
+          ?   campaignTimeline?: StringNullableFilter | String | Null,
+          ?   deliverables?: StringFilter | String,
+          ?   targetAudience?: StringFilter | String,
+          ?   additionalRequirements?: StringNullableFilter | String | Null,
+          ?   status?: StringFilter | String,
+          ?   isDeleted?: BoolFilter | Boolean,
+          ?   deletedAt?: DateTimeNullableFilter | DateTime | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime,
+          ?   analytics?: AnalyticsListRelationFilter,
+          ?   brand?: BrandProfileRelationFilter | BrandProfileWhereInput,
+          ?   requests?: CollaborationRequestListRelationFilter,
+          ?   matchScores?: MatchScoreListRelationFilter
+            },
+            include: {
+              brand: true,
+              requests: {
+                include: {
+                  sender: true,
+                  receiver: true
+                }
+              },
+              matchScores: {
+                orderBy: {
+                  score: "desc"
+                },
+                take: 10,
+                include: {
+                  influencer: true
+                }
+              }
+            }
+          })
 
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+Argument `where` of type CampaignWhereUniqueInput needs at least one of `id` arguments. Available options are marked with ?.
+[00:21:50.953] Server  WARN    Error: Route "/api/brand/campaigns/[id]/matches" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:21:51.089] Server  ERROR   AI Matching error: PrismaClientValidationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__48462a70._.js:140:162
 
-%s%s https://react.dev/link/hydration-mismatch 
+  137     });
+  138 },
+  139 async findById (id) {
+→ 140     return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique({
+            where: {
+              id: undefined,
+          ?   AND?: CampaignWhereInput | CampaignWhereInput[],
+          ?   OR?: CampaignWhereInput[],
+          ?   NOT?: CampaignWhereInput | CampaignWhereInput[],
+          ?   brandId?: StringFilter | String,
+          ?   title?: StringFilter | String,
+          ?   description?: StringFilter | String,
+          ?   budgetMin?: FloatFilter | Float,
+          ?   budgetMax?: FloatFilter | Float,
+          ?   targetCategory?: StringNullableListFilter,
+          ?   targetPlatform?: StringNullableListFilter,
+          ?   campaignTimeline?: StringNullableFilter | String | Null,
+          ?   deliverables?: StringFilter | String,
+          ?   targetAudience?: StringFilter | String,
+          ?   additionalRequirements?: StringNullableFilter | String | Null,
+          ?   status?: StringFilter | String,
+          ?   isDeleted?: BoolFilter | Boolean,
+          ?   deletedAt?: DateTimeNullableFilter | DateTime | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime,
+          ?   analytics?: AnalyticsListRelationFilter,
+          ?   brand?: BrandProfileRelationFilter | BrandProfileWhereInput,
+          ?   requests?: CollaborationRequestListRelationFilter,
+          ?   matchScores?: MatchScoreListRelationFilter
+            },
+            include: {
+              brand: true,
+              requests: {
+                include: {
+                  sender: true,
+                  receiver: true
+                }
+              },
+              matchScores: {
+                orderBy: {
+                  score: "desc"
+                },
+                take: 10,
+                include: {
+                  influencer: true
+                }
+              }
+            }
+          })
 
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="/frontend/...">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <body
-                            className="inter_396b12ce-module__rRjk0G__className"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
+Argument `where` of type CampaignWhereUniqueInput needs at least one of `id` arguments. Available options are marked with ?.
+[00:22:03.795] Server  WARN    Error: Route "/api/brand/campaigns/[id]/matches" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:22:03.969] Server  ERROR   AI Matching error: PrismaClientValidationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__48462a70._.js:140:162
 
+  137     });
+  138 },
+  139 async findById (id) {
+→ 140     return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique({
+            where: {
+              id: undefined,
+          ?   AND?: CampaignWhereInput | CampaignWhereInput[],
+          ?   OR?: CampaignWhereInput[],
+          ?   NOT?: CampaignWhereInput | CampaignWhereInput[],
+          ?   brandId?: StringFilter | String,
+          ?   title?: StringFilter | String,
+          ?   description?: StringFilter | String,
+          ?   budgetMin?: FloatFilter | Float,
+          ?   budgetMax?: FloatFilter | Float,
+          ?   targetCategory?: StringNullableListFilter,
+          ?   targetPlatform?: StringNullableListFilter,
+          ?   campaignTimeline?: StringNullableFilter | String | Null,
+          ?   deliverables?: StringFilter | String,
+          ?   targetAudience?: StringFilter | String,
+          ?   additionalRequirements?: StringNullableFilter | String | Null,
+          ?   status?: StringFilter | String,
+          ?   isDeleted?: BoolFilter | Boolean,
+          ?   deletedAt?: DateTimeNullableFilter | DateTime | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime,
+          ?   analytics?: AnalyticsListRelationFilter,
+          ?   brand?: BrandProfileRelationFilter | BrandProfileWhereInput,
+          ?   requests?: CollaborationRequestListRelationFilter,
+          ?   matchScores?: MatchScoreListRelationFilter
+            },
+            include: {
+              brand: true,
+              requests: {
+                include: {
+                  sender: true,
+                  receiver: true
+                }
+              },
+              matchScores: {
+                orderBy: {
+                  score: "desc"
+                },
+                take: 10,
+                include: {
+                  influencer: true
+                }
+              }
+            }
+          })
+
+Argument `where` of type CampaignWhereUniqueInput needs at least one of `id` arguments. Available options are marked with ?.
+[00:22:20.297] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:22:22.094] Server  WARN    Error: Route "/api/brand/campaigns/[id]/matches" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:22:22.257] Server  ERROR   AI Matching error: PrismaClientValidationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__48462a70._.js:140:162
+
+  137     });
+  138 },
+  139 async findById (id) {
+→ 140     return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique({
+            where: {
+              id: undefined,
+          ?   AND?: CampaignWhereInput | CampaignWhereInput[],
+          ?   OR?: CampaignWhereInput[],
+          ?   NOT?: CampaignWhereInput | CampaignWhereInput[],
+          ?   brandId?: StringFilter | String,
+          ?   title?: StringFilter | String,
+          ?   description?: StringFilter | String,
+          ?   budgetMin?: FloatFilter | Float,
+          ?   budgetMax?: FloatFilter | Float,
+          ?   targetCategory?: StringNullableListFilter,
+          ?   targetPlatform?: StringNullableListFilter,
+          ?   campaignTimeline?: StringNullableFilter | String | Null,
+          ?   deliverables?: StringFilter | String,
+          ?   targetAudience?: StringFilter | String,
+          ?   additionalRequirements?: StringNullableFilter | String | Null,
+          ?   status?: StringFilter | String,
+          ?   isDeleted?: BoolFilter | Boolean,
+          ?   deletedAt?: DateTimeNullableFilter | DateTime | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime,
+          ?   analytics?: AnalyticsListRelationFilter,
+          ?   brand?: BrandProfileRelationFilter | BrandProfileWhereInput,
+          ?   requests?: CollaborationRequestListRelationFilter,
+          ?   matchScores?: MatchScoreListRelationFilter
+            },
+            include: {
+              brand: true,
+              requests: {
+                include: {
+                  sender: true,
+                  receiver: true
+                }
+              },
+              matchScores: {
+                orderBy: {
+                  score: "desc"
+                },
+                take: 10,
+                include: {
+                  influencer: true
+                }
+              }
+            }
+          })
+
+Argument `where` of type CampaignWhereUniqueInput needs at least one of `id` arguments. Available options are marked with ?.
+[00:22:28.101] Server  WARN    Error: Route "/api/brand/campaigns/[id]/matches" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:22:28.352] Server  ERROR   AI Matching error: PrismaClientValidationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__48462a70._.js:140:162
+
+  137     });
+  138 },
+  139 async findById (id) {
+→ 140     return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique({
+            where: {
+              id: undefined,
+          ?   AND?: CampaignWhereInput | CampaignWhereInput[],
+          ?   OR?: CampaignWhereInput[],
+          ?   NOT?: CampaignWhereInput | CampaignWhereInput[],
+          ?   brandId?: StringFilter | String,
+          ?   title?: StringFilter | String,
+          ?   description?: StringFilter | String,
+          ?   budgetMin?: FloatFilter | Float,
+          ?   budgetMax?: FloatFilter | Float,
+          ?   targetCategory?: StringNullableListFilter,
+          ?   targetPlatform?: StringNullableListFilter,
+          ?   campaignTimeline?: StringNullableFilter | String | Null,
+          ?   deliverables?: StringFilter | String,
+          ?   targetAudience?: StringFilter | String,
+          ?   additionalRequirements?: StringNullableFilter | String | Null,
+          ?   status?: StringFilter | String,
+          ?   isDeleted?: BoolFilter | Boolean,
+          ?   deletedAt?: DateTimeNullableFilter | DateTime | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime,
+          ?   analytics?: AnalyticsListRelationFilter,
+          ?   brand?: BrandProfileRelationFilter | BrandProfileWhereInput,
+          ?   requests?: CollaborationRequestListRelationFilter,
+          ?   matchScores?: MatchScoreListRelationFilter
+            },
+            include: {
+              brand: true,
+              requests: {
+                include: {
+                  sender: true,
+                  receiver: true
+                }
+              },
+              matchScores: {
+                orderBy: {
+                  score: "desc"
+                },
+                take: 10,
+                include: {
+                  influencer: true
+                }
+              }
+            }
+          })
+
+Argument `where` of type CampaignWhereUniqueInput needs at least one of `id` arguments. Available options are marked with ?.
+[00:22:29.523] Server  WARN    Error: Route "/api/brand/campaigns/[id]/matches" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:22:29.717] Server  ERROR   AI Matching error: PrismaClientValidationError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique()` invocation in
+/Users/samiafzal/Desktop/Dev Journey/FYP/Brandly/frontend/main-app/.next/dev/server/chunks/[root-of-the-server]__48462a70._.js:140:162
+
+  137     });
+  138 },
+  139 async findById (id) {
+→ 140     return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].campaign.findUnique({
+            where: {
+              id: undefined,
+          ?   AND?: CampaignWhereInput | CampaignWhereInput[],
+          ?   OR?: CampaignWhereInput[],
+          ?   NOT?: CampaignWhereInput | CampaignWhereInput[],
+          ?   brandId?: StringFilter | String,
+          ?   title?: StringFilter | String,
+          ?   description?: StringFilter | String,
+          ?   budgetMin?: FloatFilter | Float,
+          ?   budgetMax?: FloatFilter | Float,
+          ?   targetCategory?: StringNullableListFilter,
+          ?   targetPlatform?: StringNullableListFilter,
+          ?   campaignTimeline?: StringNullableFilter | String | Null,
+          ?   deliverables?: StringFilter | String,
+          ?   targetAudience?: StringFilter | String,
+          ?   additionalRequirements?: StringNullableFilter | String | Null,
+          ?   status?: StringFilter | String,
+          ?   isDeleted?: BoolFilter | Boolean,
+          ?   deletedAt?: DateTimeNullableFilter | DateTime | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime,
+          ?   analytics?: AnalyticsListRelationFilter,
+          ?   brand?: BrandProfileRelationFilter | BrandProfileWhereInput,
+          ?   requests?: CollaborationRequestListRelationFilter,
+          ?   matchScores?: MatchScoreListRelationFilter
+            },
+            include: {
+              brand: true,
+              requests: {
+                include: {
+                  sender: true,
+                  receiver: true
+                }
+              },
+              matchScores: {
+                orderBy: {
+                  score: "desc"
+                },
+                take: 10,
+                include: {
+                  influencer: true
+                }
+              }
+            }
+          })
+
+Argument `where` of type CampaignWhereUniqueInput needs at least one of `id` arguments. Available options are marked with ?.
+[00:26:21.465] Server  LOG     ✓ Compiled in 647ms
+[00:31:26.046] Server  LOG     ✓ Compiled in 364ms
+[00:31:27.089] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:32:55.765] Server  LOG     ✓ Compiled in 0ms
+[00:32:56.559] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:33:17.717] Server  LOG     ✓ Compiled in 190ms
+[00:35:26.583] Server  LOG     ✓ Compiled in 11ms

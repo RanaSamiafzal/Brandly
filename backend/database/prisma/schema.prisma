@@ -9,133 +9,169 @@ datasource db {
 
 model Role {
   id          String   @id @default(uuid())
-  name        String   @unique // BRAND, INFLUENCER, ADMIN
-  permissions String[] // JSON or simple array of permission strings
-  users       User[]
+  name        String   @unique
+  permissions String[]
   createdAt   DateTime @default(now())
+  users       User[]
 }
 
 model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
-  password  String
-  roleId    String
-  role      Role      @relation(fields: [roleId], references: [id])
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime? // Soft delete
-
-  resetOtp        String?
-  resetOtpExpires DateTime?
-
-  brandProfile      BrandProfile?
-  influencerProfile InfluencerProfile?
-
-  sentInvites     CampaignInvite[] @relation("Sender")
-  receivedInvites CampaignInvite[] @relation("Receiver")
+  id                    String                 @id @default(uuid())
+  fullname              String
+  email                 String                 @unique
+  password              String
+  roleId                String
+  isVerified            Boolean                @default(false)
+  isBlocked             Boolean                @default(false)
+  refreshToken          String?
+  profilePic            String?
+  coverPic              String?
+  googleId              String?
+  isGoogleUser          Boolean                @default(false)
+  resetOtp              String?
+  resetOtpExpires       DateTime?
+  passwordResetAttempts Int                    @default(0)
+  lastLogin             DateTime?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  deletedAt             DateTime?
+  activities            Activity[]
+  brandProfile          BrandProfile?
+  receivedRequests      CollaborationRequest[] @relation("Receiver")
+  sentRequests          CollaborationRequest[] @relation("Sender")
+  influencerProfile     InfluencerProfile?
+  role                  Role                   @relation(fields: [roleId], references: [id])
 
   @@index([email])
   @@index([roleId])
 }
 
 model BrandProfile {
-  id          String   @id @default(uuid())
-  userId      String   @unique
-  user        User     @relation(fields: [userId], references: [id])
-  companyName String
-  website     String?
-  industry    String
-  budget      Float?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  campaigns Campaign[]
+  id          String     @id @default(uuid())
+  userId      String     @unique
+  brandName   String
+  industry    String     @default("")
+  website     String?    @default("")
+  address     String?    @default("")
+  description String?    @default("")
+  logo        String?    @default("")
+  budgetMin   Float?
+  budgetMax   Float?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  user        User       @relation(fields: [userId], references: [id])
+  campaigns   Campaign[]
 
   @@index([userId])
 }
 
 model InfluencerProfile {
-  id             String   @id @default(uuid())
-  userId         String   @unique
-  user           User     @relation(fields: [userId], references: [id])
-  displayName    String
-  niche          String
-  socialPlatform String
-  followerCount  Int
-  engagementRate Float
-  pricing        Float?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  matchScores     MatchScore[]
-  campaignInvites CampaignInvite[]
+  id            String       @id @default(uuid())
+  userId        String       @unique
+  username      String       @unique
+  about         String       @default("")
+  category      String       @default("")
+  location      String       @default("")
+  portfolio     String?      @default("")
+  averageRating Float        @default(0)
+  isAvailable   Boolean      @default(true)
+  platforms     Json         @default("[]")
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  user          User         @relation(fields: [userId], references: [id])
+  matchScores   MatchScore[]
 
   @@index([userId])
-  @@index([niche])
+  @@index([category])
 }
 
 model Campaign {
-  id          String    @id @default(uuid())
-  brandId     String
-  brand       BrandProfile @relation(fields: [brandId], references: [id])
-  title       String
-  description String
-  budget      Float
-  status      String    @default("DRAFT") // DRAFT, ACTIVE, COMPLETED, ARCHIVED
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  deletedAt   DateTime? // Soft delete
-
-  invites     CampaignInvite[]
-  matchScores MatchScore[]
-  analytics   Analytics[]
+  id                     String                 @id @default(uuid())
+  brandId                String
+  title                  String
+  description            String                 @default("")
+  budgetMin              Float                  @default(0)
+  budgetMax              Float                  @default(0)
+  targetCategory         String[]
+  targetPlatform         String[]
+  campaignTimeline       String?
+  deliverables           String
+  targetAudience         String
+  additionalRequirements String?                @default("")
+  status                 String                 @default("ACTIVE")
+  isDeleted              Boolean                @default(false)
+  deletedAt              DateTime?
+  createdAt              DateTime               @default(now())
+  updatedAt              DateTime               @updatedAt
+  analytics              Analytics[]
+  brand                  BrandProfile           @relation(fields: [brandId], references: [id])
+  requests               CollaborationRequest[]
+  matchScores            MatchScore[]
 
   @@index([brandId])
   @@index([status])
+  @@index([createdAt])
 }
 
-model CampaignInvite {
-  id           String   @id @default(uuid())
-  campaignId   String
-  campaign     Campaign @relation(fields: [campaignId], references: [id])
-  influencerId String
-  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id])
-  status       String   @default("PENDING") // PENDING, ACCEPTED, REJECTED
-  
-  senderId     String
-  sender       User     @relation("Sender", fields: [senderId], references: [id])
-  receiverId   String
-  receiver     User     @relation("Receiver", fields: [receiverId], references: [id])
+model CollaborationRequest {
+  id             String    @id @default(uuid())
+  campaignId     String
+  senderId       String
+  receiverId     String
+  proposedBudget Float?
+  note           String?   @default("")
+  status         String    @default("PENDING")
+  respondedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  campaign       Campaign  @relation(fields: [campaignId], references: [id])
+  receiver       User      @relation("Receiver", fields: [receiverId], references: [id])
+  sender         User      @relation("Sender", fields: [senderId], references: [id])
 
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
+  @@unique([senderId, receiverId, campaignId])
   @@index([campaignId])
-  @@index([influencerId])
+  @@index([senderId])
+  @@index([receiverId])
+}
+
+model Activity {
+  id          String   @id @default(uuid())
+  userId      String
+  role        String   @default("BRAND")
+  type        String
+  title       String
+  description String?  @default("")
+  relatedId   String?
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
 }
 
 model MatchScore {
-  id           String   @id @default(uuid())
+  id           String            @id @default(uuid())
   campaignId   String
-  campaign     Campaign @relation(fields: [campaignId], references: [id])
   influencerId String
-  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id])
   score        Float
-  breakdown    Json     // { niche: x, demographic: y, ... }
-  createdAt    DateTime @default(now())
+  breakdown    Json
+  createdAt    DateTime          @default(now())
+  campaign     Campaign          @relation(fields: [campaignId], references: [id])
+  influencer   InfluencerProfile @relation(fields: [influencerId], references: [id])
 
+  @@unique([campaignId, influencerId])
   @@index([campaignId])
   @@index([influencerId])
-  @@unique([campaignId, influencerId]) // Only one score per pair per campaign
 }
 
 model Analytics {
   id         String   @id @default(uuid())
   campaignId String
-  campaign   Campaign @relation(fields: [campaignId], references: [id])
-  metric     String   // e.g., "views", "clicks"
+  metric     String
   value      Float
   date       DateTime @default(now())
+  campaign   Campaign @relation(fields: [campaignId], references: [id])
 
   @@index([campaignId])
 }
@@ -143,9 +179,9 @@ model Analytics {
 model Payment {
   id        String   @id @default(uuid())
   amount    Float
-  status    String   // PENDING, COMPLETED, FAILED
-  type      String   // ESCROW, PAYOUT
-  reference String?  // Stripe Transaction ID
+  status    String
+  type      String
+  reference String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

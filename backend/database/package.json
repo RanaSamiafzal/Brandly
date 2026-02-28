@@ -5,6 +5,7 @@
   "type": "module",
   "main": "index.js",
   "dependencies": {
-    "@prisma/client": "latest"
+    "@prisma/client": "^5.14.0",
+    "prisma": "^5.14.0"
   }
 }

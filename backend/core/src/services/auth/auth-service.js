@@ -5,10 +5,10 @@ import crypto from 'crypto';
 import { UserRepository } from '@repo/database/repositories/user-repository.js';
 
 const SECRET = process.env.AUTH_SECRET || 'dev_secret';
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export const AuthService = {
-    async register(email, password, role) {
+    async register({ email, password, role, fullname }) {
         const existingUser = await UserRepository.findByEmail(email);
         if (existingUser) {
             throw new Error('User already exists');
@@ -20,6 +20,7 @@ export const AuthService = {
         // For simplicity, assuming Role exists or is handled by seed
         const user = await UserRepository.create({
             email,
+            fullname,
             password: hashedPassword,
             role: { connect: { name: role } }
         });
@@ -63,6 +64,10 @@ export const AuthService = {
 
         // Send via Resend
         try {
+            if (!resend) {
+                console.warn('[AUTH] Resend API key missing. Email not sent, but proceeding for development.');
+                return { message: 'OTP generated (Email skipped - No API Key)' };
+            }
             await resend.emails.send({
                 from: 'Brandly <onboarding@resend.dev>', // Resend default for unverified domains
                 to: email,

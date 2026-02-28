@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "@repo/ui": "*",
     "@repo/config": "*",
+    "@repo/core": "*",
     "@repo/store": "*",
-    "@repo/core": "*"
+    "@repo/ui": "*",
+    "cloudinary": "^2.9.0",
+    "lucide-react": "^0.575.0",
+    "next": "latest",
+    "next-cloudinary": "^6.17.5",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@repo/config": "*"

@@ -43,6 +43,9 @@ export async function POST(req) {
         if (error.message === 'Invalid credentials' || error.message === 'User not found') {
             errorMessage = 'Invalid email or password.';
             status = 401;
+        } else if (process.env.NODE_ENV !== 'production') {
+            // For development, show the actual error message
+            errorMessage = error.message;
         }
 
         return NextResponse.json(

@@ -3,11 +3,11 @@ import { AuthService } from '@repo/core';
 
 export async function POST(req) {
     try {
-        const { email, password, role } = await req.json();
+        const { email, password, role, fullname } = await req.json();
 
-        if (!email || !password || !role) {
+        if (!email || !password || !role || !fullname) {
             return NextResponse.json(
-                { error: 'Email, password, and role are required' },
+                { error: 'Email, password, role, and fullname are required' },
                 { status: 400 }
             );
         }
@@ -20,12 +20,13 @@ export async function POST(req) {
             );
         }
 
-        const result = await AuthService.register(email, password, role.toUpperCase());
+        const result = await AuthService.register({ email, password, role: role.toUpperCase(), fullname });
 
         const response = NextResponse.json({
             user: {
                 id: result.user.id,
                 email: result.user.email,
+                fullname: result.user.fullname,
                 role: result.user.role.name,
             },
             message: 'Registration successful'

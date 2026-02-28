@@ -1,10 +1,50 @@
+"use client";
 import Link from "next/link";
+import { useState } from "react";
+
+function FeatureCard({ feature }) {
+    const [hovered, setHovered] = useState(false);
+
+    const card = (
+        <div
+            className={`p-8 h-full rounded-2xl border transition-all duration-300 cursor-pointer group ${hovered
+                    ? "border-blue-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.12)] bg-blue-50/30 -translate-y-1"
+                    : "border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white"
+                }`}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+        >
+            <div
+                className={`w-12 h-12 rounded-xl ${feature.color} flex items-center justify-center mb-6 transition-transform duration-300 ${hovered ? "scale-110" : ""
+                    }`}
+            >
+                {feature.icon}
+            </div>
+            <h3
+                className={`text-xl font-bold mb-3 transition-colors duration-200 ${hovered ? "text-blue-600" : "text-gray-900"
+                    }`}
+            >
+                {feature.title}
+            </h3>
+            <p className="text-gray-600 leading-relaxed mb-4">{feature.description}</p>
+            <span
+                className={`font-semibold flex items-center gap-2 transition-all duration-200 ${hovered ? "gap-3 text-blue-700" : "text-blue-600"
+                    }`}
+            >
+                Learn More <span>→</span>
+            </span>
+        </div>
+    );
+
+    return feature.href ? <Link href={feature.href}>{card}</Link> : card;
+}
 
 export default function Features() {
     const features = [
         {
             title: "Find Perfect Matches",
-            description: "Advanced search filters to discover influencers that align with your brand values and target audience.",
+            description:
+                "Advanced search filters to discover influencers that align with your brand values and target audience.",
             icon: (
                 <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -15,7 +55,8 @@ export default function Features() {
         },
         {
             title: "Campaign Management",
-            description: "Streamlined tools to create, manage, and track your influencer campaigns all in one place.",
+            description:
+                "Streamlined tools to create, manage, and track your influencer campaigns all in one place.",
             icon: (
                 <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
@@ -26,7 +67,8 @@ export default function Features() {
         },
         {
             title: "Real-time Analytics",
-            description: "Monitor campaign performance with comprehensive analytics and detailed reporting dashboards.",
+            description:
+                "Monitor campaign performance with comprehensive analytics and detailed reporting dashboards.",
             icon: (
                 <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -37,7 +79,8 @@ export default function Features() {
         },
         {
             title: "Verified Profiles",
-            description: "Work with confidence knowing all influencers are verified and authenticated by our team.",
+            description:
+                "Work with confidence knowing all influencers are verified and authenticated by our team.",
             icon: (
                 <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.952 11.952 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -59,34 +102,18 @@ export default function Features() {
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {features.map((feature, index) => {
-                        const cardContent = (
-                            <div className="p-8 h-full rounded-2xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-blue-100 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-300 group cursor-pointer">
-                                <div className={`w-12 h-12 rounded-xl ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                                    {feature.icon}
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                                <p className="text-gray-600 leading-relaxed mb-4">
-                                    {feature.description}
-                                </p>
-                                <span className="text-blue-600 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
-                                    Learn More <span>→</span>
-                                </span>
-                            </div>
-                        );
+                    {features.map((feature, index) => (
+                        <FeatureCard key={index} feature={feature} />
+                    ))}
+                </div>
 
-                        return (
-                            <div key={index}>
-                                {feature.href ? (
-                                    <Link href={feature.href}>
-                                        {cardContent}
-                                    </Link>
-                                ) : (
-                                    cardContent
-                                )}
-                            </div>
-                        );
-                    })}
+                {/* View All Features Button */}
+                <div className="text-center mt-12">
+                    <Link href="/features">
+                        <button className="inline-flex items-center gap-2 px-8 h-12 rounded-xl border-2 border-gray-200 text-gray-700 font-semibold text-base hover:border-blue-300 hover:text-blue-600 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-95">
+                            View All Features <span>→</span>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </section>

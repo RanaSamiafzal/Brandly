@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@repo/ui";
 
-const NavItem = ({ label, items }) => {
+const NavItem = ({ label, items, footerLink }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -43,6 +43,13 @@ const NavItem = ({ label, items }) => {
                         </div>
                     </Link>
                 ))}
+                {footerLink && (
+                    <div className="border-t border-gray-100 mt-1 pt-2 px-3 pb-2">
+                        <Link href={footerLink.href} className="text-blue-600 font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all py-1">
+                            {footerLink.label} <span className="text-lg">›</span>
+                        </Link>
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -148,7 +155,7 @@ export default function Navbar() {
                     <div className="hidden lg:flex items-center space-x-2 ml-auto mr-8">
                         <NavItem label="For Brands" items={brandItems} />
                         <NavItem label="For Influencers" items={influencerItems} />
-                        <NavItem label="Features" items={featureItems} />
+                        <NavItem label="Features" items={featureItems} footerLink={{ label: "View All Features", href: "/features" }} />
                         <NavItem label="Resources" items={resourceItems} />
                     </div>
 
