@@ -1327,22 +1327,20 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$ai$2d$engine$2f$i
 ;
 ;
 }),
-"[project]/frontend/main-app/app/api/brand/profile/route.js [app-route] (ecmascript)", ((__turbopack_context__) => {
+"[project]/frontend/main-app/app/api/brand/influencers/[id]/route.js [app-route] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
     "GET",
-    ()=>GET,
-    "PATCH",
-    ()=>PATCH
+    ()=>GET
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/server.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$core$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/backend/core/index.js [app-route] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$core$2f$src$2f$services$2f$auth$2f$auth$2d$service$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/backend/core/src/services/auth/auth-service.js [app-route] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$core$2f$src$2f$services$2f$brand$2f$brand$2d$service$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/backend/core/src/services/brand/brand-service.js [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$core$2f$src$2f$services$2f$brand$2f$influencer$2d$service$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/backend/core/src/services/brand/influencer-service.js [app-route] (ecmascript)");
 ;
 ;
-async function GET(req) {
+async function GET(req, { params }) {
     try {
         const token = req.cookies.get('token')?.value;
         if (!token) return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
@@ -1356,42 +1354,24 @@ async function GET(req) {
         }, {
             status: 403
         });
-        const profile = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$core$2f$src$2f$services$2f$brand$2f$brand$2d$service$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["BrandService"].getBrandProfile(decoded.userId);
+        const { id } = await params;
+        // Note: InfluencerService.getInfluencerById uses findByUserId inside
+        // but we might want to check both or just consistently use profile ID
+        const influencer = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$core$2f$src$2f$services$2f$brand$2f$influencer$2d$service$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["InfluencerService"].getInfluencerById(id);
+        if (!influencer) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: 'Influencer not found'
+            }, {
+                status: 404
+            });
+        }
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            profile
+            influencer
         });
     } catch (error) {
-        console.error('Profile fetch error:', error);
+        console.error('Fetch influencer error:', error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: 'Internal server error'
-        }, {
-            status: 500
-        });
-    }
-}
-async function PATCH(req) {
-    try {
-        const token = req.cookies.get('token')?.value;
-        if (!token) return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: 'Not authenticated'
-        }, {
-            status: 401
-        });
-        const decoded = __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$core$2f$src$2f$services$2f$auth$2f$auth$2d$service$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["AuthService"].validateToken(token);
-        if (!decoded || decoded.role !== 'BRAND') return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: 'Unauthorized'
-        }, {
-            status: 403
-        });
-        const data = await req.json();
-        const profile = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$core$2f$src$2f$services$2f$brand$2f$brand$2d$service$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["BrandService"].updateBrandProfile(decoded.userId, data);
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            profile
-        });
-    } catch (error) {
-        console.error('Profile update error:', error);
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: error.message || 'Internal server error'
         }, {
             status: 500
         });
@@ -1400,4 +1380,4 @@ async function PATCH(req) {
 }),
 ];
 
-//# sourceMappingURL=%5Broot-of-the-server%5D__970248e6._.js.map
+//# sourceMappingURL=%5Broot-of-the-server%5D__2ecd62ca._.js.map
