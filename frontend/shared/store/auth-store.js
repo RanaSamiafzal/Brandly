@@ -7,7 +7,10 @@ export const useAuthStore = create(
             user: null,
             isAuthenticated: false,
             role: null,
-            login: (user) => set({ user, isAuthenticated: true, role: user.role }),
+            login: (user) => {
+                const role = typeof user.role === 'object' ? user.role.name : user.role;
+                set({ user, isAuthenticated: true, role });
+            },
             logout: () => {
                 set({ user: null, isAuthenticated: false, role: null });
                 // Wipe persisted data from localStorage for security
@@ -22,7 +25,8 @@ export const useAuthStore = create(
                     if (res.ok) {
                         const data = await res.json();
                         if (data.user) {
-                            set({ user: data.user, isAuthenticated: true, role: data.user.role });
+                            const role = typeof data.user.role === 'object' ? data.user.role.name : data.user.role;
+                            set({ user: data.user, isAuthenticated: true, role });
                         }
                     }
                 } catch { /* silently fail */ }

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export async function proxy(request) {
+export async function middleware(request) {
     const { pathname } = request.nextUrl;
 
     // Define protected routes and their required roles

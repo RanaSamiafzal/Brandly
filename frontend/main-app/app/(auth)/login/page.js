@@ -14,14 +14,14 @@ export default function LoginPage() {
 
     const router = useRouter();
     const login = useAuthStore((state) => state.login);
-    const { isAuthenticated, user } = useAuthStore();
+    const { isAuthenticated, role } = useAuthStore();
 
     useEffect(() => {
-        if (isAuthenticated && user) {
-            const dashboardPath = user.role === "BRAND" ? "/brand" : "/influencer";
+        if (isAuthenticated && role) {
+            const dashboardPath = role === "BRAND" ? "/brand" : "/influencer";
             router.push(dashboardPath);
         }
-    }, [isAuthenticated, user, router]);
+    }, [isAuthenticated, role, router]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,11 +41,12 @@ export default function LoginPage() {
                 throw new Error(data.error || "Login failed");
             }
 
-            // Update local store
+            // Update local store (this will normalize the role internally)
             login(data.user);
 
-            // Redirect based on role
-            const dashboardPath = data.user.role === "BRAND" ? "/brand" : "/influencer";
+            // The useEffect will handle redirection now, but we can also do it here for speed
+            const userRole = typeof data.user.role === 'object' ? data.user.role.name : data.user.role;
+            const dashboardPath = userRole === "BRAND" ? "/brand" : "/influencer";
             router.push(dashboardPath);
         } catch (err) {
             setError(err.message);
