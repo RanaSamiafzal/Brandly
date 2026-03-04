@@ -1,0 +1,10 @@
+var R=require("../../../chunks/[turbopack]_runtime.js")("server/app/api/notifications/route.js")
+R.c("server/chunks/backend_42fb88bd._.js")
+R.c("server/chunks/node_modules_next_5eb1f9db._.js")
+R.c("server/chunks/node_modules_postal-mime_src_a014ae66._.js")
+R.c("server/chunks/node_modules_svix_dist_56996d0e._.js")
+R.c("server/chunks/[root-of-the-server]__0951be1b._.js")
+R.c("server/chunks/[root-of-the-server]__f475c38e._.js")
+R.c("server/chunks/ceffb_main-app__next-internal_server_app_api_notifications_route_actions_2c31aed8.js")
+R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/frontend/main-app/app/api/notifications/route.js [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/frontend/main-app/app/api/notifications/route.js [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

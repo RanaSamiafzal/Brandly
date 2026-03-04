@@ -1,0 +1,3 @@
+{
+  "/(auth)/signup/influencer/page": "app/(auth)/signup/influencer/page.js"
+}
