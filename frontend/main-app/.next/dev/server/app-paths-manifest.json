@@ -1,0 +1,4 @@
+{
+  "/(dashboard)/influencer/page": "app/(dashboard)/influencer/page.js",
+  "/api/auth/me/route": "app/api/auth/me/route.js"
+}
