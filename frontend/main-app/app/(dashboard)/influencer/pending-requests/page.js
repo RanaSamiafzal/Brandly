@@ -30,52 +30,45 @@ export default function PendingRequestsPage() {
 
     const fetchRequests = async () => {
         setIsLoading(true);
-        // Mock data for requests sent by influencer
-        setTimeout(() => {
-            setRequests([
-                {
-                    id: "r1",
-                    campaignTitle: "Summer Style 2024",
-                    brand: "FashionHub",
-                    logo: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=100&h=100&fit=crop",
-                    sentDate: "Mar 3, 2024",
-                    status: "Pending",
-                    budget: "$800 - $1,200",
-                    category: "Fashion"
-                },
-                {
-                    id: "r2",
-                    campaignTitle: "Pro Gaming Setup Review",
-                    brand: "TechGear Pro",
-                    logo: "https://images.unsplash.com/photo-1468436139062-f60a7444f84e?w=100&h=100&fit=crop",
-                    sentDate: "Mar 2, 2024",
-                    status: "Under Review",
-                    budget: "$2,000 - $3,500",
-                    category: "Gaming"
-                },
-                {
-                    id: "r3",
-                    campaignTitle: "Eco-Friendly Fabrics",
-                    brand: "FashionHub",
-                    logo: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=100&h=100&fit=crop",
-                    sentDate: "Feb 28, 2024",
-                    status: "Accepted",
-                    budget: "$1,500 - $2,000",
-                    category: "Sustainability"
-                },
-                {
-                    id: "r4",
-                    campaignTitle: "Healthy Snacks Review",
-                    brand: "GourmetBox",
-                    logo: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=100&h=100&fit=crop",
-                    sentDate: "Feb 25, 2024",
-                    status: "Rejected",
-                    budget: "$200 - $400",
-                    category: "Food"
-                }
-            ]);
+        try {
+            const response = await fetch("/api/influencer/requests");
+            if (response.ok) {
+                const data = await response.json();
+                // Map backend data to frontend structure if necessary
+                const formattedRequests = data.requests.map(req => ({
+                    id: req.id,
+                    campaignTitle: req.campaign.title,
+                    brand: req.campaign.brand.brandName || "Unknown Brand",
+                    logo: req.campaign.brand.logo || "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=100&h=100&fit=crop",
+                    sentDate: new Date(req.createdAt).toLocaleDateString(),
+                    status: req.status === "PENDING" ? "Pending" :
+                        req.status === "ACCEPTED" ? "Accepted" :
+                            req.status === "REJECTED" ? "Rejected" : req.status,
+                    budget: req.proposedBudget ? `$${req.proposedBudget}` : `$${req.campaign.budgetMin} - $${req.campaign.budgetMax}`,
+                    category: req.campaign.targetCategory?.[0] || "General"
+                }));
+                setRequests(formattedRequests);
+            }
+        } catch (error) {
+            console.error("Error fetching requests:", error);
+        } finally {
             setIsLoading(false);
-        }, 600);
+        }
+    };
+
+    const handleResponse = async (requestId, status) => {
+        try {
+            const response = await fetch(`/api/influencer/requests/${requestId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ status })
+            });
+            if (response.ok) {
+                fetchRequests(); // Refresh list
+            }
+        } catch (error) {
+            console.error("Error responding to request:", error);
+        }
     };
 
     const getStatusColor = (status) => {
@@ -119,8 +112,8 @@ export default function PendingRequestsPage() {
                         key={tab}
                         onClick={() => setActiveTab(tab)}
                         className={`px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.15em] transition-all relative ${activeTab === tab
-                                ? "bg-gray-900 text-white shadow-xl shadow-gray-200 -translate-y-1"
-                                : "bg-white text-gray-500 border border-transparent hover:border-gray-100 hover:bg-gray-50"
+                            ? "bg-gray-900 text-white shadow-xl shadow-gray-200 -translate-y-1"
+                            : "bg-white text-gray-500 border border-transparent hover:border-gray-100 hover:bg-gray-50"
                             }`}
                     >
                         {tab}

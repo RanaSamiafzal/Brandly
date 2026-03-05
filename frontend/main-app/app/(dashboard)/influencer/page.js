@@ -17,68 +17,58 @@ export default function InfluencerDashboard() {
     const { user } = useAuthStore();
     const [mounted, setMounted] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [dashboardData, setDashboardData] = useState(null);
 
     useEffect(() => {
         setMounted(true);
-        // Simulate loading data
-        setTimeout(() => setIsLoading(false), 800);
+        fetchDashboardData();
     }, []);
+
+    const fetchDashboardData = async () => {
+        try {
+            const response = await fetch("/api/influencer/dashboard-stats");
+            if (response.ok) {
+                const data = await response.json();
+                setDashboardData(data);
+            }
+        } catch (error) {
+            console.error("Error fetching dashboard data:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     if (!mounted) return null;
 
     const userDisplayName = user?.fullname || "Influencer";
 
     const stats = [
-        { label: "Active Campaigns", value: "5", icon: Zap, color: "text-blue-500", bg: "bg-blue-50" },
-        { label: "Total Earnings", value: "$12,450", icon: DollarSign, color: "text-green-500", bg: "bg-green-50" },
-        { label: "Pending Requests", value: "8", icon: Clock, color: "text-orange-500", bg: "bg-orange-50" },
-        { label: "Completed", value: "23", icon: TrendingUp, color: "text-purple-500", bg: "bg-purple-50" },
-    ];
-
-    const activeCampaigns = [
         {
-            id: 1,
-            title: "Summer Product Launch",
-            brand: "BravoTech",
-            category: "Technology",
-            dueDate: "2024-03-15",
-            amount: "$2,500",
-            status: "Accepted",
-            progress: 65,
+            label: "Active Campaigns",
+            value: dashboardData?.stats?.activeCampaigns || "0",
+            icon: Zap, color: "text-blue-500", bg: "bg-blue-50"
         },
         {
-            id: 2,
-            title: "Spring Collection 2024",
-            brand: "FashionHub",
-            category: "Fashion",
-            dueDate: "2024-03-20",
-            amount: "$1,800",
-            status: "Accepted",
-            progress: 40,
+            label: "Total Earnings",
+            value: dashboardData?.stats?.totalEarnings || "$0",
+            icon: DollarSign, color: "text-green-500", bg: "bg-green-50"
         },
         {
-            id: 3,
-            title: "Fitness Challenge Campaign",
-            brand: "FitLife",
-            category: "Fitness",
-            dueDate: "2024-03-25",
-            amount: "$1,500",
-            status: "Accepted",
-            progress: 80,
+            label: "Pending Requests",
+            value: dashboardData?.stats?.pendingRequests || "0",
+            icon: Clock, color: "text-orange-500", bg: "bg-orange-50"
+        },
+        {
+            label: "Completed",
+            value: dashboardData?.stats?.completed || "0",
+            icon: TrendingUp, color: "text-purple-500", bg: "bg-purple-50"
         },
     ];
 
-    const pendingRequests = [
-        { id: 101, title: "AI Product Review", brand: "TechCorp", category: "Technology", amount: "$3,000" },
-        { id: 102, title: "Skincare Routine Video", brand: "BeautyBrand", category: "Beauty", amount: "$2,200" },
-        { id: 103, title: "Destination Review", brand: "TravelCo", category: "Travel", amount: "$4,500" },
-    ];
-
-    const recentEarnings = [
-        { id: 201, title: "Winter Fashion Campaign", brand: "StyleHub", date: "2024-02-05", amount: "$2,800" },
-        { id: 202, title: "Tech Review Series", brand: "GadgetWorld", date: "2024-01-28", amount: "$3,200" },
-        { id: 203, title: "Fitness Product Launch", brand: "FitLife", date: "2024-01-15", amount: "$1,900" },
-    ];
+    // Placeholder for now as we need another endpoint or expansion of dashboard-stats for these
+    const activeCampaigns = [];
+    const pendingRequests = [];
+    const recentEarnings = [];
 
     if (isLoading) {
         return (

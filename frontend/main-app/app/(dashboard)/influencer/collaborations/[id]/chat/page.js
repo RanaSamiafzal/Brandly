@@ -23,12 +23,49 @@ export default function CollaborationChatPage() {
     const [newMessage, setNewMessage] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [mounted, setMounted] = useState(false);
+    const [socket, setSocket] = useState(null);
+    const [userId, setUserId] = useState(null);
     const scrollRef = useRef(null);
 
     useEffect(() => {
         setMounted(true);
+        // Fetch current user (simplified for this context)
+        const fetchUser = async () => {
+            const res = await fetch('/api/auth/me');
+            if (res.ok) {
+                const data = await res.json();
+                setUserId(data.user.id);
+            }
+        };
+        fetchUser();
         fetchMessages();
     }, []);
+
+    useEffect(() => {
+        if (!params.id) return;
+
+        import("socket.io-client").then(({ io }) => {
+            const newSocket = io(process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001");
+            setSocket(newSocket);
+
+            newSocket.emit('join_collab', params.id);
+
+            newSocket.on('receive_message', (message) => {
+                setMessages((prev) => {
+                    // Deduplicate: don't add if a message with the same id already exists
+                    if (prev.some((m) => m.id === message.id)) return prev;
+                    return [...prev, {
+                        id: message.id,
+                        sender: message.senderId === userId ? "me" : "brand",
+                        text: message.content,
+                        time: new Date(message.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                    }];
+                });
+            });
+
+            return () => newSocket.close();
+        });
+    }, [params.id, userId]);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -38,31 +75,36 @@ export default function CollaborationChatPage() {
 
     const fetchMessages = async () => {
         setIsLoading(true);
-        // Mock data for collaboration chat
-        setTimeout(() => {
-            setMessages([
-                { id: 1, sender: "brand", text: "Hi Sarah! we're excited to have you on the Summer Style campaign.", time: "10:30 AM" },
-                { id: 2, sender: "me", text: "Thanks! I've just reviewed the brief. The sustainable fabric angle is great.", time: "10:35 AM" },
-                { id: 3, sender: "brand", text: "Perfect. When can we expect the first draft of the reel?", time: "10:40 AM" },
-                { id: 4, sender: "me", text: "I'm shooting tomorrow, so I should have a draft by Wednesday afternoon.", time: "10:45 AM" },
-                { id: 5, sender: "brand", text: "That works for us. Let us know if you need any specific high-res logos for the edit.", time: "11:00 AM" }
-            ]);
+        try {
+            const response = await fetch(`/api/influencer/collaborations/${params.id}/chat`);
+            if (response.ok) {
+                const data = await response.json();
+                const formatted = data.messages.map(m => ({
+                    id: m.id,
+                    sender: m.senderId === userId ? "me" : "brand",
+                    text: m.content,
+                    time: new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                }));
+                setMessages(formatted);
+            }
+        } catch (error) {
+            console.error("Failed to fetch messages", error);
+        } finally {
             setIsLoading(false);
-        }, 600);
+        }
     };
 
     const handleSendMessage = (e) => {
         e.preventDefault();
-        if (!newMessage.trim()) return;
+        if (!newMessage.trim() || !socket) return;
 
-        const msg = {
-            id: Date.now(),
-            sender: "me",
-            text: newMessage,
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        const messageData = {
+            requestId: params.id,
+            senderId: userId,
+            content: newMessage
         };
 
-        setMessages([...messages, msg]);
+        socket.emit('send_message', messageData);
         setNewMessage("");
     };
 
@@ -123,8 +165,8 @@ export default function CollaborationChatPage() {
                             className={`flex flex-col ${msg.sender === "me" ? "items-end" : "items-start"}`}
                         >
                             <div className={`max-w-[70%] p-6 rounded-[32px] font-medium text-sm leading-relaxed shadow-sm transition-all hover:shadow-md ${msg.sender === "me"
-                                    ? "bg-gray-900 text-white rounded-br-none"
-                                    : "bg-white border border-gray-100 text-gray-700 rounded-bl-none"
+                                ? "bg-gray-900 text-white rounded-br-none"
+                                : "bg-white border border-gray-100 text-gray-700 rounded-bl-none"
                                 }`}>
                                 {msg.text}
                             </div>

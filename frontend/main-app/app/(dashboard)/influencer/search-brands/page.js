@@ -12,9 +12,12 @@ import {
     ExternalLink,
     Sparkles,
     Star,
-    ShieldCheck
+    ShieldCheck,
+    CheckCircle2,
+    MessageSquare
 } from "lucide-react";
 import Link from "next/link";
+import ApplyModal from "../../../../components/influencer/ApplyModal";
 
 export default function SearchBrandsPage() {
     const [brands, setBrands] = useState([]);
@@ -22,73 +25,39 @@ export default function SearchBrandsPage() {
     const [mounted, setMounted] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [showFilters, setShowFilters] = useState(false);
+    const [selectedBrand, setSelectedBrand] = useState(null);
+    const [toast, setToast] = useState(null);
 
     useEffect(() => {
         setMounted(true);
         fetchBrands();
     }, []);
 
-    const fetchBrands = async (query = "") => {
+    const fetchBrands = async (query = "", industry = "") => {
         setIsLoading(true);
         try {
-            // Mock data for demonstration
-            setTimeout(() => {
-                setBrands([
-                    {
-                        id: "b1",
-                        name: "FashionHub",
-                        logo: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=400&fit=crop",
-                        description: "Leading fashion brand looking for lifestyle influencers",
-                        categories: ["Fashion", "Lifestyle", "Clothing"],
-                        location: "New York, NY",
-                        budget: "$500-$1,000",
-                        activeCampaigns: 5
-                    },
-                    {
-                        id: "b2",
-                        name: "TechGear Pro",
-                        logo: "https://images.unsplash.com/photo-1468436139062-f60a7444f84e?w=400&h=400&fit=crop",
-                        description: "Tech company seeking reviewers and tech enthusiasts",
-                        categories: ["Technology", "Gadgets", "Reviews"],
-                        location: "San Francisco, CA",
-                        budget: "$1,000-$2,500",
-                        activeCampaigns: 8
-                    },
-                    {
-                        id: "b3",
-                        name: "WellnessLife",
-                        logo: "https://images.unsplash.com/photo-1545208393-596371BA9a3e?w=400&h=400&fit=crop",
-                        description: "Wellness brand promoting healthy lifestyle",
-                        categories: ["Wellness", "Health", "Fitness"],
-                        location: "Los Angeles, CA",
-                        budget: "$400-$800",
-                        activeCampaigns: 6
-                    },
-                    {
-                        id: "b4",
-                        name: "GourmetBox",
-                        logo: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=400&fit=crop",
-                        description: "Subscription food service looking for foodies",
-                        categories: ["Food", "Cooking", "Lifestyle"],
-                        location: "Chicago, IL",
-                        budget: "$200-$600",
-                        activeCampaigns: 3
-                    },
-                    {
-                        id: "b5",
-                        name: "HomeDecor AI",
-                        logo: "https://images.unsplash.com/photo-1581557991964-125469da3b8a?w=400&h=400&fit=crop",
-                        description: "Modern home decor brand using AI design",
-                        categories: ["Home", "Design", "Interior"],
-                        location: "Austin, TX",
-                        budget: "$700-$1,500",
-                        activeCampaigns: 4
-                    }
-                ]);
-                setIsLoading(false);
-            }, 800);
+            const params = new URLSearchParams();
+            if (query) params.append("query", query);
+            if (industry && industry !== "All Niches") params.append("industry", industry);
+
+            const response = await fetch(`/api/influencer/brands/search?${params.toString()}`);
+            if (response.ok) {
+                const data = await response.json();
+                const formattedBrands = data.brands.map(b => ({
+                    id: b.id,
+                    name: b.brandName,
+                    logo: b.logo || "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=400&fit=crop",
+                    description: b.description || "No description provided",
+                    categories: b.industry ? [b.industry] : ["General"],
+                    location: b.address || "Global",
+                    budget: b.budgetMin ? `$${b.budgetMin}-$${b.budgetMax}` : "Contact for budget",
+                    activeCampaigns: b._count?.campaigns || 0
+                }));
+                setBrands(formattedBrands);
+            }
         } catch (error) {
             console.error("Failed to fetch brands", error);
+        } finally {
             setIsLoading(false);
         }
     };
@@ -97,6 +66,12 @@ export default function SearchBrandsPage() {
         if (e.key === "Enter") {
             fetchBrands(searchQuery);
         }
+    };
+
+    const handleApplySuccess = () => {
+        setToast({ type: "success", message: "Application submitted successfully!" });
+        setTimeout(() => setToast(null), 3000);
+        fetchBrands(searchQuery); // Refresh counts
     };
 
     if (!mounted) return null;
@@ -249,10 +224,20 @@ export default function SearchBrandsPage() {
                                         View Profile
                                     </button>
                                 </Link>
-                                <button className="flex items-center justify-center gap-2 py-3 px-4 bg-blue-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-700 shadow-lg shadow-blue-100 hover:shadow-blue-200 transition-all active:scale-[0.98]">
+                                <button
+                                    onClick={() => setSelectedBrand({ id: brand.id, name: brand.name })}
+                                    className="flex items-center justify-center gap-2 py-3 px-4 bg-blue-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-700 shadow-lg shadow-blue-100 hover:shadow-blue-200 transition-all active:scale-[0.98]"
+                                >
                                     <Send className="w-4 h-4" />
                                     Apply
                                 </button>
+                            </div>
+                            <div className="mt-3">
+                                <Link href="/influencer/collaborations" className="w-full">
+                                    <button className="w-full py-3 px-4 bg-gray-50 text-gray-400 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-50 hover:text-blue-600 transition-all flex items-center justify-center gap-2">
+                                        <MessageSquare className="w-4 h-4" /> Message Brand
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     ))}
@@ -266,6 +251,25 @@ export default function SearchBrandsPage() {
                     <p className="text-gray-500 mt-2 max-w-xs mx-auto">
                         We couldn't find any brands matching your search. Try adjusting your search query.
                     </p>
+                </div>
+            )}
+
+            {/* Application Modal */}
+            {selectedBrand && (
+                <ApplyModal
+                    brandId={selectedBrand.id}
+                    brandName={selectedBrand.name}
+                    onClose={() => setSelectedBrand(null)}
+                    onSuccess={handleApplySuccess}
+                />
+            )}
+
+            {/* Toast Feedback */}
+            {toast && (
+                <div className={`fixed bottom-8 right-8 z-[120] px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-right-4 duration-300 ${toast.type === "success" ? "bg-green-600 text-white" : "bg-red-600 text-white"
+                    }`}>
+                    {toast.type === "success" ? <CheckCircle2 className="w-5 h-5" /> : <AlertTriangle className="w-5 h-5" />}
+                    <p className="font-bold text-sm tracking-tight">{toast.message}</p>
                 </div>
             )}
         </div>

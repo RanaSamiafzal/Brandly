@@ -29,125 +29,62 @@ function InfluencerDashboard() {
     const { user } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$store$2f$auth$2d$store$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthStore"])();
     const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [dashboardData, setDashboardData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "InfluencerDashboard.useEffect": ()=>{
             setMounted(true);
-            // Simulate loading data
-            setTimeout({
-                "InfluencerDashboard.useEffect": ()=>setIsLoading(false)
-            }["InfluencerDashboard.useEffect"], 800);
+            fetchDashboardData();
         }
     }["InfluencerDashboard.useEffect"], []);
+    const fetchDashboardData = async ()=>{
+        try {
+            const response = await fetch("/api/influencer/dashboard-stats");
+            if (response.ok) {
+                const data = await response.json();
+                setDashboardData(data);
+            }
+        } catch (error) {
+            console.error("Error fetching dashboard data:", error);
+        } finally{
+            setIsLoading(false);
+        }
+    };
     if (!mounted) return null;
     const userDisplayName = user?.fullname || "Influencer";
     const stats = [
         {
             label: "Active Campaigns",
-            value: "5",
+            value: dashboardData?.stats?.activeCampaigns || "0",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"],
             color: "text-blue-500",
             bg: "bg-blue-50"
         },
         {
             label: "Total Earnings",
-            value: "$12,450",
+            value: dashboardData?.stats?.totalEarnings || "$0",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dollar$2d$sign$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__DollarSign$3e$__["DollarSign"],
             color: "text-green-500",
             bg: "bg-green-50"
         },
         {
             label: "Pending Requests",
-            value: "8",
+            value: dashboardData?.stats?.pendingRequests || "0",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"],
             color: "text-orange-500",
             bg: "bg-orange-50"
         },
         {
             label: "Completed",
-            value: "23",
+            value: dashboardData?.stats?.completed || "0",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"],
             color: "text-purple-500",
             bg: "bg-purple-50"
         }
     ];
-    const activeCampaigns = [
-        {
-            id: 1,
-            title: "Summer Product Launch",
-            brand: "BravoTech",
-            category: "Technology",
-            dueDate: "2024-03-15",
-            amount: "$2,500",
-            status: "Accepted",
-            progress: 65
-        },
-        {
-            id: 2,
-            title: "Spring Collection 2024",
-            brand: "FashionHub",
-            category: "Fashion",
-            dueDate: "2024-03-20",
-            amount: "$1,800",
-            status: "Accepted",
-            progress: 40
-        },
-        {
-            id: 3,
-            title: "Fitness Challenge Campaign",
-            brand: "FitLife",
-            category: "Fitness",
-            dueDate: "2024-03-25",
-            amount: "$1,500",
-            status: "Accepted",
-            progress: 80
-        }
-    ];
-    const pendingRequests = [
-        {
-            id: 101,
-            title: "AI Product Review",
-            brand: "TechCorp",
-            category: "Technology",
-            amount: "$3,000"
-        },
-        {
-            id: 102,
-            title: "Skincare Routine Video",
-            brand: "BeautyBrand",
-            category: "Beauty",
-            amount: "$2,200"
-        },
-        {
-            id: 103,
-            title: "Destination Review",
-            brand: "TravelCo",
-            category: "Travel",
-            amount: "$4,500"
-        }
-    ];
-    const recentEarnings = [
-        {
-            id: 201,
-            title: "Winter Fashion Campaign",
-            brand: "StyleHub",
-            date: "2024-02-05",
-            amount: "$2,800"
-        },
-        {
-            id: 202,
-            title: "Tech Review Series",
-            brand: "GadgetWorld",
-            date: "2024-01-28",
-            amount: "$3,200"
-        },
-        {
-            id: 203,
-            title: "Fitness Product Launch",
-            brand: "FitLife",
-            date: "2024-01-15",
-            amount: "$1,900"
-        }
-    ];
+    // Placeholder for now as we need another endpoint or expansion of dashboard-stats for these
+    const activeCampaigns = [];
+    const pendingRequests = [];
+    const recentEarnings = [];
     if (isLoading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "max-w-screen-2xl mx-auto space-y-8 animate-pulse",
@@ -156,7 +93,7 @@ function InfluencerDashboard() {
                     className: "h-10 bg-gray-200 rounded-lg w-1/4"
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                    lineNumber: 86,
+                    lineNumber: 76,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -170,19 +107,19 @@ function InfluencerDashboard() {
                             className: "h-24 bg-gray-50 rounded-xl border"
                         }, i, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                            lineNumber: 88,
+                            lineNumber: 78,
                             columnNumber: 44
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                    lineNumber: 87,
+                    lineNumber: 77,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "h-64 bg-gray-50 rounded-xl border"
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                    lineNumber: 90,
+                    lineNumber: 80,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -192,26 +129,26 @@ function InfluencerDashboard() {
                             className: "h-96 bg-gray-50 rounded-xl border"
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                            lineNumber: 92,
+                            lineNumber: 82,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "h-96 bg-gray-50 rounded-xl border"
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                            lineNumber: 93,
+                            lineNumber: 83,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                    lineNumber: 91,
+                    lineNumber: 81,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-            lineNumber: 85,
+            lineNumber: 75,
             columnNumber: 13
         }, this);
     }
@@ -232,14 +169,14 @@ function InfluencerDashboard() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 104,
+                                lineNumber: 94,
                                 columnNumber: 35
                             }, this),
                             " 👋"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                        lineNumber: 103,
+                        lineNumber: 93,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -247,13 +184,13 @@ function InfluencerDashboard() {
                         children: "Here's what's happening with your collaborations today."
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                        lineNumber: 106,
+                        lineNumber: 96,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                lineNumber: 102,
+                lineNumber: 92,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -270,7 +207,7 @@ function InfluencerDashboard() {
                                         children: stat.label
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 116,
+                                        lineNumber: 106,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -278,13 +215,13 @@ function InfluencerDashboard() {
                                         children: stat.value
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 117,
+                                        lineNumber: 107,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 115,
+                                lineNumber: 105,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -293,24 +230,24 @@ function InfluencerDashboard() {
                                     className: "w-6 h-6"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                    lineNumber: 120,
+                                    lineNumber: 110,
                                     columnNumber: 33
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 119,
+                                lineNumber: 109,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, i, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                        lineNumber: 114,
+                        lineNumber: 104,
                         columnNumber: 25
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                lineNumber: 110,
+                lineNumber: 100,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -324,7 +261,7 @@ function InfluencerDashboard() {
                                 children: "Active Campaigns"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 130,
+                                lineNumber: 120,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -334,18 +271,18 @@ function InfluencerDashboard() {
                                     children: "View All"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                    lineNumber: 132,
+                                    lineNumber: 122,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 131,
+                                lineNumber: 121,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                        lineNumber: 129,
+                        lineNumber: 119,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -367,7 +304,7 @@ function InfluencerDashboard() {
                                                                 children: campaign.title
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                                lineNumber: 144,
+                                                                lineNumber: 134,
                                                                 columnNumber: 41
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -377,7 +314,7 @@ function InfluencerDashboard() {
                                                                         className: "w-3 h-3"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                                        lineNumber: 146,
+                                                                        lineNumber: 136,
                                                                         columnNumber: 45
                                                                     }, this),
                                                                     " ",
@@ -385,13 +322,13 @@ function InfluencerDashboard() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                                lineNumber: 145,
+                                                                lineNumber: 135,
                                                                 columnNumber: 41
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                        lineNumber: 143,
+                                                        lineNumber: 133,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -403,7 +340,7 @@ function InfluencerDashboard() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                        lineNumber: 149,
+                                                        lineNumber: 139,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -416,7 +353,7 @@ function InfluencerDashboard() {
                                                                         className: "w-3.5 h-3.5"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                                        lineNumber: 152,
+                                                                        lineNumber: 142,
                                                                         columnNumber: 45
                                                                     }, this),
                                                                     "Due: ",
@@ -424,7 +361,7 @@ function InfluencerDashboard() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                                lineNumber: 151,
+                                                                lineNumber: 141,
                                                                 columnNumber: 41
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -434,26 +371,26 @@ function InfluencerDashboard() {
                                                                         className: "w-3.5 h-3.5"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                                        lineNumber: 156,
+                                                                        lineNumber: 146,
                                                                         columnNumber: 45
                                                                     }, this),
                                                                     campaign.amount
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                                lineNumber: 155,
+                                                                lineNumber: 145,
                                                                 columnNumber: 41
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                        lineNumber: 150,
+                                                        lineNumber: 140,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                lineNumber: 142,
+                                                lineNumber: 132,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -466,30 +403,30 @@ function InfluencerDashboard() {
                                                                 className: "w-4 h-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                                lineNumber: 164,
+                                                                lineNumber: 154,
                                                                 columnNumber: 45
                                                             }, this),
                                                             " View Details"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                        lineNumber: 163,
+                                                        lineNumber: 153,
                                                         columnNumber: 41
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                    lineNumber: 162,
+                                                    lineNumber: 152,
                                                     columnNumber: 37
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                lineNumber: 161,
+                                                lineNumber: 151,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 141,
+                                        lineNumber: 131,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -503,7 +440,7 @@ function InfluencerDashboard() {
                                                         children: "Progress"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                        lineNumber: 172,
+                                                        lineNumber: 162,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -514,13 +451,13 @@ function InfluencerDashboard() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                        lineNumber: 173,
+                                                        lineNumber: 163,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                lineNumber: 171,
+                                                lineNumber: 161,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -532,35 +469,35 @@ function InfluencerDashboard() {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                    lineNumber: 176,
+                                                    lineNumber: 166,
                                                     columnNumber: 37
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                lineNumber: 175,
+                                                lineNumber: 165,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 170,
+                                        lineNumber: 160,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, campaign.id, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 140,
+                                lineNumber: 130,
                                 columnNumber: 25
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                        lineNumber: 138,
+                        lineNumber: 128,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                lineNumber: 128,
+                lineNumber: 118,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -577,7 +514,7 @@ function InfluencerDashboard() {
                                         children: "Pending Requests"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 191,
+                                        lineNumber: 181,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -587,18 +524,18 @@ function InfluencerDashboard() {
                                             children: "View All"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                            lineNumber: 193,
+                                            lineNumber: 183,
                                             columnNumber: 29
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 192,
+                                        lineNumber: 182,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 190,
+                                lineNumber: 180,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -614,7 +551,7 @@ function InfluencerDashboard() {
                                                         children: req.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                        lineNumber: 203,
+                                                        lineNumber: 193,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -624,20 +561,20 @@ function InfluencerDashboard() {
                                                                 className: "w-3 h-3"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                                lineNumber: 205,
+                                                                lineNumber: 195,
                                                                 columnNumber: 41
                                                             }, this),
                                                             " Pending"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                        lineNumber: 204,
+                                                        lineNumber: 194,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                lineNumber: 202,
+                                                lineNumber: 192,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -645,7 +582,7 @@ function InfluencerDashboard() {
                                                 children: req.brand
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                lineNumber: 208,
+                                                lineNumber: 198,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -653,7 +590,7 @@ function InfluencerDashboard() {
                                                 children: req.category
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                lineNumber: 209,
+                                                lineNumber: 199,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -661,7 +598,7 @@ function InfluencerDashboard() {
                                                 children: req.amount
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                lineNumber: 210,
+                                                lineNumber: 200,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -672,7 +609,7 @@ function InfluencerDashboard() {
                                                         children: "Accept"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                        lineNumber: 213,
+                                                        lineNumber: 203,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -680,30 +617,30 @@ function InfluencerDashboard() {
                                                         children: "Decline"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                        lineNumber: 216,
+                                                        lineNumber: 206,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                lineNumber: 212,
+                                                lineNumber: 202,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, req.id, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 201,
+                                        lineNumber: 191,
                                         columnNumber: 29
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 199,
+                                lineNumber: 189,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                        lineNumber: 189,
+                        lineNumber: 179,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -714,7 +651,7 @@ function InfluencerDashboard() {
                                 children: "Recent Earnings"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 227,
+                                lineNumber: 217,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -731,7 +668,7 @@ function InfluencerDashboard() {
                                                             children: earning.title
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                            lineNumber: 232,
+                                                            lineNumber: 222,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -743,13 +680,13 @@ function InfluencerDashboard() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                            lineNumber: 233,
+                                                            lineNumber: 223,
                                                             columnNumber: 37
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                    lineNumber: 231,
+                                                    lineNumber: 221,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -759,18 +696,18 @@ function InfluencerDashboard() {
                                                         children: earning.amount
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                        lineNumber: 236,
+                                                        lineNumber: 226,
                                                         columnNumber: 37
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                    lineNumber: 235,
+                                                    lineNumber: 225,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, earning.id, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                            lineNumber: 230,
+                                            lineNumber: 220,
                                             columnNumber: 29
                                         }, this)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -781,7 +718,7 @@ function InfluencerDashboard() {
                                                 children: "Total This Month"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                lineNumber: 242,
+                                                lineNumber: 232,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -789,31 +726,31 @@ function InfluencerDashboard() {
                                                 children: "$7,900"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                                lineNumber: 243,
+                                                lineNumber: 233,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 241,
+                                        lineNumber: 231,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 228,
+                                lineNumber: 218,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                        lineNumber: 226,
+                        lineNumber: 216,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                lineNumber: 187,
+                lineNumber: 177,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -824,7 +761,7 @@ function InfluencerDashboard() {
                         children: "Performance Overview"
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                        lineNumber: 251,
+                        lineNumber: 241,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -838,7 +775,7 @@ function InfluencerDashboard() {
                                         children: "4.8"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 254,
+                                        lineNumber: 244,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -846,13 +783,13 @@ function InfluencerDashboard() {
                                         children: "Average Rating"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 255,
+                                        lineNumber: 245,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 253,
+                                lineNumber: 243,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -863,7 +800,7 @@ function InfluencerDashboard() {
                                         children: "96%"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 258,
+                                        lineNumber: 248,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -871,13 +808,13 @@ function InfluencerDashboard() {
                                         children: "Completion Rate"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 259,
+                                        lineNumber: 249,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 257,
+                                lineNumber: 247,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -888,7 +825,7 @@ function InfluencerDashboard() {
                                         children: "3.2 days"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 262,
+                                        lineNumber: 252,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -896,35 +833,35 @@ function InfluencerDashboard() {
                                         children: "Avg Response Time"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                        lineNumber: 263,
+                                        lineNumber: 253,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                                lineNumber: 261,
+                                lineNumber: 251,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                        lineNumber: 252,
+                        lineNumber: 242,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-                lineNumber: 250,
+                lineNumber: 240,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/page.js",
-        lineNumber: 100,
+        lineNumber: 90,
         columnNumber: 9
     }, this);
 }
-_s(InfluencerDashboard, "kgUP0YhsQfn9hI19Oa5anyYLcLU=", false, function() {
+_s(InfluencerDashboard, "SR6XOEVd/s/MXc34rSRF6dhJ6LU=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$store$2f$auth$2d$store$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthStore"]
     ];

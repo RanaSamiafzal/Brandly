@@ -6,6 +6,7 @@ __turbopack_context__.s([
     "default",
     ()=>CollaborationTasksPage
 ]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-check.js [app-client] (ecmascript) <export default as CheckCircle2>");
@@ -29,79 +30,137 @@ function CollaborationTasksPage() {
     _s();
     const params = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"])();
     const [tasks, setTasks] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
-    const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [stats, setStats] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
         total: 0,
         completed: 0
     });
+    const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [socket, setSocket] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [isAddModalOpen, setIsAddModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [newTaskTitle, setNewTaskTitle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [newTaskDueDate, setNewTaskDueDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [isSaving, setIsSaving] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "CollaborationTasksPage.useEffect": ()=>{
             setMounted(true);
             fetchTasks();
         }
     }["CollaborationTasksPage.useEffect"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "CollaborationTasksPage.useEffect": ()=>{
+            if (!params.id) return;
+            __turbopack_context__.A("[project]/node_modules/socket.io-client/build/esm/index.js [app-client] (ecmascript, async loader)").then({
+                "CollaborationTasksPage.useEffect": ({ io })=>{
+                    const newSocket = io(("TURBOPACK compile-time value", "http://localhost:3001") || "http://localhost:3001");
+                    setSocket(newSocket);
+                    newSocket.emit('join_collab', params.id);
+                    newSocket.on('task_updated', {
+                        "CollaborationTasksPage.useEffect": (updatedTask)=>{
+                            setTasks({
+                                "CollaborationTasksPage.useEffect": (prev)=>prev.map({
+                                        "CollaborationTasksPage.useEffect": (t)=>t.id === updatedTask.id ? {
+                                                ...t,
+                                                status: updatedTask.status.toLowerCase(),
+                                                title: updatedTask.title,
+                                                deadline: updatedTask.deadline ? new Date(updatedTask.deadline).toLocaleDateString() : t.deadline,
+                                                priority: updatedTask.priority
+                                            } : t
+                                    }["CollaborationTasksPage.useEffect"])
+                            }["CollaborationTasksPage.useEffect"]);
+                        }
+                    }["CollaborationTasksPage.useEffect"]);
+                    return ({
+                        "CollaborationTasksPage.useEffect": ()=>newSocket.close()
+                    })["CollaborationTasksPage.useEffect"];
+                }
+            }["CollaborationTasksPage.useEffect"]);
+        }
+    }["CollaborationTasksPage.useEffect"], [
+        params.id
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "CollaborationTasksPage.useEffect": ()=>{
+            setStats({
+                total: tasks.length,
+                completed: tasks.filter({
+                    "CollaborationTasksPage.useEffect": (t)=>t.status === "completed" || t.status === "COMPLETED"
+                }["CollaborationTasksPage.useEffect"]).length
+            });
+        }
+    }["CollaborationTasksPage.useEffect"], [
+        tasks
+    ]);
     const fetchTasks = async ()=>{
         setIsLoading(true);
-        // Mock data for collaboration tasks
-        setTimeout(()=>{
-            const mockTasks = [
-                {
-                    id: "t1",
-                    title: "Review brand guidelines",
-                    status: "completed",
-                    deadline: "Feb 28, 2024",
-                    priority: "High"
-                },
-                {
-                    id: "t2",
-                    title: "Initial draft of Instagram Reel",
-                    status: "in-progress",
-                    deadline: "Mar 5, 2024",
-                    priority: "High"
-                },
-                {
-                    id: "t3",
-                    title: "Submit story frames for approval",
-                    status: "pending",
-                    deadline: "Mar 10, 2024",
-                    priority: "Medium"
-                },
-                {
-                    id: "t4",
-                    title: "Final content export & caption writing",
-                    status: "pending",
-                    deadline: "Mar 15, 2024",
-                    priority: "Medium"
-                },
-                {
-                    id: "t5",
-                    title: "Publish & send insights report",
-                    status: "pending",
-                    deadline: "Mar 20, 2024",
-                    priority: "Low"
-                }
-            ];
-            setTasks(mockTasks);
-            setStats({
-                total: mockTasks.length,
-                completed: mockTasks.filter((t)=>t.status === "completed").length
-            });
+        try {
+            const response = await fetch(`/api/influencer/collaborations/${params.id}/tasks`);
+            if (response.ok) {
+                const data = await response.json();
+                const formatted = data.tasks.map((t)=>({
+                        id: t.id,
+                        title: t.title,
+                        status: t.status.toLowerCase(),
+                        deadline: t.deadline ? new Date(t.deadline).toLocaleDateString() : "No deadline",
+                        priority: t.priority
+                    }));
+                setTasks(formatted);
+            }
+        } catch (error) {
+            console.error("Failed to fetch tasks", error);
+        } finally{
             setIsLoading(false);
-        }, 600);
+        }
     };
     const toggleTask = (id)=>{
-        setTasks((prev)=>{
-            const newTasks = prev.map((t)=>t.id === id ? {
-                    ...t,
-                    status: t.status === "completed" ? "pending" : "completed"
-                } : t);
-            setStats({
-                total: newTasks.length,
-                completed: newTasks.filter((t)=>t.status === "completed").length
-            });
-            return newTasks;
+        const task = tasks.find((t)=>t.id === id);
+        if (!task || !socket) return;
+        const newStatus = task.status === "completed" ? "PENDING" : "COMPLETED";
+        socket.emit('task_update', {
+            requestId: params.id,
+            taskId: id,
+            update: {
+                status: newStatus
+            }
         });
+    };
+    const handleAddTask = async (e)=>{
+        e.preventDefault();
+        if (!newTaskTitle.trim()) return;
+        setIsSaving(true);
+        try {
+            const res = await fetch(`/api/influencer/collaborations/${params.id}/tasks`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    title: newTaskTitle,
+                    dueDate: newTaskDueDate || undefined,
+                    priority: "Medium"
+                })
+            });
+            if (res.ok) {
+                const data = await res.json();
+                setTasks((prev)=>[
+                        ...prev,
+                        {
+                            id: data.task.id,
+                            title: data.task.title,
+                            status: data.task.status.toLowerCase(),
+                            deadline: data.task.dueDate ? new Date(data.task.dueDate).toLocaleDateString() : "No deadline",
+                            priority: "Medium"
+                        }
+                    ]);
+                setIsAddModalOpen(false);
+                setNewTaskTitle("");
+                setNewTaskDueDate("");
+            }
+        } catch (error) {
+            console.error("Failed to add task", error);
+        } finally{
+            setIsSaving(false);
+        }
     };
     if (!mounted) return null;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -121,14 +180,14 @@ function CollaborationTasksPage() {
                                         className: "w-4 h-4"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 73,
+                                        lineNumber: 146,
                                         columnNumber: 25
                                     }, this),
                                     " Back to collaborations"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 72,
+                                lineNumber: 145,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -140,12 +199,12 @@ function CollaborationTasksPage() {
                                             className: "w-8 h-8 text-white"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                            lineNumber: 77,
+                                            lineNumber: 150,
                                             columnNumber: 29
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 76,
+                                        lineNumber: 149,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -155,7 +214,7 @@ function CollaborationTasksPage() {
                                                 children: "Deliverables Board"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                                lineNumber: 80,
+                                                lineNumber: 153,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -163,25 +222,25 @@ function CollaborationTasksPage() {
                                                 children: "Campaign: Summer Style 2024 • FashionHub"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                                lineNumber: 81,
+                                                lineNumber: 154,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 79,
+                                        lineNumber: 152,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 75,
+                                lineNumber: 148,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                        lineNumber: 71,
+                        lineNumber: 144,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -196,48 +255,49 @@ function CollaborationTasksPage() {
                                             className: "w-4 h-4"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                            lineNumber: 88,
+                                            lineNumber: 161,
                                             columnNumber: 29
                                         }, this),
                                         " Open Chat"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                    lineNumber: 87,
+                                    lineNumber: 160,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 86,
+                                lineNumber: 159,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setIsAddModalOpen(true),
                                 className: "px-8 py-4 bg-gray-900 text-white rounded-3xl font-black text-xs uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl shadow-gray-200 flex items-center gap-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
                                         className: "w-4 h-4"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 92,
+                                        lineNumber: 165,
                                         columnNumber: 25
                                     }, this),
                                     " Add Task"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 91,
+                                lineNumber: 164,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                        lineNumber: 85,
+                        lineNumber: 158,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                lineNumber: 70,
+                lineNumber: 143,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -254,7 +314,7 @@ function CollaborationTasksPage() {
                                         children: "Overall Completion"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 101,
+                                        lineNumber: 174,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -265,13 +325,13 @@ function CollaborationTasksPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 102,
+                                        lineNumber: 175,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 100,
+                                lineNumber: 173,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -283,12 +343,12 @@ function CollaborationTasksPage() {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                    lineNumber: 105,
+                                    lineNumber: 178,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 104,
+                                lineNumber: 177,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -301,7 +361,7 @@ function CollaborationTasksPage() {
                                                 className: "w-3.5 h-3.5 text-green-500"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                                lineNumber: 111,
+                                                lineNumber: 184,
                                                 columnNumber: 67
                                             }, this),
                                             " ",
@@ -310,7 +370,7 @@ function CollaborationTasksPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 111,
+                                        lineNumber: 184,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -320,7 +380,7 @@ function CollaborationTasksPage() {
                                                 className: "w-3.5 h-3.5 text-gray-200"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                                lineNumber: 112,
+                                                lineNumber: 185,
                                                 columnNumber: 67
                                             }, this),
                                             " ",
@@ -329,19 +389,19 @@ function CollaborationTasksPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 112,
+                                        lineNumber: 185,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 110,
+                                lineNumber: 183,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                        lineNumber: 99,
+                        lineNumber: 172,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -355,7 +415,7 @@ function CollaborationTasksPage() {
                                         children: "Due Next"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 117,
+                                        lineNumber: 190,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -363,13 +423,13 @@ function CollaborationTasksPage() {
                                         children: "Mar 5"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 118,
+                                        lineNumber: 191,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 116,
+                                lineNumber: 189,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -380,7 +440,7 @@ function CollaborationTasksPage() {
                                         children: "Status"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 121,
+                                        lineNumber: 194,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -388,25 +448,25 @@ function CollaborationTasksPage() {
                                         children: "On Track"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 122,
+                                        lineNumber: 195,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 120,
+                                lineNumber: 193,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                        lineNumber: 115,
+                        lineNumber: 188,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                lineNumber: 98,
+                lineNumber: 171,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -419,7 +479,7 @@ function CollaborationTasksPage() {
                         className: "h-20 bg-gray-50 rounded-3xl animate-pulse"
                     }, i, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                        lineNumber: 130,
+                        lineNumber: 203,
                         columnNumber: 40
                     }, this)) : tasks.map((task, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: `group bg-white border rounded-[32px] p-6 flex items-center gap-6 transition-all hover:shadow-xl ${task.status === "completed" ? "opacity-60 border-gray-100 bg-gray-50/30" : "border-gray-50 hover:border-blue-100"}`,
@@ -431,18 +491,18 @@ function CollaborationTasksPage() {
                                     className: "w-5 h-5"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                    lineNumber: 145,
+                                    lineNumber: 218,
                                     columnNumber: 64
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "w-2 h-2 rounded-full border border-gray-200"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                    lineNumber: 145,
+                                    lineNumber: 218,
                                     columnNumber: 103
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 138,
+                                lineNumber: 211,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -453,7 +513,7 @@ function CollaborationTasksPage() {
                                         children: task.title
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 149,
+                                        lineNumber: 222,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -466,7 +526,7 @@ function CollaborationTasksPage() {
                                                         className: "w-3 h-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                                        lineNumber: 154,
+                                                        lineNumber: 227,
                                                         columnNumber: 41
                                                     }, this),
                                                     " ",
@@ -474,7 +534,7 @@ function CollaborationTasksPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                                lineNumber: 153,
+                                                lineNumber: 226,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -485,19 +545,19 @@ function CollaborationTasksPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                                lineNumber: 156,
+                                                lineNumber: 229,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                        lineNumber: 152,
+                                        lineNumber: 225,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 148,
+                                lineNumber: 221,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -506,33 +566,157 @@ function CollaborationTasksPage() {
                                     className: "w-5 h-5"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                    lineNumber: 164,
+                                    lineNumber: 237,
                                     columnNumber: 33
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                                lineNumber: 163,
+                                lineNumber: 236,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, task.id, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                        lineNumber: 133,
+                        lineNumber: 206,
                         columnNumber: 25
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-                lineNumber: 128,
+                lineNumber: 201,
                 columnNumber: 13
+            }, this),
+            isAddModalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40 backdrop-blur-sm animate-in fade-in duration-200",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl animate-in zoom-in-95 duration-200",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-between items-center mb-6",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                className: "text-xl font-black text-gray-900",
+                                children: "Add New Task"
+                            }, void 0, false, {
+                                fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                                lineNumber: 249,
+                                columnNumber: 29
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                            lineNumber: 248,
+                            columnNumber: 25
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                            onSubmit: handleAddTask,
+                            className: "space-y-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            className: "block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2",
+                                            children: "Task Title *"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                                            lineNumber: 253,
+                                            columnNumber: 33
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                            type: "text",
+                                            required: true,
+                                            value: newTaskTitle,
+                                            onChange: (e)=>setNewTaskTitle(e.target.value),
+                                            placeholder: "e.g. Draft Instagram Story",
+                                            className: "w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                                            lineNumber: 254,
+                                            columnNumber: 33
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                                    lineNumber: 252,
+                                    columnNumber: 29
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            className: "block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2",
+                                            children: "Due Date (Optional)"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                                            lineNumber: 264,
+                                            columnNumber: 33
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                            type: "date",
+                                            value: newTaskDueDate,
+                                            onChange: (e)=>setNewTaskDueDate(e.target.value),
+                                            className: "w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                                            lineNumber: 265,
+                                            columnNumber: 33
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                                    lineNumber: 263,
+                                    columnNumber: 29
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "pt-4 flex justify-end gap-3",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "button",
+                                            onClick: ()=>setIsAddModalOpen(false),
+                                            className: "px-6 py-3 font-bold text-gray-500 hover:bg-gray-100 rounded-xl transition-all",
+                                            children: "Cancel"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                                            lineNumber: 273,
+                                            columnNumber: 33
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "submit",
+                                            disabled: isSaving || !newTaskTitle.trim(),
+                                            className: "px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md active:scale-95 disabled:opacity-50",
+                                            children: isSaving ? "Saving..." : "Save Task"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                                            lineNumber: 280,
+                                            columnNumber: 33
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                                    lineNumber: 272,
+                                    columnNumber: 29
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                            lineNumber: 251,
+                            columnNumber: 25
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                    lineNumber: 247,
+                    columnNumber: 21
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
+                lineNumber: 246,
+                columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page.js",
-        lineNumber: 68,
+        lineNumber: 141,
         columnNumber: 9
     }, this);
 }
-_s(CollaborationTasksPage, "tDpaSZsw/IU4xhlKlfebxBXPEyY=", false, function() {
+_s(CollaborationTasksPage, "J6DMIXX5XIJdHJ0U2rwdoA62xQo=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"]
     ];

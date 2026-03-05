@@ -1,7 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { Bell, CheckCircle2, Info, AlertTriangle, ArrowRight, BellOff, MoreHorizontal, Check, Trash2 } from "lucide-react";
+import { Bell, CheckCircle2, Info, AlertTriangle, ArrowRight, BellOff, MoreHorizontal, Check, Trash2, MessageSquare, ClipboardList, PlusCircle } from "lucide-react";
 import Link from "next/link";
+import { useAuthStore } from "@repo/store";
+import { io } from "socket.io-client";
 
 const TYPE_MAP = {
     CAMPAIGN_CREATED: { color: "text-green-600", bg: "bg-green-50", icon: CheckCircle2 },
@@ -12,6 +14,9 @@ const TYPE_MAP = {
     PROFILE_UPDATED: { color: "text-amber-600", bg: "bg-amber-50", icon: Info },
     DELIVERABLE_DUE: { color: "text-red-500", bg: "bg-red-50", icon: AlertTriangle },
     SYSTEM_INFO: { color: "text-gray-500", bg: "bg-gray-100", icon: Info },
+    NEW_MESSAGE: { color: "text-blue-600", bg: "bg-blue-50", icon: MessageSquare },
+    TASK_CREATED: { color: "text-green-600", bg: "bg-green-50", icon: PlusCircle },
+    TASK_UPDATED: { color: "text-orange-600", bg: "bg-orange-50", icon: ClipboardList },
 };
 
 function timeAgo(date) {
@@ -43,6 +48,37 @@ export default function InfluencerNotificationsDropdown() {
         document.addEventListener("mousedown", handleClick);
         return () => document.removeEventListener("mousedown", handleClick);
     }, []);
+
+    // Socket Initialization for real-time notifications
+    const user = useAuthStore((s) => s.user);
+
+    useEffect(() => {
+        if (!user?.id) return;
+
+        const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001");
+
+        socket.emit('join_user', user.id);
+
+        socket.on('new_activity', (activity) => {
+            if (!muted) {
+                // Play sound
+                const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
+                audio.volume = 0.5;
+                audio.play().catch(e => console.log("Audio play blocked", e));
+
+                // Show Popup
+                setLatestAlert(activity);
+                setTimeout(() => setLatestAlert(null), 1000);
+
+                setNotifications(prev => [activity, ...prev].slice(0, 15));
+                setUnreadCount(prev => prev + 1);
+            }
+        });
+
+        return () => socket.disconnect();
+    }, [user?.id, muted]);
+
+    const [latestAlert, setLatestAlert] = useState(null);
 
     const fetchNotifications = async () => {
         setIsLoading(true);
@@ -106,6 +142,28 @@ export default function InfluencerNotificationsDropdown() {
                     </span>
                 )}
             </button>
+
+            {/* Real-time Alert Popup (Global Floating) */}
+            {latestAlert && (
+                <div className="fixed top-20 right-4 md:right-12 z-[100] animate-in slide-in-from-top-4 fade-in duration-300">
+                    <div className="bg-white border border-gray-100 rounded-2xl shadow-2xl p-4 flex items-center gap-4 min-w-[300px] border-l-4 border-l-blue-600">
+                        <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0">
+                            {TYPE_MAP[latestAlert.type]?.icon ? (
+                                (() => {
+                                    const Icon = TYPE_MAP[latestAlert.type].icon;
+                                    return <Icon className="w-5 h-5" />;
+                                })()
+                            ) : (
+                                <Bell className="w-5 h-5" />
+                            )}
+                        </div>
+                        <div>
+                            <p className="text-xs font-black text-blue-600 uppercase tracking-widest leading-none mb-1">New Notification</p>
+                            <p className="text-sm font-bold text-gray-900 line-clamp-1">{latestAlert.title}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {isOpen && (
                 <div className="absolute right-0 mt-3 w-96 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-200">

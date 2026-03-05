@@ -43,7 +43,7 @@ export async function GET(req) {
             }
         });
     } catch (error) {
-        console.error('Session error:', error);
+        console.error('Session error detailed:', error);
         return NextResponse.json(
             { error: 'Internal server error' },
             { status: 500 }

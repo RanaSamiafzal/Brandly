@@ -51,6 +51,12 @@ export async function POST(req) {
         return NextResponse.json({ success: true, request });
     } catch (error) {
         console.error('Invite error:', error);
-        return NextResponse.json({ error: error.message || 'Internal server error' }, { status: 500 });
+
+        // Return a clean error message for duplicate requests
+        if (error.message && error.message.includes("already sent")) {
+            return NextResponse.json({ error: error.message }, { status: 400 });
+        }
+
+        return NextResponse.json({ error: 'Failed to send invitation. Please try again.' }, { status: 500 });
     }
 }

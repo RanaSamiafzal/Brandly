@@ -1,36 +1,39 @@
-[00:00:03.549] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:04.034] Server  LOG     ✓ Ready in 2.7s
-[00:00:36.284] Browser ERROR   unhandledRejection: i: Failed to connect to MetaMask
-[00:01:05.953] Server  ERROR   ⨯ The file "./proxy.js" must export a function, either as a default export or as a named "proxy" export.
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
-
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
-
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:01:06.838] Server  LOG     ✓ Compiled in 783ms
-[00:01:06.914] Server  ERROR   ⨯ Error: The Proxy file "/proxy" must export a function named `proxy` or a default function.
-[00:01:07.445] Browser ERROR   ./frontend/main-app/proxy.js
-Proxy is missing expected function export name
-This function is what Next.js runs for every request handled by this proxy (previously called middleware).
-
-Why this happens:
-- You are migrating from `middleware` to `proxy`, but haven't updated the exported function.
-- The file exists but doesn't export a function.
-- The export is not a function (e.g., an object or constant).
-- There's a syntax error preventing the export from being recognized.
-
-To fix it:
-- Ensure this file has either a default or "proxy" function export.
-
-Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:01:08.202] Server  LOG     ✓ Compiled in 1252ms
-[00:01:36.291] Server  ERROR   Login error: Error: Invalid credentials
-[00:01:52.576] Server  ERROR   Login error: Error: Invalid credentials
-[00:04:58.682] Server  ERROR   Login error: Error: Invalid credentials
+[00:00:02.336] Server  LOG     ✓ Ready in 1712ms
+[00:04:42.526] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:59.405] Browser ERROR   unhandledRejection: i: Failed to connect to MetaMask
+[00:07:43.151] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:08.272] Server  LOG     ○ Compiling /brand/my-requests ...
+[00:09:31.311] Server  LOG     ○ Compiling /api/notifications ...
+[00:09:43.458] Server  LOG     ○ Compiling /brand/collaborations/[id]/chat ...
+[00:09:59.948] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:10:12.042] Server  LOG     ✓ Compiled in 31.4s
+[00:10:39.520] Server  LOG     ✓ Finished writing to filesystem cache in 25.4s
+[00:10:54.934] Server  LOG     ○ Compiling /api/brand/collaborations/[id]/chat ...
+[00:10:58.652] Server  LOG     ✓ Finished filesystem cache database compaction in 19.0s
+[00:11:09.648] Server  LOG     ✓ Finished writing to filesystem cache in 10.1s
+[00:11:23.970] Server  LOG     ✓ Compiled in 10.1s
+[00:11:39.144] Server  LOG     ✓ Finished filesystem cache database compaction in 26.5s
+[00:11:41.744] Server  LOG     ✓ Finished writing to filesystem cache in 13.9s
+[00:11:47.709] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:00.132] Server  LOG     ○ Compiling /influencer ...
+[00:16:16.774] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. bc837c23-910c-4f93-b8b2-33bd6c1cd3f3
+[00:17:31.037] Server  LOG     ✓ Compiled in 2.5s
+[00:17:31.224] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. bc837c23-910c-4f93-b8b2-33bd6c1cd3f3
+[00:18:55.001] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:25:08.313] Server  LOG     ✓ Compiled in 311ms
+[00:25:20.097] Server  LOG     ✓ Compiled in 0ms
+[00:27:56.733] Server  LOG     ✓ Compiled in 240ms
+[00:29:04.541] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./frontend/main-app/app/(dashboard)/brand/collaborations/page.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:29:04.562] Server  LOG     ✓ Compiled in 857ms
+[00:29:06.403] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:33:31.896] Server  LOG     ○ Compiling /brand/collaborations/[id]/management ...
+[00:34:25.943] Server  LOG     ✓ Finished writing to filesystem cache in 40s
+[00:34:59.343] Server  LOG     ○ Compiling /api/brand/collaborations/[id]/tasks ...
+[00:36:14.244] Server  LOG     ✓ Finished filesystem cache database compaction in 108s
+[00:36:22.918] Server  LOG     ✓ Finished writing to filesystem cache in 67s
+[00:44:00.752] Server  LOG     ✓ Compiled in 583ms
+[00:44:10.834] Server  LOG     ✓ Compiled in 342ms
+[00:44:20.222] Server  LOG     ✓ Compiled in 217ms
+[00:44:30.196] Server  LOG     ✓ Compiled in 214ms
+[00:44:39.391] Server  LOG     ✓ Compiled in 254ms
+[00:44:49.295] Server  LOG     ✓ Compiled in 233ms

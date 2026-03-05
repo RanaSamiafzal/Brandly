@@ -5,11 +5,13 @@ import { LogOut, User, Camera, ChevronDown } from "lucide-react";
 import InfluencerNotificationsDropdown from "./InfluencerNotificationsDropdown";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import CloudinaryUpload from "../brand/CloudinaryUpload";
 
 export default function InfluencerHeader() {
     const { user, logout, login } = useAuthStore();
     const router = useRouter();
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isUpdating, setIsUpdating] = useState(false);
     const [mounted, setMounted] = useState(false);
     const popupRef = useRef(null);
 
@@ -42,6 +44,30 @@ export default function InfluencerHeader() {
         }
     };
 
+    const handleProfilePicUpdate = async (info) => {
+        setIsUpdating(true);
+        try {
+            const res = await fetch('/api/influencer/profile/pic', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ profilePic: info.secure_url })
+            });
+
+            if (res.ok) {
+                // Refresh user data from /api/auth/me to sync global state
+                const meRes = await fetch('/api/auth/me');
+                const meData = await meRes.json();
+                if (meData.user) {
+                    login(meData.user);
+                }
+            }
+        } catch (error) {
+            console.error("Failed to update profile pic", error);
+        } finally {
+            setIsUpdating(false);
+        }
+    };
+
     return (
         <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-40 w-full shadow-sm">
             <div className="flex items-center gap-4">
@@ -54,11 +80,30 @@ export default function InfluencerHeader() {
 
                 <div className="relative" ref={popupRef}>
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm shadow-md overflow-hidden border-2 border-white">
-                            {profilePic ? (
-                                <img src={profilePic} alt={fullName} className="w-full h-full object-cover" />
-                            ) : (
-                                initial
+                        <div className="relative group/logo">
+                            <div className="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm shadow-md group-hover/logo:shadow-blue-200 transition-all overflow-hidden border-2 border-white">
+                                {profilePic ? (
+                                    <img src={profilePic} alt={fullName} className="w-full h-full object-cover" />
+                                ) : (
+                                    initial
+                                )}
+
+                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover/logo:opacity-100 transition-opacity cursor-pointer">
+                                    <Camera className="w-4 h-4 text-white" />
+                                    <div className="absolute inset-0 opacity-0 cursor-pointer">
+                                        <CloudinaryUpload
+                                            onUploadSuccess={handleProfilePicUpdate}
+                                            buttonText=""
+                                            folder="influencer_profiles"
+                                            className="w-full h-full"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            {isUpdating && (
+                                <div className="absolute inset-0 bg-white/60 flex items-center justify-center rounded-full">
+                                    <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent animate-spin rounded-full"></div>
+                                </div>
                             )}
                         </div>
 

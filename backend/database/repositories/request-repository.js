@@ -36,7 +36,11 @@ export const RequestRepository = {
                     { senderId: influencerUserId }
                 ]
             },
-            include: { campaign: true, sender: true, receiver: true },
+            include: {
+                campaign: { include: { brand: true } },
+                sender: true,
+                receiver: true
+            },
             orderBy: { createdAt: 'desc' }
         });
     },

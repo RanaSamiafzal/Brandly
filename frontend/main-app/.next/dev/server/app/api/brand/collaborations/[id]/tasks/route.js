@@ -1,0 +1,12 @@
+var R=require("../../../../../../chunks/[turbopack]_runtime.js")("server/app/api/brand/collaborations/[id]/tasks/route.js")
+R.c("server/chunks/backend_1ce79614._.js")
+R.c("server/chunks/node_modules_next_d09db267._.js")
+R.c("server/chunks/node_modules_postal-mime_src_a014ae66._.js")
+R.c("server/chunks/node_modules_svix_dist_56996d0e._.js")
+R.c("server/chunks/node_modules_mime-db_f53cdd2e._.js")
+R.c("server/chunks/node_modules_ws_3dcc3101._.js")
+R.c("server/chunks/[root-of-the-server]__f6a1c359._.js")
+R.c("server/chunks/[root-of-the-server]__033573fb._.js")
+R.c("server/chunks/3a2fd_server_app_api_brand_collaborations_[id]_tasks_route_actions_809752cc.js")
+R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/frontend/main-app/app/api/brand/collaborations/[id]/tasks/route.js [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/frontend/main-app/app/api/brand/collaborations/[id]/tasks/route.js [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

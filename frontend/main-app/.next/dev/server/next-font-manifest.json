@@ -1,24 +1,15 @@
 {
   "app": {
-    "[project]/frontend/main-app/app/(auth)/login/page": [
+    "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/frontend/main-app/app/(auth)/signup/brand/page": [
+    "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/chat/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/frontend/main-app/app/(auth)/signup/influencer/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/frontend/main-app/app/(auth)/signup/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/frontend/main-app/app/(dashboard)/brand/ai-match/[id]/page": [
+    "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
     "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/frontend/main-app/app/(dashboard)/brand/create-campaign/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
     "[project]/frontend/main-app/app/(dashboard)/brand/my-requests/page": [
@@ -27,31 +18,19 @@
     "[project]/frontend/main-app/app/(dashboard)/brand/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/frontend/main-app/app/(dashboard)/brand/search-influencers/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
     "[project]/frontend/main-app/app/(dashboard)/influencer/collaboration-requests/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/tasks/page": [
+    "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/[id]/chat/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
     "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
+    "[project]/frontend/main-app/app/(dashboard)/influencer/notifications/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
     "[project]/frontend/main-app/app/(dashboard)/influencer/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/frontend/main-app/app/(dashboard)/influencer/profile-settings/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/frontend/main-app/app/(dashboard)/influencer/search-brands/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/frontend/main-app/app/_not-found/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ]
   },

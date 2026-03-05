@@ -35,76 +35,14 @@ function MyCollaborationsPage() {
     const fetchCollaborations = async ()=>{
         setIsLoading(true);
         try {
-            // Mock data for a "complete" feel
-            setTimeout(()=>{
-                setCollaborations([
-                    {
-                        id: "c1",
-                        brandName: "FashionHub",
-                        brandLogo: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=200&h=200&fit=crop",
-                        campaignTitle: "Summer Collection Launch",
-                        status: "ongoing",
-                        startDate: "2/1/2024",
-                        endDate: "3/31/2024",
-                        amount: 800,
-                        paymentStatus: "escrowed",
-                        deliverablesTotal: 6,
-                        deliverablesCompleted: 4,
-                        nextMilestone: "Instagram Reel",
-                        deadline: "In 2 days",
-                        priority: "high"
-                    },
-                    {
-                        id: "c2",
-                        brandName: "TechGear Pro",
-                        brandLogo: "https://images.unsplash.com/photo-1468436139062-f60a7444f84e?w=200&h=200&fit=crop",
-                        campaignTitle: "Product Review Series",
-                        status: "ongoing",
-                        startDate: "2/15/2024",
-                        endDate: "4/15/2024",
-                        amount: 1200,
-                        paymentStatus: "pending",
-                        deliverablesTotal: 3,
-                        deliverablesCompleted: 1,
-                        nextMilestone: "Unboxing Video",
-                        deadline: "In 5 days",
-                        priority: "medium"
-                    },
-                    {
-                        id: "c3",
-                        brandName: "WellnessLife",
-                        brandLogo: "https://images.unsplash.com/photo-1545208393-596371BA9a3e?w=200&h=200&fit=crop",
-                        campaignTitle: "Wellness Challenge",
-                        status: "completed",
-                        startDate: "1/1/2024",
-                        endDate: "2/15/2024",
-                        amount: 600,
-                        paymentStatus: "paid",
-                        deliverablesTotal: 10,
-                        deliverablesCompleted: 10,
-                        rating: 4.8,
-                        earningStatus: "Received"
-                    },
-                    {
-                        id: "c4",
-                        brandName: "GourmetBox",
-                        brandLogo: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=200&h=200&fit=crop",
-                        campaignTitle: "Meal Kit Review",
-                        status: "pending",
-                        startDate: "3/10/2024",
-                        endDate: "4/20/2024",
-                        amount: 450,
-                        paymentStatus: "not_started",
-                        deliverablesTotal: 2,
-                        deliverablesCompleted: 0,
-                        nextMilestone: "Contract Signing",
-                        deadline: "Await brand"
-                    }
-                ]);
-                setIsLoading(false);
-            }, 800);
+            const res = await fetch('/api/influencer/collaborations');
+            if (res.ok) {
+                const data = await res.json();
+                setCollaborations(data.collaborations);
+            }
         } catch (error) {
             console.error("Failed to fetch collaborations", error);
+        } finally{
             setIsLoading(false);
         }
     };
@@ -172,7 +110,7 @@ function MyCollaborationsPage() {
                                 children: "My Collaborations"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                lineNumber: 139,
+                                lineNumber: 77,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -180,13 +118,13 @@ function MyCollaborationsPage() {
                                 children: "Track your active and past collaborations with brands"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                lineNumber: 140,
+                                lineNumber: 78,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                        lineNumber: 138,
+                        lineNumber: 76,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -200,12 +138,12 @@ function MyCollaborationsPage() {
                                         className: "w-5 h-5 text-blue-600"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                        lineNumber: 147,
+                                        lineNumber: 85,
                                         columnNumber: 29
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                    lineNumber: 146,
+                                    lineNumber: 84,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -215,7 +153,7 @@ function MyCollaborationsPage() {
                                             children: "Total Earnings"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                            lineNumber: 150,
+                                            lineNumber: 88,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -223,30 +161,30 @@ function MyCollaborationsPage() {
                                             children: "$2,600.00"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                            lineNumber: 151,
+                                            lineNumber: 89,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                    lineNumber: 149,
+                                    lineNumber: 87,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                            lineNumber: 145,
+                            lineNumber: 83,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                        lineNumber: 144,
+                        lineNumber: 82,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                lineNumber: 137,
+                lineNumber: 75,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -274,12 +212,12 @@ function MyCollaborationsPage() {
                         children: tab.label
                     }, tab.id, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                        lineNumber: 165,
+                        lineNumber: 103,
                         columnNumber: 21
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                lineNumber: 158,
+                lineNumber: 96,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -292,7 +230,7 @@ function MyCollaborationsPage() {
                         className: "bg-white border border-gray-100 rounded-[32px] p-8 h-64 animate-pulse"
                     }, i, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                        lineNumber: 182,
+                        lineNumber: 120,
                         columnNumber: 25
                     }, this)) : filteredCollaborations.length > 0 ? filteredCollaborations.map((col, idx)=>{
                     const progress = Math.round(col.deliverablesCompleted / col.deliverablesTotal * 100);
@@ -320,12 +258,12 @@ function MyCollaborationsPage() {
                                                         className: "w-full h-full object-cover"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                        lineNumber: 201,
+                                                        lineNumber: 139,
                                                         columnNumber: 49
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                    lineNumber: 200,
+                                                    lineNumber: 138,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -339,7 +277,7 @@ function MyCollaborationsPage() {
                                                                     children: col.campaignTitle
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                    lineNumber: 205,
+                                                                    lineNumber: 143,
                                                                     columnNumber: 53
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -347,13 +285,13 @@ function MyCollaborationsPage() {
                                                                     children: col.status
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                    lineNumber: 206,
+                                                                    lineNumber: 144,
                                                                     columnNumber: 53
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                            lineNumber: 204,
+                                                            lineNumber: 142,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -361,7 +299,7 @@ function MyCollaborationsPage() {
                                                             children: col.brandName
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                            lineNumber: 210,
+                                                            lineNumber: 148,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -374,7 +312,7 @@ function MyCollaborationsPage() {
                                                                             className: "w-3.5 h-3.5 text-gray-300"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                            lineNumber: 214,
+                                                                            lineNumber: 152,
                                                                             columnNumber: 57
                                                                         }, this),
                                                                         col.startDate,
@@ -383,14 +321,14 @@ function MyCollaborationsPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                    lineNumber: 213,
+                                                                    lineNumber: 151,
                                                                     columnNumber: 53
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                     className: "w-1 h-1 rounded-full bg-gray-200"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                    lineNumber: 217,
+                                                                    lineNumber: 155,
                                                                     columnNumber: 53
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -400,7 +338,7 @@ function MyCollaborationsPage() {
                                                                             className: "w-3.5 h-3.5 text-gray-300"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                            lineNumber: 219,
+                                                                            lineNumber: 157,
                                                                             columnNumber: 57
                                                                         }, this),
                                                                         "Payment: ",
@@ -412,31 +350,31 @@ function MyCollaborationsPage() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                            lineNumber: 220,
+                                                                            lineNumber: 158,
                                                                             columnNumber: 66
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                    lineNumber: 218,
+                                                                    lineNumber: 156,
                                                                     columnNumber: 53
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                            lineNumber: 212,
+                                                            lineNumber: 150,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                    lineNumber: 203,
+                                                    lineNumber: 141,
                                                     columnNumber: 45
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                            lineNumber: 199,
+                                            lineNumber: 137,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -452,7 +390,7 @@ function MyCollaborationsPage() {
                                                                     children: "Deliverables Progress"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                    lineNumber: 230,
+                                                                    lineNumber: 168,
                                                                     columnNumber: 53
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -465,13 +403,13 @@ function MyCollaborationsPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                    lineNumber: 231,
+                                                                    lineNumber: 169,
                                                                     columnNumber: 53
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                            lineNumber: 229,
+                                                            lineNumber: 167,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -482,13 +420,13 @@ function MyCollaborationsPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                            lineNumber: 235,
+                                                            lineNumber: 173,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                    lineNumber: 228,
+                                                    lineNumber: 166,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -500,24 +438,24 @@ function MyCollaborationsPage() {
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                        lineNumber: 238,
+                                                        lineNumber: 176,
                                                         columnNumber: 49
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                    lineNumber: 237,
+                                                    lineNumber: 175,
                                                     columnNumber: 45
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                            lineNumber: 227,
+                                            lineNumber: 165,
                                             columnNumber: 41
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                    lineNumber: 198,
+                                    lineNumber: 136,
                                     columnNumber: 37
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -534,12 +472,12 @@ function MyCollaborationsPage() {
                                                             className: "w-6 h-6 text-green-600"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                            lineNumber: 252,
+                                                            lineNumber: 190,
                                                             columnNumber: 57
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                        lineNumber: 251,
+                                                        lineNumber: 189,
                                                         columnNumber: 53
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -549,7 +487,7 @@ function MyCollaborationsPage() {
                                                                 children: "Campaign Finished"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                lineNumber: 255,
+                                                                lineNumber: 193,
                                                                 columnNumber: 57
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -559,7 +497,7 @@ function MyCollaborationsPage() {
                                                                         className: "w-4 h-4 text-amber-400 fill-amber-400"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                        lineNumber: 257,
+                                                                        lineNumber: 195,
                                                                         columnNumber: 61
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -567,7 +505,7 @@ function MyCollaborationsPage() {
                                                                         children: col.rating
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                        lineNumber: 258,
+                                                                        lineNumber: 196,
                                                                         columnNumber: 61
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -575,25 +513,25 @@ function MyCollaborationsPage() {
                                                                         children: "Brand Rating"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                        lineNumber: 259,
+                                                                        lineNumber: 197,
                                                                         columnNumber: 61
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                lineNumber: 256,
+                                                                lineNumber: 194,
                                                                 columnNumber: 57
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                        lineNumber: 254,
+                                                        lineNumber: 192,
                                                         columnNumber: 53
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                lineNumber: 250,
+                                                lineNumber: 188,
                                                 columnNumber: 49
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "space-y-3",
@@ -606,7 +544,7 @@ function MyCollaborationsPage() {
                                                                 children: "Next Up"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                lineNumber: 266,
+                                                                lineNumber: 204,
                                                                 columnNumber: 57
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -614,13 +552,13 @@ function MyCollaborationsPage() {
                                                                 children: col.priority || "Normal"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                lineNumber: 267,
+                                                                lineNumber: 205,
                                                                 columnNumber: 57
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                        lineNumber: 265,
+                                                        lineNumber: 203,
                                                         columnNumber: 53
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -628,7 +566,7 @@ function MyCollaborationsPage() {
                                                         children: col.nextMilestone
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                        lineNumber: 271,
+                                                        lineNumber: 209,
                                                         columnNumber: 53
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -638,7 +576,7 @@ function MyCollaborationsPage() {
                                                                 className: "w-3.5 h-3.5 text-blue-500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                lineNumber: 273,
+                                                                lineNumber: 211,
                                                                 columnNumber: 57
                                                             }, this),
                                                             "Deadline: ",
@@ -647,24 +585,24 @@ function MyCollaborationsPage() {
                                                                 children: col.deadline
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                lineNumber: 274,
+                                                                lineNumber: 212,
                                                                 columnNumber: 67
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                        lineNumber: 272,
+                                                        lineNumber: 210,
                                                         columnNumber: 53
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                lineNumber: 264,
+                                                lineNumber: 202,
                                                 columnNumber: 49
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                            lineNumber: 248,
+                                            lineNumber: 186,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -677,7 +615,7 @@ function MyCollaborationsPage() {
                                                             className: `w-4 h-4 ${payInfo.color}`
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                            lineNumber: 282,
+                                                            lineNumber: 220,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -685,13 +623,13 @@ function MyCollaborationsPage() {
                                                             children: payInfo.label
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                            lineNumber: 283,
+                                                            lineNumber: 221,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                    lineNumber: 281,
+                                                    lineNumber: 219,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -707,19 +645,19 @@ function MyCollaborationsPage() {
                                                                         className: "w-4 h-4"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                        lineNumber: 289,
+                                                                        lineNumber: 227,
                                                                         columnNumber: 57
                                                                     }, this),
                                                                     "Chat"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                lineNumber: 288,
+                                                                lineNumber: 226,
                                                                 columnNumber: 53
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                            lineNumber: 287,
+                                                            lineNumber: 225,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -732,48 +670,48 @@ function MyCollaborationsPage() {
                                                                         className: "w-4 h-4"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                        lineNumber: 295,
+                                                                        lineNumber: 233,
                                                                         columnNumber: 57
                                                                     }, this),
                                                                     "Tasks"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                                lineNumber: 294,
+                                                                lineNumber: 232,
                                                                 columnNumber: 53
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                            lineNumber: 293,
+                                                            lineNumber: 231,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                                    lineNumber: 286,
+                                                    lineNumber: 224,
                                                     columnNumber: 45
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                            lineNumber: 280,
+                                            lineNumber: 218,
                                             columnNumber: 41
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                    lineNumber: 247,
+                                    lineNumber: 185,
                                     columnNumber: 37
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                            lineNumber: 196,
+                            lineNumber: 134,
                             columnNumber: 33
                         }, this)
                     }, col.id, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                        lineNumber: 191,
+                        lineNumber: 129,
                         columnNumber: 29
                     }, this);
                 }) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -785,12 +723,12 @@ function MyCollaborationsPage() {
                                 className: "w-12 h-12 text-gray-200"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                lineNumber: 309,
+                                lineNumber: 247,
                                 columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                            lineNumber: 308,
+                            lineNumber: 246,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -798,7 +736,7 @@ function MyCollaborationsPage() {
                             children: "No collaborations yet"
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                            lineNumber: 311,
+                            lineNumber: 249,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -806,7 +744,7 @@ function MyCollaborationsPage() {
                             children: "Apply to some brand campaigns to start tracking your collaborations here."
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                            lineNumber: 312,
+                            lineNumber: 250,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -816,29 +754,29 @@ function MyCollaborationsPage() {
                                 children: "Browse Brands"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                                lineNumber: 316,
+                                lineNumber: 254,
                                 columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                            lineNumber: 315,
+                            lineNumber: 253,
                             columnNumber: 25
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                    lineNumber: 307,
+                    lineNumber: 245,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-                lineNumber: 179,
+                lineNumber: 117,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/app/(dashboard)/influencer/collaborations/page.js",
-        lineNumber: 135,
+        lineNumber: 73,
         columnNumber: 9
     }, this);
 }

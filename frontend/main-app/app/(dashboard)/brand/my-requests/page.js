@@ -1,17 +1,51 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Search, Filter, MessageSquare, Check, X } from "lucide-react";
+import { Search, Filter, MessageSquare, Check, X, Phone, Video, User } from "lucide-react";
+import { useAuthStore } from "@repo/store";
+import Link from 'next/link';
 
 export default function MyRequests() {
+    const { user } = useAuthStore();
     const [requests, setRequests] = useState([]);
     const [activeTab, setActiveTab] = useState("All");
     const [isLoading, setIsLoading] = useState(true);
     const [mounted, setMounted] = useState(false);
+    const [socket, setSocket] = useState(null);
 
     useEffect(() => {
         setMounted(true);
         fetchRequests();
     }, []);
+
+    useEffect(() => {
+        if (!user?.id) return;
+
+        import("socket.io-client").then(({ io }) => {
+            const newSocket = io(process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001");
+            setSocket(newSocket);
+
+            newSocket.emit('join_user', user.id);
+
+            newSocket.on('receive_request', (request) => {
+                const formatted = {
+                    id: request.id,
+                    name: request.sender?.fullname || "New Influencer",
+                    status: request.status.toLowerCase(),
+                    campaign: request.campaign?.title || "Campaign",
+                    platform: request.campaign?.targetPlatform?.[0] || "Instagram",
+                    followers: "Pending data",
+                    engagement: "Pending data",
+                    date: new Date(request.createdAt).toLocaleDateString(),
+                    message: request.note || "No message provided.",
+                    image: request.sender?.profilePic || `https://i.pravatar.cc/150?u=${request.senderId}`,
+                    senderId: request.senderId
+                };
+                setRequests(prev => [formatted, ...prev]);
+            });
+
+            return () => newSocket.close();
+        });
+    }, [user?.id]);
 
     const fetchRequests = async () => {
         setIsLoading(true);
@@ -29,7 +63,8 @@ export default function MyRequests() {
                     engagement: "Pending data",
                     date: new Date(req.createdAt).toLocaleDateString(),
                     message: req.note || "No message provided.",
-                    image: req.sender.profilePic || `https://i.pravatar.cc/150?u=${req.senderId}`
+                    image: req.sender.profilePic || `https://i.pravatar.cc/150?u=${req.senderId}`,
+                    senderId: req.senderId
                 }));
                 setRequests(formattedRequests);
             }
@@ -37,6 +72,34 @@ export default function MyRequests() {
             console.error("Failed to fetch requests", error);
         } finally {
             setIsLoading(false);
+        }
+    };
+
+    const handleResponse = async (requestId, status, influencerId) => {
+        try {
+            const res = await fetch(`/api/brand/requests/${requestId}/respond`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ status })
+            });
+
+            if (res.ok) {
+                // Update local state
+                setRequests(prev => prev.map(req =>
+                    req.id === requestId ? { ...req, status: status.toLowerCase() } : req
+                ));
+
+                // Notify influencer via socket
+                if (socket) {
+                    socket.emit('respond_request', {
+                        influencerId,
+                        requestId,
+                        status
+                    });
+                }
+            }
+        } catch (error) {
+            console.error("Failed to respond to request", error);
         }
     };
 
@@ -140,19 +203,29 @@ export default function MyRequests() {
 
                                 {/* Actions (Desktop) */}
                                 <div className="hidden md:flex items-center gap-3">
-                                    <button className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 text-gray-700 transition-colors">
-                                        View Profile
-                                    </button>
-                                    <button className="p-2 border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 transition-colors">
-                                        <MessageSquare className="w-4 h-4" />
-                                    </button>
+                                    <Link href={`/brand/influencer/${req.senderId}`}>
+                                        <button className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 text-gray-700 transition-colors">
+                                            View Profile
+                                        </button>
+                                    </Link>
+                                    <Link href={`/brand/collaborations/${req.id}/chat`}>
+                                        <button className="p-2 border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 transition-colors">
+                                            <MessageSquare className="w-4 h-4" />
+                                        </button>
+                                    </Link>
 
                                     {req.status === 'pending' && (
                                         <div className="flex items-center gap-2 ml-2">
-                                            <button className="flex items-center gap-1.5 px-3 py-2 hover:bg-green-50 text-green-700 rounded-lg text-sm font-medium transition-colors">
+                                            <button
+                                                onClick={() => handleResponse(req.id, 'ACCEPTED', req.senderId)}
+                                                className="flex items-center gap-1.5 px-3 py-2 hover:bg-green-50 text-green-700 rounded-lg text-sm font-medium transition-colors"
+                                            >
                                                 <Check className="w-4 h-4" /> Accept
                                             </button>
-                                            <button className="flex items-center gap-1.5 px-3 py-2 hover:bg-red-50 text-red-700 rounded-lg text-sm font-medium transition-colors">
+                                            <button
+                                                onClick={() => handleResponse(req.id, 'REJECTED', req.senderId)}
+                                                className="flex items-center gap-1.5 px-3 py-2 hover:bg-red-50 text-red-700 rounded-lg text-sm font-medium transition-colors"
+                                            >
                                                 <X className="w-4 h-4" /> Reject
                                             </button>
                                         </div>

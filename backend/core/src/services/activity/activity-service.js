@@ -1,8 +1,9 @@
 import { ActivityRepository } from '@repo/database/repositories/activity-repository.js';
+import { getIO } from '../../socket/socket-handler.js';
 
 export const ActivityService = {
     async logActivity(data) {
-        return ActivityRepository.create({
+        const activity = await ActivityRepository.create({
             userId: data.userId,
             role: data.role,
             type: data.type,
@@ -11,6 +12,14 @@ export const ActivityService = {
             relatedId: data.relatedId || null,
             isRead: false
         });
+
+        // Emit real-time notification
+        const io = getIO();
+        if (io) {
+            io.to(`user_${data.userId}`).emit('new_activity', activity);
+        }
+
+        return activity;
     },
 
     async getUserActivities(userId, limit = 20, filter = null) {

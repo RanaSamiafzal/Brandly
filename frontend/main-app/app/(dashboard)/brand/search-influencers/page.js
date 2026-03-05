@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Search, CheckCircle2, Youtube, Instagram, Twitter, ChevronDown, Check, Sparkles, Users, Filter } from "lucide-react";
+import { Search, CheckCircle2, Youtube, Instagram, Twitter, ChevronDown, Check, Sparkles, Users, Filter, X, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 
 const PLATFORM_ICONS = {
@@ -82,15 +82,7 @@ export default function SearchInfluencers() {
             }
         } catch (error) {
             console.error("Failed to fetch influencers", error);
-            // Fallback to mock data so the page doesn't look broken
-            setInfluencers([
-                { id: "m1", name: "HealthMika", username: "healthmika", category: "Health", platform: "instagram", PlatformIcon: Instagram, image: "https://i.pravatar.cc/150?u=mika", isAvailable: true, rating: 4.8 },
-                { id: "m2", name: "MikeTechGuru", username: "miketch", category: "Technology", platform: "youtube", PlatformIcon: Youtube, image: "https://i.pravatar.cc/150?u=mike", isAvailable: true, rating: 4.9 },
-                { id: "m3", name: "TravelWithEmma", username: "emma.travel", category: "Travel", platform: "instagram", PlatformIcon: Instagram, image: "https://i.pravatar.cc/150?u=emma", isAvailable: false, rating: 4.7 },
-                { id: "m4", name: "JamieFoodie", username: "jamiecooks", category: "Food", platform: "instagram", PlatformIcon: Instagram, image: "https://i.pravatar.cc/150?u=jamie", isAvailable: true, rating: 4.6 },
-                { id: "m5", name: "GlamWithSasha", username: "sasha.glam", category: "Beauty", platform: "instagram", PlatformIcon: Instagram, image: "https://i.pravatar.cc/150?u=sasha", isAvailable: true, rating: 4.8 },
-                { id: "m6", name: "FitnessJake", username: "jakefits", category: "Fitness", platform: "youtube", PlatformIcon: Youtube, image: "https://i.pravatar.cc/150?u=jake", isAvailable: true, rating: 4.9 },
-            ]);
+            setInfluencers([]);
         } finally {
             setIsLoading(false);
         }

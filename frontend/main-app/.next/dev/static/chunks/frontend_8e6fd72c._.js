@@ -498,6 +498,11 @@ function BrandSidebar() {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"]
         },
         {
+            name: "Campaigns",
+            href: "/brand/campaigns",
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlusSquare$3e$__["PlusSquare"]
+        },
+        {
             name: "Collaborations",
             href: "/brand/collaborations",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"]
@@ -528,7 +533,7 @@ function BrandSidebar() {
                             children: "B"
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                            lineNumber: 44,
+                            lineNumber: 45,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -536,18 +541,18 @@ function BrandSidebar() {
                             children: "Brandly"
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                            lineNumber: 47,
+                            lineNumber: 48,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                    lineNumber: 43,
+                    lineNumber: 44,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                lineNumber: 42,
+                lineNumber: 43,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -564,20 +569,20 @@ function BrandSidebar() {
                                 className: `w-5 h-5 ${isActive ? "text-blue-600" : "text-gray-400"}`
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                                lineNumber: 67,
+                                lineNumber: 68,
                                 columnNumber: 29
                             }, this),
                             link.name
                         ]
                     }, link.name, true, {
                         fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                        lineNumber: 58,
+                        lineNumber: 59,
                         columnNumber: 25
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                lineNumber: 52,
+                lineNumber: 53,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -602,25 +607,25 @@ function BrandSidebar() {
                             className: "w-5 h-5 text-red-500"
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                            lineNumber: 90,
+                            lineNumber: 91,
                             columnNumber: 21
                         }, this),
                         "Logout"
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                    lineNumber: 76,
+                    lineNumber: 77,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                lineNumber: 75,
+                lineNumber: 76,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-        lineNumber: 40,
+        lineNumber: 41,
         columnNumber: 9
     }, this);
 }
@@ -645,6 +650,7 @@ __turbopack_context__.s([
     "default",
     ()=>NotificationsDropdown
 ]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bell$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/bell.js [app-client] (ecmascript) <export default as Bell>");
@@ -654,10 +660,18 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-client] (ecmascript) <export default as ArrowRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2d$off$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BellOff$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/bell-off.js [app-client] (ecmascript) <export default as BellOff>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash-2.js [app-client] (ecmascript) <export default as Trash2>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$square$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageSquare$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/message-square.js [app-client] (ecmascript) <export default as MessageSquare>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clipboard$2d$list$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ClipboardList$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/clipboard-list.js [app-client] (ecmascript) <export default as ClipboardList>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlusCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-plus.js [app-client] (ecmascript) <export default as PlusCircle>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$store$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/frontend/shared/store/index.js [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$store$2f$auth$2d$store$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/shared/store/auth-store.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$socket$2e$io$2d$client$2f$build$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/socket.io-client/build/esm/index.js [app-client] (ecmascript) <locals>");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
+;
 ;
 ;
 ;
@@ -701,6 +715,21 @@ const TYPE_MAP = {
         color: "text-gray-500",
         bg: "bg-gray-100",
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"]
+    },
+    NEW_MESSAGE: {
+        color: "text-blue-600",
+        bg: "bg-blue-50",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$square$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageSquare$3e$__["MessageSquare"]
+    },
+    TASK_CREATED: {
+        color: "text-green-600",
+        bg: "bg-green-50",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlusCircle$3e$__["PlusCircle"]
+    },
+    TASK_UPDATED: {
+        color: "text-orange-600",
+        bg: "bg-orange-50",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clipboard$2d$list$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ClipboardList$3e$__["ClipboardList"]
     }
 };
 function timeAgo(date) {
@@ -738,6 +767,50 @@ function NotificationsDropdown() {
             })["NotificationsDropdown.useEffect"];
         }
     }["NotificationsDropdown.useEffect"], []);
+    // Socket Initialization for real-time notifications
+    const user = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$store$2f$auth$2d$store$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthStore"])({
+        "NotificationsDropdown.useAuthStore[user]": (s)=>s.user
+    }["NotificationsDropdown.useAuthStore[user]"]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "NotificationsDropdown.useEffect": ()=>{
+            if (!user?.id) return;
+            const socket = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$socket$2e$io$2d$client$2f$build$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["io"])(("TURBOPACK compile-time value", "http://localhost:3001") || "http://localhost:3001");
+            socket.emit('join_user', user.id);
+            socket.on('new_activity', {
+                "NotificationsDropdown.useEffect": (activity)=>{
+                    if (!muted) {
+                        // Play sound
+                        const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
+                        audio.volume = 0.5;
+                        audio.play().catch({
+                            "NotificationsDropdown.useEffect": (e)=>console.log("Audio play blocked", e)
+                        }["NotificationsDropdown.useEffect"]);
+                        // Show Popup
+                        setLatestAlert(activity);
+                        setTimeout({
+                            "NotificationsDropdown.useEffect": ()=>setLatestAlert(null)
+                        }["NotificationsDropdown.useEffect"], 1000);
+                        setNotifications({
+                            "NotificationsDropdown.useEffect": (prev)=>[
+                                    activity,
+                                    ...prev
+                                ].slice(0, 15)
+                        }["NotificationsDropdown.useEffect"]);
+                        setUnreadCount({
+                            "NotificationsDropdown.useEffect": (prev)=>prev + 1
+                        }["NotificationsDropdown.useEffect"]);
+                    }
+                }
+            }["NotificationsDropdown.useEffect"]);
+            return ({
+                "NotificationsDropdown.useEffect": ()=>socket.disconnect()
+            })["NotificationsDropdown.useEffect"];
+        }
+    }["NotificationsDropdown.useEffect"], [
+        user?.id,
+        muted
+    ]);
+    const [latestAlert, setLatestAlert] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const fetchNotifications = async ()=>{
         setIsLoading(true);
         try {
@@ -806,13 +879,13 @@ function NotificationsDropdown() {
                         className: "w-5 h-5"
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                        lineNumber: 102,
+                        lineNumber: 138,
                         columnNumber: 26
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bell$3e$__["Bell"], {
                         className: "w-5 h-5"
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                        lineNumber: 102,
+                        lineNumber: 138,
                         columnNumber: 60
                     }, this),
                     !muted && unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -820,14 +893,77 @@ function NotificationsDropdown() {
                         children: unreadCount > 9 ? "9+" : unreadCount
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                        lineNumber: 104,
+                        lineNumber: 140,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                lineNumber: 97,
+                lineNumber: 133,
                 columnNumber: 13
+            }, this),
+            latestAlert && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed top-20 right-4 md:right-12 z-[100] animate-in slide-in-from-top-4 fade-in duration-300",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "bg-white border border-gray-100 rounded-2xl shadow-2xl p-4 flex items-center gap-4 min-w-[300px] border-l-4 border-l-blue-600",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0",
+                            children: TYPE_MAP[latestAlert.type]?.icon ? (()=>{
+                                const Icon = TYPE_MAP[latestAlert.type].icon;
+                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
+                                    className: "w-5 h-5"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                    lineNumber: 154,
+                                    columnNumber: 44
+                                }, this);
+                            })() : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bell$3e$__["Bell"], {
+                                className: "w-5 h-5"
+                            }, void 0, false, {
+                                fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                lineNumber: 157,
+                                columnNumber: 33
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                            lineNumber: 150,
+                            columnNumber: 25
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-xs font-black text-blue-600 uppercase tracking-widest leading-none mb-1",
+                                    children: "New Notification"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                    lineNumber: 161,
+                                    columnNumber: 29
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-sm font-bold text-gray-900 line-clamp-1",
+                                    children: latestAlert.title
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                                    lineNumber: 162,
+                                    columnNumber: 29
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                            lineNumber: 160,
+                            columnNumber: 25
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                    lineNumber: 149,
+                    columnNumber: 21
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
+                lineNumber: 148,
+                columnNumber: 17
             }, this),
             isOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute right-0 mt-3 w-96 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-200",
@@ -843,7 +979,7 @@ function NotificationsDropdown() {
                                         children: "Notifications"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                        lineNumber: 115,
+                                        lineNumber: 173,
                                         columnNumber: 29
                                     }, this),
                                     !muted && unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -851,13 +987,13 @@ function NotificationsDropdown() {
                                         children: unreadCount
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                        lineNumber: 117,
+                                        lineNumber: 175,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                lineNumber: 114,
+                                lineNumber: 172,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -873,7 +1009,7 @@ function NotificationsDropdown() {
                                                     className: "w-3.5 h-3.5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                    lineNumber: 126,
+                                                    lineNumber: 184,
                                                     columnNumber: 44
                                                 }, this),
                                                 " Muted"
@@ -882,12 +1018,12 @@ function NotificationsDropdown() {
                                             className: "w-3.5 h-3.5"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                            lineNumber: 126,
+                                            lineNumber: 184,
                                             columnNumber: 91
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                        lineNumber: 121,
+                                        lineNumber: 179,
                                         columnNumber: 29
                                     }, this),
                                     unreadCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -896,19 +1032,19 @@ function NotificationsDropdown() {
                                         children: "Mark all read"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                        lineNumber: 129,
+                                        lineNumber: 187,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                lineNumber: 120,
+                                lineNumber: 178,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                        lineNumber: 113,
+                        lineNumber: 171,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -926,7 +1062,7 @@ function NotificationsDropdown() {
                                             className: "w-9 h-9 rounded-lg bg-gray-100 flex-shrink-0"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                            lineNumber: 142,
+                                            lineNumber: 200,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -936,31 +1072,31 @@ function NotificationsDropdown() {
                                                     className: "h-3 bg-gray-200 rounded w-2/3"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                    lineNumber: 144,
+                                                    lineNumber: 202,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "h-2.5 bg-gray-100 rounded w-full"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                    lineNumber: 145,
+                                                    lineNumber: 203,
                                                     columnNumber: 45
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                            lineNumber: 143,
+                                            lineNumber: 201,
                                             columnNumber: 41
                                         }, this)
                                     ]
                                 }, i, true, {
                                     fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                    lineNumber: 141,
+                                    lineNumber: 199,
                                     columnNumber: 37
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                            lineNumber: 139,
+                            lineNumber: 197,
                             columnNumber: 29
                         }, this) : notifications.length > 0 ? notifications.map((notif)=>{
                             const meta = TYPE_MAP[notif.type] || TYPE_MAP.SYSTEM_INFO;
@@ -975,12 +1111,12 @@ function NotificationsDropdown() {
                                             className: "w-4 h-4"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                            lineNumber: 161,
+                                            lineNumber: 219,
                                             columnNumber: 45
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                        lineNumber: 160,
+                                        lineNumber: 218,
                                         columnNumber: 41
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -994,7 +1130,7 @@ function NotificationsDropdown() {
                                                         children: notif.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                        lineNumber: 165,
+                                                        lineNumber: 223,
                                                         columnNumber: 49
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1004,7 +1140,7 @@ function NotificationsDropdown() {
                                                                 className: "w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                                lineNumber: 167,
+                                                                lineNumber: 225,
                                                                 columnNumber: 71
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1014,24 +1150,24 @@ function NotificationsDropdown() {
                                                                     className: "w-3.5 h-3.5"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                                    lineNumber: 172,
+                                                                    lineNumber: 230,
                                                                     columnNumber: 57
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                                lineNumber: 168,
+                                                                lineNumber: 226,
                                                                 columnNumber: 53
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                        lineNumber: 166,
+                                                        lineNumber: 224,
                                                         columnNumber: 49
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                lineNumber: 164,
+                                                lineNumber: 222,
                                                 columnNumber: 45
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1039,7 +1175,7 @@ function NotificationsDropdown() {
                                                 children: notif.description
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                lineNumber: 176,
+                                                lineNumber: 234,
                                                 columnNumber: 45
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1047,19 +1183,19 @@ function NotificationsDropdown() {
                                                 children: timeAgo(notif.createdAt)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                                lineNumber: 177,
+                                                lineNumber: 235,
                                                 columnNumber: 45
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                        lineNumber: 163,
+                                        lineNumber: 221,
                                         columnNumber: 41
                                     }, this)
                                 ]
                             }, notif.id, true, {
                                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                lineNumber: 155,
+                                lineNumber: 213,
                                 columnNumber: 37
                             }, this);
                         }) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1069,7 +1205,7 @@ function NotificationsDropdown() {
                                     className: "w-8 h-8 text-gray-200 mx-auto mb-2"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                    lineNumber: 184,
+                                    lineNumber: 242,
                                     columnNumber: 33
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1077,18 +1213,18 @@ function NotificationsDropdown() {
                                     children: "You're all caught up!"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                    lineNumber: 185,
+                                    lineNumber: 243,
                                     columnNumber: 33
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                            lineNumber: 183,
+                            lineNumber: 241,
                             columnNumber: 29
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                        lineNumber: 137,
+                        lineNumber: 195,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1103,34 +1239,38 @@ function NotificationsDropdown() {
                                     className: "w-4 h-4"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                                    lineNumber: 197,
+                                    lineNumber: 255,
                                     columnNumber: 52
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                            lineNumber: 192,
+                            lineNumber: 250,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                        lineNumber: 191,
+                        lineNumber: 249,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-                lineNumber: 111,
+                lineNumber: 169,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/components/brand/NotificationsDropdown.js",
-        lineNumber: 96,
+        lineNumber: 132,
         columnNumber: 9
     }, this);
 }
-_s(NotificationsDropdown, "zT1JY+pnQPcmGWT30bO4z30RU+w=");
+_s(NotificationsDropdown, "hVF0MwTRnlj8rc6vBKkYcRJobTg=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$store$2f$auth$2d$store$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthStore"]
+    ];
+});
 _c = NotificationsDropdown;
 var _c;
 __turbopack_context__.k.register(_c, "NotificationsDropdown");

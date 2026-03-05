@@ -23,11 +23,13 @@ import {
     CheckCircle2
 } from "lucide-react";
 import { useAuthStore } from "@repo/store";
+import CloudinaryUpload from "../../../../components/brand/CloudinaryUpload";
 
 export default function InfluencerProfileSettings() {
-    const { user } = useAuthStore();
+    const { user, login } = useAuthStore();
     const [activeTab, setActiveTab] = useState("Profile Information");
     const [isSaved, setIsSaved] = useState(false);
+    const [isUpdatingPic, setIsUpdatingPic] = useState(false);
     const [mounted, setMounted] = useState(false);
 
     // Form States
@@ -56,7 +58,41 @@ export default function InfluencerProfileSettings() {
 
     useEffect(() => {
         setMounted(true);
-    }, []);
+        if (user) {
+            setProfileData({
+                fullName: user.fullname || "",
+                email: user.email || "",
+                phone: user.influencerProfile?.phone || "",
+                website: user.influencerProfile?.website || "",
+                category: user.influencerProfile?.category || "Lifestyle",
+                location: user.influencerProfile?.location || "",
+                bio: user.influencerProfile?.bio || ""
+            });
+        }
+    }, [user]);
+
+    const handleProfilePicUpdate = async (info) => {
+        setIsUpdatingPic(true);
+        try {
+            const res = await fetch('/api/influencer/profile/pic', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ profilePic: info.secure_url })
+            });
+
+            if (res.ok) {
+                const meRes = await fetch('/api/auth/me');
+                const meData = await meRes.json();
+                if (meData.user) {
+                    login(meData.user);
+                }
+            }
+        } catch (error) {
+            console.error("Failed to update profile pic", error);
+        } finally {
+            setIsUpdatingPic(false);
+        }
+    };
 
     const addPlatform = () => {
         const newId = socialPlatforms.length > 0 ? Math.max(...socialPlatforms.map(p => p.id)) + 1 : 1;
@@ -71,10 +107,34 @@ export default function InfluencerProfileSettings() {
         setSocialPlatforms(socialPlatforms.map(p => p.id === id ? { ...p, [field]: value } : p));
     };
 
-    const handleSave = (e) => {
+    const handleSave = async (e) => {
         e.preventDefault();
-        setIsSaved(true);
-        setTimeout(() => setIsSaved(false), 3000);
+        try {
+            const updatePayload = {
+                ...profileData,
+                platforms: JSON.stringify(socialPlatforms)
+            };
+            const res = await fetch('/api/influencer/profile', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatePayload)
+            });
+
+            if (res.ok) {
+                setIsSaved(true);
+                setTimeout(() => setIsSaved(false), 3000);
+                // Optionally update auth store if fullname changed
+                if (profileData.fullName !== user.fullname) {
+                    const meRes = await fetch('/api/auth/me');
+                    const meData = await meRes.json();
+                    if (meData.user) login(meData.user);
+                }
+            } else {
+                alert("Failed to save profile.");
+            }
+        } catch (error) {
+            console.error("Save error:", error);
+        }
     };
 
     if (!mounted) return null;
@@ -123,21 +183,40 @@ export default function InfluencerProfileSettings() {
                                 {/* Profile Pic Upload (Matching Brand Side Style) */}
                                 <div className="flex items-center gap-6 pb-6 border-b border-gray-100">
                                     <div className="relative w-24 h-24 rounded-full bg-blue-100 border-4 border-white shadow-md flex justify-center items-center text-blue-600 text-2xl font-bold flex-shrink-0 group overflow-hidden">
-                                        <img src="https://i.pravatar.cc/150?u=sarah" alt="Profile" className="w-full h-full object-cover" />
+                                        {user?.profilePic ? (
+                                            <img src={user.profilePic} alt="Profile" className="w-full h-full object-cover" />
+                                        ) : (
+                                            user?.fullname?.charAt(0).toUpperCase() || "I"
+                                        )}
                                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
                                             <Camera className="w-6 h-6 text-white" />
+                                            <div className="absolute inset-0 opacity-0 cursor-pointer">
+                                                <CloudinaryUpload
+                                                    onUploadSuccess={handleProfilePicUpdate}
+                                                    buttonText=""
+                                                    folder="influencer_profiles"
+                                                    className="w-full h-full"
+                                                />
+                                            </div>
                                         </div>
+                                        {isUpdatingPic && (
+                                            <div className="absolute inset-0 bg-white/60 flex items-center justify-center">
+                                                <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent animate-spin rounded-full"></div>
+                                            </div>
+                                        )}
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-gray-900">Profile Picture</h3>
                                         <p className="text-sm text-gray-500 mt-1 mb-3">Recommended size: 400x400px, under 2MB.</p>
                                         <div className="flex gap-3">
-                                            <button type="button" className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors">
-                                                Upload New Image
-                                            </button>
-                                            <button type="button" className="px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                                                Remove
-                                            </button>
+                                            <div className="relative">
+                                                <CloudinaryUpload
+                                                    onUploadSuccess={handleProfilePicUpdate}
+                                                    buttonText="Upload New Image"
+                                                    folder="influencer_profiles"
+                                                    className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors border-none"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

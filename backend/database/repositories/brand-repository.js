@@ -80,5 +80,34 @@ export const BrandRepository = {
             pendingApprovals: requests || 0, // In this UI context, same as pending requests
             influencersFound: influencersFound || 0
         };
+    },
+
+    async search(filters) {
+        const where = {};
+        if (filters.industry && filters.industry !== "All Industries") {
+            where.industry = {
+                contains: filters.industry,
+                mode: 'insensitive'
+            };
+        }
+
+        if (filters.query) {
+            where.OR = [
+                { brandName: { contains: filters.query, mode: 'insensitive' } },
+                { description: { contains: filters.query, mode: 'insensitive' } }
+            ];
+        }
+
+        return prisma.brandProfile.findMany({
+            where,
+            include: {
+                user: { select: { fullname: true, profilePic: true } },
+                _count: {
+                    select: {
+                        campaigns: true
+                    }
+                }
+            }
+        });
     }
 };

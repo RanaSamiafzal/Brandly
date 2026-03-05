@@ -46,5 +46,12 @@ export const BrandService = {
      */
     async getDashboardStats(brandId) {
         return BrandRepository.getDashboardStats(brandId);
+    },
+
+    /**
+     * Search brands based on filters.
+     */
+    async searchBrands(filters) {
+        return BrandRepository.search(filters);
     }
 };

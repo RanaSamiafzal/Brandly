@@ -7,29 +7,37 @@ export const RequestService = {
      * Create a collaboration request and log the activity.
      */
     async sendRequest(data) {
-        const request = await RequestRepository.create({
-            campaignId: data.campaignId,
-            senderId: data.senderId,
-            receiverId: data.receiverId,
-            proposedBudget: data.proposedBudget,
-            note: data.note,
-            status: "PENDING"
-        });
+        try {
+            const request = await RequestRepository.create({
+                campaignId: data.campaignId,
+                senderId: data.senderId,
+                receiverId: data.receiverId,
+                proposedBudget: data.proposedBudget,
+                note: data.note,
+                status: "PENDING"
+            });
 
-        // Fetch campaign to get title for notification
-        const campaign = await CampaignRepository.findById(data.campaignId);
+            // Fetch campaign to get title for notification
+            const campaign = await CampaignRepository.findById(data.campaignId);
 
-        // Notify Receiver
-        await ActivityService.logActivity({
-            userId: data.receiverId,
-            role: "INFLUENCER",
-            type: "REQUEST_RECEIVED",
-            title: "New Collaboration Request",
-            description: `You have received a new collaboration request for campaign: ${campaign?.title}`,
-            relatedId: request.id
-        });
+            // Notify Receiver
+            await ActivityService.logActivity({
+                userId: data.receiverId,
+                role: "INFLUENCER",
+                type: "REQUEST_RECEIVED",
+                title: "New Collaboration Request",
+                description: `You have received a new collaboration request for campaign: ${campaign?.title}`,
+                relatedId: request.id
+            });
 
-        return request;
+            return request;
+        } catch (error) {
+            // Prisma code P2002 is for unique constraint failed
+            if (error.code === 'P2002') {
+                throw new Error("Invitation already sent to this influencer for this campaign");
+            }
+            throw error;
+        }
     },
 
     /**
@@ -43,6 +51,11 @@ export const RequestService = {
         }
 
         const updatedRequest = await RequestRepository.updateStatus(requestId, status);
+
+        // If accepted, update the campaign status as well
+        if (status === 'ACCEPTED') {
+            await CampaignRepository.updateStatus(request.campaignId, 'IN_PROGRESS');
+        }
 
         // Notify the original sender about the decision
         const notifyTargetId = (responderId === request.receiverId) ? request.senderId : request.receiverId;
@@ -64,5 +77,12 @@ export const RequestService = {
      */
     async getBrandRequests(brandId) {
         return RequestRepository.getBrandRequests(brandId);
+    },
+
+    /**
+     * Get all requests involving a specific influencer.
+     */
+    async getInfluencerRequests(userId) {
+        return RequestRepository.getInfluencerRequests(userId);
     }
 };

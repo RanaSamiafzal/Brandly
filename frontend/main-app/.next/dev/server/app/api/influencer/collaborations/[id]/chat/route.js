@@ -1,0 +1,12 @@
+var R=require("../../../../../../chunks/[turbopack]_runtime.js")("server/app/api/influencer/collaborations/[id]/chat/route.js")
+R.c("server/chunks/backend_8fa07835._.js")
+R.c("server/chunks/node_modules_next_3e76395e._.js")
+R.c("server/chunks/node_modules_postal-mime_src_a014ae66._.js")
+R.c("server/chunks/node_modules_svix_dist_56996d0e._.js")
+R.c("server/chunks/node_modules_mime-db_f53cdd2e._.js")
+R.c("server/chunks/node_modules_ws_3dcc3101._.js")
+R.c("server/chunks/[root-of-the-server]__f6a1c359._.js")
+R.c("server/chunks/[root-of-the-server]__14be67a3._.js")
+R.c("server/chunks/3a2fd_server_app_api_influencer_collaborations_[id]_chat_route_actions_32efb0f0.js")
+R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/frontend/main-app/app/api/influencer/collaborations/[id]/chat/route.js [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/frontend/main-app/app/api/influencer/collaborations/[id]/chat/route.js [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

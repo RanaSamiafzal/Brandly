@@ -31,76 +31,14 @@ export default function MyCollaborationsPage() {
     const fetchCollaborations = async () => {
         setIsLoading(true);
         try {
-            // Mock data for a "complete" feel
-            setTimeout(() => {
-                setCollaborations([
-                    {
-                        id: "c1",
-                        brandName: "FashionHub",
-                        brandLogo: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=200&h=200&fit=crop",
-                        campaignTitle: "Summer Collection Launch",
-                        status: "ongoing",
-                        startDate: "2/1/2024",
-                        endDate: "3/31/2024",
-                        amount: 800,
-                        paymentStatus: "escrowed",
-                        deliverablesTotal: 6,
-                        deliverablesCompleted: 4,
-                        nextMilestone: "Instagram Reel",
-                        deadline: "In 2 days",
-                        priority: "high"
-                    },
-                    {
-                        id: "c2",
-                        brandName: "TechGear Pro",
-                        brandLogo: "https://images.unsplash.com/photo-1468436139062-f60a7444f84e?w=200&h=200&fit=crop",
-                        campaignTitle: "Product Review Series",
-                        status: "ongoing",
-                        startDate: "2/15/2024",
-                        endDate: "4/15/2024",
-                        amount: 1200,
-                        paymentStatus: "pending",
-                        deliverablesTotal: 3,
-                        deliverablesCompleted: 1,
-                        nextMilestone: "Unboxing Video",
-                        deadline: "In 5 days",
-                        priority: "medium"
-                    },
-                    {
-                        id: "c3",
-                        brandName: "WellnessLife",
-                        brandLogo: "https://images.unsplash.com/photo-1545208393-596371BA9a3e?w=200&h=200&fit=crop",
-                        campaignTitle: "Wellness Challenge",
-                        status: "completed",
-                        startDate: "1/1/2024",
-                        endDate: "2/15/2024",
-                        amount: 600,
-                        paymentStatus: "paid",
-                        deliverablesTotal: 10,
-                        deliverablesCompleted: 10,
-                        rating: 4.8,
-                        earningStatus: "Received"
-                    },
-                    {
-                        id: "c4",
-                        brandName: "GourmetBox",
-                        brandLogo: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=200&h=200&fit=crop",
-                        campaignTitle: "Meal Kit Review",
-                        status: "pending",
-                        startDate: "3/10/2024",
-                        endDate: "4/20/2024",
-                        amount: 450,
-                        paymentStatus: "not_started",
-                        deliverablesTotal: 2,
-                        deliverablesCompleted: 0,
-                        nextMilestone: "Contract Signing",
-                        deadline: "Await brand",
-                    }
-                ]);
-                setIsLoading(false);
-            }, 800);
+            const res = await fetch('/api/influencer/collaborations');
+            if (res.ok) {
+                const data = await res.json();
+                setCollaborations(data.collaborations);
+            }
         } catch (error) {
             console.error("Failed to fetch collaborations", error);
+        } finally {
             setIsLoading(false);
         }
     };

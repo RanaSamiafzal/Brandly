@@ -1,0 +1,3 @@
+{
+  "/api/influencer/collaborations/[id]/tasks/route": "app/api/influencer/collaborations/[id]/tasks/route.js"
+}

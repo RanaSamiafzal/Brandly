@@ -157,7 +157,7 @@ function Collaborations() {
         },
         {
             label: "Active",
-            value: campaigns.filter((c)=>c.status === "Active").length.toString(),
+            value: campaigns.filter((c)=>c.status === "Active" || c.status === "In_progress").length.toString(),
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"],
             color: "text-green-500",
             bg: "bg-green-50"
@@ -177,7 +177,7 @@ function Collaborations() {
             bg: "bg-gray-50"
         }
     ];
-    const filteredCampaigns = campaigns.filter((c)=>activeTab === "Active" ? c.status === "Active" : activeTab === "Pending" ? c.status === "Pending" || c.status === "Draft" : c.status === "Completed");
+    const filteredCampaigns = campaigns.filter((c)=>activeTab === "Active" ? c.status === "Active" || c.status === "In_progress" : activeTab === "Pending" ? c.status === "Pending" || c.status === "Draft" : c.status === "Completed");
     if (!mounted) return null;
     if (isLoading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -434,8 +434,8 @@ function Collaborations() {
                                                                         className: "flex flex-wrap items-center gap-2 mb-1",
                                                                         children: [
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: `text-xs font-bold px-2.5 py-0.5 rounded-full ${campaign.status === "Active" ? "bg-green-100 text-green-700" : campaign.status === "Pending" || campaign.status === "Draft" ? "bg-yellow-100 text-yellow-700" : "bg-gray-100 text-gray-700"}`,
-                                                                                children: campaign.status
+                                                                                className: `text-xs font-bold px-2.5 py-0.5 rounded-full ${campaign.status === "Active" || campaign.status === "In_progress" ? "bg-green-100 text-green-700" : campaign.status === "Pending" || campaign.status === "Draft" ? "bg-yellow-100 text-yellow-700" : "bg-gray-100 text-gray-700"}`,
+                                                                                children: campaign.status.replace('_', ' ')
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/page.js",
                                                                                 lineNumber: 237,
