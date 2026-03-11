@@ -10,7 +10,11 @@ export const RequestRepository = {
     async findById(id) {
         return prisma.collaborationRequest.findUnique({
             where: { id },
-            include: { sender: true, receiver: true, campaign: true }
+            include: {
+                sender: { include: { influencerProfile: true } },
+                receiver: true,
+                campaign: true
+            }
         });
     },
 
@@ -22,7 +26,8 @@ export const RequestRepository = {
             include: {
                 sender: { include: { influencerProfile: true, brandProfile: true } },
                 receiver: { include: { influencerProfile: true, brandProfile: true } },
-                campaign: true
+                campaign: true,
+                tasks: { select: { status: true } }
             },
             orderBy: { createdAt: 'desc' }
         });
@@ -39,7 +44,8 @@ export const RequestRepository = {
             include: {
                 campaign: { include: { brand: true } },
                 sender: true,
-                receiver: true
+                receiver: true,
+                tasks: { select: { status: true } }
             },
             orderBy: { createdAt: 'desc' }
         });

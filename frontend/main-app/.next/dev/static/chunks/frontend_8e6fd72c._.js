@@ -508,11 +508,6 @@ function BrandSidebar() {
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"]
         },
         {
-            name: "Create Campaign",
-            href: "/brand/create-campaign",
-            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlusSquare$3e$__["PlusSquare"]
-        },
-        {
             name: "Profile Settings",
             href: "/brand/profile-settings",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$settings$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Settings$3e$__["Settings"]
@@ -533,7 +528,7 @@ function BrandSidebar() {
                             children: "B"
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                            lineNumber: 45,
+                            lineNumber: 44,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -541,18 +536,18 @@ function BrandSidebar() {
                             children: "Brandly"
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                            lineNumber: 48,
+                            lineNumber: 47,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                    lineNumber: 44,
+                    lineNumber: 43,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                lineNumber: 43,
+                lineNumber: 42,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -569,20 +564,20 @@ function BrandSidebar() {
                                 className: `w-5 h-5 ${isActive ? "text-blue-600" : "text-gray-400"}`
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                                lineNumber: 68,
+                                lineNumber: 67,
                                 columnNumber: 29
                             }, this),
                             link.name
                         ]
                     }, link.name, true, {
                         fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                        lineNumber: 59,
+                        lineNumber: 58,
                         columnNumber: 25
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                lineNumber: 53,
+                lineNumber: 52,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -607,25 +602,25 @@ function BrandSidebar() {
                             className: "w-5 h-5 text-red-500"
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                            lineNumber: 91,
+                            lineNumber: 90,
                             columnNumber: 21
                         }, this),
                         "Logout"
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                    lineNumber: 77,
+                    lineNumber: 76,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-                lineNumber: 76,
+                lineNumber: 75,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/components/brand/BrandSidebar.js",
-        lineNumber: 41,
+        lineNumber: 40,
         columnNumber: 9
     }, this);
 }
@@ -1426,6 +1421,7 @@ __turbopack_context__.s([
     "default",
     ()=>BrandHeader
 ]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$store$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/frontend/shared/store/index.js [app-client] (ecmascript) <locals>");
@@ -1438,9 +1434,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$main$2d$app$2f$c
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$main$2d$app$2f$components$2f$brand$2f$CloudinaryUpload$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/main-app/components/brand/CloudinaryUpload.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$socket$2e$io$2d$client$2f$build$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/socket.io-client/build/esm/index.js [app-client] (ecmascript) <locals>");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -1455,6 +1453,7 @@ function BrandHeader() {
     const [isPopupOpen, setIsPopupOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isUpdating, setIsUpdating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isOnline, setIsOnline] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const popupRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const handleLogoUpdate = async (info)=>{
         setIsUpdating(true);
@@ -1482,6 +1481,32 @@ function BrandHeader() {
             setIsUpdating(false);
         }
     };
+    // Presence tracking via Socket
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "BrandHeader.useEffect": ()=>{
+            if (!user?.id) return;
+            const socket = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$socket$2e$io$2d$client$2f$build$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["io"])(("TURBOPACK compile-time value", "http://localhost:3001") || "http://localhost:3001");
+            socket.emit('join_user', user.id);
+            // Check initial status
+            socket.emit('check_online', user.id, {
+                "BrandHeader.useEffect": (res)=>{
+                    if (res.online) setIsOnline(true);
+                }
+            }["BrandHeader.useEffect"]);
+            socket.on('user_status_change', {
+                "BrandHeader.useEffect": (data)=>{
+                    if (data.userId === user.id) {
+                        setIsOnline(data.status === 'online');
+                    }
+                }
+            }["BrandHeader.useEffect"]);
+            return ({
+                "BrandHeader.useEffect": ()=>socket.disconnect()
+            })["BrandHeader.useEffect"];
+        }
+    }["BrandHeader.useEffect"], [
+        user?.id
+    ]);
     // Close popup on click outside
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "BrandHeader.useEffect": ()=>{
@@ -1508,7 +1533,7 @@ function BrandHeader() {
                 className: "flex items-center gap-4"
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                lineNumber: 61,
+                lineNumber: 85,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1516,7 +1541,7 @@ function BrandHeader() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$main$2d$app$2f$components$2f$brand$2f$NotificationsDropdown$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                        lineNumber: 66,
+                        lineNumber: 90,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1538,7 +1563,7 @@ function BrandHeader() {
                                                         className: "w-full h-full object-cover"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                        lineNumber: 73,
+                                                        lineNumber: 97,
                                                         columnNumber: 37
                                                     }, this) : initial,
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1548,7 +1573,7 @@ function BrandHeader() {
                                                                 className: "w-4 h-4 text-white"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                lineNumber: 79,
+                                                                lineNumber: 103,
                                                                 columnNumber: 37
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1560,24 +1585,24 @@ function BrandHeader() {
                                                                     className: "w-full h-full"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                    lineNumber: 81,
+                                                                    lineNumber: 105,
                                                                     columnNumber: 41
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                lineNumber: 80,
+                                                                lineNumber: 104,
                                                                 columnNumber: 37
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                        lineNumber: 78,
+                                                        lineNumber: 102,
                                                         columnNumber: 33
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                lineNumber: 71,
+                                                lineNumber: 95,
                                                 columnNumber: 29
                                             }, this),
                                             isUpdating && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1586,18 +1611,25 @@ function BrandHeader() {
                                                     className: "w-4 h-4 border-2 border-blue-600 border-t-transparent animate-spin rounded-full"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                    lineNumber: 92,
+                                                    lineNumber: 116,
                                                     columnNumber: 37
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                lineNumber: 91,
+                                                lineNumber: 115,
+                                                columnNumber: 33
+                                            }, this),
+                                            isOnline && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
+                                                lineNumber: 121,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                        lineNumber: 70,
+                                        lineNumber: 94,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1612,168 +1644,241 @@ function BrandHeader() {
                                                         children: companyName
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                        lineNumber: 102,
+                                                        lineNumber: 130,
                                                         columnNumber: 33
                                                     }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[10px] font-medium text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded uppercase tracking-wider",
-                                                        children: "Brand"
-                                                    }, void 0, false, {
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex items-center gap-2",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-[10px] font-medium text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded uppercase tracking-wider",
+                                                                children: "Brand"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
+                                                                lineNumber: 132,
+                                                                columnNumber: 37
+                                                            }, this),
+                                                            isPopupOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-[10px] text-gray-400 font-medium truncate max-w-[100px] animate-in fade-in slide-in-from-left-1 duration-200",
+                                                                children: userEmail
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
+                                                                lineNumber: 133,
+                                                                columnNumber: 53
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                        lineNumber: 103,
+                                                        lineNumber: 131,
                                                         columnNumber: 33
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                lineNumber: 101,
+                                                lineNumber: 129,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                                 className: `w-3 h-3 text-gray-400 transition-transform ${isPopupOpen ? 'rotate-180' : ''}`
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                lineNumber: 105,
+                                                lineNumber: 136,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                        lineNumber: 97,
+                                        lineNumber: 125,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                lineNumber: 69,
+                                lineNumber: 93,
                                 columnNumber: 21
                             }, this),
                             isPopupOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute right-0 mt-3 w-72 bg-white border border-gray-200 rounded-2xl shadow-2xl z-50 animate-in fade-in slide-in-from-right-2 duration-200 overflow-hidden",
+                                className: "absolute right-0 mt-3 w-72 bg-white border border-gray-200 rounded-3xl shadow-2xl z-50 animate-in fade-in slide-in-from-right-2 duration-200 overflow-hidden",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "p-5 bg-gradient-to-br from-blue-600 to-blue-700 text-white",
+                                        className: "relative h-24 overflow-hidden",
+                                        children: [
+                                            user?.coverPic ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                src: user.coverPic,
+                                                className: "w-full h-full object-cover",
+                                                alt: "Cover"
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
+                                                lineNumber: 145,
+                                                columnNumber: 37
+                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "w-full h-full bg-gradient-to-br from-blue-600 to-blue-700"
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
+                                                lineNumber: 147,
+                                                columnNumber: 37
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "absolute inset-0 bg-blue-900/40 backdrop-blur-[2px]"
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
+                                                lineNumber: 149,
+                                                columnNumber: 33
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
+                                        lineNumber: 143,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "px-5 pb-5 -mt-10 relative",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex items-center gap-4 mb-4",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "relative group/avatar",
-                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md text-white font-bold flex items-center justify-center text-xl overflow-hidden border-2 border-white/30 shadow-lg",
-                                                            children: profilePic ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                src: profilePic,
-                                                                alt: companyName,
-                                                                className: "w-full h-full object-cover"
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "w-16 h-16 rounded-2xl bg-white text-blue-600 font-bold flex items-center justify-center text-xl overflow-hidden border-4 border-white shadow-xl",
+                                                                children: profilePic ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                                    src: profilePic,
+                                                                    alt: companyName,
+                                                                    className: "w-full h-full object-cover"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
+                                                                    lineNumber: 157,
+                                                                    columnNumber: 49
+                                                                }, this) : initial
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                lineNumber: 117,
-                                                                columnNumber: 49
-                                                            }, this) : initial
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                            lineNumber: 115,
-                                                            columnNumber: 41
-                                                        }, this)
-                                                    }, void 0, false, {
+                                                                lineNumber: 155,
+                                                                columnNumber: 41
+                                                            }, this),
+                                                            isOnline && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "absolute -top-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full animate-pulse"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
+                                                                lineNumber: 163,
+                                                                columnNumber: 45
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                        lineNumber: 114,
+                                                        lineNumber: 154,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex-1 overflow-hidden",
+                                                        className: "flex-1 overflow-hidden pt-6",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "font-bold truncate text-lg leading-tight",
+                                                                className: "font-bold truncate text-lg leading-tight text-gray-900",
                                                                 children: companyName
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                lineNumber: 124,
+                                                                lineNumber: 167,
                                                                 columnNumber: 41
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-xs text-blue-100 truncate opacity-80",
+                                                                className: "text-xs text-blue-600 font-medium truncate opacity-80",
                                                                 children: userEmail
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                lineNumber: 125,
+                                                                lineNumber: 168,
                                                                 columnNumber: 41
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                        lineNumber: 123,
+                                                        lineNumber: 166,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                lineNumber: 113,
+                                                lineNumber: 153,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "grid grid-cols-2 gap-2",
+                                                className: "grid grid-cols-2 gap-2 mb-4",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "bg-white/10 rounded-lg p-2 text-center",
+                                                        className: "bg-blue-50/50 border border-blue-100 rounded-xl p-2 text-center relative group/status",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-[10px] uppercase tracking-wider opacity-60",
+                                                                className: "text-[10px] text-blue-400 uppercase tracking-wider font-bold",
                                                                 children: "Status"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                lineNumber: 130,
+                                                                lineNumber: 173,
                                                                 columnNumber: 41
                                                             }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-xs font-bold",
-                                                                children: "Active"
-                                                            }, void 0, false, {
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex items-center justify-center gap-1.5",
+                                                                children: [
+                                                                    isOnline && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
+                                                                        lineNumber: 175,
+                                                                        columnNumber: 58
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                        className: "text-xs font-bold text-blue-700",
+                                                                        children: isOnline ? 'Active Now' : 'Active'
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
+                                                                        lineNumber: 176,
+                                                                        columnNumber: 45
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                lineNumber: 131,
+                                                                lineNumber: 174,
                                                                 columnNumber: 41
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                        lineNumber: 129,
+                                                        lineNumber: 172,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "bg-white/10 rounded-lg p-2 text-center",
+                                                        className: "bg-gray-50 border border-gray-100 rounded-xl p-2 text-center",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-[10px] uppercase tracking-wider opacity-60",
+                                                                className: "text-[10px] text-gray-400 uppercase tracking-wider font-bold",
                                                                 children: "Role"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                lineNumber: 134,
+                                                                lineNumber: 180,
                                                                 columnNumber: 41
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-xs font-bold",
+                                                                className: "text-xs font-bold text-gray-700",
                                                                 children: "Brand"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                lineNumber: 135,
+                                                                lineNumber: 181,
                                                                 columnNumber: 41
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                        lineNumber: 133,
+                                                        lineNumber: 179,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                lineNumber: 128,
+                                                lineNumber: 171,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                        lineNumber: 112,
+                                        lineNumber: 152,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1792,12 +1897,12 @@ function BrandHeader() {
                                                                 className: "w-4 h-4 text-gray-500 group-hover:text-blue-600"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                lineNumber: 148,
+                                                                lineNumber: 194,
                                                                 columnNumber: 45
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                            lineNumber: 147,
+                                                            lineNumber: 193,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1807,7 +1912,7 @@ function BrandHeader() {
                                                                     children: "Profile Settings"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                    lineNumber: 151,
+                                                                    lineNumber: 197,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1815,19 +1920,19 @@ function BrandHeader() {
                                                                     children: "Manage account details"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                    lineNumber: 152,
+                                                                    lineNumber: 198,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                            lineNumber: 150,
+                                                            lineNumber: 196,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                    lineNumber: 142,
+                                                    lineNumber: 188,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1854,12 +1959,12 @@ function BrandHeader() {
                                                                 className: "w-4 h-4 text-red-500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                lineNumber: 172,
+                                                                lineNumber: 218,
                                                                 columnNumber: 45
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                            lineNumber: 171,
+                                                            lineNumber: 217,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1869,7 +1974,7 @@ function BrandHeader() {
                                                                     children: "Logout"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                    lineNumber: 175,
+                                                                    lineNumber: 221,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1877,58 +1982,58 @@ function BrandHeader() {
                                                                     children: "Sign out of session"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                                    lineNumber: 176,
+                                                                    lineNumber: 222,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                            lineNumber: 174,
+                                                            lineNumber: 220,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                                    lineNumber: 155,
+                                                    lineNumber: 201,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                            lineNumber: 141,
+                                            lineNumber: 187,
                                             columnNumber: 33
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                        lineNumber: 140,
+                                        lineNumber: 186,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                                lineNumber: 111,
+                                lineNumber: 142,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                        lineNumber: 68,
+                        lineNumber: 92,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-                lineNumber: 65,
+                lineNumber: 89,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/components/brand/BrandHeader.js",
-        lineNumber: 60,
+        lineNumber: 84,
         columnNumber: 9
     }, this);
 }
-_s(BrandHeader, "OeuHaytvdT9RU6Rk52QvE1o73pY=", false, function() {
+_s(BrandHeader, "p7oyoqN2EmQuyf2PSvI4yJ0+0Ko=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$store$2f$auth$2d$store$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthStore"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]

@@ -222,87 +222,110 @@ export default function BrandCampaigns() {
                 {/* Campaign List */}
                 <div className="divide-y divide-gray-100">
                     {filteredCampaigns.map((campaign) => (
-                        <div key={campaign.id} className="p-6 hover:bg-gray-50/50 transition-colors group">
-                            <div className="flex gap-5 items-start">
-                                {/* Image */}
-                                <div className="w-40 h-28 rounded-xl overflow-hidden flex-shrink-0 hidden md:block">
-                                    <img src={campaign.image} alt={campaign.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                                </div>
-
-                                {/* Details */}
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex items-start justify-between gap-4">
-                                        <div className="min-w-0">
-                                            <div className="flex flex-wrap items-center gap-2 mb-1">
-                                                <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${campaign.status === "Active" || campaign.status === "In_progress" ? "bg-green-100 text-green-700" :
-                                                    campaign.status === "Pending" || campaign.status === "Draft" ? "bg-yellow-100 text-yellow-700" :
-                                                        "bg-gray-100 text-gray-700"
-                                                    }`}>
-                                                    {campaign.status.replace('_', ' ')}
-                                                </span>
-                                                <span className="text-xs text-gray-400 flex items-center gap-1">
-                                                    <Clock className="w-3 h-3" /> {campaign.deadline}
-                                                </span>
-                                            </div>
-                                            <h3 className="text-base font-bold text-gray-900 truncate">{campaign.name}</h3>
-                                            {campaign.description && (
-                                                <p className="text-sm text-gray-500 mt-1 line-clamp-2">{campaign.description}</p>
-                                            )}
-                                        </div>
-
-                                        {/* Context Menu */}
-                                        <div className="relative flex-shrink-0" ref={openMenuId === campaign.id ? menuRef : null}>
-                                            <button
-                                                onClick={() => setOpenMenuId(openMenuId === campaign.id ? null : campaign.id)}
-                                                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
-                                            >
-                                                <MoreVertical className="w-5 h-5" />
-                                            </button>
-
-                                            {openMenuId === campaign.id && (
-                                                <div className="absolute right-0 top-8 w-40 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-                                                    <button
-                                                        onClick={() => openEdit(campaign)}
-                                                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors text-left"
-                                                    >
-                                                        <Pencil className="w-4 h-4 text-blue-500" />
-                                                        Edit Campaign
-                                                    </button>
-                                                    <Link href={`/brand/ai-match/${campaign.id}`} onClick={() => setOpenMenuId(null)}>
-                                                        <button className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors text-left">
-                                                            <Sparkles className="w-4 h-4 text-purple-500" />
-                                                            AI Match
-                                                        </button>
-                                                    </Link>
-                                                    <div className="border-t border-gray-100" />
-                                                    <button
-                                                        onClick={() => { setDeletingCampaign(campaign); setOpenMenuId(null); }}
-                                                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors text-left"
-                                                    >
-                                                        <Trash2 className="w-4 h-4" />
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            )}
-                                        </div>
+                        <div
+                            key={campaign.id}
+                            onClick={() => router.push(`/brand/ai-match/${campaign.id}`)}
+                            className="block group cursor-pointer"
+                        >
+                            <div className="p-6 hover:bg-gray-50 transition-colors">
+                                <div className="flex gap-6 items-start">
+                                    {/* Image / Logo fallback */}
+                                    <div className="w-40 h-28 rounded-xl overflow-hidden flex-shrink-0 hidden md:flex bg-gray-50 border border-gray-100 items-center justify-center">
+                                        <img
+                                            src={campaign.image || "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=300&fit=crop"}
+                                            alt={campaign.name}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        />
                                     </div>
 
-                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-                                        <div>
-                                            <p className="text-xs text-gray-400 mb-0.5">Budget</p>
-                                            <p className="text-sm font-bold text-gray-900">{campaign.budget}</p>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex items-start justify-between mb-2">
+                                            <div>
+                                                <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors truncate uppercase tracking-tight">
+                                                    {campaign.name}
+                                                </h3>
+                                                <p className="text-sm text-gray-500 font-medium">
+                                                    Created on {new Date(campaign.createdAt).toLocaleDateString()}
+                                                </p>
+                                            </div>
+
+                                            <div className="relative" ref={openMenuId === campaign.id ? menuRef : null}>
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setOpenMenuId(openMenuId === campaign.id ? null : campaign.id);
+                                                    }}
+                                                    className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+                                                >
+                                                    <MoreVertical className="w-5 h-5" />
+                                                </button>
+
+                                                {openMenuId === campaign.id && (
+                                                    <div className="absolute right-0 top-8 w-48 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                router.push(`/brand/ai-match/${campaign.id}`);
+                                                                setOpenMenuId(null);
+                                                            }}
+                                                            className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors text-left"
+                                                        >
+                                                            <Sparkles className="w-4 h-4 text-blue-600" />
+                                                            AI Match Results
+                                                        </button>
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setEditingCampaign(campaign);
+                                                                setEditForm({ ...campaign });
+                                                                setOpenMenuId(null);
+                                                            }}
+                                                            className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors text-left"
+                                                        >
+                                                            <Pencil className="w-4 h-4 text-gray-400" />
+                                                            Edit Campaign
+                                                        </button>
+                                                        <div className="border-t border-gray-50" />
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setDeletingCampaign(campaign);
+                                                                setOpenMenuId(null);
+                                                            }}
+                                                            className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors text-left font-medium"
+                                                        >
+                                                            <Trash2 className="w-4 h-4" />
+                                                            Delete Campaign
+                                                        </button>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p className="text-xs text-gray-400 mb-0.5">Target</p>
-                                            <p className="text-sm font-bold text-gray-900 capitalize truncate">
-                                                {campaign.targetCategory?.join(", ") || "Any"}
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p className="text-xs text-gray-400 mb-0.5">Platforms</p>
-                                            <p className="text-sm font-bold text-gray-900 capitalize truncate">
-                                                {campaign.targetPlatform?.join(", ") || "Any"}
-                                            </p>
+
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-4 border-t border-gray-50">
+                                            <div className="bg-gray-50/50 rounded-lg p-3 border border-gray-100/50">
+                                                <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1 leading-none">Status</p>
+                                                <div className="flex items-center gap-2">
+                                                    <div className={`w-2 h-2 rounded-full ${campaign.status === 'Active' ? 'bg-green-500' : 'bg-amber-500'}`} />
+                                                    <span className="text-xs font-bold text-gray-700">{campaign.status}</span>
+                                                </div>
+                                            </div>
+                                            <div className="bg-gray-50/50 rounded-lg p-3 border border-gray-100/50">
+                                                <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1 leading-none">Target</p>
+                                                <p className="text-xs font-bold text-gray-700 truncate capitalize">
+                                                    {Array.isArray(campaign.targetCategory) ? campaign.targetCategory.join(", ") : (campaign.targetCategory || "General")}
+                                                </p>
+                                            </div>
+                                            <div className="bg-gray-50/50 rounded-lg p-3 border border-gray-100/50">
+                                                <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1 leading-none">Platforms</p>
+                                                <p className="text-xs font-bold text-gray-700 truncate capitalize">
+                                                    {Array.isArray(campaign.targetPlatform) ? campaign.targetPlatform.join(", ") : (campaign.targetPlatform || "All")}
+                                                </p>
+                                            </div>
+                                            <div className="bg-gray-50/50 rounded-lg p-3 border border-gray-100/50">
+                                                <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1 leading-none">Budget</p>
+                                                <p className="text-xs font-bold text-blue-600">{campaign.budget}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

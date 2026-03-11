@@ -17,16 +17,34 @@ import {
     MessageSquare
 } from "lucide-react";
 import Link from "next/link";
+import { io } from "socket.io-client";
 import ApplyModal from "../../../../components/influencer/ApplyModal";
 
 export default function SearchBrandsPage() {
     const [brands, setBrands] = useState([]);
+    const [onlineUsers, setOnlineUsers] = useState(new Set());
     const [isLoading, setIsLoading] = useState(true);
     const [mounted, setMounted] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [showFilters, setShowFilters] = useState(false);
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [toast, setToast] = useState(null);
+
+    // Socket for presence
+    useEffect(() => {
+        const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001");
+
+        socket.on('user_status_change', (data) => {
+            setOnlineUsers(prev => {
+                const next = new Set(prev);
+                if (data.status === 'online') next.add(data.userId);
+                else next.delete(data.userId);
+                return next;
+            });
+        });
+
+        return () => socket.disconnect();
+    }, []);
 
     useEffect(() => {
         setMounted(true);
@@ -45,6 +63,7 @@ export default function SearchBrandsPage() {
                 const data = await response.json();
                 const formattedBrands = data.brands.map(b => ({
                     id: b.id,
+                    userId: b.userId,
                     name: b.brandName,
                     logo: b.logo || "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=400&fit=crop",
                     description: b.description || "No description provided",
@@ -170,12 +189,17 @@ export default function SearchBrandsPage() {
                             style={{ animationDelay: `${idx * 100}ms` }}
                         >
                             <div className="flex justify-between items-start mb-6">
-                                <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-md ring-4 ring-gray-50 group-hover:ring-blue-50 transition-all">
-                                    <img
-                                        src={brand.logo}
-                                        alt={brand.name}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                    />
+                                <div className="relative">
+                                    <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-md ring-4 ring-gray-50 group-hover:ring-blue-50 transition-all">
+                                        <img
+                                            src={brand.logo}
+                                            alt={brand.name}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                        />
+                                    </div>
+                                    {onlineUsers.has(brand.userId) && (
+                                        <span className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-4 border-white animate-pulse shadow-lg" title="Active Now" />
+                                    )}
                                 </div>
                                 <button className="p-2.5 rounded-full hover:bg-red-50 text-gray-300 hover:text-red-500 transition-colors border border-gray-100 hover:border-red-100">
                                     <Heart className="w-5 h-5 transition-transform active:scale-90" />
@@ -183,7 +207,12 @@ export default function SearchBrandsPage() {
                             </div>
 
                             <div className="mb-6">
-                                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{brand.name}</h3>
+                                <div className="flex items-center gap-2 mb-1">
+                                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{brand.name}</h3>
+                                    {onlineUsers.has(brand.userId) && (
+                                        <span className="px-2 py-0.5 bg-green-50 text-green-600 text-[9px] font-black uppercase tracking-tighter rounded-md animate-pulse">Live</span>
+                                    )}
+                                </div>
                                 <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed">
                                     {brand.description}
                                 </p>

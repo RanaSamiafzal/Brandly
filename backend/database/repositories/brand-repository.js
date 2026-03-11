@@ -8,6 +8,20 @@ export const BrandRepository = {
         });
     },
 
+    async findById(id) {
+        return prisma.brandProfile.findUnique({
+            where: { id },
+            include: {
+                user: true,
+                campaigns: {
+                    where: { status: "ACTIVE" },
+                    take: 5,
+                    orderBy: { createdAt: 'desc' }
+                }
+            }
+        });
+    },
+
     async updateProfile(userId, data) {
         // Map frontend "about" to backend "description"
         if (data.about !== undefined) {
@@ -28,7 +42,7 @@ export const BrandRepository = {
             }
         });
 
-        // Use transaction to update both BrandProfile and User (if logo changed)
+        // Use transaction to update both BrandProfile and User (if logo or coverPic changed)
         return prisma.$transaction(async (tx) => {
             const profile = await tx.brandProfile.upsert({
                 where: { userId },
@@ -40,11 +54,15 @@ export const BrandRepository = {
                 }
             });
 
-            // Sync with User table if logo is present
-            if (cleanData.logo) {
+            // Sync with User table if logo or coverPic is present
+            const userUpdateData = {};
+            if (data.logo) userUpdateData.profilePic = data.logo;
+            if (data.coverPic) userUpdateData.coverPic = data.coverPic;
+
+            if (Object.keys(userUpdateData).length > 0) {
                 await tx.user.update({
                     where: { id: userId },
-                    data: { profilePic: cleanData.logo }
+                    data: userUpdateData
                 });
             }
 
@@ -80,6 +98,39 @@ export const BrandRepository = {
             pendingApprovals: requests || 0, // In this UI context, same as pending requests
             influencersFound: influencersFound || 0
         };
+    },
+
+    async getAIRecommendations(brandId) {
+        // Fetch top AI match scores across ALL campaigns for this brand
+        const topMatches = await prisma.matchScore.findMany({
+            where: {
+                campaign: {
+                    brandId
+                }
+            },
+            orderBy: { score: 'desc' },
+            take: 3, // For dashboard widget
+            include: {
+                influencer: { include: { user: true } },
+                campaign: true
+            }
+        });
+
+        // Removing duplicates (if same influencer matched multiple campaigns well)
+        const uniqueInfluencers = [];
+        const seenIds = new Set();
+
+        for (const match of topMatches) {
+            if (!seenIds.has(match.influencerId)) {
+                seenIds.add(match.influencerId);
+                uniqueInfluencers.push({
+                    influencer: match.influencer,
+                    score: match.score,
+                    matchedCampaign: match.campaign.title
+                });
+            }
+        }
+        return uniqueInfluencers;
     },
 
     async search(filters) {

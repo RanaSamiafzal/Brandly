@@ -7,12 +7,12 @@ import {
     Plus,
     ArrowLeft,
     Calendar,
-    Search,
-    Filter,
     ClipboardList,
-    AlertCircle,
+    MessageSquare,
     ChevronRight,
-    MessageSquare
+    Pencil,
+    Trash2,
+    X
 } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -24,10 +24,23 @@ export default function CollaborationTasksPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [mounted, setMounted] = useState(false);
     const [socket, setSocket] = useState(null);
+    const [hasUnreadMessages, setHasUnreadMessages] = useState(false);
+
+    // Add modal
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [newTaskTitle, setNewTaskTitle] = useState("");
     const [newTaskDueDate, setNewTaskDueDate] = useState("");
     const [isSaving, setIsSaving] = useState(false);
+
+    // Edit modal
+    const [editingTask, setEditingTask] = useState(null);
+    const [editTitle, setEditTitle] = useState("");
+    const [editDueDate, setEditDueDate] = useState("");
+    const [isEditSaving, setIsEditSaving] = useState(false);
+
+    // Delete confirm
+    const [deletingTaskId, setDeletingTaskId] = useState(null);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -48,8 +61,7 @@ export default function CollaborationTasksPage() {
                     ...t,
                     status: updatedTask.status.toLowerCase(),
                     title: updatedTask.title,
-                    deadline: updatedTask.deadline ? new Date(updatedTask.deadline).toLocaleDateString() : t.deadline,
-                    priority: updatedTask.priority
+                    deadline: updatedTask.dueDate ? new Date(updatedTask.dueDate).toLocaleDateString() : t.deadline,
                 } : t));
             });
 
@@ -62,8 +74,6 @@ export default function CollaborationTasksPage() {
             return () => newSocket.close();
         });
     }, [params.id]);
-
-    const [hasUnreadMessages, setHasUnreadMessages] = useState(false);
 
     useEffect(() => {
         setStats({
@@ -82,8 +92,8 @@ export default function CollaborationTasksPage() {
                     id: t.id,
                     title: t.title,
                     status: t.status.toLowerCase(),
-                    deadline: t.deadline ? new Date(t.deadline).toLocaleDateString() : "No deadline",
-                    priority: t.priority
+                    deadline: t.dueDate ? new Date(t.dueDate).toLocaleDateString() : "No deadline",
+                    rawDueDate: t.dueDate ? new Date(t.dueDate).toISOString().split('T')[0] : "",
                 }));
                 setTasks(formatted);
             }
@@ -105,6 +115,9 @@ export default function CollaborationTasksPage() {
             taskId: id,
             update: { status: newStatus }
         });
+
+        // Optimistic update
+        setTasks(prev => prev.map(t => t.id === id ? { ...t, status: newStatus.toLowerCase() } : t));
     };
 
     const handleAddTask = async (e) => {
@@ -119,7 +132,6 @@ export default function CollaborationTasksPage() {
                 body: JSON.stringify({
                     title: newTaskTitle,
                     dueDate: newTaskDueDate || undefined,
-                    priority: "Medium"
                 })
             });
 
@@ -130,7 +142,7 @@ export default function CollaborationTasksPage() {
                     title: data.task.title,
                     status: data.task.status.toLowerCase(),
                     deadline: data.task.dueDate ? new Date(data.task.dueDate).toLocaleDateString() : "No deadline",
-                    priority: "Medium"
+                    rawDueDate: data.task.dueDate ? new Date(data.task.dueDate).toISOString().split('T')[0] : "",
                 }]);
                 setIsAddModalOpen(false);
                 setNewTaskTitle("");
@@ -140,6 +152,76 @@ export default function CollaborationTasksPage() {
             console.error("Failed to add task", error);
         } finally {
             setIsSaving(false);
+        }
+    };
+
+    const openEditModal = (task) => {
+        setEditingTask(task);
+        setEditTitle(task.title);
+        setEditDueDate(task.rawDueDate || "");
+    };
+
+    const handleEditTask = async (e) => {
+        e.preventDefault();
+        if (!editTitle.trim() || !editingTask) return;
+
+        setIsEditSaving(true);
+        try {
+            const res = await fetch(`/api/influencer/collaborations/${params.id}/tasks`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    taskId: editingTask.id,
+                    title: editTitle,
+                    dueDate: editDueDate || null,
+                })
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                setTasks(prev => prev.map(t => t.id === editingTask.id ? {
+                    ...t,
+                    title: data.task.title,
+                    deadline: data.task.dueDate ? new Date(data.task.dueDate).toLocaleDateString() : "No deadline",
+                    rawDueDate: data.task.dueDate ? new Date(data.task.dueDate).toISOString().split('T')[0] : "",
+                } : t));
+
+                // Broadcast via socket so brand sees changes live
+                if (socket) {
+                    socket.emit('task_update', {
+                        requestId: params.id,
+                        taskId: editingTask.id,
+                        update: { title: editTitle, dueDate: editDueDate || null }
+                    });
+                }
+                setEditingTask(null);
+            }
+        } catch (error) {
+            console.error("Failed to edit task", error);
+        } finally {
+            setIsEditSaving(false);
+        }
+    };
+
+    const handleDeleteTask = async () => {
+        if (!deletingTaskId) return;
+
+        setIsDeleting(true);
+        try {
+            const res = await fetch(`/api/influencer/collaborations/${params.id}/tasks`, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ taskId: deletingTaskId })
+            });
+
+            if (res.ok) {
+                setTasks(prev => prev.filter(t => t.id !== deletingTaskId));
+                setDeletingTaskId(null);
+            }
+        } catch (error) {
+            console.error("Failed to delete task", error);
+        } finally {
+            setIsDeleting(false);
         }
     };
 
@@ -159,7 +241,7 @@ export default function CollaborationTasksPage() {
                         </div>
                         <div>
                             <h1 className="text-4xl font-black text-gray-900 tracking-tight uppercase">Deliverables Board</h1>
-                            <p className="text-gray-500 font-bold text-xs uppercase tracking-widest mt-1">Campaign: Summer Style 2024 • FashionHub</p>
+                            <p className="text-gray-500 font-bold text-xs uppercase tracking-widest mt-1">Manage your campaign tasks</p>
                         </div>
                     </div>
                 </div>
@@ -181,31 +263,23 @@ export default function CollaborationTasksPage() {
             </div>
 
             {/* Progress Card */}
-            <div className="bg-white border border-gray-100 rounded-[40px] p-10 mb-12 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
-                <div className="space-y-4 flex-1 w-full">
+            <div className="bg-white border border-gray-100 rounded-[40px] p-10 mb-12 shadow-sm">
+                <div className="space-y-4">
                     <div className="flex items-center justify-between">
                         <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Overall Completion</span>
-                        <span className="text-2xl font-black text-gray-900">{Math.round((stats.completed / stats.total) * 100)}%</span>
+                        <span className="text-2xl font-black text-gray-900">
+                            {stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0}%
+                        </span>
                     </div>
                     <div className="h-4 bg-gray-50 rounded-full overflow-hidden p-1 shadow-inner">
                         <div
                             className="h-full bg-blue-600 rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(37,99,235,0.4)]"
-                            style={{ width: `${(stats.completed / stats.total) * 100}%` }}
+                            style={{ width: `${stats.total > 0 ? (stats.completed / stats.total) * 100 : 0}%` }}
                         />
                     </div>
                     <div className="flex gap-6 text-[10px] font-black text-gray-500 uppercase tracking-widest">
                         <span className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-green-500" /> {stats.completed} Done</span>
                         <span className="flex items-center gap-2"><Circle className="w-3.5 h-3.5 text-gray-200" /> {stats.total - stats.completed} Remaining</span>
-                    </div>
-                </div>
-                <div className="flex gap-4 md:pl-12 md:border-l border-gray-100">
-                    <div className="text-center px-8 border-r border-gray-50">
-                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Due Next</p>
-                        <p className="text-lg font-black text-gray-900">Mar 5</p>
-                    </div>
-                    <div className="text-center px-8">
-                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Status</p>
-                        <span className="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-[9px] font-black uppercase tracking-widest">On Track</span>
                     </div>
                 </div>
             </div>
@@ -214,12 +288,19 @@ export default function CollaborationTasksPage() {
             <div className="space-y-4">
                 {isLoading ? (
                     [1, 2, 3].map(i => <div key={i} className="h-20 bg-gray-50 rounded-3xl animate-pulse" />)
+                ) : tasks.length === 0 ? (
+                    <div className="py-24 text-center">
+                        <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <ClipboardList className="w-10 h-10 text-gray-200" />
+                        </div>
+                        <h3 className="text-lg font-black text-gray-900 uppercase">No tasks yet</h3>
+                        <p className="text-gray-500 text-sm mt-2 max-w-xs mx-auto">Tasks assigned to this collaboration will appear here.</p>
+                    </div>
                 ) : (
-                    tasks.map((task, idx) => (
+                    tasks.map((task) => (
                         <div
                             key={task.id}
-                            className={`group bg-white border rounded-[32px] p-6 flex items-center gap-6 transition-all hover:shadow-xl ${task.status === "completed" ? "opacity-60 border-gray-100 bg-gray-50/30" : "border-gray-50 hover:border-blue-100"
-                                }`}
+                            className={`group bg-white border rounded-[32px] p-6 flex items-center gap-6 transition-all hover:shadow-xl ${task.status === "completed" ? "opacity-60 border-gray-100 bg-gray-50/30" : "border-gray-50 hover:border-blue-100"}`}
                         >
                             <button
                                 onClick={() => toggleTask(task.id)}
@@ -239,16 +320,29 @@ export default function CollaborationTasksPage() {
                                     <span className="flex items-center gap-1.5 text-[9px] font-black text-gray-400 uppercase tracking-widest">
                                         <Calendar className="w-3 h-3" /> {task.deadline}
                                     </span>
-                                    <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest ${task.priority === "High" ? "bg-red-50 text-red-500" : task.priority === "Medium" ? "bg-orange-50 text-orange-500" : "bg-gray-100 text-gray-400"
-                                        }`}>
-                                        {task.priority} Priority
+                                    <span className={`flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest ${task.status === "completed" ? "text-green-500" : "text-orange-500"}`}>
+                                        <Clock className="w-3 h-3" /> {task.status === "completed" ? "Done" : "In Progress"}
                                     </span>
                                 </div>
                             </div>
 
-                            <button className="p-3 opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-blue-600">
-                                <ChevronRight className="w-5 h-5" />
-                            </button>
+                            {/* Action Buttons — hover reveal */}
+                            <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button
+                                    onClick={() => openEditModal(task)}
+                                    className="p-2.5 rounded-xl hover:bg-blue-50 text-gray-300 hover:text-blue-600 transition-all"
+                                    title="Edit task"
+                                >
+                                    <Pencil className="w-4 h-4" />
+                                </button>
+                                <button
+                                    onClick={() => setDeletingTaskId(task.id)}
+                                    className="p-2.5 rounded-xl hover:bg-red-50 text-gray-300 hover:text-red-500 transition-all"
+                                    title="Delete task"
+                                >
+                                    <Trash2 className="w-4 h-4" />
+                                </button>
+                            </div>
                         </div>
                     ))
                 )}
@@ -260,6 +354,9 @@ export default function CollaborationTasksPage() {
                     <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl animate-in zoom-in-95 duration-200">
                         <div className="flex justify-between items-center mb-6">
                             <h2 className="text-xl font-black text-gray-900">Add New Task</h2>
+                            <button onClick={() => setIsAddModalOpen(false)} className="p-2 hover:bg-gray-100 rounded-xl transition-all">
+                                <X className="w-5 h-5 text-gray-400" />
+                            </button>
                         </div>
                         <form onSubmit={handleAddTask} className="space-y-4">
                             <div>
@@ -283,22 +380,72 @@ export default function CollaborationTasksPage() {
                                 />
                             </div>
                             <div className="pt-4 flex justify-end gap-3">
-                                <button
-                                    type="button"
-                                    onClick={() => setIsAddModalOpen(false)}
-                                    className="px-6 py-3 font-bold text-gray-500 hover:bg-gray-100 rounded-xl transition-all"
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    disabled={isSaving || !newTaskTitle.trim()}
-                                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md active:scale-95 disabled:opacity-50"
-                                >
+                                <button type="button" onClick={() => setIsAddModalOpen(false)} className="px-6 py-3 font-bold text-gray-500 hover:bg-gray-100 rounded-xl transition-all">Cancel</button>
+                                <button type="submit" disabled={isSaving || !newTaskTitle.trim()} className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md active:scale-95 disabled:opacity-50">
                                     {isSaving ? "Saving..." : "Save Task"}
                                 </button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Edit Task Modal */}
+            {editingTask && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl animate-in zoom-in-95 duration-200">
+                        <div className="flex justify-between items-center mb-6">
+                            <h2 className="text-xl font-black text-gray-900">Edit Task</h2>
+                            <button onClick={() => setEditingTask(null)} className="p-2 hover:bg-gray-100 rounded-xl transition-all">
+                                <X className="w-5 h-5 text-gray-400" />
+                            </button>
+                        </div>
+                        <form onSubmit={handleEditTask} className="space-y-4">
+                            <div>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Task Title *</label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={editTitle}
+                                    onChange={(e) => setEditTitle(e.target.value)}
+                                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Due Date (Optional)</label>
+                                <input
+                                    type="date"
+                                    value={editDueDate}
+                                    onChange={(e) => setEditDueDate(e.target.value)}
+                                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700"
+                                />
+                            </div>
+                            <div className="pt-4 flex justify-end gap-3">
+                                <button type="button" onClick={() => setEditingTask(null)} className="px-6 py-3 font-bold text-gray-500 hover:bg-gray-100 rounded-xl transition-all">Cancel</button>
+                                <button type="submit" disabled={isEditSaving || !editTitle.trim()} className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md active:scale-95 disabled:opacity-50">
+                                    {isEditSaving ? "Saving..." : "Save Changes"}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Delete Confirm Modal */}
+            {deletingTaskId && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl animate-in zoom-in-95 duration-200 text-center">
+                        <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <Trash2 className="w-8 h-8 text-red-500" />
+                        </div>
+                        <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight mb-3">Delete Task?</h2>
+                        <p className="text-gray-500 text-sm mb-8">This action cannot be undone.</p>
+                        <div className="flex gap-3">
+                            <button onClick={() => setDeletingTaskId(null)} className="flex-1 py-3 font-bold text-gray-500 hover:bg-gray-100 rounded-xl transition-all border border-gray-100">Cancel</button>
+                            <button onClick={handleDeleteTask} disabled={isDeleting} className="flex-1 py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl transition-all disabled:opacity-50">
+                                {isDeleting ? "Deleting..." : "Delete"}
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}

@@ -225,6 +225,25 @@ const BrandRepository = {
             }
         });
     },
+    async findById (id) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].brandProfile.findUnique({
+            where: {
+                id
+            },
+            include: {
+                user: true,
+                campaigns: {
+                    where: {
+                        status: "ACTIVE"
+                    },
+                    take: 5,
+                    orderBy: {
+                        createdAt: 'desc'
+                    }
+                }
+            }
+        });
+    },
     async updateProfile (userId, data) {
         // Map frontend "about" to backend "description"
         if (data.about !== undefined) {
@@ -255,7 +274,7 @@ const BrandRepository = {
                 cleanData[key] = data[key];
             }
         });
-        // Use transaction to update both BrandProfile and User (if logo changed)
+        // Use transaction to update both BrandProfile and User (if logo or coverPic changed)
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(async (tx)=>{
             const profile = await tx.brandProfile.upsert({
                 where: {
@@ -268,15 +287,16 @@ const BrandRepository = {
                     ...cleanData
                 }
             });
-            // Sync with User table if logo is present
-            if (cleanData.logo) {
+            // Sync with User table if logo or coverPic is present
+            const userUpdateData = {};
+            if (data.logo) userUpdateData.profilePic = data.logo;
+            if (data.coverPic) userUpdateData.coverPic = data.coverPic;
+            if (Object.keys(userUpdateData).length > 0) {
                 await tx.user.update({
                     where: {
                         id: userId
                     },
-                    data: {
-                        profilePic: cleanData.logo
-                    }
+                    data: userUpdateData
                 });
             }
             return profile;
@@ -468,7 +488,11 @@ const RequestRepository = {
                 id
             },
             include: {
-                sender: true,
+                sender: {
+                    include: {
+                        influencerProfile: true
+                    }
+                },
                 receiver: true,
                 campaign: true
             }
@@ -494,7 +518,12 @@ const RequestRepository = {
                         brandProfile: true
                     }
                 },
-                campaign: true
+                campaign: true,
+                tasks: {
+                    select: {
+                        status: true
+                    }
+                }
             },
             orderBy: {
                 createdAt: 'desc'
@@ -520,7 +549,12 @@ const RequestRepository = {
                     }
                 },
                 sender: true,
-                receiver: true
+                receiver: true,
+                tasks: {
+                    select: {
+                        status: true
+                    }
+                }
             },
             orderBy: {
                 createdAt: 'desc'
@@ -616,12 +650,38 @@ const InfluencerRepository = {
             }
         });
     },
-    async update (id, data) {
-        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].influencerProfile.update({
-            where: {
-                id
-            },
-            data
+    async update (userId, data, userData = {}) {
+        // Use transaction to update both InfluencerProfile and User
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].$transaction(async (tx)=>{
+            const profile = await tx.influencerProfile.update({
+                where: {
+                    userId
+                },
+                data
+            });
+            // Sync with User table if userData is provided
+            // Also check if legacy fields (profilePic, coverPic) are in 'data' for backward compatibility
+            const userUpdateData = {
+                ...userData
+            };
+            if (data.profilePic && !userUpdateData.profilePic) userUpdateData.profilePic = data.profilePic;
+            if (data.coverPic && !userUpdateData.coverPic) userUpdateData.coverPic = data.coverPic;
+            if (Object.keys(userUpdateData).length > 0) {
+                await tx.user.update({
+                    where: {
+                        id: userId
+                    },
+                    data: userUpdateData
+                });
+            }
+            return tx.influencerProfile.findUnique({
+                where: {
+                    userId
+                },
+                include: {
+                    user: true
+                }
+            });
         });
     }
 };
@@ -1257,6 +1317,9 @@ const CollaborationService = {
         }
         return task;
     },
+    async deleteCollabTask (id) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$collaboration$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["CollaborationRepository"].deleteTask(id);
+    },
     // Chat Logic
     async getCollabMessages (requestId) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$collaboration$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["CollaborationRepository"].getMessages(requestId);
@@ -1523,6 +1586,16 @@ const CampaignService = {
      * @returns {Promise<Array>}
      */ async getBrandCampaigns (brandId) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$campaign$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["CampaignRepository"].findByBrandId(brandId);
+    },
+    /**
+     * Update campaign resources.
+     * @param {string} campaignId
+     * @param {Array} resources
+     * @returns {Promise<Object>}
+     */ async updateCampaignResources (campaignId, resources) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$campaign$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["CampaignRepository"].update(campaignId, {
+            resources
+        });
     }
 };
 }),
@@ -1577,6 +1650,11 @@ const BrandService = {
      * Search brands based on filters.
      */ async searchBrands (filters) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$brand$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["BrandRepository"].search(filters);
+    },
+    /**
+     * Get a brand's profile by its ID (for influencer view).
+     */ async getBrandById (id) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$brand$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["BrandRepository"].findById(id);
     }
 };
 }),
@@ -1722,26 +1800,26 @@ const InfluencerService = {
      */ async updateInfluencerProfile (userId, profileData) {
         const influencer = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$influencer$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["InfluencerRepository"].findByUserId(userId);
         if (!influencer) throw new Error("Influencer profile not found");
-        // Separate user fields from influencer profile fields
-        const { profilePic, ...influencerData } = profileData;
-        // Update InfluencerProfile with remaining fields (if any exist)
-        let updatedProfile = influencer;
-        if (Object.keys(influencerData).length > 0) {
-            updatedProfile = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$influencer$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["InfluencerRepository"].update(influencer.id, influencerData);
+        const { fullName, profilePic, coverPic, bio, platforms, ...rest } = profileData;
+        // 1. Prepare User update data
+        const userData = {};
+        if (fullName) userData.fullname = fullName;
+        if (profilePic) userData.profilePic = profilePic;
+        if (coverPic) userData.coverPic = coverPic;
+        // 2. Prepare InfluencerProfile update data
+        const influencerUpdateData = {
+            ...rest
+        };
+        if (bio !== undefined) influencerUpdateData.about = bio;
+        if (platforms) {
+            try {
+                influencerUpdateData.platforms = typeof platforms === 'string' ? JSON.parse(platforms) : platforms;
+            } catch (e) {
+                console.error("Failed to parse platforms:", e);
+            }
         }
-        // Sync with User table if profilePic is updated
-        if (profilePic !== undefined) {
-            const { prisma } = await __turbopack_context__.A("[project]/backend/database/index.js [app-route] (ecmascript, async loader)");
-            await prisma.user.update({
-                where: {
-                    id: userId
-                },
-                data: {
-                    profilePic
-                }
-            });
-        }
-        return updatedProfile;
+        // Use repository to handle the transaction and sync
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$influencer$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["InfluencerRepository"].update(userId, influencerUpdateData, userData);
     }
 };
 }),
@@ -1816,22 +1894,28 @@ async function GET(req) {
         });
         const collaborations = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$core$2f$src$2f$services$2f$request$2f$request$2d$service$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["RequestService"].getInfluencerRequests(decoded.userId);
         // Format for frontend
-        const formatted = collaborations.map((col)=>({
+        const formatted = collaborations.map((col)=>{
+            const tasks = col.tasks || [];
+            const deliverablesTotal = tasks.length;
+            const deliverablesCompleted = tasks.filter((t)=>t.status.toUpperCase() === 'COMPLETED').length;
+            return {
                 id: col.id,
                 brandName: col.campaign?.brand?.brandName || "Brand",
-                brandLogo: col.campaign?.brand?.logo || "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=200&h=200&fit=crop",
+                brandLogo: col.campaign?.brand?.logo || col.campaign?.brand?.user?.profilePic || "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=200&h=200&fit=crop",
+                brandId: col.campaign?.brand?.id,
                 campaignTitle: col.campaign?.title || "Campaign",
                 status: col.status.toLowerCase() === 'accepted' ? 'ongoing' : col.status.toLowerCase(),
                 startDate: new Date(col.createdAt).toLocaleDateString(),
                 endDate: col.campaign.campaignTimeline || "TBD",
                 amount: col.proposedBudget || col.campaign.budgetMin,
                 paymentStatus: col.status === 'ACCEPTED' ? 'pending' : 'not_started',
-                deliverablesTotal: 0,
-                deliverablesCompleted: 0,
-                nextMilestone: "Initial Contact",
-                deadline: "TBD",
+                deliverablesTotal,
+                deliverablesCompleted,
+                nextMilestone: tasks.find((t)=>t.status.toUpperCase() !== 'COMPLETED')?.title || "Initial Contact",
+                deadline: tasks.find((t)=>t.status.toUpperCase() !== 'COMPLETED')?.dueDate ? new Date(tasks.find((t)=>t.status.toUpperCase() !== 'COMPLETED').dueDate).toLocaleDateString() : "TBD",
                 priority: "medium"
-            }));
+            };
+        });
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             collaborations: formatted
         });

@@ -36,7 +36,8 @@ function ProfileSettings() {
         website: "",
         industry: "",
         about: "",
-        logo: ""
+        logo: "",
+        coverPic: ""
     });
     const tabs = [
         {
@@ -69,7 +70,8 @@ function ProfileSettings() {
                     website: data.profile.website || "",
                     industry: data.profile.industry || "",
                     about: data.profile.description || "",
-                    logo: data.profile.logo || ""
+                    logo: data.profile.logo || "",
+                    coverPic: data.profile.user?.coverPic || ""
                 });
             }
         } catch (error) {
@@ -142,7 +144,7 @@ function ProfileSettings() {
                         children: "Profile Settings"
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                        lineNumber: 103,
+                        lineNumber: 105,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -150,13 +152,13 @@ function ProfileSettings() {
                         children: "Manage your brand profile, social links, and security preferences."
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                        lineNumber: 104,
+                        lineNumber: 106,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                lineNumber: 102,
+                lineNumber: 104,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -176,20 +178,20 @@ function ProfileSettings() {
                                         className: `w-5 h-5 ${isActive ? "text-blue-600" : "text-gray-400"}`
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                        lineNumber: 124,
+                                        lineNumber: 126,
                                         columnNumber: 33
                                     }, this),
                                     tab.name
                                 ]
                             }, tab.name, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                lineNumber: 115,
+                                lineNumber: 117,
                                 columnNumber: 29
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                        lineNumber: 110,
+                        lineNumber: 112,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -206,7 +208,7 @@ function ProfileSettings() {
                                             children: "Brand Details"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                            lineNumber: 138,
+                                            lineNumber: 140,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -221,14 +223,14 @@ function ProfileSettings() {
                                                             className: "w-full h-full object-cover"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 144,
+                                                            lineNumber: 146,
                                                             columnNumber: 45
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             className: "group-hover:opacity-0 transition-opacity",
                                                             children: initial
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 146,
+                                                            lineNumber: 148,
                                                             columnNumber: 45
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -237,18 +239,18 @@ function ProfileSettings() {
                                                                 className: "w-6 h-6 text-white"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                lineNumber: 149,
+                                                                lineNumber: 151,
                                                                 columnNumber: 45
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 148,
+                                                            lineNumber: 150,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 142,
+                                                    lineNumber: 144,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -258,7 +260,7 @@ function ProfileSettings() {
                                                             children: "Brand Logo"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 153,
+                                                            lineNumber: 155,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -266,7 +268,7 @@ function ProfileSettings() {
                                                             children: "Recommended size: 500x500px, under 2MB."
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 154,
+                                                            lineNumber: 156,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -278,7 +280,7 @@ function ProfileSettings() {
                                                                     folder: "brand_logos"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 156,
+                                                                    lineNumber: 158,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -287,25 +289,116 @@ function ProfileSettings() {
                                                                     children: "Remove"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 161,
+                                                                    lineNumber: 163,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 155,
+                                                            lineNumber: 157,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 152,
+                                                    lineNumber: 154,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                            lineNumber: 141,
+                                            lineNumber: 143,
+                                            columnNumber: 33
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-4 pb-6 border-b border-gray-100",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                    className: "font-semibold text-gray-900",
+                                                    children: "Cover Image"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
+                                                    lineNumber: 172,
+                                                    columnNumber: 37
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "relative w-full h-40 rounded-2xl bg-gray-100 border-2 border-dashed border-gray-200 overflow-hidden group",
+                                                    children: [
+                                                        formData.coverPic ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                            src: formData.coverPic,
+                                                            alt: "Cover",
+                                                            className: "w-full h-full object-cover"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
+                                                            lineNumber: 175,
+                                                            columnNumber: 45
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "absolute inset-0 flex flex-col items-center justify-center text-gray-400",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$camera$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Camera$3e$__["Camera"], {
+                                                                    className: "w-8 h-8 mb-2"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
+                                                                    lineNumber: 178,
+                                                                    columnNumber: 49
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                    className: "text-xs font-medium",
+                                                                    children: "No cover image uploaded"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
+                                                                    lineNumber: 179,
+                                                                    columnNumber: 49
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
+                                                            lineNumber: 177,
+                                                            columnNumber: 45
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$main$2d$app$2f$components$2f$brand$2f$CloudinaryUpload$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                                                onUploadSuccess: (info)=>{
+                                                                    setFormData((prev)=>({
+                                                                            ...prev,
+                                                                            coverPic: info.secure_url
+                                                                        }));
+                                                                    handleSave({
+                                                                        preventDefault: ()=>{},
+                                                                        target: {}
+                                                                    }); // Auto-save for simplicity or let user save
+                                                                },
+                                                                buttonText: "Upload Cover",
+                                                                folder: "brand_covers"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
+                                                                lineNumber: 183,
+                                                                columnNumber: 45
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
+                                                            lineNumber: 182,
+                                                            columnNumber: 41
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
+                                                    lineNumber: 173,
+                                                    columnNumber: 37
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-sm text-gray-500",
+                                                    children: "Recommended size: 1500x500px, under 5MB. This will be displayed at the top of your profile."
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
+                                                    lineNumber: 193,
+                                                    columnNumber: 37
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
+                                            lineNumber: 171,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -319,7 +412,7 @@ function ProfileSettings() {
                                                             children: "Brand Name"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 170,
+                                                            lineNumber: 198,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -330,13 +423,13 @@ function ProfileSettings() {
                                                             className: "w-full border-gray-200 border p-3 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 171,
+                                                            lineNumber: 199,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 169,
+                                                    lineNumber: 197,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -346,7 +439,7 @@ function ProfileSettings() {
                                                             children: "Industry"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 181,
+                                                            lineNumber: 209,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -360,7 +453,7 @@ function ProfileSettings() {
                                                                     children: "Select Industry"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 188,
+                                                                    lineNumber: 216,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -368,7 +461,7 @@ function ProfileSettings() {
                                                                     children: "Technology & Gadgets"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 189,
+                                                                    lineNumber: 217,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -376,7 +469,7 @@ function ProfileSettings() {
                                                                     children: "Health & Fitness"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 190,
+                                                                    lineNumber: 218,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -384,7 +477,7 @@ function ProfileSettings() {
                                                                     children: "Fashion & Lifestyle"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 191,
+                                                                    lineNumber: 219,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -392,19 +485,19 @@ function ProfileSettings() {
                                                                     children: "Food & Beverage"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 192,
+                                                                    lineNumber: 220,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 182,
+                                                            lineNumber: 210,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 180,
+                                                    lineNumber: 208,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -414,7 +507,7 @@ function ProfileSettings() {
                                                             children: "Website"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 197,
+                                                            lineNumber: 225,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -425,13 +518,13 @@ function ProfileSettings() {
                                                             className: "w-full border-gray-200 border p-3 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 198,
+                                                            lineNumber: 226,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 196,
+                                                    lineNumber: 224,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -442,7 +535,7 @@ function ProfileSettings() {
                                                             children: "Brand Description"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 208,
+                                                            lineNumber: 236,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -452,25 +545,25 @@ function ProfileSettings() {
                                                             className: "w-full border-gray-200 border p-3 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm h-32 resize-none"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 209,
+                                                            lineNumber: 237,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 207,
+                                                    lineNumber: 235,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                            lineNumber: 168,
+                                            lineNumber: 196,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                    lineNumber: 137,
+                                    lineNumber: 139,
                                     columnNumber: 29
                                 }, this),
                                 activeTab === "Social Media" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -481,7 +574,7 @@ function ProfileSettings() {
                                             children: "Social Media Profiles"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                            lineNumber: 223,
+                                            lineNumber: 251,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -489,7 +582,7 @@ function ProfileSettings() {
                                             children: "Connect your brand's social media accounts so influencers can review your existing content."
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                            lineNumber: 224,
+                                            lineNumber: 252,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -504,14 +597,14 @@ function ProfileSettings() {
                                                                     className: "w-2 h-2 rounded-full bg-pink-500"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 229,
+                                                                    lineNumber: 257,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 " Instagram"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 228,
+                                                            lineNumber: 256,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -524,12 +617,12 @@ function ProfileSettings() {
                                                                         children: "instagram.com/"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                        lineNumber: 233,
+                                                                        lineNumber: 261,
                                                                         columnNumber: 49
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 232,
+                                                                    lineNumber: 260,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -538,19 +631,19 @@ function ProfileSettings() {
                                                                     className: "w-full border-gray-200 border p-3 pl-32 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 235,
+                                                                    lineNumber: 263,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 231,
+                                                            lineNumber: 259,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 227,
+                                                    lineNumber: 255,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -562,14 +655,14 @@ function ProfileSettings() {
                                                                     className: "w-2 h-2 rounded-full bg-red-500"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 241,
+                                                                    lineNumber: 269,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 " YouTube"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 240,
+                                                            lineNumber: 268,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -582,12 +675,12 @@ function ProfileSettings() {
                                                                         children: "youtube.com/c/"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                        lineNumber: 245,
+                                                                        lineNumber: 273,
                                                                         columnNumber: 49
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 244,
+                                                                    lineNumber: 272,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -596,19 +689,19 @@ function ProfileSettings() {
                                                                     className: "w-full border-gray-200 border p-3 pl-[110px] rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 247,
+                                                                    lineNumber: 275,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 243,
+                                                            lineNumber: 271,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 239,
+                                                    lineNumber: 267,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -620,14 +713,14 @@ function ProfileSettings() {
                                                                     className: "w-2 h-2 rounded-full bg-gray-900"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 253,
+                                                                    lineNumber: 281,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 " TikTok"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 252,
+                                                            lineNumber: 280,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -640,12 +733,12 @@ function ProfileSettings() {
                                                                         children: "tiktok.com/@"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                        lineNumber: 257,
+                                                                        lineNumber: 285,
                                                                         columnNumber: 49
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 256,
+                                                                    lineNumber: 284,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -654,31 +747,31 @@ function ProfileSettings() {
                                                                     className: "w-full border-gray-200 border p-3 pl-24 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 259,
+                                                                    lineNumber: 287,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 255,
+                                                            lineNumber: 283,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 251,
+                                                    lineNumber: 279,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                            lineNumber: 226,
+                                            lineNumber: 254,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                    lineNumber: 222,
+                                    lineNumber: 250,
                                     columnNumber: 29
                                 }, this),
                                 activeTab === "Security" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -691,7 +784,7 @@ function ProfileSettings() {
                                                     children: "Change Password"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 270,
+                                                    lineNumber: 298,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -699,7 +792,7 @@ function ProfileSettings() {
                                                     children: "Update the password associated with this account."
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 271,
+                                                    lineNumber: 299,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -712,7 +805,7 @@ function ProfileSettings() {
                                                                     children: "Current Password"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 275,
+                                                                    lineNumber: 303,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -721,13 +814,13 @@ function ProfileSettings() {
                                                                     className: "w-full border-gray-200 border p-3 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 276,
+                                                                    lineNumber: 304,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 274,
+                                                            lineNumber: 302,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -737,7 +830,7 @@ function ProfileSettings() {
                                                                     children: "New Password"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 279,
+                                                                    lineNumber: 307,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -746,13 +839,13 @@ function ProfileSettings() {
                                                                     className: "w-full border-gray-200 border p-3 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 280,
+                                                                    lineNumber: 308,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 278,
+                                                            lineNumber: 306,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -762,7 +855,7 @@ function ProfileSettings() {
                                                                     children: "Confirm New Password"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 283,
+                                                                    lineNumber: 311,
                                                                     columnNumber: 45
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -771,25 +864,25 @@ function ProfileSettings() {
                                                                     className: "w-full border-gray-200 border p-3 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                                    lineNumber: 284,
+                                                                    lineNumber: 312,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 282,
+                                                            lineNumber: 310,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 273,
+                                                    lineNumber: 301,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                            lineNumber: 269,
+                                            lineNumber: 297,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -800,7 +893,7 @@ function ProfileSettings() {
                                                     children: "Danger Zone"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 291,
+                                                    lineNumber: 319,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -808,7 +901,7 @@ function ProfileSettings() {
                                                     children: "Deleting your account is permanent and cannot be undone. All your campaigns and data will be lost."
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 292,
+                                                    lineNumber: 320,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -819,26 +912,26 @@ function ProfileSettings() {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                            lineNumber: 294,
+                                                            lineNumber: 322,
                                                             columnNumber: 41
                                                         }, this),
                                                         " Delete Account"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 293,
+                                                    lineNumber: 321,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                            lineNumber: 290,
+                                            lineNumber: 318,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                    lineNumber: 268,
+                                    lineNumber: 296,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -851,18 +944,18 @@ function ProfileSettings() {
                                                     className: "w-5 h-5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 304,
+                                                    lineNumber: 332,
                                                     columnNumber: 37
                                                 }, this),
                                                 " Settings saved successfully"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                            lineNumber: 303,
+                                            lineNumber: 331,
                                             columnNumber: 33
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                            lineNumber: 306,
+                                            lineNumber: 334,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -874,7 +967,7 @@ function ProfileSettings() {
                                                     children: "Cancel"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 309,
+                                                    lineNumber: 337,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -883,46 +976,46 @@ function ProfileSettings() {
                                                     children: "Save Changes"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                                    lineNumber: 312,
+                                                    lineNumber: 340,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                            lineNumber: 308,
+                                            lineNumber: 336,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                                    lineNumber: 301,
+                                    lineNumber: 329,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                            lineNumber: 133,
+                            lineNumber: 135,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                        lineNumber: 132,
+                        lineNumber: 134,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-                lineNumber: 107,
+                lineNumber: 109,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/profile-settings/page.js",
-        lineNumber: 100,
+        lineNumber: 102,
         columnNumber: 9
     }, this);
 }
-_s(ProfileSettings, "xNGYbXMolzw/gc2i59muc/j3Bgg=", false, function() {
+_s(ProfileSettings, "FM9kQF2yLERmNjQzMrlbfaVt3jg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$shared$2f$store$2f$auth$2d$store$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthStore"]
     ];

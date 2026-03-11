@@ -6,6 +6,7 @@ import InfluencerNotificationsDropdown from "./InfluencerNotificationsDropdown";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import CloudinaryUpload from "../brand/CloudinaryUpload";
+import { io } from "socket.io-client";
 
 export default function InfluencerHeader() {
     const { user, logout, login } = useAuthStore();
@@ -13,7 +14,30 @@ export default function InfluencerHeader() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [isUpdating, setIsUpdating] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [isOnline, setIsOnline] = useState(false);
     const popupRef = useRef(null);
+
+    // Presence tracking via Socket
+    useEffect(() => {
+        if (!user?.id) return;
+
+        const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001");
+
+        socket.emit('join_user', user.id);
+
+        // Check initial status
+        socket.emit('check_online', user.id, (res) => {
+            if (res.online) setIsOnline(true);
+        });
+
+        socket.on('user_status_change', (data) => {
+            if (data.userId === user.id) {
+                setIsOnline(data.status === 'online');
+            }
+        });
+
+        return () => socket.disconnect();
+    }, [user?.id]);
 
     useEffect(() => {
         setMounted(true);
@@ -105,6 +129,10 @@ export default function InfluencerHeader() {
                                     <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent animate-spin rounded-full"></div>
                                 </div>
                             )}
+                            {/* Small online indicator */}
+                            {isOnline && (
+                                <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+                            )}
                         </div>
 
                         <button
@@ -113,7 +141,10 @@ export default function InfluencerHeader() {
                         >
                             <div className="flex-col items-start hidden sm:flex">
                                 <span className="text-sm font-bold text-gray-900 leading-none mb-1">{fullName}</span>
-                                <span className="text-[10px] font-medium text-green-600 bg-green-50 px-1.5 py-0.5 rounded uppercase tracking-wider">Influencer</span>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-[10px] font-medium text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded uppercase tracking-wider">Influencer</span>
+                                    {isPopupOpen && <span className="text-[10px] text-gray-400 font-medium truncate max-w-[100px] animate-in fade-in slide-in-from-left-1 duration-200">{userEmail}</span>}
+                                </div>
                             </div>
                             <ChevronDown className={`w-3 h-3 text-gray-400 transition-transform ${isPopupOpen ? 'rotate-180' : ''}`} />
                         </button>
@@ -121,29 +152,46 @@ export default function InfluencerHeader() {
 
                     {/* Profile Popup */}
                     {isPopupOpen && (
-                        <div className="absolute right-0 mt-3 w-72 bg-white border border-gray-200 rounded-2xl shadow-2xl z-50 animate-in fade-in slide-in-from-right-2 duration-200 overflow-hidden">
-                            <div className="p-5 bg-gradient-to-br from-blue-600 to-blue-700 text-white">
+                        <div className="absolute right-0 mt-3 w-72 bg-white border border-gray-200 rounded-3xl shadow-2xl z-50 animate-in fade-in slide-in-from-right-2 duration-200 overflow-hidden">
+                            <div className="relative h-24 overflow-hidden">
+                                {user?.coverPic ? (
+                                    <img src={user.coverPic} className="w-full h-full object-cover" alt="Cover" />
+                                ) : (
+                                    <div className="w-full h-full bg-gradient-to-br from-green-600 to-emerald-700"></div>
+                                )}
+                                <div className="absolute inset-0 bg-emerald-900/40 backdrop-blur-[2px]"></div>
+                            </div>
+
+                            <div className="px-5 pb-5 -mt-10 relative">
                                 <div className="flex items-center gap-4 mb-4">
-                                    <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md text-white font-bold flex items-center justify-center text-xl overflow-hidden border-2 border-white/30 shadow-lg">
-                                        {profilePic ? (
-                                            <img src={profilePic} alt={fullName} className="w-full h-full object-cover" />
-                                        ) : (
-                                            initial
+                                    <div className="relative group/avatar">
+                                        <div className="w-16 h-16 rounded-2xl bg-white text-emerald-600 font-bold flex items-center justify-center text-xl overflow-hidden border-4 border-white shadow-xl">
+                                            {profilePic ? (
+                                                <img src={profilePic} alt={fullName} className="w-full h-full object-cover" />
+                                            ) : (
+                                                initial
+                                            )}
+                                        </div>
+                                        {isOnline && (
+                                            <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full animate-pulse"></div>
                                         )}
                                     </div>
-                                    <div className="flex-1 overflow-hidden">
-                                        <p className="font-bold truncate text-lg leading-tight">{fullName}</p>
-                                        <p className="text-xs text-blue-100 truncate opacity-80">{userEmail}</p>
+                                    <div className="flex-1 overflow-hidden pt-6">
+                                        <p className="font-bold truncate text-lg leading-tight text-gray-900">{fullName}</p>
+                                        <p className="text-xs text-emerald-600 font-medium truncate opacity-80">{userEmail}</p>
                                     </div>
                                 </div>
-                                <div className="grid grid-cols-2 gap-2">
-                                    <div className="bg-white/10 rounded-lg p-2 text-center">
-                                        <p className="text-[10px] uppercase tracking-wider opacity-60">Status</p>
-                                        <p className="text-xs font-bold">Active</p>
+                                <div className="grid grid-cols-2 gap-2 mb-4">
+                                    <div className="bg-emerald-50/50 border border-emerald-100 rounded-xl p-2 text-center relative group/status">
+                                        <p className="text-[10px] text-emerald-400 uppercase tracking-wider font-bold">Status</p>
+                                        <div className="flex items-center justify-center gap-1.5">
+                                            {isOnline && <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />}
+                                            <p className="text-xs font-bold text-emerald-700">{isOnline ? 'Active Now' : 'Active'}</p>
+                                        </div>
                                     </div>
-                                    <div className="bg-white/10 rounded-lg p-2 text-center">
-                                        <p className="text-[10px] uppercase tracking-wider opacity-60">Role</p>
-                                        <p className="text-xs font-bold">Influencer</p>
+                                    <div className="bg-gray-50 border border-gray-100 rounded-xl p-2 text-center">
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Role</p>
+                                        <p className="text-xs font-bold text-gray-700">Influencer</p>
                                     </div>
                                 </div>
                             </div>

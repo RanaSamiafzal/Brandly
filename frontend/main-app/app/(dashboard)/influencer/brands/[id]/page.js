@@ -26,49 +26,67 @@ export default function BrandProfilePage() {
     const params = useParams();
     const [brand, setBrand] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
-        fetchBrandDetails();
-    }, []);
+        if (params.id) {
+            fetchBrandDetails();
+        }
+    }, [params.id]);
 
     const fetchBrandDetails = async () => {
         setIsLoading(true);
-        // Mock data for the brand profile
-        setTimeout(() => {
-            setBrand({
-                id: params.id,
-                name: "FashionHub",
-                logo: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=400&fit=crop",
-                banner: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop",
-                description: "FashionHub is a leading global fashion retailer specializing in modern, sustainable, and accessible clothing for everyone. We believe in the power of authentic storytelling through creators who live and breathe style.",
-                industry: "Fashion & Lifestyle",
-                location: "New York, NY",
-                website: "fashionhub.com",
-                joinedDate: "October 2023",
-                isVerified: true,
-                stats: {
-                    activeCampaigns: 5,
-                    totalCollaborations: 124,
-                    avgRating: 4.9
-                },
-                socialPlatforms: [
-                    { name: "Instagram", followers: "1.2M", handle: "@fashionhub" },
-                    { name: "YouTube", followers: "450K", handle: "FashionHubTV" },
-                    { name: "TikTok", followers: "800K", handle: "@fashionhub_official" }
-                ],
-                activeCampaigns: [
-                    { id: "c1", title: "Summer Style 2024", budget: "$800 - $1,200", deadline: "Mar 30, 2024" },
-                    { id: "c2", title: "Eco-Friendly Fabrics", budget: "$1,500 - $2,000", deadline: "Apr 15, 2024" }
-                ]
-            });
+        setError(null);
+        try {
+            const res = await fetch(`/api/influencer/brands/${params.id}`);
+            const data = await res.json();
+            if (res.ok && data.profile) {
+                const p = data.profile;
+                setBrand({
+                    id: p.id,
+                    name: p.brandName || p.user?.fullname || "FashionHub",
+                    logo: p.logo || p.user?.profilePic || "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=400&fit=crop",
+                    banner: p.user?.coverPic || "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop",
+                    description: p.description || "Leading global fashion retailer specializing in modern, sustainable, and accessible clothing for everyone.",
+                    industry: p.industry || "Fashion & Lifestyle",
+                    location: p.address || "New York, NY",
+                    website: p.website || "fashionhub.com",
+                    joinedDate: new Date(p.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+                    isVerified: true, // Assuming default true for now, can be a field later
+                    stats: {
+                        activeCampaigns: p.campaigns?.length || 5,
+                        totalCollaborations: 124, // Mock
+                        avgRating: 4.9 // Mock
+                    },
+                    socialPlatforms: [
+                        { name: "Instagram", followers: "1.2M", handle: `@${(p.brandName || "fashionhub").toLowerCase().replace(/\s/g, '')}` },
+                        { name: "YouTube", followers: "450K", handle: `${(p.brandName || "FashionHub").replace(/\s/g, '')}TV` },
+                        { name: "TikTok", followers: "800K", handle: `@${(p.brandName || "fashionhub").toLowerCase().replace(/\s/g, '')}_official` }
+                    ],
+                    activeCampaigns: p.campaigns?.map(c => ({
+                        id: c.id,
+                        title: c.title,
+                        budget: `$${c.budgetMin.toLocaleString()} - $${c.budgetMax.toLocaleString()}`,
+                        deadline: new Date(c.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                    })) || []
+                });
+            } else {
+                setError(data.error || "Failed to load brand profile");
+            }
+        } catch (error) {
+            console.error("Failed to fetch brand details", error);
+            setError("An unexpected error occurred");
+        } finally {
             setIsLoading(false);
-        }, 600);
+        }
     };
 
     if (!mounted) return null;
     if (isLoading) return <div className="p-12 text-center animate-pulse text-gray-400">Loading brand profile...</div>;
+    if (error) return <div className="p-12 text-center text-red-500 font-bold">{error}</div>;
+    if (!brand) return <div className="p-12 text-center text-gray-400">Brand not found</div>;
 
     return (
         <div className="max-w-screen-2xl mx-auto px-4 md:px-12 pb-16 animate-in fade-in duration-500">
@@ -116,7 +134,7 @@ export default function BrandProfilePage() {
                 {/* Left Column: About & Socials */}
                 <div className="lg:col-span-2 space-y-8">
                     <section className="bg-white border border-gray-100 rounded-[40px] p-10 shadow-sm">
-                        <h2 className="text-2xl font-black text-gray-900 mb-6">About the Brand</h2>
+                        <h2 className="text-2xl font-black text-gray-900 mb-6 font-display">About the Brand</h2>
                         <p className="text-gray-600 leading-relaxed font-medium">
                             {brand.description}
                         </p>
@@ -141,7 +159,7 @@ export default function BrandProfilePage() {
                             <Link href="/influencer/campaigns" className="text-sm font-bold text-blue-600 hover:underline">View All Campaigns</Link>
                         </div>
                         <div className="space-y-4">
-                            {brand.activeCampaigns.map((camp) => (
+                            {brand.activeCampaigns.length > 0 ? brand.activeCampaigns.map((camp) => (
                                 <div key={camp.id} className="bg-white border border-gray-100 rounded-3xl p-6 flex items-center justify-between hover:border-blue-100 hover:shadow-md transition-all group">
                                     <div className="flex items-center gap-6">
                                         <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center">
@@ -162,7 +180,11 @@ export default function BrandProfilePage() {
                                         </button>
                                     </Link>
                                 </div>
-                            ))}
+                            )) : (
+                                <div className="text-center py-12 bg-white border border-dashed border-gray-200 rounded-[40px] text-gray-400 font-bold">
+                                    No active campaigns found
+                                </div>
+                            )}
                         </div>
                     </section>
                 </div>

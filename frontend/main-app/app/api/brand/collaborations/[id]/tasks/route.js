@@ -11,9 +11,6 @@ export async function GET(req, { params }) {
         const decoded = AuthService.validateToken(token);
         if (!decoded) return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
 
-        // Ensure user has access to this request (as brand)
-        // In a real app, we'd verify decoded.id === campaign.brandId
-
         const tasks = await CollaborationService.getCollabTasks(requestId);
 
         return NextResponse.json({ tasks });
@@ -50,3 +47,52 @@ export async function POST(req, { params }) {
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
     }
 }
+
+export async function PATCH(req, { params }) {
+    try {
+        const { id: requestId } = await params;
+
+        const token = req.cookies.get('token')?.value;
+        if (!token) return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
+
+        const decoded = AuthService.validateToken(token);
+        if (!decoded) return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
+
+        const { taskId, title, description, dueDate, status } = await req.json();
+        if (!taskId) return NextResponse.json({ error: 'taskId is required' }, { status: 400 });
+
+        const updateData = {};
+        if (title !== undefined) updateData.title = title;
+        if (description !== undefined) updateData.description = description;
+        if (dueDate !== undefined) updateData.dueDate = dueDate ? new Date(dueDate) : null;
+        if (status !== undefined) updateData.status = status;
+
+        const task = await CollaborationService.updateCollabTask(taskId, updateData);
+
+        return NextResponse.json({ task });
+    } catch (error) {
+        console.error('Update task error:', error);
+        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    }
+}
+
+export async function DELETE(req, { params }) {
+    try {
+        const token = req.cookies.get('token')?.value;
+        if (!token) return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
+
+        const decoded = AuthService.validateToken(token);
+        if (!decoded) return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
+
+        const { taskId } = await req.json();
+        if (!taskId) return NextResponse.json({ error: 'taskId is required' }, { status: 400 });
+
+        await CollaborationService.deleteCollabTask(taskId);
+
+        return NextResponse.json({ success: true });
+    } catch (error) {
+        console.error('Delete task error:', error);
+        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    }
+}
+

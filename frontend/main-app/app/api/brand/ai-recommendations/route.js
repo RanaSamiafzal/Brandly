@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { AuthService, BrandService } from '@repo/core';
-import { prisma } from '@repo/database';
 
 export async function GET(req) {
     try {
@@ -12,37 +11,9 @@ export async function GET(req) {
 
         const profile = await BrandService.getBrandProfile(decoded.userId);
 
-        // Fetch top AI match scores across ALL campaigns for this brand
-        const topMatches = await prisma.matchScore.findMany({
-            where: {
-                campaign: {
-                    brandId: profile.id
-                }
-            },
-            orderBy: { score: 'desc' },
-            take: 3, // For dashboard widget
-            include: {
-                influencer: { include: { user: true } },
-                campaign: true
-            }
-        });
+        const recommendations = await BrandService.getAIRecommendations(profile.id);
 
-        // Removing duplicates (if same influencer matched multiple campaigns well)
-        const uniqueInfluencers = [];
-        const seenIds = new Set();
-
-        for (const match of topMatches) {
-            if (!seenIds.has(match.influencerId)) {
-                seenIds.add(match.influencerId);
-                uniqueInfluencers.push({
-                    influencer: match.influencer,
-                    score: match.score,
-                    matchedCampaign: match.campaign.title
-                });
-            }
-        }
-
-        return NextResponse.json({ recommendations: uniqueInfluencers });
+        return NextResponse.json({ recommendations });
     } catch (error) {
         console.error('AI Recommendations fetch error:', error);
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

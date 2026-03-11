@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Info, Image as ImageIcon, Sparkles, Youtube, Instagram, Twitter, Check } from "lucide-react";
 import Link from "next/link";
+import CloudinaryUpload from "../../../../components/brand/CloudinaryUpload";
 
 export default function CreateCampaign() {
     const router = useRouter();
@@ -10,6 +11,7 @@ export default function CreateCampaign() {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
+        image: "",
         budgetMin: "",
         budgetMax: "",
         deliverables: "",
@@ -174,6 +176,49 @@ export default function CreateCampaign() {
                                     min={formData.startDate || undefined}
                                     className="w-full border-gray-200 border p-3 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm text-gray-700"
                                 />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Section: Campaign Media */}
+                <div className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm space-y-6">
+                    <div className="flex items-center gap-2 mb-2">
+                        <ImageIcon className="w-5 h-5 text-blue-600" />
+                        <h2 className="text-lg font-bold text-gray-900">Campaign Media</h2>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="w-full md:w-64 aspect-video rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden relative group">
+                            {formData.image ? (
+                                <>
+                                    <img src={formData.image} className="w-full h-full object-cover" alt="Campaign Preview" />
+                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                        <CloudinaryUpload
+                                            onUploadSuccess={(info) => setFormData({ ...formData, image: info.secure_url })}
+                                            buttonText="Change"
+                                            folder="campaign_images"
+                                            className="bg-white/20 backdrop-blur-md text-white border-white/40 hover:bg-white/30"
+                                        />
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="text-center p-4">
+                                    <ImageIcon className="w-8 h-8 text-gray-300 mx-auto mb-2" />
+                                    <CloudinaryUpload
+                                        onUploadSuccess={(info) => setFormData({ ...formData, image: info.secure_url })}
+                                        buttonText="Upload Cover"
+                                        folder="campaign_images"
+                                    />
+                                    <p className="text-[10px] text-gray-400 mt-2">Recommended: 16:9 aspect ratio</p>
+                                </div>
+                            )}
+                        </div>
+                        <div className="flex-1 space-y-2">
+                            <h3 className="font-bold text-gray-900">Campaign Cover Image</h3>
+                            <p className="text-sm text-gray-500">This image will be shown on your campaign overview and search results. A high-quality image helps attract the right influencers.</p>
+                            <div className="flex items-center gap-2 text-xs text-blue-600 font-medium bg-blue-50 px-3 py-1.5 rounded-lg w-fit">
+                                <Sparkles className="w-3 h-3" /> AI Match also uses this for context
                             </div>
                         </div>
                     </div>

@@ -468,7 +468,11 @@ const RequestRepository = {
                 id
             },
             include: {
-                sender: true,
+                sender: {
+                    include: {
+                        influencerProfile: true
+                    }
+                },
                 receiver: true,
                 campaign: true
             }
@@ -1256,6 +1260,9 @@ const CollaborationService = {
             });
         }
         return task;
+    },
+    async deleteCollabTask (id) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$collaboration$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["CollaborationRepository"].deleteTask(id);
     },
     // Chat Logic
     async getCollabMessages (requestId) {

@@ -411,294 +411,321 @@ function BrandCampaigns() {
                         className: "divide-y divide-gray-100",
                         children: [
                             filteredCampaigns.map((campaign)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "p-6 hover:bg-gray-50/50 transition-colors group",
+                                    onClick: ()=>router.push(`/brand/ai-match/${campaign.id}`),
+                                    className: "block group cursor-pointer",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex gap-5 items-start",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-40 h-28 rounded-xl overflow-hidden flex-shrink-0 hidden md:block",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                    src: campaign.image,
-                                                    alt: campaign.name,
-                                                    className: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        className: "p-6 hover:bg-gray-50 transition-colors",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex gap-6 items-start",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "w-40 h-28 rounded-xl overflow-hidden flex-shrink-0 hidden md:flex bg-gray-50 border border-gray-100 items-center justify-center",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                        src: campaign.image || "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=300&fit=crop",
+                                                        alt: campaign.name,
+                                                        className: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                        lineNumber: 234,
+                                                        columnNumber: 41
+                                                    }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                    lineNumber: 229,
+                                                    lineNumber: 233,
                                                     columnNumber: 37
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                lineNumber: 228,
-                                                columnNumber: 33
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex-1 min-w-0",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex items-start justify-between gap-4",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "min-w-0",
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "flex flex-wrap items-center gap-2 mb-1",
-                                                                        children: [
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: `text-xs font-bold px-2.5 py-0.5 rounded-full ${campaign.status === "Active" || campaign.status === "In_progress" ? "bg-green-100 text-green-700" : campaign.status === "Pending" || campaign.status === "Draft" ? "bg-yellow-100 text-yellow-700" : "bg-gray-100 text-gray-700"}`,
-                                                                                children: campaign.status.replace('_', ' ')
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                                lineNumber: 237,
-                                                                                columnNumber: 49
-                                                                            }, this),
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: "text-xs text-gray-400 flex items-center gap-1",
-                                                                                children: [
-                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"], {
-                                                                                        className: "w-3 h-3"
-                                                                                    }, void 0, false, {
-                                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                                        lineNumber: 244,
-                                                                                        columnNumber: 53
-                                                                                    }, this),
-                                                                                    " ",
-                                                                                    campaign.deadline
-                                                                                ]
-                                                                            }, void 0, true, {
-                                                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                                lineNumber: 243,
-                                                                                columnNumber: 49
-                                                                            }, this)
-                                                                        ]
-                                                                    }, void 0, true, {
-                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                        lineNumber: 236,
-                                                                        columnNumber: 45
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                                        className: "text-base font-bold text-gray-900 truncate",
-                                                                        children: campaign.name
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                        lineNumber: 247,
-                                                                        columnNumber: 45
-                                                                    }, this),
-                                                                    campaign.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                        className: "text-sm text-gray-500 mt-1 line-clamp-2",
-                                                                        children: campaign.description
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                        lineNumber: 249,
-                                                                        columnNumber: 49
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                lineNumber: 235,
-                                                                columnNumber: 41
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "relative flex-shrink-0",
-                                                                ref: openMenuId === campaign.id ? menuRef : null,
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                        onClick: ()=>setOpenMenuId(openMenuId === campaign.id ? null : campaign.id),
-                                                                        className: "p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors",
-                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$ellipsis$2d$vertical$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MoreVertical$3e$__["MoreVertical"], {
-                                                                            className: "w-5 h-5"
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex-1 min-w-0",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex items-start justify-between mb-2",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                                            className: "text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors truncate uppercase tracking-tight",
+                                                                            children: campaign.name
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                            lineNumber: 259,
+                                                                            lineNumber: 244,
+                                                                            columnNumber: 49
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-sm text-gray-500 font-medium",
+                                                                            children: [
+                                                                                "Created on ",
+                                                                                new Date(campaign.createdAt).toLocaleDateString()
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                            lineNumber: 247,
                                                                             columnNumber: 49
                                                                         }, this)
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                        lineNumber: 255,
-                                                                        columnNumber: 45
-                                                                    }, this),
-                                                                    openMenuId === campaign.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "absolute right-0 top-8 w-40 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150",
-                                                                        children: [
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                                onClick: ()=>openEdit(campaign),
-                                                                                className: "w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors text-left",
-                                                                                children: [
-                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pencil$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Pencil$3e$__["Pencil"], {
-                                                                                        className: "w-4 h-4 text-blue-500"
-                                                                                    }, void 0, false, {
-                                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                                        lineNumber: 268,
-                                                                                        columnNumber: 57
-                                                                                    }, this),
-                                                                                    "Edit Campaign"
-                                                                                ]
-                                                                            }, void 0, true, {
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                    lineNumber: 243,
+                                                                    columnNumber: 45
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "relative",
+                                                                    ref: openMenuId === campaign.id ? menuRef : null,
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                            onClick: (e)=>{
+                                                                                e.stopPropagation();
+                                                                                setOpenMenuId(openMenuId === campaign.id ? null : campaign.id);
+                                                                            },
+                                                                            className: "p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors",
+                                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$ellipsis$2d$vertical$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MoreVertical$3e$__["MoreVertical"], {
+                                                                                className: "w-5 h-5"
+                                                                            }, void 0, false, {
                                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                                lineNumber: 264,
+                                                                                lineNumber: 260,
                                                                                 columnNumber: 53
-                                                                            }, this),
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                                                href: `/brand/ai-match/${campaign.id}`,
-                                                                                onClick: ()=>setOpenMenuId(null),
-                                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                                    className: "w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors text-left",
+                                                                            }, this)
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                            lineNumber: 253,
+                                                                            columnNumber: 49
+                                                                        }, this),
+                                                                        openMenuId === campaign.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            className: "absolute right-0 top-8 w-48 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150",
+                                                                            children: [
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                    onClick: (e)=>{
+                                                                                        e.stopPropagation();
+                                                                                        router.push(`/brand/ai-match/${campaign.id}`);
+                                                                                        setOpenMenuId(null);
+                                                                                    },
+                                                                                    className: "w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors text-left",
                                                                                     children: [
                                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
-                                                                                            className: "w-4 h-4 text-purple-500"
+                                                                                            className: "w-4 h-4 text-blue-600"
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
                                                                                             lineNumber: 273,
                                                                                             columnNumber: 61
                                                                                         }, this),
-                                                                                        "AI Match"
+                                                                                        "AI Match Results"
                                                                                     ]
                                                                                 }, void 0, true, {
                                                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                                    lineNumber: 272,
+                                                                                    lineNumber: 265,
+                                                                                    columnNumber: 57
+                                                                                }, this),
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                    onClick: (e)=>{
+                                                                                        e.stopPropagation();
+                                                                                        setEditingCampaign(campaign);
+                                                                                        setEditForm({
+                                                                                            ...campaign
+                                                                                        });
+                                                                                        setOpenMenuId(null);
+                                                                                    },
+                                                                                    className: "w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors text-left",
+                                                                                    children: [
+                                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pencil$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Pencil$3e$__["Pencil"], {
+                                                                                            className: "w-4 h-4 text-gray-400"
+                                                                                        }, void 0, false, {
+                                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                                            lineNumber: 285,
+                                                                                            columnNumber: 61
+                                                                                        }, this),
+                                                                                        "Edit Campaign"
+                                                                                    ]
+                                                                                }, void 0, true, {
+                                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                                    lineNumber: 276,
+                                                                                    columnNumber: 57
+                                                                                }, this),
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                    className: "border-t border-gray-50"
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                                    lineNumber: 288,
+                                                                                    columnNumber: 57
+                                                                                }, this),
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                                    onClick: (e)=>{
+                                                                                        e.stopPropagation();
+                                                                                        setDeletingCampaign(campaign);
+                                                                                        setOpenMenuId(null);
+                                                                                    },
+                                                                                    className: "w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors text-left font-medium",
+                                                                                    children: [
+                                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
+                                                                                            className: "w-4 h-4"
+                                                                                        }, void 0, false, {
+                                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                                            lineNumber: 297,
+                                                                                            columnNumber: 61
+                                                                                        }, this),
+                                                                                        "Delete Campaign"
+                                                                                    ]
+                                                                                }, void 0, true, {
+                                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                                    lineNumber: 289,
                                                                                     columnNumber: 57
                                                                                 }, this)
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                                lineNumber: 271,
-                                                                                columnNumber: 53
-                                                                            }, this),
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                className: "border-t border-gray-100"
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                                lineNumber: 277,
-                                                                                columnNumber: 53
-                                                                            }, this),
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                                onClick: ()=>{
-                                                                                    setDeletingCampaign(campaign);
-                                                                                    setOpenMenuId(null);
-                                                                                },
-                                                                                className: "w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors text-left",
-                                                                                children: [
-                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
-                                                                                        className: "w-4 h-4"
-                                                                                    }, void 0, false, {
-                                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                                        lineNumber: 282,
-                                                                                        columnNumber: 57
-                                                                                    }, this),
-                                                                                    "Delete"
-                                                                                ]
-                                                                            }, void 0, true, {
-                                                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                                lineNumber: 278,
-                                                                                columnNumber: 53
-                                                                            }, this)
-                                                                        ]
-                                                                    }, void 0, true, {
-                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                        lineNumber: 263,
-                                                                        columnNumber: 49
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                lineNumber: 254,
-                                                                columnNumber: 41
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                        lineNumber: 234,
-                                                        columnNumber: 37
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "grid grid-cols-2 md:grid-cols-3 gap-4 mt-4",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                        className: "text-xs text-gray-400 mb-0.5",
-                                                                        children: "Budget"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                        lineNumber: 292,
-                                                                        columnNumber: 45
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                        className: "text-sm font-bold text-gray-900",
-                                                                        children: campaign.budget
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                        lineNumber: 293,
-                                                                        columnNumber: 45
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                lineNumber: 291,
-                                                                columnNumber: 41
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                        className: "text-xs text-gray-400 mb-0.5",
-                                                                        children: "Target"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                        lineNumber: 296,
-                                                                        columnNumber: 45
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                        className: "text-sm font-bold text-gray-900 capitalize truncate",
-                                                                        children: campaign.targetCategory?.join(", ") || "Any"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                        lineNumber: 297,
-                                                                        columnNumber: 45
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                lineNumber: 295,
-                                                                columnNumber: 41
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                        className: "text-xs text-gray-400 mb-0.5",
-                                                                        children: "Platforms"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                        lineNumber: 302,
-                                                                        columnNumber: 45
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                        className: "text-sm font-bold text-gray-900 capitalize truncate",
-                                                                        children: campaign.targetPlatform?.join(", ") || "Any"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                        lineNumber: 303,
-                                                                        columnNumber: 45
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                                lineNumber: 301,
-                                                                columnNumber: 41
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                        lineNumber: 290,
-                                                        columnNumber: 37
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                lineNumber: 233,
-                                                columnNumber: 33
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                            lineNumber: 264,
+                                                                            columnNumber: 53
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                    lineNumber: 252,
+                                                                    columnNumber: 45
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                            lineNumber: 242,
+                                                            columnNumber: 41
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-4 border-t border-gray-50",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "bg-gray-50/50 rounded-lg p-3 border border-gray-100/50",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1 leading-none",
+                                                                            children: "Status"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                            lineNumber: 307,
+                                                                            columnNumber: 49
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            className: "flex items-center gap-2",
+                                                                            children: [
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                    className: `w-2 h-2 rounded-full ${campaign.status === 'Active' ? 'bg-green-500' : 'bg-amber-500'}`
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                                    lineNumber: 309,
+                                                                                    columnNumber: 53
+                                                                                }, this),
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                    className: "text-xs font-bold text-gray-700",
+                                                                                    children: campaign.status
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                                    lineNumber: 310,
+                                                                                    columnNumber: 53
+                                                                                }, this)
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                            lineNumber: 308,
+                                                                            columnNumber: 49
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                    lineNumber: 306,
+                                                                    columnNumber: 45
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "bg-gray-50/50 rounded-lg p-3 border border-gray-100/50",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1 leading-none",
+                                                                            children: "Target"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                            lineNumber: 314,
+                                                                            columnNumber: 49
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-xs font-bold text-gray-700 truncate capitalize",
+                                                                            children: Array.isArray(campaign.targetCategory) ? campaign.targetCategory.join(", ") : campaign.targetCategory || "General"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                            lineNumber: 315,
+                                                                            columnNumber: 49
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                    lineNumber: 313,
+                                                                    columnNumber: 45
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "bg-gray-50/50 rounded-lg p-3 border border-gray-100/50",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1 leading-none",
+                                                                            children: "Platforms"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                            lineNumber: 320,
+                                                                            columnNumber: 49
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-xs font-bold text-gray-700 truncate capitalize",
+                                                                            children: Array.isArray(campaign.targetPlatform) ? campaign.targetPlatform.join(", ") : campaign.targetPlatform || "All"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                            lineNumber: 321,
+                                                                            columnNumber: 49
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                    lineNumber: 319,
+                                                                    columnNumber: 45
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "bg-gray-50/50 rounded-lg p-3 border border-gray-100/50",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1 leading-none",
+                                                                            children: "Budget"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                            lineNumber: 326,
+                                                                            columnNumber: 49
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-xs font-bold text-blue-600",
+                                                                            children: campaign.budget
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                            lineNumber: 327,
+                                                                            columnNumber: 49
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                                    lineNumber: 325,
+                                                                    columnNumber: 45
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                            lineNumber: 305,
+                                                            columnNumber: 41
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                                    lineNumber: 241,
+                                                    columnNumber: 37
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
+                                            lineNumber: 231,
+                                            columnNumber: 33
+                                        }, this)
+                                    }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                        lineNumber: 226,
+                                        lineNumber: 230,
                                         columnNumber: 29
                                     }, this)
                                 }, campaign.id, false, {
@@ -713,7 +740,7 @@ function BrandCampaigns() {
                                         className: "w-12 h-12 mx-auto mb-4 text-gray-200"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                        lineNumber: 315,
+                                        lineNumber: 338,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -725,7 +752,7 @@ function BrandCampaigns() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                        lineNumber: 316,
+                                        lineNumber: 339,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -733,13 +760,13 @@ function BrandCampaigns() {
                                         children: "Create a new campaign to get started."
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                        lineNumber: 317,
+                                        lineNumber: 340,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                lineNumber: 314,
+                                lineNumber: 337,
                                 columnNumber: 25
                             }, this)
                         ]
@@ -771,12 +798,12 @@ function BrandCampaigns() {
                                                 className: "w-4 h-4 text-blue-600"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                lineNumber: 331,
+                                                lineNumber: 354,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 330,
+                                            lineNumber: 353,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -784,13 +811,13 @@ function BrandCampaigns() {
                                             children: "Edit Campaign"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 333,
+                                            lineNumber: 356,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 329,
+                                    lineNumber: 352,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -800,18 +827,18 @@ function BrandCampaigns() {
                                         className: "w-5 h-5"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                        lineNumber: 336,
+                                        lineNumber: 359,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 335,
+                                    lineNumber: 358,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                            lineNumber: 328,
+                            lineNumber: 351,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -824,7 +851,7 @@ function BrandCampaigns() {
                                             children: "Campaign Title *"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 343,
+                                            lineNumber: 366,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -837,13 +864,13 @@ function BrandCampaigns() {
                                             className: "w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-blue-500 focus:border-blue-500 outline-none"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 344,
+                                            lineNumber: 367,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 342,
+                                    lineNumber: 365,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -853,7 +880,7 @@ function BrandCampaigns() {
                                             children: "Description"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 353,
+                                            lineNumber: 376,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -866,13 +893,13 @@ function BrandCampaigns() {
                                             className: "w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 354,
+                                            lineNumber: 377,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 352,
+                                    lineNumber: 375,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -885,7 +912,7 @@ function BrandCampaigns() {
                                                     children: "Min Budget ($)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                    lineNumber: 364,
+                                                    lineNumber: 387,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -898,13 +925,13 @@ function BrandCampaigns() {
                                                     className: "w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-blue-500 focus:border-blue-500 outline-none"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                    lineNumber: 365,
+                                                    lineNumber: 388,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 363,
+                                            lineNumber: 386,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -914,7 +941,7 @@ function BrandCampaigns() {
                                                     children: "Max Budget ($)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                    lineNumber: 373,
+                                                    lineNumber: 396,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -927,19 +954,19 @@ function BrandCampaigns() {
                                                     className: "w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-blue-500 focus:border-blue-500 outline-none"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                    lineNumber: 374,
+                                                    lineNumber: 397,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 372,
+                                            lineNumber: 395,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 362,
+                                    lineNumber: 385,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -949,7 +976,7 @@ function BrandCampaigns() {
                                             children: "Campaign Timeline"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 384,
+                                            lineNumber: 407,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -963,13 +990,13 @@ function BrandCampaigns() {
                                             className: "w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-blue-500 focus:border-blue-500 outline-none"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 385,
+                                            lineNumber: 408,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 383,
+                                    lineNumber: 406,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -979,7 +1006,7 @@ function BrandCampaigns() {
                                             children: "Target Audience"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 395,
+                                            lineNumber: 418,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -992,13 +1019,13 @@ function BrandCampaigns() {
                                             className: "w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-blue-500 focus:border-blue-500 outline-none"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 396,
+                                            lineNumber: 419,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 394,
+                                    lineNumber: 417,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1008,7 +1035,7 @@ function BrandCampaigns() {
                                             children: "Deliverables"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 405,
+                                            lineNumber: 428,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1021,13 +1048,13 @@ function BrandCampaigns() {
                                             className: "w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 406,
+                                            lineNumber: 429,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 404,
+                                    lineNumber: 427,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1037,7 +1064,7 @@ function BrandCampaigns() {
                                             children: "Additional Requirements"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 415,
+                                            lineNumber: 438,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1050,19 +1077,19 @@ function BrandCampaigns() {
                                             className: "w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 416,
+                                            lineNumber: 439,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 414,
+                                    lineNumber: 437,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                            lineNumber: 341,
+                            lineNumber: 364,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1074,7 +1101,7 @@ function BrandCampaigns() {
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 427,
+                                    lineNumber: 450,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1087,7 +1114,7 @@ function BrandCampaigns() {
                                                 className: "w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                lineNumber: 439,
+                                                lineNumber: 462,
                                                 columnNumber: 39
                                             }, this),
                                             " Saving..."
@@ -1098,7 +1125,7 @@ function BrandCampaigns() {
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                lineNumber: 441,
+                                                lineNumber: 464,
                                                 columnNumber: 39
                                             }, this),
                                             " Save Changes"
@@ -1106,24 +1133,24 @@ function BrandCampaigns() {
                                     }, void 0, true)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 433,
+                                    lineNumber: 456,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                            lineNumber: 426,
+                            lineNumber: 449,
                             columnNumber: 25
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                    lineNumber: 326,
+                    lineNumber: 349,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                lineNumber: 325,
+                lineNumber: 348,
                 columnNumber: 17
             }, this),
             deletingCampaign && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1140,12 +1167,12 @@ function BrandCampaigns() {
                                         className: "w-6 h-6 text-red-500"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                        lineNumber: 455,
+                                        lineNumber: 478,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 454,
+                                    lineNumber: 477,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1155,7 +1182,7 @@ function BrandCampaigns() {
                                             children: "Delete Campaign?"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 458,
+                                            lineNumber: 481,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1163,19 +1190,19 @@ function BrandCampaigns() {
                                             children: "This action cannot be undone."
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                            lineNumber: 459,
+                                            lineNumber: 482,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 457,
+                                    lineNumber: 480,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                            lineNumber: 453,
+                            lineNumber: 476,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1193,19 +1220,19 @@ function BrandCampaigns() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                        lineNumber: 464,
+                                        lineNumber: 487,
                                         columnNumber: 89
                                     }, this),
                                     ". The campaign will be archived and no longer visible."
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                lineNumber: 464,
+                                lineNumber: 487,
                                 columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                            lineNumber: 463,
+                            lineNumber: 486,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1217,7 +1244,7 @@ function BrandCampaigns() {
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 468,
+                                    lineNumber: 491,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1230,7 +1257,7 @@ function BrandCampaigns() {
                                                 className: "w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                lineNumber: 480,
+                                                lineNumber: 503,
                                                 columnNumber: 39
                                             }, this),
                                             " Deleting..."
@@ -1241,7 +1268,7 @@ function BrandCampaigns() {
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                                lineNumber: 482,
+                                                lineNumber: 505,
                                                 columnNumber: 39
                                             }, this),
                                             " Yes, Delete"
@@ -1249,24 +1276,24 @@ function BrandCampaigns() {
                                     }, void 0, true)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                                    lineNumber: 474,
+                                    lineNumber: 497,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                            lineNumber: 467,
+                            lineNumber: 490,
                             columnNumber: 25
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                    lineNumber: 452,
+                    lineNumber: 475,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/campaigns/page.js",
-                lineNumber: 451,
+                lineNumber: 474,
                 columnNumber: 17
             }, this)
         ]

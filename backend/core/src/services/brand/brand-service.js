@@ -49,9 +49,23 @@ export const BrandService = {
     },
 
     /**
+     * Get AI recommendations for a brand based on active campaigns.
+     */
+    async getAIRecommendations(brandId) {
+        return BrandRepository.getAIRecommendations(brandId);
+    },
+
+    /**
      * Search brands based on filters.
      */
     async searchBrands(filters) {
         return BrandRepository.search(filters);
+    },
+
+    /**
+     * Get a brand's profile by its ID (for influencer view).
+     */
+    async getBrandById(id) {
+        return BrandRepository.findById(id);
     }
 };

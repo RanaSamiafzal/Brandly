@@ -27,9 +27,7 @@ export async function PATCH(req) {
 
         const data = await req.json();
 
-        const updatedProfile = await InfluencerService.updateInfluencerProfile(decoded.userId, {
-            ...data
-        });
+        const updatedProfile = await InfluencerService.updateInfluencerProfile(decoded.userId, data);
 
         return NextResponse.json({ success: true, profile: updatedProfile });
     } catch (error) {

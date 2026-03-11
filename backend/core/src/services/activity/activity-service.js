@@ -1,5 +1,4 @@
 import { ActivityRepository } from '@repo/database/repositories/activity-repository.js';
-import { getIO } from '../../socket/socket-handler.js';
 
 export const ActivityService = {
     async logActivity(data) {
@@ -14,9 +13,14 @@ export const ActivityService = {
         });
 
         // Emit real-time notification
-        const io = getIO();
-        if (io) {
-            io.to(`user_${data.userId}`).emit('new_activity', activity);
+        try {
+            const { getIO } = await import('../../socket/socket-handler.js');
+            const io = getIO();
+            if (io) {
+                io.to(`user_${data.userId}`).emit('new_activity', activity);
+            }
+        } catch (error) {
+            console.error('Failed to emit activity via socket:', error);
         }
 
         return activity;

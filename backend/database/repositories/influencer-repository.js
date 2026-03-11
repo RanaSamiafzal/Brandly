@@ -50,10 +50,31 @@ export const InfluencerRepository = {
         });
     },
 
-    async update(id, data) {
-        return prisma.influencerProfile.update({
-            where: { id },
-            data,
+    async update(userId, data, userData = {}) {
+        // Use transaction to update both InfluencerProfile and User
+        return prisma.$transaction(async (tx) => {
+            const profile = await tx.influencerProfile.update({
+                where: { userId },
+                data,
+            });
+
+            // Sync with User table if userData is provided
+            // Also check if legacy fields (profilePic, coverPic) are in 'data' for backward compatibility
+            const userUpdateData = { ...userData };
+            if (data.profilePic && !userUpdateData.profilePic) userUpdateData.profilePic = data.profilePic;
+            if (data.coverPic && !userUpdateData.coverPic) userUpdateData.coverPic = data.coverPic;
+
+            if (Object.keys(userUpdateData).length > 0) {
+                await tx.user.update({
+                    where: { id: userId },
+                    data: userUpdateData
+                });
+            }
+
+            return tx.influencerProfile.findUnique({
+                where: { userId },
+                include: { user: true }
+            });
         });
     },
 };

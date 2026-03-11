@@ -35,11 +35,9 @@ function DashboardHome() {
     const fetchDashboardData = async ()=>{
         setIsLoading(true);
         try {
-            const [statsRes, recRes, actRes] = await Promise.all([
-                fetch('/api/brand/dashboard-stats'),
-                fetch('/api/brand/ai-recommendations'),
-                fetch('/api/brand/recent-activity')
-            ]);
+            const statsRes = await fetch('/api/brand/dashboard-stats');
+            const recRes = await fetch('/api/brand/ai-recommendations');
+            const actRes = await fetch('/api/brand/recent-activity');
             const statsData = await statsRes.json();
             const recData = await recRes.json();
             const actData = await actRes.json();
@@ -109,7 +107,7 @@ function DashboardHome() {
                     className: "h-10 bg-gray-200 rounded-lg w-1/4"
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                    lineNumber: 74,
+                    lineNumber: 72,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -123,32 +121,32 @@ function DashboardHome() {
                             className: "h-24 bg-gray-50 rounded-xl border"
                         }, i, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                            lineNumber: 76,
+                            lineNumber: 74,
                             columnNumber: 44
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                    lineNumber: 75,
+                    lineNumber: 73,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "h-64 bg-gray-50 rounded-xl border mt-8"
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                    lineNumber: 78,
+                    lineNumber: 76,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "h-48 bg-gray-50 rounded-xl border mt-8"
                 }, void 0, false, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                    lineNumber: 79,
+                    lineNumber: 77,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-            lineNumber: 73,
+            lineNumber: 71,
             columnNumber: 13
         }, this);
     }
@@ -167,14 +165,14 @@ function DashboardHome() {
                                 children: userDisplayName
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                lineNumber: 91,
+                                lineNumber: 89,
                                 columnNumber: 35
                             }, this),
                             "!"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                        lineNumber: 90,
+                        lineNumber: 88,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -182,13 +180,13 @@ function DashboardHome() {
                         children: "Here's a summary of your brand's performance and collaboration activity."
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                        lineNumber: 93,
+                        lineNumber: 91,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                lineNumber: 89,
+                lineNumber: 87,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -205,7 +203,7 @@ function DashboardHome() {
                                         children: stat.label
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                        lineNumber: 103,
+                                        lineNumber: 101,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -213,13 +211,13 @@ function DashboardHome() {
                                         children: stat.value
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                        lineNumber: 104,
+                                        lineNumber: 102,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                lineNumber: 102,
+                                lineNumber: 100,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -228,24 +226,24 @@ function DashboardHome() {
                                     className: "w-6 h-6"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                    lineNumber: 107,
+                                    lineNumber: 105,
                                     columnNumber: 33
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                lineNumber: 106,
+                                lineNumber: 104,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, i, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                        lineNumber: 101,
+                        lineNumber: 99,
                         columnNumber: 25
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                lineNumber: 97,
+                lineNumber: 95,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -259,7 +257,7 @@ function DashboardHome() {
                                 children: "Recommended Influencers"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                lineNumber: 117,
+                                lineNumber: 115,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -267,13 +265,13 @@ function DashboardHome() {
                                 children: "View All"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                lineNumber: 118,
+                                lineNumber: 116,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                        lineNumber: 116,
+                        lineNumber: 114,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -289,12 +287,12 @@ function DashboardHome() {
                                             className: "rounded-full object-cover w-full h-full border-2 border-white shadow-sm"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                            lineNumber: 127,
+                                            lineNumber: 125,
                                             columnNumber: 33
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                        lineNumber: 126,
+                                        lineNumber: 124,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -305,20 +303,20 @@ function DashboardHome() {
                                                 children: inf.name
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                                lineNumber: 131,
+                                                lineNumber: 129,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
                                                 className: "w-4 h-4 text-green-500 fill-green-50"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                                lineNumber: 132,
+                                                lineNumber: 130,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                        lineNumber: 130,
+                                        lineNumber: 128,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -331,7 +329,7 @@ function DashboardHome() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                                lineNumber: 136,
+                                                lineNumber: 134,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -341,20 +339,20 @@ function DashboardHome() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                                lineNumber: 137,
+                                                lineNumber: 135,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 children: inf.category
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                                lineNumber: 138,
+                                                lineNumber: 136,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                        lineNumber: 135,
+                                        lineNumber: 133,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -364,29 +362,29 @@ function DashboardHome() {
                                             children: "View Profile"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                            lineNumber: 142,
+                                            lineNumber: 140,
                                             columnNumber: 33
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                        lineNumber: 141,
+                                        lineNumber: 139,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, i, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                lineNumber: 125,
+                                lineNumber: 123,
                                 columnNumber: 25
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                        lineNumber: 123,
+                        lineNumber: 121,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                lineNumber: 115,
+                lineNumber: 113,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -397,7 +395,7 @@ function DashboardHome() {
                         children: "Recent Activity"
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                        lineNumber: 153,
+                        lineNumber: 151,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -411,12 +409,12 @@ function DashboardHome() {
                                             className: `w-2.5 h-2.5 rounded-full ${act.color}`
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                            lineNumber: 158,
+                                            lineNumber: 156,
                                             columnNumber: 33
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                        lineNumber: 157,
+                                        lineNumber: 155,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -429,7 +427,7 @@ function DashboardHome() {
                                                         children: act.user
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                                        lineNumber: 162,
+                                                        lineNumber: 160,
                                                         columnNumber: 37
                                                     }, this),
                                                     " ",
@@ -437,7 +435,7 @@ function DashboardHome() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                                lineNumber: 161,
+                                                lineNumber: 159,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -445,36 +443,36 @@ function DashboardHome() {
                                                 children: act.time
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                                lineNumber: 164,
+                                                lineNumber: 162,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                        lineNumber: 160,
+                                        lineNumber: 158,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, i, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                                lineNumber: 156,
+                                lineNumber: 154,
                                 columnNumber: 25
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                        lineNumber: 154,
+                        lineNumber: 152,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-                lineNumber: 152,
+                lineNumber: 150,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/page.js",
-        lineNumber: 87,
+        lineNumber: 85,
         columnNumber: 9
     }, this);
 }

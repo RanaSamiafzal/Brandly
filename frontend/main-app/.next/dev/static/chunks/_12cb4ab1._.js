@@ -494,7 +494,7 @@ function BrandManagementPage() {
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "w-14 h-14 rounded-2xl border-2 border-white/20 overflow-hidden",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                    src: collabInfo?.sender?.profilePic || "https://i.pravatar.cc/150",
+                                                    src: collabInfo?.sender?.profilePic || `https://i.pravatar.cc/150?u=${collabInfo?.senderId}`,
                                                     className: "w-full h-full object-cover",
                                                     alt: "Profile"
                                                 }, void 0, false, {
@@ -519,8 +519,11 @@ function BrandManagementPage() {
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                         className: "text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1",
-                                                        children: "Acceptance Rate: 98%"
-                                                    }, void 0, false, {
+                                                        children: [
+                                                            collabInfo?.sender?.influencerProfile?.category ? `Category: ${collabInfo.sender.influencerProfile.category}` : "Influencer",
+                                                            collabInfo?.sender?.influencerProfile?.isAvailable === false ? " · Busy" : " · Available"
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
                                                         lineNumber: 238,
                                                         columnNumber: 33
@@ -543,7 +546,8 @@ function BrandManagementPage() {
                                 lineNumber: 223,
                                 columnNumber: 21
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                href: collabInfo?.sender?.influencerProfile?.id ? `/brand/influencer/${collabInfo.sender.influencerProfile.id}` : '#',
                                 className: "w-full py-4 bg-white/10 hover:bg-white/20 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all border border-white/10 flex items-center justify-center gap-2",
                                 children: [
                                     "View Profile ",
@@ -551,13 +555,13 @@ function BrandManagementPage() {
                                         className: "w-3 h-3"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                        lineNumber: 243,
+                                        lineNumber: 253,
                                         columnNumber: 38
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                lineNumber: 242,
+                                lineNumber: 247,
                                 columnNumber: 21
                             }, this)
                         ]
@@ -585,14 +589,14 @@ function BrandManagementPage() {
                                         className: "w-6 h-6 text-blue-600"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                        lineNumber: 252,
+                                        lineNumber: 262,
                                         columnNumber: 25
                                     }, this),
                                     " Campaign Deliverables"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                lineNumber: 251,
+                                lineNumber: 261,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -605,18 +609,18 @@ function BrandManagementPage() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                    lineNumber: 255,
+                                    lineNumber: 265,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                lineNumber: 254,
+                                lineNumber: 264,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                        lineNumber: 250,
+                        lineNumber: 260,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -632,7 +636,7 @@ function BrandManagementPage() {
                                         className: "w-10 h-10 bg-gray-100 rounded-xl"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                        lineNumber: 262,
+                                        lineNumber: 272,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -642,26 +646,26 @@ function BrandManagementPage() {
                                                 className: "h-4 bg-gray-100 rounded w-1/4"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                                lineNumber: 264,
+                                                lineNumber: 274,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "h-3 bg-gray-50 rounded w-1/6"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                                lineNumber: 265,
+                                                lineNumber: 275,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                        lineNumber: 263,
+                                        lineNumber: 273,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, i, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                lineNumber: 261,
+                                lineNumber: 271,
                                 columnNumber: 44
                             }, this)) : tasks.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "p-20 text-center",
@@ -672,12 +676,12 @@ function BrandManagementPage() {
                                         className: "w-10 h-10 text-gray-200"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                        lineNumber: 271,
+                                        lineNumber: 281,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                    lineNumber: 270,
+                                    lineNumber: 280,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -685,7 +689,7 @@ function BrandManagementPage() {
                                     children: "No deliverables yet"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                    lineNumber: 273,
+                                    lineNumber: 283,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -693,7 +697,7 @@ function BrandManagementPage() {
                                     children: "Create tasks to track the progress of this collaboration and set clear expectations."
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                    lineNumber: 274,
+                                    lineNumber: 284,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -702,13 +706,13 @@ function BrandManagementPage() {
                                     children: "Create First Deliverable"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                    lineNumber: 275,
+                                    lineNumber: 285,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                            lineNumber: 269,
+                            lineNumber: 279,
                             columnNumber: 25
                         }, this) : tasks.map((task)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: `p-8 hover:bg-gray-50/50 transition-all flex items-center gap-8 ${task.status === "completed" ? "opacity-60" : ""}`,
@@ -720,18 +724,18 @@ function BrandManagementPage() {
                                             className: "w-6 h-6"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                            lineNumber: 292,
+                                            lineNumber: 302,
                                             columnNumber: 68
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Circle$3e$__["Circle"], {
                                             className: "w-5 h-5 text-gray-100"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                            lineNumber: 292,
+                                            lineNumber: 302,
                                             columnNumber: 107
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                        lineNumber: 285,
+                                        lineNumber: 295,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -745,7 +749,7 @@ function BrandManagementPage() {
                                                         children: task.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                                        lineNumber: 297,
+                                                        lineNumber: 307,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -753,13 +757,13 @@ function BrandManagementPage() {
                                                         children: task.priority || "Medium"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                                        lineNumber: 300,
+                                                        lineNumber: 310,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                                lineNumber: 296,
+                                                lineNumber: 306,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -772,7 +776,7 @@ function BrandManagementPage() {
                                                                 className: "w-3.5 h-3.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                                                lineNumber: 307,
+                                                                lineNumber: 317,
                                                                 columnNumber: 45
                                                             }, this),
                                                             " Due: ",
@@ -780,7 +784,7 @@ function BrandManagementPage() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                                        lineNumber: 306,
+                                                        lineNumber: 316,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -790,7 +794,7 @@ function BrandManagementPage() {
                                                                 className: "w-3.5 h-3.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                                                lineNumber: 311,
+                                                                lineNumber: 321,
                                                                 columnNumber: 45
                                                             }, this),
                                                             " ",
@@ -798,19 +802,19 @@ function BrandManagementPage() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                                        lineNumber: 309,
+                                                        lineNumber: 319,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                                lineNumber: 305,
+                                                lineNumber: 315,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                        lineNumber: 295,
+                                        lineNumber: 305,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -819,29 +823,29 @@ function BrandManagementPage() {
                                             className: "w-5 h-5"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                            lineNumber: 317,
+                                            lineNumber: 327,
                                             columnNumber: 37
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                        lineNumber: 316,
+                                        lineNumber: 326,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, task.id, true, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                lineNumber: 281,
+                                lineNumber: 291,
                                 columnNumber: 29
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                        lineNumber: 259,
+                        lineNumber: 269,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                lineNumber: 249,
+                lineNumber: 259,
                 columnNumber: 13
             }, this),
             isAddModalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -856,12 +860,12 @@ function BrandManagementPage() {
                                 children: "Add Deliverable"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                lineNumber: 330,
+                                lineNumber: 340,
                                 columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                            lineNumber: 329,
+                            lineNumber: 339,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -876,7 +880,7 @@ function BrandManagementPage() {
                                             children: "Title"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                            lineNumber: 334,
+                                            lineNumber: 344,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -888,13 +892,13 @@ function BrandManagementPage() {
                                             className: "w-full bg-gray-50 border border-gray-100 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                            lineNumber: 335,
+                                            lineNumber: 345,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                    lineNumber: 333,
+                                    lineNumber: 343,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -905,7 +909,7 @@ function BrandManagementPage() {
                                             children: "Deadline"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                            lineNumber: 345,
+                                            lineNumber: 355,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -915,13 +919,13 @@ function BrandManagementPage() {
                                             className: "w-full bg-gray-50 border border-gray-100 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                            lineNumber: 346,
+                                            lineNumber: 356,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                    lineNumber: 344,
+                                    lineNumber: 354,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -934,7 +938,7 @@ function BrandManagementPage() {
                                             children: "Cancel"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                            lineNumber: 354,
+                                            lineNumber: 364,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -944,30 +948,30 @@ function BrandManagementPage() {
                                             children: isSaving ? "Creating..." : "Create"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                            lineNumber: 361,
+                                            lineNumber: 371,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                                    lineNumber: 353,
+                                    lineNumber: 363,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                            lineNumber: 332,
+                            lineNumber: 342,
                             columnNumber: 25
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                    lineNumber: 328,
+                    lineNumber: 338,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/main-app/app/(dashboard)/brand/collaborations/[id]/management/page.js",
-                lineNumber: 327,
+                lineNumber: 337,
                 columnNumber: 17
             }, this)
         ]

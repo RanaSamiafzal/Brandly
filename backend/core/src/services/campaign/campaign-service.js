@@ -20,6 +20,7 @@ export const CampaignService = {
             brandId: data.brandId,
             title: data.title,
             description: data.description || "",
+            image: data.image || "",
             budgetMin: data.budgetMin || 0,
             budgetMax: data.budgetMax || 0,
             targetCategory: data.targetCategory || [],
@@ -126,5 +127,15 @@ export const CampaignService = {
      */
     async getBrandCampaigns(brandId) {
         return CampaignRepository.findByBrandId(brandId);
+    },
+
+    /**
+     * Update campaign resources.
+     * @param {string} campaignId
+     * @param {Array} resources
+     * @returns {Promise<Object>}
+     */
+    async updateCampaignResources(campaignId, resources) {
+        return CampaignRepository.update(campaignId, { resources });
     },
 };

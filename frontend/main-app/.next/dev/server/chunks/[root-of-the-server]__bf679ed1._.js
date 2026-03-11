@@ -468,7 +468,11 @@ const RequestRepository = {
                 id
             },
             include: {
-                sender: true,
+                sender: {
+                    include: {
+                        influencerProfile: true
+                    }
+                },
                 receiver: true,
                 campaign: true
             }
@@ -494,7 +498,12 @@ const RequestRepository = {
                         brandProfile: true
                     }
                 },
-                campaign: true
+                campaign: true,
+                tasks: {
+                    select: {
+                        status: true
+                    }
+                }
             },
             orderBy: {
                 createdAt: 'desc'
@@ -520,7 +529,12 @@ const RequestRepository = {
                     }
                 },
                 sender: true,
-                receiver: true
+                receiver: true,
+                tasks: {
+                    select: {
+                        status: true
+                    }
+                }
             },
             orderBy: {
                 createdAt: 'desc'
@@ -1257,6 +1271,9 @@ const CollaborationService = {
         }
         return task;
     },
+    async deleteCollabTask (id) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$collaboration$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["CollaborationRepository"].deleteTask(id);
+    },
     // Chat Logic
     async getCollabMessages (requestId) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$collaboration$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["CollaborationRepository"].getMessages(requestId);
@@ -1523,6 +1540,16 @@ const CampaignService = {
      * @returns {Promise<Array>}
      */ async getBrandCampaigns (brandId) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$campaign$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["CampaignRepository"].findByBrandId(brandId);
+    },
+    /**
+     * Update campaign resources.
+     * @param {string} campaignId
+     * @param {Array} resources
+     * @returns {Promise<Object>}
+     */ async updateCampaignResources (campaignId, resources) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$campaign$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["CampaignRepository"].update(campaignId, {
+            resources
+        });
     }
 };
 }),
@@ -1722,25 +1749,34 @@ const InfluencerService = {
      */ async updateInfluencerProfile (userId, profileData) {
         const influencer = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$influencer$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["InfluencerRepository"].findByUserId(userId);
         if (!influencer) throw new Error("Influencer profile not found");
-        // Separate user fields from influencer profile fields
-        const { profilePic, ...influencerData } = profileData;
-        // Update InfluencerProfile with remaining fields (if any exist)
-        let updatedProfile = influencer;
-        if (Object.keys(influencerData).length > 0) {
-            updatedProfile = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$influencer$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["InfluencerRepository"].update(influencer.id, influencerData);
-        }
-        // Sync with User table if profilePic is updated
-        if (profilePic !== undefined) {
-            const { prisma } = await __turbopack_context__.A("[project]/backend/database/index.js [app-route] (ecmascript, async loader)");
+        const { fullName, bio, profilePic, platforms, ...rest } = profileData;
+        // 1. Update User table (fullname, profilePic)
+        const userData = {};
+        if (fullName) userData.fullname = fullName;
+        if (profilePic) userData.profilePic = profilePic;
+        const { prisma } = await __turbopack_context__.A("[project]/backend/database/index.js [app-route] (ecmascript, async loader)");
+        if (Object.keys(userData).length > 0) {
             await prisma.user.update({
                 where: {
                     id: userId
                 },
-                data: {
-                    profilePic
-                }
+                data: userData
             });
         }
+        // 2. Update InfluencerProfile table
+        const influencerUpdateData = {
+            ...rest
+        };
+        if (bio !== undefined) influencerUpdateData.about = bio;
+        // Handle platforms (frontend might send as string or array)
+        if (platforms) {
+            try {
+                influencerUpdateData.platforms = typeof platforms === 'string' ? JSON.parse(platforms) : platforms;
+            } catch (e) {
+                console.error("Failed to parse platforms:", e);
+            }
+        }
+        const updatedProfile = await __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$database$2f$repositories$2f$influencer$2d$repository$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["InfluencerRepository"].update(influencer.id, influencerUpdateData);
         return updatedProfile;
     }
 };

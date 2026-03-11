@@ -20,11 +20,9 @@ export default function DashboardHome() {
     const fetchDashboardData = async () => {
         setIsLoading(true);
         try {
-            const [statsRes, recRes, actRes] = await Promise.all([
-                fetch('/api/brand/dashboard-stats'),
-                fetch('/api/brand/ai-recommendations'),
-                fetch('/api/brand/recent-activity')
-            ]);
+            const statsRes = await fetch('/api/brand/dashboard-stats');
+            const recRes = await fetch('/api/brand/ai-recommendations');
+            const actRes = await fetch('/api/brand/recent-activity');
 
             const statsData = await statsRes.json();
             const recData = await recRes.json();

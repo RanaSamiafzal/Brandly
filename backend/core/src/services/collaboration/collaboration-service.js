@@ -1,6 +1,5 @@
 import { CollaborationRepository } from '@repo/database/repositories/collaboration-repository.js';
 import { RequestRepository } from '@repo/database/repositories/request-repository.js';
-import { ActivityService } from '../activity/activity-service.js';
 
 export const CollaborationService = {
     // Task Logic
@@ -14,6 +13,7 @@ export const CollaborationService = {
         // Notify the other party
         const request = await RequestRepository.findById(data.requestId);
         if (request) {
+            const { ActivityService } = await import('../activity/activity-service.js');
             // Usually brand adds tasks, notify influencer
             const targetId = request.receiverId; // Assuming receiver is influencer
             await ActivityService.logActivity({
@@ -35,6 +35,7 @@ export const CollaborationService = {
         // Notify updated party (simplified)
         const request = await RequestRepository.findById(task.requestId);
         if (request) {
+            const { ActivityService } = await import('../activity/activity-service.js');
             const targetId = request.receiverId;
             await ActivityService.logActivity({
                 userId: targetId,
@@ -47,6 +48,10 @@ export const CollaborationService = {
         }
 
         return task;
+    },
+
+    async deleteCollabTask(id) {
+        return CollaborationRepository.deleteTask(id);
     },
 
     // Chat Logic
@@ -64,6 +69,7 @@ export const CollaborationService = {
         // Notify the recipient
         const request = await RequestRepository.findById(data.requestId);
         if (request) {
+            const { ActivityService } = await import('../activity/activity-service.js');
             const recipientId = message.senderId === request.senderId ? request.receiverId : request.senderId;
             const recipientRole = message.senderId === request.senderId ? "INFLUENCER" : "BRAND";
 

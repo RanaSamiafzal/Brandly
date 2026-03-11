@@ -77,6 +77,8 @@ model InfluencerProfile {
   averageRating Float        @default(0)
   isAvailable   Boolean      @default(true)
   platforms     Json         @default("[]")
+  phone         String?      @default("")
+  website       String?      @default("")
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
   user          User         @relation(fields: [userId], references: [id])
@@ -91,6 +93,7 @@ model Campaign {
   brandId                String
   title                  String
   description            String                 @default("")
+  image                  String?                @default("")
   budgetMin              Float                  @default(0)
   budgetMax              Float                  @default(0)
   targetCategory         String[]
@@ -99,6 +102,7 @@ model Campaign {
   deliverables           String
   targetAudience         String
   additionalRequirements String?                @default("")
+  resources              Json                   @default("[]")
   status                 String                 @default("ACTIVE")
   isDeleted              Boolean                @default(false)
   deletedAt              DateTime?

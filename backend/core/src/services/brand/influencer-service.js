@@ -67,24 +67,28 @@ export const InfluencerService = {
         const influencer = await InfluencerRepository.findByUserId(userId);
         if (!influencer) throw new Error("Influencer profile not found");
 
-        // Separate user fields from influencer profile fields
-        const { profilePic, ...influencerData } = profileData;
+        const { fullName, email, profilePic, coverPic, bio, platforms, ...rest } = profileData;
 
-        // Update InfluencerProfile with remaining fields (if any exist)
-        let updatedProfile = influencer;
-        if (Object.keys(influencerData).length > 0) {
-            updatedProfile = await InfluencerRepository.update(influencer.id, influencerData);
+        // 1. Prepare User update data
+        const userData = {};
+        if (fullName) userData.fullname = fullName;
+        if (email) userData.email = email;
+        if (profilePic) userData.profilePic = profilePic;
+        if (coverPic) userData.coverPic = coverPic;
+
+        // 2. Prepare InfluencerProfile update data
+        const influencerUpdateData = { ...rest };
+        if (bio !== undefined) influencerUpdateData.about = bio;
+
+        if (platforms) {
+            try {
+                influencerUpdateData.platforms = typeof platforms === 'string' ? JSON.parse(platforms) : platforms;
+            } catch (e) {
+                console.error("Failed to parse platforms:", e);
+            }
         }
 
-        // Sync with User table if profilePic is updated
-        if (profilePic !== undefined) {
-            const { prisma } = await import('@repo/database');
-            await prisma.user.update({
-                where: { id: userId },
-                data: { profilePic }
-            });
-        }
-
-        return updatedProfile;
+        // Use repository to handle the transaction and sync
+        return InfluencerRepository.update(userId, influencerUpdateData, userData);
     }
 };

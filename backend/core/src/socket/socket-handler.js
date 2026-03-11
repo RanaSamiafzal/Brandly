@@ -1,5 +1,4 @@
 import { Server } from 'socket.io';
-import { CollaborationService } from '../services/collaboration/collaboration-service.js';
 
 let io;
 
@@ -11,6 +10,8 @@ export const setupSocketHandlers = (server) => {
         }
     });
 
+    const onlineUsers = new Map(); // userId -> set of socketIds
+
     io.on('connection', (socket) => {
         console.log('New client connected:', socket.id);
 
@@ -21,12 +22,23 @@ export const setupSocketHandlers = (server) => {
 
         socket.on('join_user', (userId) => {
             socket.join(`user_${userId}`);
-            console.log(`Socket ${socket.id} joined personal room: user_${userId}`);
+
+            // Presence tracking
+            if (!onlineUsers.has(userId)) {
+                onlineUsers.set(userId, new Set());
+            }
+            onlineUsers.get(userId).add(socket.id);
+
+            // Broadcast that user is online
+            io.emit('user_status_change', { userId, status: 'online' });
+
+            console.log(`Socket ${socket.id} joined personal room: user_${userId}. Active sessions: ${onlineUsers.get(userId).size}`);
         });
 
         // Chat Events
         socket.on('send_message', async (data) => {
             try {
+                const { CollaborationService } = await import('../services/collaboration/collaboration-service.js');
                 const savedMessage = await CollaborationService.processNewMessage(data);
                 io.to(data.requestId).emit('receive_message', savedMessage);
             } catch (error) {
@@ -50,9 +62,16 @@ export const setupSocketHandlers = (server) => {
             });
         });
 
+        // Presence check
+        socket.on('check_online', (userId, callback) => {
+            const isOnline = onlineUsers.has(userId) && onlineUsers.get(userId).size > 0;
+            if (callback) callback({ online: isOnline });
+        });
+
         // Task Events
         socket.on('task_update', async (data) => {
             try {
+                const { CollaborationService } = await import('../services/collaboration/collaboration-service.js');
                 const updatedTask = await CollaborationService.updateCollabTask(data.taskId, data.update);
                 io.to(data.requestId).emit('task_updated', updatedTask);
             } catch (error) {
@@ -62,6 +81,18 @@ export const setupSocketHandlers = (server) => {
 
         socket.on('disconnect', () => {
             console.log('Client disconnected:', socket.id);
+
+            // Remove from onlineUsers
+            for (const [userId, sockets] of onlineUsers.entries()) {
+                if (sockets.has(socket.id)) {
+                    sockets.delete(socket.id);
+                    if (sockets.size === 0) {
+                        onlineUsers.delete(userId);
+                        io.emit('user_status_change', { userId, status: 'offline' });
+                    }
+                    break;
+                }
+            }
         });
     });
 

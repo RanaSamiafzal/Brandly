@@ -38,6 +38,7 @@ export async function GET(req) {
                 fullname: user.fullname,
                 role: user.role?.name || 'USER', // Defensive check
                 profilePic: user.profilePic,
+                coverPic: user.coverPic,
                 brandProfile: user.brandProfile,
                 influencerProfile: user.influencerProfile
             }

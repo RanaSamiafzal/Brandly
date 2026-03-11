@@ -15,7 +15,8 @@ export default function ProfileSettings() {
         website: "",
         industry: "",
         about: "",
-        logo: ""
+        logo: "",
+        coverPic: ""
     });
 
     const tabs = [
@@ -40,7 +41,8 @@ export default function ProfileSettings() {
                     website: data.profile.website || "",
                     industry: data.profile.industry || "",
                     about: data.profile.description || "", // Map backend "description" to frontend "about"
-                    logo: data.profile.logo || ""
+                    logo: data.profile.logo || "",
+                    coverPic: data.profile.user?.coverPic || ""
                 });
             }
         } catch (error) {
@@ -163,6 +165,32 @@ export default function ProfileSettings() {
                                             </button>
                                         </div>
                                     </div>
+                                </div>
+
+                                {/* Cover Image Upload */}
+                                <div className="space-y-4 pb-6 border-b border-gray-100">
+                                    <h3 className="font-semibold text-gray-900">Cover Image</h3>
+                                    <div className="relative w-full h-40 rounded-2xl bg-gray-100 border-2 border-dashed border-gray-200 overflow-hidden group">
+                                        {formData.coverPic ? (
+                                            <img src={formData.coverPic} alt="Cover" className="w-full h-full object-cover" />
+                                        ) : (
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
+                                                <Camera className="w-8 h-8 mb-2" />
+                                                <p className="text-xs font-medium">No cover image uploaded</p>
+                                            </div>
+                                        )}
+                                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                                            <CloudinaryUpload
+                                                onUploadSuccess={(info) => {
+                                                    setFormData(prev => ({ ...prev, coverPic: info.secure_url }));
+                                                    handleSave({ preventDefault: () => { }, target: {} }); // Auto-save for simplicity or let user save
+                                                }}
+                                                buttonText="Upload Cover"
+                                                folder="brand_covers"
+                                            />
+                                        </div>
+                                    </div>
+                                    <p className="text-sm text-gray-500">Recommended size: 1500x500px, under 5MB. This will be displayed at the top of your profile.</p>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">

@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Search, CheckCircle2, Youtube, Instagram, Twitter, ChevronDown, Check, Sparkles, Users, Filter, X, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 
+import { io } from "socket.io-client";
+
 const PLATFORM_ICONS = {
     instagram: Instagram,
     youtube: Youtube,
@@ -12,6 +14,7 @@ const PLATFORM_ICONS = {
 
 export default function SearchInfluencers() {
     const [influencers, setInfluencers] = useState([]);
+    const [onlineUsers, setOnlineUsers] = useState(new Set());
     const [campaigns, setCampaigns] = useState([]);
     const [selectedCampaign, setSelectedCampaign] = useState(null);
     const [isCampaignSelectorOpen, setIsCampaignSelectorOpen] = useState(false);
@@ -27,6 +30,26 @@ export default function SearchInfluencers() {
 
     const [invitingId, setInvitingId] = useState(null);
     const [toast, setToast] = useState(null);
+
+    // Socket for presence
+    useEffect(() => {
+        const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001");
+
+        socket.on('user_status_change', (data) => {
+            setOnlineUsers(prev => {
+                const next = new Set(prev);
+                if (data.status === 'online') next.add(data.userId);
+                else next.delete(data.userId);
+                return next;
+            });
+        });
+
+        // Request initial online users (optional, or just wait for events)
+        // For simplicity, we'll just track changes and check each one on render if needed
+        // But a batch check would be better. Let's just track changes for now.
+
+        return () => socket.disconnect();
+    }, []);
 
     useEffect(() => {
         setMounted(true);
@@ -68,6 +91,7 @@ export default function SearchInfluencers() {
                     const PlatformIcon = PLATFORM_ICONS[firstPlatform] || Instagram;
                     return {
                         id: inf.id,
+                        userId: inf.userId,
                         name: inf.user?.fullname || inf.username,
                         username: inf.username,
                         category: inf.category,
@@ -362,18 +386,28 @@ export default function SearchInfluencers() {
                                         alt={inf.name}
                                         className="w-full h-full rounded-full object-cover border-2 border-white shadow-md group-hover:scale-105 transition-transform"
                                     />
-                                    {inf.isAvailable && (
+                                    {onlineUsers.has(inf.userId) ? (
+                                        <span className="absolute bottom-0.5 right-0.5 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse shadow-sm" title="Active Now" />
+                                    ) : inf.isAvailable && (
                                         <span className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 bg-green-400 rounded-full border-2 border-white" title="Available" />
                                     )}
                                 </div>
 
                                 {/* Name + Verified */}
-                                <div className="flex items-center gap-1.5 mb-1">
-                                    <h3 className="font-bold text-gray-900 text-base">{inf.name}</h3>
-                                    <div className="flex items-center gap-1 bg-green-50 text-green-600 px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wide uppercase">
-                                        <CheckCircle2 className="w-3 h-3" />
-                                        Verified
+                                <div className="flex flex-col items-center gap-1 mb-1">
+                                    <div className="flex items-center gap-1.5 ">
+                                        <h3 className="font-bold text-gray-900 text-base">{inf.name}</h3>
+                                        <div className="flex items-center gap-1 bg-green-50 text-green-600 px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wide uppercase">
+                                            <CheckCircle2 className="w-3 h-3" />
+                                            Verified
+                                        </div>
                                     </div>
+                                    {onlineUsers.has(inf.userId) && (
+                                        <p className="text-[10px] font-bold text-green-600 uppercase tracking-widest flex items-center gap-1 animate-pulse">
+                                            <span className="w-1 h-1 bg-green-600 rounded-full"></span>
+                                            Active Now
+                                        </p>
+                                    )}
                                 </div>
 
                                 {/* Username */}

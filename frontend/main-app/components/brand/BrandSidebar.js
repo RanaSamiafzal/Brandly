@@ -31,7 +31,6 @@ export default function BrandSidebar() {
         { name: "My Requests", href: "/brand/my-requests", icon: FileText },
         { name: "Campaigns", href: "/brand/campaigns", icon: PlusSquare },
         { name: "Collaborations", href: "/brand/collaborations", icon: Users },
-        { name: "Create Campaign", href: "/brand/create-campaign", icon: PlusSquare },
         { name: "Profile Settings", href: "/brand/profile-settings", icon: Settings },
     ];
 

@@ -25,6 +25,11 @@ import {
 import { useAuthStore } from "@repo/store";
 import CloudinaryUpload from "../../../../components/brand/CloudinaryUpload";
 
+const AVAILABLE_CATEGORIES = [
+    "Lifestyle", "Fashion", "Tech", "Fitness", "Beauty",
+    "Travel", "Food", "Gaming", "Health", "Entertainment"
+];
+
 export default function InfluencerProfileSettings() {
     const { user, login } = useAuthStore();
     const [activeTab, setActiveTab] = useState("Profile Information");
@@ -66,8 +71,18 @@ export default function InfluencerProfileSettings() {
                 website: user.influencerProfile?.website || "",
                 category: user.influencerProfile?.category || "Lifestyle",
                 location: user.influencerProfile?.location || "",
-                bio: user.influencerProfile?.bio || ""
+                bio: user.influencerProfile?.about || ""
             });
+            if (user.influencerProfile?.platforms) {
+                try {
+                    const platforms = typeof user.influencerProfile.platforms === 'string'
+                        ? JSON.parse(user.influencerProfile.platforms)
+                        : user.influencerProfile.platforms;
+                    setSocialPlatforms(platforms);
+                } catch (e) {
+                    console.error("Failed to parse platforms:", e);
+                }
+            }
         }
     }, [user]);
 
@@ -112,6 +127,7 @@ export default function InfluencerProfileSettings() {
         try {
             const updatePayload = {
                 ...profileData,
+                fullName: profileData.fullName || user.fullname,
                 platforms: JSON.stringify(socialPlatforms)
             };
             const res = await fetch('/api/influencer/profile', {
@@ -135,6 +151,16 @@ export default function InfluencerProfileSettings() {
         } catch (error) {
             console.error("Save error:", error);
         }
+    };
+
+    const toggleCategory = (cat) => {
+        let current = profileData.category ? profileData.category.split(',').map(c => c.trim()).filter(c => c) : [];
+        if (current.includes(cat)) {
+            current = current.filter(c => c !== cat);
+        } else {
+            if (current.length < 5) current.push(cat);
+        }
+        setProfileData({ ...profileData, category: current.join(', ') });
     };
 
     if (!mounted) return null;
@@ -172,7 +198,7 @@ export default function InfluencerProfileSettings() {
                 </div>
 
                 {/* Content Area */}
-                <div className="flex-1 p-8">
+                <div className="flex-1 p-4 md:p-8 overflow-y-auto">
                     <form onSubmit={handleSave} className="space-y-8 h-full flex flex-col">
 
                         {/* PROFILE INFORMATION TAB */}
@@ -181,7 +207,7 @@ export default function InfluencerProfileSettings() {
                                 <h2 className="text-xl font-bold text-gray-900 mb-6">Influencer Details</h2>
 
                                 {/* Profile Pic Upload (Matching Brand Side Style) */}
-                                <div className="flex items-center gap-6 pb-6 border-b border-gray-100">
+                                <div className="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-b border-gray-100">
                                     <div className="relative w-24 h-24 rounded-full bg-blue-100 border-4 border-white shadow-md flex justify-center items-center text-blue-600 text-2xl font-bold flex-shrink-0 group overflow-hidden">
                                         {user?.profilePic ? (
                                             <img src={user.profilePic} alt="Profile" className="w-full h-full object-cover" />
@@ -221,6 +247,44 @@ export default function InfluencerProfileSettings() {
                                     </div>
                                 </div>
 
+                                {/* Cover Image Upload */}
+                                <div className="space-y-4 pb-6 border-b border-gray-100">
+                                    <h3 className="font-semibold text-gray-900">Cover Image</h3>
+                                    <div className="relative w-full h-40 rounded-2xl bg-gray-100 border-2 border-dashed border-gray-200 overflow-hidden group">
+                                        {user?.coverPic ? (
+                                            <img src={user.coverPic} alt="Cover" className="w-full h-full object-cover" />
+                                        ) : (
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
+                                                <Camera className="w-8 h-8 mb-2" />
+                                                <p className="text-xs font-medium">No cover image uploaded</p>
+                                            </div>
+                                        )}
+                                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                                            <CloudinaryUpload
+                                                onUploadSuccess={async (info) => {
+                                                    try {
+                                                        const res = await fetch('/api/influencer/profile', {
+                                                            method: 'PATCH',
+                                                            headers: { 'Content-Type': 'application/json' },
+                                                            body: JSON.stringify({ coverPic: info.secure_url })
+                                                        });
+                                                        if (res.ok) {
+                                                            const meRes = await fetch('/api/auth/me');
+                                                            const meData = await meRes.json();
+                                                            if (meData.user) login(meData.user);
+                                                        }
+                                                    } catch (e) {
+                                                        console.error("Failed to update cover pic", e);
+                                                    }
+                                                }}
+                                                buttonText="Upload Cover"
+                                                folder="influencer_covers"
+                                            />
+                                        </div>
+                                    </div>
+                                    <p className="text-sm text-gray-500">Recommended size: 1500x500px, under 5MB. This will be displayed at the top of your profile.</p>
+                                </div>
+
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
@@ -253,18 +317,27 @@ export default function InfluencerProfileSettings() {
                                         />
                                     </div>
 
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Content Category</label>
-                                        <select
-                                            value={profileData.category}
-                                            onChange={(e) => setProfileData({ ...profileData, category: e.target.value })}
-                                            className="w-full border-gray-200 border p-3 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
-                                        >
-                                            <option>Lifestyle</option>
-                                            <option>Fashion</option>
-                                            <option>Tech</option>
-                                            <option>Fitness</option>
-                                        </select>
+                                    <div className="col-span-1 md:col-span-2">
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Content Categories</label>
+                                        <div className="flex flex-wrap gap-2">
+                                            {AVAILABLE_CATEGORIES.map(cat => {
+                                                const isSelected = profileData.category?.split(',').map(c => c.trim()).includes(cat);
+                                                return (
+                                                    <button
+                                                        key={cat}
+                                                        type="button"
+                                                        onClick={() => toggleCategory(cat)}
+                                                        className={`px-4 py-2 rounded-full text-sm font-bold transition-all border ${isSelected
+                                                                ? 'bg-blue-50 border-blue-200 text-blue-700 shadow-sm'
+                                                                : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
+                                                            }`}
+                                                    >
+                                                        {cat}
+                                                    </button>
+                                                )
+                                            })}
+                                        </div>
+                                        <p className="text-xs text-gray-500 mt-2">Select up to 5 categories that best describe your content.</p>
                                     </div>
 
                                     <div className="col-span-1 md:col-span-2">
@@ -308,7 +381,7 @@ export default function InfluencerProfileSettings() {
 
                                 <div className="space-y-4">
                                     {socialPlatforms.map((platform) => (
-                                        <div key={platform.id} className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 bg-gray-50/50 border border-gray-200 rounded-xl items-end">
+                                        <div key={platform.id} className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 bg-gray-50/50 border border-gray-200 rounded-xl md:items-end">
                                             <div className="md:col-span-3">
                                                 <label className="block text-xs font-bold text-gray-400 uppercase mb-1.5 ml-1">Platform</label>
                                                 <select
@@ -400,11 +473,11 @@ export default function InfluencerProfileSettings() {
                                 </span>
                             ) : <span></span>}
 
-                            <div className="flex gap-3">
-                                <button type="button" className="px-6 py-2.5 bg-white border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm">
+                            <div className="flex gap-3 justify-end w-full">
+                                <button type="button" className="px-5 py-2.5 bg-white border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm">
                                     Cancel
                                 </button>
-                                <button type="submit" className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors text-sm">
+                                <button type="submit" className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors text-sm">
                                     Save Changes
                                 </button>
                             </div>

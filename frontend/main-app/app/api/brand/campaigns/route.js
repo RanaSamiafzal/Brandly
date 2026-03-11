@@ -12,13 +12,7 @@ export async function GET(req) {
 
         const profile = await BrandService.getBrandProfile(decoded.userId);
 
-        const campaigns = await prisma.campaign.findMany({
-            where: {
-                brandId: profile.id,
-                isDeleted: false
-            },
-            orderBy: { createdAt: 'desc' }
-        });
+        const campaigns = await CampaignService.getBrandCampaigns(profile.id);
 
         return NextResponse.json({ campaigns });
     } catch (error) {
