@@ -17,6 +17,7 @@ export async function GET(req) {
         return NextResponse.json({ campaigns });
     } catch (error) {
         console.error('Campaigns fetch error:', error);
+        try { require('fs').writeFileSync('/tmp/brand_campaign_error.txt', error.stack || String(error)); } catch (e) {}
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
     }
 }

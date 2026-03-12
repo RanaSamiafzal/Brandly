@@ -58,16 +58,17 @@ export default function InfluencerProfilePage({ params }) {
                     id: profile.id,
                     name: profile.user.fullname,
                     username: `@${profile.username}`,
+                    email: profile.user?.email || null,
                     verified: true,
                     category: profile.category,
-                    location: profile.location || "Not specified",
-                    followers: platforms[0]?.followers || "0",
-                    engagementRate: "4.8%",
-                    avgLikes: "6.2k",
-                    avgComments: "450",
-                    rating: profile.averageRating || 4.5,
-                    reviews: 12,
-                    image: profile.user.profilePic || `https://i.pravatar.cc/150?u=${profile.id}`,
+                    location: profile.location || null,
+                    followers: platforms[0]?.followers || null,
+                    engagementRate: null,
+                    avgLikes: null,
+                    avgComments: null,
+                    rating: profile.averageRating || null,
+                    reviews: null,
+                    image: profile.user.profilePic || null,
                     coverPic: profile.user.coverPic || null,
                     platforms: platforms.map((p, i) => ({
                         id: p.id || i,
@@ -76,13 +77,8 @@ export default function InfluencerProfilePage({ params }) {
                         handle: p.handle,
                         followers: p.followers
                     })),
-                    about: profile.about || "No description provided.",
-                    recentPosts: [
-                        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=300&h=300&fit=crop",
-                        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=300&fit=crop",
-                        "https://images.unsplash.com/photo-1529139572177-393f9ad922bd?w=300&h=300&fit=crop",
-                        "https://images.unsplash.com/photo-1485230895905-ec17bd368582?w=300&h=300&fit=crop"
-                    ],
+                    about: profile.about || null,
+                    recentPosts: [],
                     tags: profile.category ? profile.category.split(',').map(c => c.trim()).filter(c => c) : []
                 });
             }
@@ -278,38 +274,45 @@ export default function InfluencerProfilePage({ params }) {
 
             {/* Profile Header Card */}
             <div className="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
-                <div className="h-48 relative">
-                    {influencer.coverPic ? (
+                {influencer.coverPic ? (
+                    <div className="h-48 relative">
                         <img src={influencer.coverPic} className="w-full h-full object-cover" alt="Cover" />
-                    ) : (
-                        <div className="w-full h-full bg-gradient-to-r from-blue-600 to-indigo-700"></div>
-                    )}
-                    <div className="absolute inset-0 bg-black/10"></div>
-                </div>
+                        <div className="absolute inset-0 bg-black/10"></div>
+                    </div>
+                ) : (
+                    <div className="h-32 bg-gray-50 border-b border-gray-100"></div>
+                )}
                 <div className="px-8 pb-8">
                     <div className="relative flex flex-col md:flex-row md:items-end justify-between -mt-16 gap-6">
-                        <div className="flex flex-col md:flex-row md:items-end gap-6">
-                            <div className="relative">
-                                <img
-                                    src={influencer.image}
-                                    alt={influencer.name}
-                                    className="w-32 h-32 rounded-3xl object-cover border-4 border-white shadow-xl bg-white"
-                                />
+                        <div className="flex flex-col items-center md:items-end text-center md:text-left md:flex-row gap-6">
+                            <div className="relative shrink-0">
+                                {influencer.image ? (
+                                    <img
+                                        src={influencer.image}
+                                        alt={influencer.name}
+                                        className="w-32 h-32 rounded-3xl object-cover border-4 border-white shadow-xl bg-white"
+                                    />
+                                ) : (
+                                    <div className="w-32 h-32 rounded-3xl border-4 border-white shadow-xl bg-blue-100 text-blue-600 flex items-center justify-center text-5xl font-black uppercase">
+                                        {influencer.name.charAt(0)}
+                                    </div>
+                                )}
                                 {influencer.verified && (
                                     <div className="absolute -bottom-2 -right-2 bg-white rounded-xl p-1 shadow-md">
                                         <CheckCircle2 className="w-6 h-6 text-blue-500 fill-blue-50" />
                                     </div>
                                 )}
                             </div>
-                            <div className="space-y-1">
+                            <div className="space-y-2 md:space-y-1 mt-4 md:mt-0 text-center md:text-left flex-1 min-w-0">
                                 <h1 className="text-3xl font-black text-gray-900">{influencer.name}</h1>
-                                <div className="flex items-center gap-4 text-gray-500 font-medium">
-                                    <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {influencer.location}</span>
-                                    <span className="flex items-center gap-1"><Globe className="w-4 h-4" /> {influencer.username}</span>
+                                <div className="flex flex-col md:flex-row flex-wrap items-center md:items-start md:justify-start gap-2 md:gap-4 text-gray-500 font-medium mt-2">
+                                    {influencer.email && <span className="flex items-center gap-1.5"><MessageSquare className="w-4 h-4 shrink-0" /> <span className="truncate max-w-[200px] sm:max-w-none">{influencer.email}</span></span>}
+                                    {influencer.location && <span className="hidden sm:flex items-center gap-1.5"><MapPin className="w-4 h-4 shrink-0" /> <span className="truncate max-w-[200px] sm:max-w-none">{influencer.location}</span></span>}
+                                    {influencer.username && <span className="hidden md:flex items-center gap-1.5"><Globe className="w-4 h-4 shrink-0" /> <span className="truncate max-w-[200px] sm:max-w-none">{influencer.username}</span></span>}
                                 </div>
                             </div>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center justify-center md:justify-end gap-3 w-full md:w-auto mt-6 md:mt-0 pt-4 md:pt-0 border-t md:border-0 border-gray-100">
                             <button
                                 onClick={handleOpenModal}
                                 disabled={isInviting || invitationSent}
@@ -340,18 +343,25 @@ export default function InfluencerProfilePage({ params }) {
                     <div className="bg-white rounded-3xl border border-gray-200 p-8 shadow-sm space-y-6">
                         <h3 className="text-lg font-bold text-gray-900">Key Statistics</h3>
                         <div className="grid grid-cols-2 gap-6">
+                            {influencer.followers && (
                             <div className="space-y-1">
                                 <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">Followers</p>
                                 <p className="text-2xl font-black text-gray-900">{influencer.followers}</p>
                             </div>
+                            )}
+                            {influencer.engagementRate && (
                             <div className="space-y-1">
                                 <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">Engagement</p>
                                 <p className="text-2xl font-black text-blue-600">{influencer.engagementRate}</p>
                             </div>
+                            )}
+                            {influencer.avgLikes && (
                             <div className="space-y-1">
                                 <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">Avg. Likes</p>
                                 <p className="text-2xl font-black text-gray-900">{influencer.avgLikes}</p>
                             </div>
+                            )}
+                            {influencer.rating && (
                             <div className="space-y-1">
                                 <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">Rating</p>
                                 <div className="flex items-center gap-1">
@@ -359,27 +369,30 @@ export default function InfluencerProfilePage({ params }) {
                                     <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
                                 </div>
                             </div>
+                            )}
+                            {!influencer.followers && !influencer.engagementRate && !influencer.avgLikes && !influencer.rating && (
+                                <div className="col-span-2 text-sm text-gray-500 italic">No statistics available.</div>
+                            )}
                         </div>
                     </div>
 
                     {/* Platforms */}
+                    {influencer.platforms.length > 0 && (
                     <div className="bg-white rounded-3xl border border-gray-200 p-8 shadow-sm space-y-6">
                         <h3 className="text-lg font-bold text-gray-900">Platforms</h3>
                         <div className="space-y-4">
                             {influencer.platforms.map((p) => {
                                 const Icon = p.icon || Globe;
                                 return (
-                                    <div key={p.name} className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                                                <Icon className="w-5 h-5 text-gray-600" />
-                                            </div>
-                                            <div>
-                                                <p className="text-sm font-bold text-gray-900">{p.name}</p>
-                                                <p className="text-xs text-gray-500">{p.handle}</p>
-                                            </div>
+                                    <div key={p.name} className="flex items-center p-4 bg-gray-50 rounded-2xl border border-gray-100 gap-3 w-full">
+                                        <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center shrink-0">
+                                            <Icon className="w-5 h-5 text-gray-600" />
                                         </div>
-                                        <div className="text-right">
+                                        <div className="min-w-0 flex-1">
+                                            <p className="text-sm font-bold text-gray-900 truncate">{p.name}</p>
+                                            <p className="text-xs text-gray-500 truncate" title={p.handle}>{p.handle}</p>
+                                        </div>
+                                        <div className="text-right shrink-0">
                                             <p className="text-sm font-black text-gray-900">{p.followers}</p>
                                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Reach</p>
                                         </div>
@@ -388,11 +401,13 @@ export default function InfluencerProfilePage({ params }) {
                             })}
                         </div>
                     </div>
+                    )}
                 </div>
 
                 {/* Right Column: About, Posts, Reviews */}
                 <div className="lg:col-span-2 space-y-8">
                     {/* About */}
+                    {influencer.about && (
                     <div className="bg-white rounded-3xl border border-gray-200 p-8 shadow-sm space-y-6">
                         <div className="flex items-center justify-between">
                             <h3 className="text-xl font-bold text-gray-900">About Influencer</h3>
@@ -415,8 +430,10 @@ export default function InfluencerProfilePage({ params }) {
                             )}
                         </div>
                     </div>
+                    )}
 
                     {/* Recent Content */}
+                    {influencer.recentPosts?.length > 0 && (
                     <div className="bg-white rounded-3xl border border-gray-200 p-8 shadow-sm space-y-6">
                         <div className="flex items-center justify-between">
                             <h3 className="text-xl font-bold text-gray-900">Recent Content</h3>
@@ -430,30 +447,7 @@ export default function InfluencerProfilePage({ params }) {
                             ))}
                         </div>
                     </div>
-
-                    {/* Engagement Insights */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 text-white shadow-xl shadow-gray-200">
-                            <div className="flex items-center justify-between mb-6">
-                                <h4 className="font-bold flex items-center gap-2 tracking-tight">
-                                    <TrendingUp className="w-5 h-5 text-blue-400" /> Audience Growth
-                                </h4>
-                                <span className="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded-lg font-bold">Stable</span>
-                            </div>
-                            <p className="text-3xl font-black mb-1">+12.4%</p>
-                            <p className="text-gray-400 text-sm">Monthly increase in followers</p>
-                        </div>
-                        <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm">
-                            <div className="flex items-center justify-between mb-6">
-                                <h4 className="font-bold text-gray-900 flex items-center gap-2">
-                                    <Award className="w-5 h-5 text-amber-500" /> Top Performing
-                                </h4>
-                                <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Video Content</span>
-                            </div>
-                            <p className="text-3xl font-black text-gray-900">98.2k</p>
-                            <p className="text-gray-500 text-sm italic">Average reel reach</p>
-                        </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </div>

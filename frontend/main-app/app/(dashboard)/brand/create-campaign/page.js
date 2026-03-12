@@ -190,29 +190,24 @@ export default function CreateCampaign() {
 
                     <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="w-full md:w-64 aspect-video rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden relative group">
-                            {formData.image ? (
-                                <>
-                                    <img src={formData.image} className="w-full h-full object-cover" alt="Campaign Preview" />
-                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                        <CloudinaryUpload
-                                            onUploadSuccess={(info) => setFormData({ ...formData, image: info.secure_url })}
-                                            buttonText="Change"
-                                            folder="campaign_images"
-                                            className="bg-white/20 backdrop-blur-md text-white border-white/40 hover:bg-white/30"
-                                        />
-                                    </div>
-                                </>
-                            ) : (
-                                <div className="text-center p-4">
-                                    <ImageIcon className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-                                    <CloudinaryUpload
-                                        onUploadSuccess={(info) => setFormData({ ...formData, image: info.secure_url })}
-                                        buttonText="Upload Cover"
-                                        folder="campaign_images"
-                                    />
-                                    <p className="text-[10px] text-gray-400 mt-2">Recommended: 16:9 aspect ratio</p>
-                                </div>
+                            {formData.image && (
+                                <img src={formData.image} className="w-full h-full object-cover absolute inset-0 z-0" alt="Campaign Preview" />
                             )}
+                            
+                            <div className={`relative z-10 w-full h-full flex flex-col items-center justify-center ${formData.image ? 'opacity-0 group-hover:opacity-100 transition-opacity bg-black/40' : 'p-4'}`}>
+                                {!formData.image && <ImageIcon className="w-8 h-8 text-gray-300 mx-auto mb-2" />}
+                                <CloudinaryUpload
+                                    onUploadSuccess={(info) => {
+                                        // Force clear overflow in case widget unmounts/closes abnormally
+                                        document.body.style.overflow = '';
+                                        setFormData(prev => ({ ...prev, image: info.secure_url }));
+                                    }}
+                                    buttonText={formData.image ? "Change" : "Upload Cover"}
+                                    folder="campaign_images"
+                                    className={formData.image ? "bg-white/20 backdrop-blur-md text-white border-white/40 hover:bg-white/30" : ""}
+                                />
+                                {!formData.image && <p className="text-[10px] text-gray-400 mt-2">Recommended: 16:9 aspect ratio</p>}
+                            </div>
                         </div>
                         <div className="flex-1 space-y-2">
                             <h3 className="font-bold text-gray-900">Campaign Cover Image</h3>

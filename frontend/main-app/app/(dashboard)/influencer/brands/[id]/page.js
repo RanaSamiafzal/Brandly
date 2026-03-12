@@ -46,25 +46,22 @@ export default function BrandProfilePage() {
                 const p = data.profile;
                 setBrand({
                     id: p.id,
-                    name: p.brandName || p.user?.fullname || "FashionHub",
-                    logo: p.logo || p.user?.profilePic || "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=400&fit=crop",
-                    banner: p.user?.coverPic || "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop",
-                    description: p.description || "Leading global fashion retailer specializing in modern, sustainable, and accessible clothing for everyone.",
-                    industry: p.industry || "Fashion & Lifestyle",
-                    location: p.address || "New York, NY",
-                    website: p.website || "fashionhub.com",
+                    name: p.brandName || p.user?.fullname || "Unknown Brand",
+                    email: p.user?.email || null,
+                    logo: p.logo || p.user?.profilePic || null,
+                    banner: p.user?.coverPic || null,
+                    description: p.description || null,
+                    industry: p.industry || null,
+                    location: p.address || null,
+                    website: p.website || null,
                     joinedDate: new Date(p.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
                     isVerified: true, // Assuming default true for now, can be a field later
                     stats: {
-                        activeCampaigns: p.campaigns?.length || 5,
-                        totalCollaborations: 124, // Mock
-                        avgRating: 4.9 // Mock
+                        activeCampaigns: p.campaigns?.length || 0,
+                        totalCollaborations: null, // No real data yet
+                        avgRating: null // No real data yet
                     },
-                    socialPlatforms: [
-                        { name: "Instagram", followers: "1.2M", handle: `@${(p.brandName || "fashionhub").toLowerCase().replace(/\s/g, '')}` },
-                        { name: "YouTube", followers: "450K", handle: `${(p.brandName || "FashionHub").replace(/\s/g, '')}TV` },
-                        { name: "TikTok", followers: "800K", handle: `@${(p.brandName || "fashionhub").toLowerCase().replace(/\s/g, '')}_official` }
-                    ],
+                    socialPlatforms: [], // No real data yet
                     activeCampaigns: p.campaigns?.map(c => ({
                         id: c.id,
                         title: c.title,
@@ -99,32 +96,50 @@ export default function BrandProfilePage() {
             </Link>
 
             {/* Banner & Logo Area */}
-            <div className="relative mb-32">
-                <div className="w-full h-64 md:h-80 rounded-[40px] overflow-hidden border border-gray-100 shadow-inner px-1 pt-1 bg-gray-50">
+            <div className="relative mb-48 md:mb-32">
+                {brand.banner ? (
+                <div className="w-full h-48 md:h-80 rounded-[40px] overflow-hidden border border-gray-100 shadow-inner px-1 pt-1 bg-gray-50">
                     <img src={brand.banner} alt="Banner" className="w-full h-full object-cover rounded-[39px]" />
                 </div>
-                <div className="absolute -bottom-20 left-12 flex flex-col md:flex-row md:items-end gap-6">
-                    <div className="w-40 h-40 rounded-[48px] overflow-hidden border-[6px] border-white shadow-2xl shadow-blue-100/50 bg-white">
-                        <img src={brand.logo} alt={brand.name} className="w-full h-full object-cover" />
+                ) : (
+                <div className="w-full h-48 md:h-80 rounded-[40px] border border-gray-100 shadow-inner bg-gray-50"></div>
+                )}
+                <div className="absolute -bottom-40 md:-bottom-20 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-12 flex flex-col items-center md:items-end md:flex-row gap-4 md:gap-6 w-[90%] md:w-auto text-center md:text-left">
+                    <div className="relative shrink-0 w-32 h-32 md:w-40 md:h-40 rounded-[40px] md:rounded-[48px] overflow-hidden border-[6px] border-white shadow-2xl shadow-blue-100/50 bg-white">
+                        {brand.logo ? (
+                            <img src={brand.logo} alt={brand.name} className="w-full h-full object-cover" />
+                        ) : (
+                            <div className="w-full h-full bg-blue-100 text-blue-600 flex items-center justify-center text-6xl font-black uppercase">
+                                {brand.name.charAt(0)}
+                            </div>
+                        )}
                     </div>
-                    <div className="mb-4">
-                        <div className="flex items-center gap-3">
-                            <h1 className="text-4xl font-black text-gray-900 tracking-tight">{brand.name}</h1>
+                    <div className="mb-0 md:mb-4 w-full">
+                        <div className="flex flex-col md:flex-row items-center gap-3">
+                            <h1 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">{brand.name}</h1>
                             {brand.isVerified && (
                                 <div className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full flex items-center gap-1.5 border border-blue-100">
                                     <ShieldCheck className="w-4 h-4" />
-                                    <span className="text-[10px] font-black uppercase tracking-widest">Verified Brand</span>
+                                    <span className="text-[10px] font-black uppercase tracking-widest hidden sm:inline-block">Verified Brand</span>
                                 </div>
                             )}
                         </div>
-                        <div className="flex items-center gap-4 mt-2 text-sm font-bold text-gray-500">
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-3 text-sm font-bold text-gray-500">
+                            {brand.email && (
                             <span className="flex items-center gap-1.5">
-                                <MapPin className="w-4 h-4 text-gray-300" /> {brand.location}
+                                <MessageSquare className="w-4 h-4 shrink-0 text-gray-300" /> <span className="truncate max-w-[150px] sm:max-w-none">{brand.email}</span>
                             </span>
-                            <span className="w-1.5 h-1.5 rounded-full bg-gray-200" />
-                            <span className="flex items-center gap-1.5">
-                                <Globe className="w-4 h-4 text-gray-300" /> {brand.website}
+                            )}
+                            {brand.location && (
+                            <span className="hidden sm:flex items-center gap-1.5">
+                                <MapPin className="w-4 h-4 shrink-0 text-gray-300" /> <span className="truncate max-w-[120px] sm:max-w-none">{brand.location}</span>
                             </span>
+                            )}
+                            {brand.website && (
+                            <span className="hidden md:flex items-center gap-1.5">
+                                <Globe className="w-4 h-4 shrink-0 text-gray-300" /> <span className="truncate max-w-[150px] sm:max-w-none">{brand.website}</span>
+                            </span>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -133,13 +148,16 @@ export default function BrandProfilePage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Left Column: About & Socials */}
                 <div className="lg:col-span-2 space-y-8">
+                    {brand.description && (
                     <section className="bg-white border border-gray-100 rounded-[40px] p-10 shadow-sm">
                         <h2 className="text-2xl font-black text-gray-900 mb-6 font-display">About the Brand</h2>
                         <p className="text-gray-600 leading-relaxed font-medium">
                             {brand.description}
                         </p>
                     </section>
+                    )}
 
+                    {brand.socialPlatforms.length > 0 && (
                     <section className="bg-white border border-gray-100 rounded-[40px] p-10 shadow-sm">
                         <h2 className="text-2xl font-black text-gray-900 mb-8">Social Reach</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -152,6 +170,7 @@ export default function BrandProfilePage() {
                             ))}
                         </div>
                     </section>
+                    )}
 
                     <section>
                         <div className="flex items-center justify-between mb-8 px-2">
@@ -191,6 +210,7 @@ export default function BrandProfilePage() {
 
                 {/* Right Column: Key Stats & Quick Actions */}
                 <div className="space-y-8">
+                    {(brand.stats.avgRating || brand.stats.totalCollaborations) && (
                     <div className="bg-blue-600 rounded-[40px] p-10 text-white shadow-2xl shadow-blue-200">
                         <h3 className="text-xl font-bold mb-8">Performance Score</h3>
                         <div className="space-y-8">
@@ -205,6 +225,7 @@ export default function BrandProfilePage() {
                                 </div>
                             </div>
                             <div className="grid grid-cols-2 gap-4 pt-4 border-t border-blue-500/50">
+                                {brand.stats.avgRating && (
                                 <div>
                                     <p className="text-[10px] font-black uppercase tracking-widest text-blue-200 mb-1">Rating</p>
                                     <div className="flex items-center gap-1">
@@ -212,6 +233,8 @@ export default function BrandProfilePage() {
                                         <span className="text-xl font-black">{brand.stats.avgRating}</span>
                                     </div>
                                 </div>
+                                )}
+                                {brand.stats.totalCollaborations && (
                                 <div>
                                     <p className="text-[10px] font-black uppercase tracking-widest text-blue-200 mb-1">Collabs</p>
                                     <div className="flex items-center gap-1">
@@ -219,9 +242,11 @@ export default function BrandProfilePage() {
                                         <span className="text-xl font-black">{brand.stats.totalCollaborations}</span>
                                     </div>
                                 </div>
+                                )}
                             </div>
                         </div>
                     </div>
+                    )}
 
                     <div className="bg-white border border-gray-100 rounded-[40px] p-8 shadow-sm">
                         <h3 className="text-lg font-black text-gray-900 mb-6 uppercase tracking-wider">Quick Actions</h3>

@@ -414,7 +414,35 @@ node backend/database/seed.js
 
 ---
 
-## 🔄 Recent Development History (Last ~10 Sessions)
+## 🚀 Release History
+ 
+ ### v5.0.0 — Production-Ready SaaS (Feb 27, 2026)
+ - **Edge Runtime Middleware**: All dashboards protected by JWT role-based proxy.
+ - **Admin Dashboard**: New role and management shell added.
+ - **Real Email OTP**: Integrated Resend API for branded authentication emails.
+ - **RBAC Service**: Modular permission system for all roles.
+ - **Marketing Pages**: 7 production-ready public routes (Analytics, Case Studies, Help Center).
+ 
+ ### v4.0.0 — Real-Time Chat & Collaboration
+ - **Socket.io Integration**: Live chat and task updates for active collaborations.
+ - **Task Management**: Brands can assign and track deliverables in real-time.
+ - **Notification UI**: Popup alerts with sound for platform-wide events.
+ 
+ ### v3.0.0 — AI Matching Engine
+ - **Scoring Algorithm**: Weighted niche, engagement, and budget matching.
+ - **Match Results UI**: Ranked influencer lists for brand campaigns.
+ 
+ ### v2.0.0 — Core SaaS Foundation
+ - **Monorepo**: npm workspaces setup (core, database, shared).
+ - **Prisma Core**: Schema design for 9 core models.
+ - **Brand/Influencer Profiles**: Initial dashboard and profile configuration.
+ 
+ ### v1.0.0 — Project Genesis
+ - **Initial Commit**: Base Next.js 15 and Node.js folder structure.
+ 
+ ---
+ 
+ ## 🔄 Recent Development History (Last ~10 Sessions)
 
 | Session                       | Change                                                                                                     |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------- |

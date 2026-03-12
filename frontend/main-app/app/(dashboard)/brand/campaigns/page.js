@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Users, CheckCircle2, AlertCircle, Clock, Search, MoreVertical, Plus, Pencil, Trash2, X, Sparkles, Save } from "lucide-react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function BrandCampaigns() {
@@ -9,6 +10,7 @@ export default function BrandCampaigns() {
     const [isLoading, setIsLoading] = useState(true);
     const [mounted, setMounted] = useState(false);
     const [openMenuId, setOpenMenuId] = useState(null);
+    const router = useRouter();
 
     // Edit modal state
     const [editingCampaign, setEditingCampaign] = useState(null);

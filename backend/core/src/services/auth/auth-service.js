@@ -1,11 +1,33 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import { UserRepository } from '@repo/database/repositories/user-repository.js';
 
 const SECRET = process.env.AUTH_SECRET || 'dev_secret';
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+
+let _transporter = null;
+const getTransporter = () => {
+    if (_transporter) return _transporter;
+    
+    const host = process.env.SMTP_HOST;
+    const port = parseInt(process.env.SMTP_PORT || '587');
+    const user = process.env.SMTP_USER;
+    const pass = process.env.SMTP_PASS;
+
+    if (host && user && pass) {
+        _transporter = nodemailer.createTransport({
+            host,
+            port,
+            secure: port === 465,
+            auth: {
+                user,
+                pass,
+            },
+        });
+    }
+    return _transporter;
+};
 
 export const AuthService = {
     async register({ email, password, role, fullname }) {
@@ -75,19 +97,29 @@ export const AuthService = {
         });
 
         console.log(`[AUTH] Generated OTP for ${email}: ${otp}`);
+        
+        console.log('[AUTH DEBUG] Runtime Config Check:');
+        console.log('SMTP_HOST:', process.env.SMTP_HOST);
+        console.log('SMTP_PORT:', process.env.SMTP_PORT);
+        console.log('SMTP_USER:', process.env.SMTP_USER);
+        console.log('SMTP_PASS:', process.env.SMTP_PASS ? '********' : 'MISSING');
 
-        // Send via Resend
+        // Send via Nodemailer
         try {
-            if (!resend) {
-                console.warn('[AUTH] Resend API key missing. Email not sent, but proceeding for development.');
-                return { message: 'OTP generated (Email skipped - No API Key)' };
+            const transporter = getTransporter();
+            if (!transporter) {
+                console.warn('[AUTH DEBUG] SMTP credentials missing from process.env');
+                return { message: 'OTP generated (Email skipped - No SMTP Config)' };
             }
-            await resend.emails.send({
-                from: 'Brandly <onboarding@resend.dev>', // Resend default for unverified domains
+
+            console.log(`[AUTH DEBUG] Attempting to send OTP email to ${email} via Nodemailer...`);
+            
+            await transporter.sendMail({
+                from: `"Brandly" <${process.env.SMTP_USER}>`,
                 to: email,
                 subject: 'Your Brandly Password Reset Code',
                 html: `
-                    <div style="font-family: sans-serif; max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; rounded: 16px;">
+                    <div style="font-family: sans-serif; max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 16px;">
                         <h2 style="color: #0f172a; text-align: center;">Reset Your Password</h2>
                         <p style="color: #64748b; font-size: 14px; text-align: center;">Use the code below to complete your password reset request. This code will expire in 10 minutes.</p>
                         <div style="background: #f1f5f9; padding: 16px; border-radius: 12px; text-align: center; font-size: 32px; font-weight: bold; letter-spacing: 8px; color: #3b82f6; margin: 24px 0;">
@@ -97,10 +129,12 @@ export const AuthService = {
                     </div>
                 `
             });
+
+            console.log('[AUTH DEBUG] Nodemailer SUCCESS');
             return { message: 'OTP sent successfully' };
         } catch (error) {
-            console.error('[RESEND ERROR]', error);
-            throw new Error('Failed to send email. Please try again later.');
+            console.error('[NODEMAILER ERROR]', error);
+            throw new Error('Failed to send email. Please check your SMTP configuration.');
         }
     },
 

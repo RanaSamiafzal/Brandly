@@ -61,7 +61,7 @@ export default function AIMatchPage({ params }) {
                         niche: profile.category,
                         followers: primaryPlatform.followers, // Use actual followers
                         platform: primaryPlatform.platform,    // Use actual platform
-                        image: profile.user.profilePic || `https://i.pravatar.cc/150?u=${m.influencerId}`,
+                        image: profile.user.profilePic || null,
                         matchReason: m.breakdown?.reason || "High affinity with your target audience demographics."
                     };
                 });
@@ -201,61 +201,67 @@ export default function AIMatchPage({ params }) {
             </div>
 
             {/* Match Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
                 {matches.map((match, idx) => (
-                    <div key={match.id} className="bg-white border border-gray-200 rounded-[2.5rem] p-8 hover:shadow-2xl hover:border-blue-200 transition-all group animate-in fade-in slide-in-from-bottom-8 duration-500" style={{ animationDelay: `${idx * 150}ms` }}>
-                        <div className="flex flex-col sm:flex-row gap-8 items-start">
-                            {/* Score Circle & Avatar */}
-                            <div className="flex items-center gap-4 sm:flex-col sm:gap-6">
-                                <div className="relative">
-                                    <svg className="w-24 h-24 transform -rotate-90">
-                                        <circle cx="48" cy="48" r="44" stroke="currentColor" strokeWidth="6" fill="transparent" className="text-gray-100" />
-                                        <circle cx="48" cy="48" r="44" stroke="currentColor" strokeWidth="6" fill="transparent" strokeDasharray={276} strokeDashoffset={276 - (276 * match.score) / 100} className="text-blue-600 transition-all duration-1000 ease-out" />
-                                    </svg>
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                        <span className="text-xl font-black text-gray-900 leading-none">{match.score}%</span>
-                                        <span className="text-[9px] font-bold text-blue-600 uppercase tracking-tighter mt-1">Match</span>
+                    <div key={match.id} className="bg-white border border-gray-100 rounded-[2.5rem] p-8 hover:shadow-2xl hover:border-blue-200 transition-all group animate-in fade-in slide-in-from-bottom-8 duration-500" style={{ animationDelay: `${idx * 150}ms` }}>
+                        <div className="flex flex-col gap-8">
+                            <div className="flex items-start justify-between">
+                                <div className="flex items-center gap-6">
+                                    <div className="relative shrink-0">
+                                        <div className="relative w-24 h-24">
+                                            <svg className="w-24 h-24 transform -rotate-90 absolute top-0 left-0 z-10">
+                                                <circle cx="48" cy="48" r="46" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-gray-100" />
+                                                <circle cx="48" cy="48" r="46" stroke="currentColor" strokeWidth="4" fill="transparent" strokeDasharray={289} strokeDashoffset={289 - (289 * match.score) / 100} className="text-blue-600 transition-all duration-1000 ease-out" />
+                                            </svg>
+                                            <div className="absolute inset-1 rounded-full overflow-hidden bg-white border-2 border-white shadow-inner">
+                                                {match.image ? (
+                                                    <img src={match.image} alt={match.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                                ) : (
+                                                    <div className="w-full h-full bg-blue-50 text-blue-600 flex items-center justify-center text-3xl font-black uppercase group-hover:scale-110 transition-transform duration-500">
+                                                        {match.name.charAt(0)}
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="absolute -bottom-2 -right-2 bg-blue-600 text-white rounded-xl px-2 py-1 text-[10px] font-black z-20 shadow-lg shadow-blue-200">
+                                                {match.score}% MATCH
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                        <div className="flex items-center gap-2">
+                                            <h3 className="text-xl md:text-2xl font-black text-gray-900 truncate" title={match.name}>{match.name}</h3>
+                                            <CheckCircle2 className="w-4 h-4 md:w-5 h-5 text-green-500 flex-shrink-0 fill-green-50" />
+                                        </div>
+                                        <div className="flex flex-wrap items-center gap-2 md:gap-3 text-xs md:text-sm text-gray-500 font-bold mt-1">
+                                            <span className="flex items-center gap-1.5 whitespace-nowrap"><Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" /> 4.9</span>
+                                            <span className="w-1 h-1 rounded-full bg-gray-300" />
+                                            <span className="whitespace-nowrap">{match.followers} followers</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <img src={match.image} alt={match.name} className="w-20 h-20 sm:w-24 sm:h-24 rounded-[2rem] object-cover border-4 border-white shadow-xl group-hover:scale-105 transition-transform" />
+                                <div className="absolute top-6 right-6 lg:static bg-gray-100 px-2 md:px-3 py-1 rounded-lg text-[9px] md:text-[10px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap z-20">
+                                    {match.platform}
+                                </div>
                             </div>
 
-                            {/* Center: Info */}
-                            <div className="flex-1 min-w-0">
-                                <div className="flex items-start justify-between gap-4 mb-4">
-                                    <div>
-                                        <div className="flex items-center gap-2">
-                                            <h3 className="text-2xl font-black text-gray-900 truncate">{match.name}</h3>
-                                            <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 fill-green-50" />
-                                        </div>
-                                        <div className="flex items-center gap-3 text-sm text-gray-500 font-bold mt-1">
-                                            <span className="flex items-center gap-1.5"><Star className="w-4 h-4 text-amber-400 fill-amber-400" /> 4.9</span>
-                                            <span className="w-1 h-1 rounded-full bg-gray-300" />
-                                            <span>{match.followers} followers</span>
-                                        </div>
+                            <div className="bg-gray-50/50 rounded-3xl p-6 border border-gray-100/80">
+                                <div className="flex items-start gap-3">
+                                    <div className="w-8 h-8 rounded-xl bg-blue-100/50 flex items-center justify-center shrink-0">
+                                        <Sparkles className="w-4 h-4 text-blue-500" />
                                     </div>
-                                    <div className="bg-gray-100 px-3 py-1 rounded-lg text-[10px] font-black text-gray-500 uppercase tracking-widest">
-                                        {match.platform}
-                                    </div>
+                                    <p className="text-sm text-gray-700 leading-relaxed font-medium pt-1">"{match.matchReason}"</p>
                                 </div>
+                            </div>
 
-                                <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100 mt-4">
-                                    <div className="flex items-start gap-3">
-                                        <Sparkles className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                        <p className="text-sm text-gray-700 leading-relaxed font-medium">"{match.matchReason}"</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center gap-3 mt-8">
-                                    <Link href={`/brand/influencer/${match.id}`} className="flex-1">
-                                        <button className="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold py-4 rounded-2xl transition-all text-sm group-hover:scale-[1.02] active:scale-[0.98] border border-blue-100">
-                                            View Profile
-                                        </button>
-                                    </Link>
-                                    <button className="flex-1 bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 rounded-2xl text-sm transition-all shadow-lg shadow-gray-100 hover:shadow-gray-200 group-hover:scale-[1.02] active:scale-[0.98]">
-                                        Send Invite
+                            <div className="flex items-center gap-3 w-full">
+                                <Link href={`/brand/influencer/${match.id}`} className="flex-1">
+                                    <button className="w-full bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 font-bold py-4 rounded-2xl transition-all text-sm group-hover:border-blue-200 shadow-sm active:scale-[0.98]">
+                                        View Profile
                                     </button>
-                                </div>
+                                </Link>
+                                <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl text-sm transition-all shadow-lg shadow-blue-100 hover:shadow-blue-200 active:scale-[0.98]">
+                                    Send Invite
+                                </button>
                             </div>
                         </div>
                     </div>
