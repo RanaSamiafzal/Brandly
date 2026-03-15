@@ -149,7 +149,7 @@ export default function InfluencerDashboard() {
                                     </div>
                                 </div>
                                 <div>
-                                    <Link href={`/influencer/collaborations/${campaign.id}/tasks`}>
+                                    <Link href={`/influencer/collaborations/${campaign.id}`}>
                                         <button className="flex items-center gap-2 text-sm font-bold text-blue-600 border border-blue-100 px-4 py-2 rounded-lg hover:bg-blue-50 transition-all">
                                             <ExternalLink className="w-4 h-4" /> View Details
                                         </button>

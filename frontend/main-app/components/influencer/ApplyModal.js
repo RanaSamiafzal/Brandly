@@ -1,12 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
-import { X, Send, AlertTriangle, CheckCircle2, DollarSign, MessageSquare, Megaphone, Sparkles } from "lucide-react";
+import { X, Send, AlertTriangle, CheckCircle2, DollarSign, MessageSquare, Megaphone, Sparkles, Globe } from "lucide-react";
 
 export default function ApplyModal({ brandId, brandName, onClose, onSuccess }) {
     const [campaigns, setCampaigns] = useState([]);
     const [selectedCampaign, setSelectedCampaign] = useState("");
     const [note, setNote] = useState("");
     const [proposedBudget, setProposedBudget] = useState("");
+    const [portfolioLink, setPortfolioLink] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(null);
@@ -50,7 +51,8 @@ export default function ApplyModal({ brandId, brandName, onClose, onSuccess }) {
                 body: JSON.stringify({
                     campaignId: selectedCampaign,
                     proposedBudget: parseFloat(proposedBudget),
-                    note
+                    note,
+                    portfolioLink
                 })
             });
 
@@ -188,6 +190,21 @@ export default function ApplyModal({ brandId, brandName, onClose, onSuccess }) {
                                     placeholder="Tell the brand about your work and why you're a great fit for this campaign..."
                                     className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-50 focus:border-blue-500 outline-none transition-all min-h-[120px] max-h-[200px] text-gray-800 placeholder:text-gray-400 font-medium"
                                     required
+                                />
+                            </div>
+
+                            {/* Portfolio Link */}
+                            <div className="space-y-3">
+                                <label className="flex items-center gap-2 text-xs font-black text-gray-400 uppercase tracking-widest ml-1">
+                                    <Globe className="w-3.5 h-3.5" />
+                                    Portfolio Link (Optional)
+                                </label>
+                                <input
+                                    type="url"
+                                    value={portfolioLink}
+                                    onChange={(e) => setPortfolioLink(e.target.value)}
+                                    placeholder="https://yourportfolio.com"
+                                    className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-50 focus:border-blue-500 outline-none transition-all text-gray-800 placeholder:text-gray-400 font-medium"
                                 />
                             </div>
 

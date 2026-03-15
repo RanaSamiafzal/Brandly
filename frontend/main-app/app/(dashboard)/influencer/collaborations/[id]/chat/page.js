@@ -25,11 +25,11 @@ export default function CollaborationChatPage() {
     const [mounted, setMounted] = useState(false);
     const [socket, setSocket] = useState(null);
     const [userId, setUserId] = useState(null);
+    const [brandInfo, setBrandInfo] = useState(null);
     const scrollRef = useRef(null);
 
     useEffect(() => {
         setMounted(true);
-        // Fetch current user (simplified for this context)
         const fetchUser = async () => {
             const res = await fetch('/api/auth/me');
             if (res.ok) {
@@ -39,7 +39,24 @@ export default function CollaborationChatPage() {
         };
         fetchUser();
         fetchMessages();
+        fetchBrandDetails();
     }, []);
+
+    const fetchBrandDetails = async () => {
+        try {
+            const res = await fetch(`/api/influencer/collaborations/${params.id}/details`);
+            if (res.ok) {
+                const data = await res.json();
+                setBrandInfo({
+                    name: data.collaboration?.campaign?.brand?.brandName || data.collaboration?.receiver?.fullname || "Brand",
+                    image: data.collaboration?.campaign?.brand?.logo || data.collaboration?.receiver?.profilePic || null,
+                    nameInitial: (data.collaboration?.campaign?.brand?.brandName || data.collaboration?.receiver?.fullname || "B").charAt(0)
+                });
+            }
+        } catch (error) {
+            console.error("Failed to fetch brand details", error);
+        }
+    };
 
     useEffect(() => {
         if (!params.id) return;
@@ -52,7 +69,6 @@ export default function CollaborationChatPage() {
 
             newSocket.on('receive_message', (message) => {
                 setMessages((prev) => {
-                    // Deduplicate: don't add if a message with the same id already exists
                     if (prev.some((m) => m.id === message.id)) return prev;
                     return [...prev, {
                         id: message.id,
@@ -110,6 +126,8 @@ export default function CollaborationChatPage() {
 
     if (!mounted) return null;
 
+    const brandName = brandInfo?.name || "Brand";
+
     return (
         <div className="max-w-screen-2xl mx-auto px-4 md:px-12 h-[calc(100vh-140px)] flex flex-col animate-in fade-in duration-500">
             {/* Nav Header */}
@@ -120,10 +138,14 @@ export default function CollaborationChatPage() {
                     </Link>
                     <div className="flex items-center gap-4">
                         <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-white shadow-lg shadow-blue-100">
-                            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=100&h=100&fit=crop" alt="Brand" className="w-full h-full object-cover" />
+                            {brandInfo?.image ? (
+                                <img src={brandInfo.image} alt={brandName} className="w-full h-full object-cover" />
+                            ) : (
+                                <div className="w-full h-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-black uppercase">{brandInfo?.nameInitial || "B"}</div>
+                            )}
                         </div>
                         <div>
-                            <h2 className="text-xl font-black text-gray-900 tracking-tight uppercase leading-none">FashionHub</h2>
+                            <h2 className="text-xl font-black text-gray-900 tracking-tight uppercase leading-none">{brandName}</h2>
                             <div className="flex items-center gap-2 mt-1">
                                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                                 <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Brand Support • Online</span>
@@ -197,7 +219,7 @@ export default function CollaborationChatPage() {
                         type="text"
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
-                        placeholder="Type your message to FashionHub..."
+                        placeholder={`Type your message to ${brandName}...`}
                         className="flex-1 bg-transparent border-none focus:ring-0 text-sm font-bold text-gray-900 placeholder:text-gray-400 px-4"
                     />
                     <button

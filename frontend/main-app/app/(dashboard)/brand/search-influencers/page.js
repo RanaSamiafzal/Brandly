@@ -98,7 +98,8 @@ export default function SearchInfluencers() {
                         location: inf.location,
                         platform: firstPlatform,
                         PlatformIcon,
-                        image: inf.user?.profilePic || `https://i.pravatar.cc/150?u=${inf.id}`,
+                        image: inf.user?.profilePic || null,
+                        nameInitial: (inf.user?.fullname || inf.username || "U").charAt(0),
                         isAvailable: inf.isAvailable,
                         rating: inf.averageRating,
                     };
@@ -381,11 +382,15 @@ export default function SearchInfluencers() {
                             >
                                 {/* Avatar */}
                                 <div className="relative w-20 h-20 mb-4">
-                                    <img
-                                        src={inf.image}
-                                        alt={inf.name}
-                                        className="w-full h-full rounded-full object-cover border-2 border-white shadow-md group-hover:scale-105 transition-transform"
-                                    />
+                                    {inf.image ? (
+                                        <img
+                                            src={inf.image}
+                                            alt={inf.name}
+                                            className="w-full h-full rounded-full object-cover border-2 border-white shadow-md group-hover:scale-105 transition-transform"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl font-black uppercase border-2 border-white shadow-md">{inf.nameInitial}</div>
+                                    )}
                                     {onlineUsers.has(inf.userId) ? (
                                         <span className="absolute bottom-0.5 right-0.5 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse shadow-sm" title="Active Now" />
                                     ) : inf.isAvailable && (

@@ -26,6 +26,7 @@ export default function SearchBrandsPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [mounted, setMounted] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
+    const [activeFilter, setActiveFilter] = useState("All Niches");
     const [showFilters, setShowFilters] = useState(false);
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [toast, setToast] = useState(null);
@@ -48,10 +49,9 @@ export default function SearchBrandsPage() {
 
     useEffect(() => {
         setMounted(true);
-        fetchBrands();
     }, []);
 
-    const fetchBrands = async (query = "", industry = "") => {
+    const fetchBrands = async (query = searchQuery, industry = activeFilter) => {
         setIsLoading(true);
         try {
             const params = new URLSearchParams();
@@ -65,7 +65,8 @@ export default function SearchBrandsPage() {
                     id: b.id,
                     userId: b.userId,
                     name: b.brandName,
-                    logo: b.logo || "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=400&fit=crop",
+                    logo: b.logo || null,
+                    brandInitial: (b.brandName || "B").charAt(0),
                     description: b.description || "No description provided",
                     categories: b.industry ? [b.industry] : ["General"],
                     location: b.address || "Global",
@@ -83,9 +84,21 @@ export default function SearchBrandsPage() {
 
     const handleSearch = (e) => {
         if (e.key === "Enter") {
-            fetchBrands(searchQuery);
+            const query = searchQuery.trim();
+            fetchBrands(query, activeFilter);
         }
     };
+
+    // Debounced search for real-time results
+    useEffect(() => {
+        if (!mounted) return;
+        
+        const timer = setTimeout(() => {
+            fetchBrands(searchQuery.trim(), activeFilter);
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [searchQuery, activeFilter, mounted]);
 
     const handleApplySuccess = () => {
         setToast({ type: "success", message: "Application submitted successfully!" });
@@ -143,9 +156,14 @@ export default function SearchBrandsPage() {
                 ].map((f) => (
                     <button
                         key={f.label}
-                        className="flex items-center gap-2 px-5 py-2.5 bg-white border border-gray-100 rounded-xl text-xs font-black text-gray-500 hover:text-blue-600 hover:border-blue-100 hover:bg-blue-50 transition-all shadow-sm uppercase tracking-widest"
+                        onClick={() => setActiveFilter(f.label)}
+                        className={`flex items-center gap-2 px-5 py-2.5 border rounded-xl text-xs font-black transition-all shadow-sm uppercase tracking-widest ${
+                            activeFilter === f.label 
+                                ? "bg-blue-600 border-blue-600 text-white shadow-blue-100" 
+                                : "bg-white border-gray-100 text-gray-500 hover:text-blue-600 hover:border-blue-100 hover:bg-blue-50"
+                        }`}
                     >
-                        {f.icon && <f.icon className="w-3.5 h-3.5" />}
+                        {f.icon && <f.icon className={`w-3.5 h-3.5 ${activeFilter === f.label ? "text-white" : ""}`} />}
                         {f.label}
                     </button>
                 ))}
@@ -190,12 +208,16 @@ export default function SearchBrandsPage() {
                         >
                             <div className="flex justify-between items-start mb-6">
                                 <div className="relative">
-                                    <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-md ring-4 ring-gray-50 group-hover:ring-blue-50 transition-all">
-                                        <img
-                                            src={brand.logo}
-                                            alt={brand.name}
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                        />
+                                    <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-md ring-4 ring-gray-50 group-hover:ring-blue-50 transition-all bg-white">
+                                        {brand.logo ? (
+                                            <img
+                                                src={brand.logo}
+                                                alt={brand.name}
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-black uppercase">{brand.brandInitial}</div>
+                                        )}
                                     </div>
                                     {onlineUsers.has(brand.userId) && (
                                         <span className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-4 border-white animate-pulse shadow-lg" title="Active Now" />

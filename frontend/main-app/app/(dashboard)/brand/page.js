@@ -38,18 +38,24 @@ export default function DashboardHome() {
             }
 
             if (recData.recommendations) {
-                setRecommended(recData.recommendations.map(r => ({
-                    id: r.influencer.id,
-                    name: r.influencer.user.fullname,
-                    category: r.influencer.category,
-                    platform: "Instagram", // Placeholder
-                    followers: "124k", // Placeholder
-                    image: r.influencer.user.profilePic || `https://i.pravatar.cc/150?u=${r.influencer.id}`
-                })));
+                setRecommended(recData.recommendations.map(r => {
+                    const platforms = Array.isArray(r.influencer.platforms)
+                        ? r.influencer.platforms
+                        : (typeof r.influencer.platforms === 'string' ? JSON.parse(r.influencer.platforms) : []);
+                    const firstPlatform = platforms[0]?.platform || "General";
+                    return {
+                        id: r.influencer.id,
+                        name: r.influencer.user.fullname,
+                        category: r.influencer.category,
+                        platform: firstPlatform,
+                        image: r.influencer.user.profilePic || null,
+                        nameInitial: (r.influencer.user.fullname || "U").charAt(0)
+                    };
+                }));
             }
 
             if (actData.activities) {
-                setActivities(actData.activities.map(a => ({
+                setActivities(actData.activities.slice(0, 10).map(a => ({
                     type: a.type.toLowerCase(),
                     user: a.title,
                     action: a.description,
@@ -122,7 +128,11 @@ export default function DashboardHome() {
                     {recommended.map((inf, i) => (
                         <div key={i} className="border border-gray-100 rounded-xl p-6 text-center hover:border-blue-100 hover:shadow-md transition-all">
                             <div className="relative w-20 h-20 mx-auto mb-4">
-                                <img src={inf.image} alt={inf.name} className="rounded-full object-cover w-full h-full border-2 border-white shadow-sm" />
+                                {inf.image ? (
+                                    <img src={inf.image} alt={inf.name} className="rounded-full object-cover w-full h-full border-2 border-white shadow-sm" />
+                                ) : (
+                                    <div className="w-full h-full rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl font-black uppercase border-2 border-white shadow-sm">{inf.nameInitial}</div>
+                                )}
                             </div>
 
                             <div className="flex items-center justify-center gap-1.5 mb-1">
@@ -132,11 +142,10 @@ export default function DashboardHome() {
 
                             <div className="text-sm text-gray-500 space-y-1 mb-6">
                                 <p>📸 {inf.platform}</p>
-                                <p>{inf.followers} followers</p>
                                 <p>{inf.category}</p>
                             </div>
 
-                            <Link href={`/brand/influencer/123`}>
+                            <Link href={`/brand/influencer/${inf.id}`}>
                                 <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition-colors text-sm">
                                     View Profile
                                 </button>
@@ -148,7 +157,14 @@ export default function DashboardHome() {
 
             {/* Recent Activity */}
             <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-6">Recent Activity</h2>
+                <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-lg font-bold text-gray-900">Recent Activity</h2>
+                    <Link href="/brand/notifications">
+                        <button className="text-sm font-medium text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                            See All
+                        </button>
+                    </Link>
+                </div>
                 <div className="space-y-6">
                     {activities.map((act, i) => (
                         <div key={i} className="flex gap-4">

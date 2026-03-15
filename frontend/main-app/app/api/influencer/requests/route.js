@@ -34,6 +34,7 @@ export async function POST(req) {
             receiverId: brandProfile.userId,
             proposedBudget: proposedBudget || campaign.budgetMin,
             note: note || `I'm interested in collaborating on "${campaign.title}"!`,
+            senderRole: decoded.role
         });
 
         return NextResponse.json({ success: true, request });

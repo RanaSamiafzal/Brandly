@@ -20,7 +20,7 @@ export async function GET(req) {
             return {
                 id: col.id,
                 brandName: col.campaign?.brand?.brandName || "Brand",
-                brandLogo: col.campaign?.brand?.logo || col.campaign?.brand?.user?.profilePic || "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=200&h=200&fit=crop",
+                brandLogo: col.campaign?.brand?.logo || col.campaign?.brand?.user?.profilePic || null,
                 brandId: col.campaign?.brand?.id,
                 campaignTitle: col.campaign?.title || "Campaign",
                 status: col.status.toLowerCase() === 'accepted' ? 'ongoing' : col.status.toLowerCase(),

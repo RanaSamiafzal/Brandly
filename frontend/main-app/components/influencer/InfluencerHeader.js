@@ -177,8 +177,8 @@ export default function InfluencerHeader() {
                                         )}
                                     </div>
                                     <div className="flex-1 overflow-hidden pt-6">
-                                        <p className="font-bold truncate text-lg leading-tight text-gray-900">{fullName}</p>
-                                        <p className="text-xs text-emerald-600 font-medium truncate opacity-80">{userEmail}</p>
+                                        <p className="font-bold truncate text-lg leading-tight text-gray-900" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.8)' }}>{fullName}</p>
+                                        <p className="text-xs text-emerald-600 font-medium truncate opacity-90" style={{ textShadow: '0 1px 1px rgba(255,255,255,0.5)' }}>{userEmail}</p>
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-2 mb-4">

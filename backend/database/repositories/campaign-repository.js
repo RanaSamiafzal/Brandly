@@ -12,13 +12,19 @@ export const CampaignRepository = {
         return prisma.campaign.findUnique({
             where: { id },
             include: {
-                brand: true,
+                brand: {
+                    include: {
+                        user: {
+                            select: { profilePic: true, fullname: true, createdAt: true, isVerified: true }
+                        }
+                    }
+                },
                 requests: {
                     include: { sender: true, receiver: true }
                 },
                 matchScores: {
                     orderBy: { score: 'desc' },
-                    take: 10, // Top 10 by default
+                    take: 10,
                     include: { influencer: true }
                 },
             },

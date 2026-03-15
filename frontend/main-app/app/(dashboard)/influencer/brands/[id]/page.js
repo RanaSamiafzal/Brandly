@@ -55,7 +55,7 @@ export default function BrandProfilePage() {
                     location: p.address || null,
                     website: p.website || null,
                     joinedDate: new Date(p.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
-                    isVerified: true, // Assuming default true for now, can be a field later
+                    isVerified: p.user?.isVerified || false,
                     stats: {
                         activeCampaigns: p.campaigns?.length || 0,
                         totalCollaborations: null, // No real data yet

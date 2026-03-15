@@ -131,7 +131,7 @@ export default function MyCollaborationsPage() {
                                 className="bg-white border border-gray-200 rounded-[32px] p-6 md:p-8 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all group animate-in fade-in slide-in-from-bottom-4 duration-500 relative cursor-pointer"
                                 style={{ animationDelay: `${idx * 100}ms` }}
                             >
-                                <Link href={`/influencer/collaborations/${col.id}/tasks`} className="absolute inset-0 z-0" />
+                                <Link href={`/influencer/collaborations/${col.id}`} className="absolute inset-0 z-20" />
 
                                 <div className="flex flex-col lg:flex-row gap-8 relative z-10 pointer-events-none">
                                     {/* Left: Brand & Info */}
@@ -223,7 +223,7 @@ export default function MyCollaborationsPage() {
                                                 <span className={`text-[11px] font-black uppercase tracking-wider ${payInfo.color}`}>{payInfo.label}</span>
                                             </div>
 
-                                            <div className="grid grid-cols-2 gap-3 relative z-20">
+                                            <div className="grid grid-cols-2 gap-3 relative z-30">
                                                 <Link href={`/influencer/collaborations/${col.id}/chat`} className="w-full">
                                                     <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-white border border-gray-200 rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-700 hover:bg-gray-50 transition-all shadow-sm">
                                                         <MessageSquare className="w-4 h-4" />
@@ -239,7 +239,7 @@ export default function MyCollaborationsPage() {
                                             </div>
 
                                             {col.brandId && (
-                                                <Link href={`/influencer/brands/${col.brandId}`} className="block relative z-20">
+                                                <Link href={`/influencer/brands/${col.brandId}`} className="block relative z-30">
                                                     <button className="w-full py-2 text-gray-400 hover:text-gray-900 text-[9px] font-black uppercase tracking-widest flex items-center justify-center gap-2 group/btn transition-colors">
                                                         View Brand Profile <ExternalLink className="w-3 h-3 group-hover/btn:scale-110 transition-transform" />
                                                     </button>

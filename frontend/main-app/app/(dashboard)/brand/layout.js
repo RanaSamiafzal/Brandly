@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useAuthStore } from "@repo/store";
 import BrandSidebar from "../../../components/brand/BrandSidebar";
 import BrandHeader from "../../../components/brand/BrandHeader";
+import { NotificationProvider } from "../../../components/providers/NotificationProvider";
 
 export default function BrandLayout({ children }) {
     const rehydrate = useAuthStore((s) => s.rehydrate);
@@ -13,14 +14,16 @@ export default function BrandLayout({ children }) {
     }, []);
 
     return (
-        <div className="min-h-screen bg-[#F8FAFC]">
-            <BrandSidebar />
-            <div className="pl-64 flex flex-col min-h-screen">
-                <BrandHeader />
-                <main className="flex-1 p-8">
-                    {children}
-                </main>
+        <NotificationProvider>
+            <div className="min-h-screen bg-[#F8FAFC]">
+                <BrandSidebar />
+                <div className="pl-64 flex flex-col min-h-screen">
+                    <BrandHeader />
+                    <main className="flex-1 p-8">
+                        {children}
+                    </main>
+                </div>
             </div>
-        </div>
+        </NotificationProvider>
     );
 }

@@ -11,9 +11,19 @@ export const RequestRepository = {
         return prisma.collaborationRequest.findUnique({
             where: { id },
             include: {
-                sender: { include: { influencerProfile: true } },
-                receiver: true,
-                campaign: true
+                sender: { include: { influencerProfile: true, brandProfile: true } },
+                receiver: { include: { influencerProfile: true, brandProfile: true } },
+                campaign: {
+                    include: {
+                        brand: {
+                            include: {
+                                user: {
+                                    select: { profilePic: true, fullname: true, createdAt: true, isVerified: true }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         });
     },
@@ -33,6 +43,19 @@ export const RequestRepository = {
         });
     },
 
+    async getCampaignRequests(campaignId) {
+        return prisma.collaborationRequest.findMany({
+            where: { campaignId },
+            include: {
+                sender: { include: { influencerProfile: true, brandProfile: true } },
+                receiver: { include: { influencerProfile: true, brandProfile: true } },
+                campaign: true,
+                tasks: { select: { status: true } }
+            },
+            orderBy: { createdAt: 'desc' }
+        });
+    },
+
     async getInfluencerRequests(influencerUserId) {
         return prisma.collaborationRequest.findMany({
             where: {
@@ -42,7 +65,7 @@ export const RequestRepository = {
                 ]
             },
             include: {
-                campaign: { include: { brand: true } },
+                campaign: { include: { brand: { include: { user: true } } } },
                 sender: true,
                 receiver: true,
                 tasks: { select: { status: true } }

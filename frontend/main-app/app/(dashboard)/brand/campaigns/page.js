@@ -61,7 +61,7 @@ export default function BrandCampaigns() {
                     targetAudience: c.targetAudience || "",
                     additionalRequirements: c.additionalRequirements || "",
                     campaignTimeline: c.campaignTimeline || "",
-                    image: `https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&h=300&fit=crop`,
+                    image: c.image || null,
                 })));
             }
         } catch (error) {
@@ -233,11 +233,15 @@ export default function BrandCampaigns() {
                                 <div className="flex gap-6 items-start">
                                     {/* Image / Logo fallback */}
                                     <div className="w-40 h-28 rounded-xl overflow-hidden flex-shrink-0 hidden md:flex bg-gray-50 border border-gray-100 items-center justify-center">
-                                        <img
-                                            src={campaign.image || "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=300&fit=crop"}
-                                            alt={campaign.name}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                        />
+                                        {campaign.image ? (
+                                            <img
+                                                src={campaign.image}
+                                                alt={campaign.name}
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full bg-blue-50 flex items-center justify-center text-blue-400 text-3xl font-black uppercase">{(campaign.name || "C").charAt(0)}</div>
+                                        )}
                                     </div>
 
                                     <div className="flex-1 min-w-0">
@@ -264,6 +268,17 @@ export default function BrandCampaigns() {
 
                                                 {openMenuId === campaign.id && (
                                                     <div className="absolute right-0 top-8 w-48 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                router.push(`/brand/campaigns/${campaign.id}/requests`);
+                                                                setOpenMenuId(null);
+                                                            }}
+                                                            className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors text-left"
+                                                        >
+                                                            <Users className="w-4 h-4 text-green-600" />
+                                                            View Applications
+                                                        </button>
                                                         <button
                                                             onClick={(e) => {
                                                                 e.stopPropagation();

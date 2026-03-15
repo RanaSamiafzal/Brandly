@@ -55,7 +55,7 @@ export default function BrandCollaborations() {
             return {
                 id: req.id,
                 influencerName: req.sender.fullname,
-                influencerPic: req.sender.profilePic || `https://i.pravatar.cc/150?u=${req.senderId}`,
+                influencerPic: req.sender.profilePic || `https://ui-avatars.com/api/?name=${encodeURIComponent(req.sender.fullname)}&background=random&size=96`,
                 influencerId: req.sender.influencerProfile?.id || req.senderId,
                 campaignTitle: req.campaign.title,
                 campaignId: req.campaign.id,

@@ -5,7 +5,7 @@ import { useAuthStore } from "@repo/store";
 import CloudinaryUpload from "../../../../components/brand/CloudinaryUpload";
 
 export default function ProfileSettings() {
-    const { user } = useAuthStore();
+    const { user, rehydrate } = useAuthStore();
     const [activeTab, setActiveTab] = useState("Brand Information");
     const [isSaved, setIsSaved] = useState(false);
     const [mounted, setMounted] = useState(false);
@@ -70,19 +70,25 @@ export default function ProfileSettings() {
         }
     };
 
-    const handleSave = async (e) => {
-        e.preventDefault();
+    const handleSave = async (e, manualData = null) => {
+        if (e && e.preventDefault) e.preventDefault();
+        
         setIsSaved(true);
         setTimeout(() => setIsSaved(false), 3000);
+        
+        // Use manualData if provided (prevents state race conditions)
+        const updateData = manualData || formData;
+        
         try {
             const res = await fetch('/api/brand/profile', {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(updateData)
             });
             const data = await res.json();
             if (data.profile) {
-                // alert("Profile updated successfully!"); // Use setIsSaved for feedback
+                // Rehydrate the global auth store to sync profile data (like coverPic)
+                await rehydrate();
             }
         } catch (error) {
             console.error("Failed to update profile", error);
@@ -156,7 +162,11 @@ export default function ProfileSettings() {
                                         <p className="text-sm text-gray-500 mt-1 mb-3">Recommended size: 500x500px, under 2MB.</p>
                                         <div className="flex gap-3">
                                             <CloudinaryUpload
-                                                onUploadSuccess={handleUploadSuccess}
+                                                onUploadSuccess={(info) => {
+                                                    const newData = { ...formData, logo: info.secure_url };
+                                                    setFormData(newData);
+                                                    handleSave(null, newData);
+                                                }}
                                                 buttonText="Upload New Logo"
                                                 folder="brand_logos"
                                             />
@@ -182,8 +192,9 @@ export default function ProfileSettings() {
                                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
                                             <CloudinaryUpload
                                                 onUploadSuccess={(info) => {
-                                                    setFormData(prev => ({ ...prev, coverPic: info.secure_url }));
-                                                    handleSave({ preventDefault: () => { }, target: {} }); // Auto-save for simplicity or let user save
+                                                    const newData = { ...formData, coverPic: info.secure_url };
+                                                    setFormData(newData);
+                                                    handleSave(null, newData);
                                                 }}
                                                 buttonText="Upload Cover"
                                                 folder="brand_covers"

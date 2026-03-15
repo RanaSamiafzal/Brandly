@@ -23,7 +23,7 @@ export const RequestService = {
             // Notify Receiver
             await ActivityService.logActivity({
                 userId: data.receiverId,
-                role: "INFLUENCER",
+                role: data.senderRole === "INFLUENCER" ? "BRAND" : "INFLUENCER", // Target sees notification
                 type: "REQUEST_RECEIVED",
                 title: "New Collaboration Request",
                 description: `You have received a new collaboration request for campaign: ${campaign?.title}`,

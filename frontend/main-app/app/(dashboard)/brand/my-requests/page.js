@@ -37,7 +37,7 @@ export default function MyRequests() {
                     engagement: "Pending data",
                     date: new Date(request.createdAt).toLocaleDateString(),
                     message: request.note || "No message provided.",
-                    image: request.sender?.profilePic || `https://i.pravatar.cc/150?u=${request.senderId}`,
+                    image: request.sender?.profilePic || `https://ui-avatars.com/api/?name=${encodeURIComponent(request.sender?.fullname || 'User')}&background=random&size=96`,
                     senderId: request.senderId
                 };
                 setRequests(prev => [formatted, ...prev]);
@@ -63,7 +63,7 @@ export default function MyRequests() {
                     engagement: "Pending data",
                     date: new Date(req.createdAt).toLocaleDateString(),
                     message: req.note || "No message provided.",
-                    image: req.sender.profilePic || `https://i.pravatar.cc/150?u=${req.senderId}`,
+                    image: req.sender.profilePic || `https://ui-avatars.com/api/?name=${encodeURIComponent(req.sender.fullname)}&background=random&size=96`,
                     senderId: req.senderId
                 }));
                 setRequests(formattedRequests);

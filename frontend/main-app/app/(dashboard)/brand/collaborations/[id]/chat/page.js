@@ -125,7 +125,7 @@ export default function BrandCollaborationChat() {
                     <div className="flex items-center gap-4">
                         <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-white shadow-lg shadow-blue-100">
                             <img
-                                src={influencerInfo?.profilePic || "https://i.pravatar.cc/150"}
+                                src={influencerInfo?.profilePic || `https://ui-avatars.com/api/?name=${encodeURIComponent(influencerInfo?.fullname || 'User')}&background=random&size=96`}
                                 alt="Influencer"
                                 className="w-full h-full object-cover"
                             />

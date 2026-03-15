@@ -27,60 +27,29 @@ export default function CampaignsPage() {
 
     const fetchCampaigns = async () => {
         setIsLoading(true);
-        // Mock data for campaigns
-        setTimeout(() => {
-            setCampaigns([
-                {
-                    id: "c1",
-                    title: "Summer Style 2024",
-                    brand: "FashionHub",
-                    logo: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=100&h=100&fit=crop",
-                    description: "Looking for 5 influencers to showcase our new summer collection. High-quality reels and stories required.",
-                    budget: "$800 - $1,200",
-                    location: "Remote / USA",
-                    deadline: "Mar 30, 2024",
-                    category: "Fashion",
-                    status: "Active"
-                },
-                {
-                    id: "c2",
-                    title: "Eco-Friendly Fabrics",
-                    brand: "FashionHub",
-                    logo: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=100&h=100&fit=crop",
-                    description: "Join our sustainability movement by promoting our recycled fabric line. Educational content preferred.",
-                    budget: "$1,500 - $2,000",
-                    location: "Global",
-                    deadline: "Apr 15, 2024",
-                    category: "Sustainability",
-                    status: "Active"
-                },
-                {
-                    id: "c3",
-                    title: "Pro Gaming Setup Review",
-                    brand: "TechGear Pro",
-                    logo: "https://images.unsplash.com/photo-1468436139062-f60a7444f84e?w=100&h=100&fit=crop",
-                    description: "Full review of our latest mechanical keyboard and ultra-wide monitor group. Video content only.",
-                    budget: "$2,000 - $3,500",
-                    location: "Remote",
-                    deadline: "Apr 10, 2024",
-                    category: "Gaming",
-                    status: "Active"
-                },
-                {
-                    id: "c4",
-                    title: "Morning Routine Wellness",
-                    brand: "WellnessLife",
-                    logo: "https://images.unsplash.com/photo-1545208393-596371BA9a3e?w=100&h=100&fit=crop",
-                    description: "Share your morning wellness routine featuring our organic supplements and vitamins.",
-                    budget: "$400 - $700",
-                    location: "Remote",
-                    deadline: "Mar 25, 2024",
-                    category: "Wellness",
-                    status: "Closing Soon"
-                }
-            ]);
+        try {
+            const res = await fetch('/api/influencer/campaigns');
+            const data = await res.json();
+            if (res.ok && data.campaigns) {
+                setCampaigns(data.campaigns.map(c => ({
+                    id: c.id,
+                    title: c.title,
+                    brand: c.brand?.brandName || "Unknown Brand",
+                    logo: c.brand?.logo || c.brand?.user?.profilePic || null,
+                    brandInitial: (c.brand?.brandName || "B").charAt(0),
+                    description: c.description || "No description provided",
+                    budget: `$${(c.budgetMin || 0).toLocaleString()} - $${(c.budgetMax || 0).toLocaleString()}`,
+                    location: c.brand?.address || "Remote",
+                    deadline: c.campaignTimeline || new Date(c.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                    category: c.targetCategory?.[0] || "General",
+                    status: c.status || "Active"
+                })));
+            }
+        } catch (err) {
+            console.error("Failed to fetch campaigns", err);
+        } finally {
             setIsLoading(false);
-        }, 600);
+        }
     };
 
     if (!mounted) return null;
@@ -132,8 +101,12 @@ export default function CampaignsPage() {
                             className="bg-white border border-gray-100 rounded-[40px] p-8 flex flex-col md:flex-row gap-8 items-center hover:shadow-2xl hover:shadow-blue-100/50 hover:border-blue-200 transition-all group animate-in slide-in-from-bottom-8 duration-700"
                             style={{ animationDelay: `${idx * 150}ms` }}
                         >
-                            <div className="w-24 h-24 rounded-[32px] overflow-hidden border-4 border-gray-50 flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
-                                <img src={camp.logo} alt={camp.brand} className="w-full h-full object-cover" />
+                            <div className="w-24 h-24 rounded-[32px] overflow-hidden border-4 border-gray-50 flex-shrink-0 group-hover:scale-110 transition-transform duration-500 bg-white">
+                                {camp.logo ? (
+                                    <img src={camp.logo} alt={camp.brand} className="w-full h-full object-cover" />
+                                ) : (
+                                    <div className="w-full h-full bg-blue-100 text-blue-600 flex items-center justify-center text-3xl font-black uppercase">{camp.brandInitial}</div>
+                                )}
                             </div>
 
                             <div className="flex-1 space-y-3">

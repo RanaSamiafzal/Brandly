@@ -39,7 +39,8 @@ export default function PendingRequestsPage() {
                     id: req.id,
                     campaignTitle: req.campaign.title,
                     brand: req.campaign.brand.brandName || "Unknown Brand",
-                    logo: req.campaign.brand.logo || "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=100&h=100&fit=crop",
+                    logo: req.campaign.brand.logo || null,
+                    brandInitial: (req.campaign.brand.brandName || "B").charAt(0),
                     sentDate: new Date(req.createdAt).toLocaleDateString(),
                     status: req.status === "PENDING" ? "Pending" :
                         req.status === "ACCEPTED" ? "Accepted" :
@@ -144,7 +145,11 @@ export default function PendingRequestsPage() {
                                     style={{ animationDelay: `${idx * 100}ms` }}
                                 >
                                     <div className="w-16 h-16 rounded-2xl overflow-hidden border border-gray-50 bg-gray-50 flex-shrink-0">
-                                        <img src={req.logo} alt={req.brand} className="w-full h-full object-cover" />
+                                        {req.logo ? (
+                                            <img src={req.logo} alt={req.brand} className="w-full h-full object-cover" />
+                                        ) : (
+                                            <div className="w-full h-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-black uppercase">{req.brandInitial}</div>
+                                        )}
                                     </div>
 
                                     <div className="flex-1 space-y-1">

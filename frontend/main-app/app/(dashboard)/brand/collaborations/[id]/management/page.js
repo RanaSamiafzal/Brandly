@@ -337,7 +337,7 @@ export default function BrandManagementPage() {
                         <div className="flex items-center gap-4 mb-6">
                             <div className="w-14 h-14 rounded-2xl border-2 border-white/20 overflow-hidden">
                                 <img
-                                    src={collabInfo?.sender?.profilePic || `https://i.pravatar.cc/150?u=${collabInfo?.senderId}`}
+                                    src={collabInfo?.sender?.profilePic || `https://ui-avatars.com/api/?name=${encodeURIComponent(collabInfo?.sender?.fullname || 'User')}&background=random&size=96`}
                                     className="w-full h-full object-cover"
                                     alt="Profile"
                                 />
@@ -345,9 +345,7 @@ export default function BrandManagementPage() {
                             <div>
                                 <h3 className="font-black text-lg uppercase leading-tight">{collabInfo?.sender?.fullname}</h3>
                                 <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">
-                                    {collabInfo?.sender?.influencerProfile?.category
-                                        ? `Category: ${collabInfo.sender.influencerProfile.category}`
-                                        : "Influencer"}
+                                    {collabInfo?.sender?.influencerProfile?.category || "Influencer"}
                                     {collabInfo?.sender?.influencerProfile?.isAvailable === false ? " · Busy" : " · Available"}
                                 </p>
                             </div>

@@ -134,19 +134,44 @@ export const BrandRepository = {
     },
 
     async search(filters) {
-        const where = {};
-        if (filters.industry && filters.industry !== "All Industries") {
-            where.industry = {
-                contains: filters.industry,
-                mode: 'insensitive'
-            };
-        }
-
+        const where = {
+            brandName: { not: "" }
+        };
+        
+        // Base Query (Search Input)
         if (filters.query) {
             where.OR = [
                 { brandName: { contains: filters.query, mode: 'insensitive' } },
-                { description: { contains: filters.query, mode: 'insensitive' } }
+                { description: { contains: filters.query, mode: 'insensitive' } },
+                { industry: { contains: filters.query, mode: 'insensitive' } },
+                { user: { fullname: { contains: filters.query, mode: 'insensitive' } } }
             ];
+        }
+
+        // Pill Filters
+        if (filters.industry) {
+            switch (filters.industry) {
+                case "High Budget":
+                    where.budgetMin = { gte: 1000 };
+                    break;
+                case "Top Rated":
+                    // Definition: Brands with at least one active campaign
+                    where.campaigns = { some: { status: "ACTIVE" } };
+                    break;
+                case "Verified Only":
+                    where.user = { isVerified: true };
+                    break;
+                case "New Tech":
+                    where.industry = { contains: "tech", mode: 'insensitive' };
+                    break;
+                case "All Niches":
+                case "All Industries":
+                    // No extra filter
+                    break;
+                default:
+                    // Specific industry selected
+                    where.industry = { contains: filters.industry, mode: 'insensitive' };
+            }
         }
 
         return prisma.brandProfile.findMany({
